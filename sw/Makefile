@@ -3,15 +3,15 @@ ASM = src_asm
 C = src_c
 HEX = hex
 TESTDATA = ../sim/test_data
-SOURCE_C =
-SOURCE_S = gpio
+SRC_C =
+SRC_S = gpio
 
-ifdef SOURCE_C
-TEST = $(SOURCE_C)
-SOURCE = $(C)/$(SOURCE_C).c
+ifdef SRC_C
+TEST = $(SRC_C)
+SRC = $(C)/$(SRC_C).c
 else
-TEST = $(SOURCE_S)
-SOURCE = $(ASM)/$(SOURCE_S).s
+TEST = $(SRC_S)
+SRC = $(ASM)/$(SRC_S).s
 endif
 
 CRT = $(COMMON)/crt.s
@@ -34,10 +34,10 @@ ELF2HEX = elf2hex
 all:
 
 compile: $(CRT) $(LINKERS)
-	$(GCC) $(CFLAGS) $(OFLAGS) $(CRT) $(SOURCE) -T $(LINKERS) -o program.elf
-	$(GCC) $(CFLAGS) $(DEBUG_FLAG) $(CRT) $(SOURCE) -T $(LINKERS) -o program.debug.elf
+	$(GCC) $(CFLAGS) $(OFLAGS) $(CRT) $(SRC) -T $(LINKERS) -o program.elf
+	$(GCC) $(CFLAGS) $(DEBUG_FLAG) $(CRT) $(SRC) -T $(LINKERS) -o program.debug.elf
 assemble: $(ASLINKERS)
-	$(GCC) $(ASFLAGS) $(SOURCE) -T $(ASLINKERS) -o program.elf 
+	$(GCC) $(ASFLAGS) $(SRC) -T $(ASLINKERS) -o program.elf 
 	cp program.elf program.debug.elf
 disassemble: program.debug.elf
 	$(OBJDUMP) $(OBJFLAGS) program.debug.elf > program.dump
@@ -53,7 +53,7 @@ program: compile disassemble hex
 	@:
 
 debug_program:
-	gcc -lm -g -std=gnu11 -DDEBUG $(SOURCE) -o debug_bin
+	gcc -lm -g -std=gnu11 -DDEBUG $(SRC) -o debug_bin
 
 assembly: assemble disassemble hex
 	@:
