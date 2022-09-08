@@ -2,6 +2,7 @@ COMMON = common
 ASM = src_asm
 C = src_c
 HEX = hex
+TESTDATA = ../sim/test_data
 # SOURCE_C = add
 # SOURCE = $(C)/$(SOURCE_C).c
 SOURCE_S = gpio
@@ -39,7 +40,7 @@ disassemble: program.debug.elf
 hex: program.elf
 	$(ELF2HEX) 4 4096 program.elf > program.hex
 	cp program.hex $(HEX)/$(SOURCE_S).hex
-	python trim.py $(SOURCE_S)
+	python $(TESTDATA)/trim.py $(SOURCE_S)
 	rm program*
 
 program: compile disassemble hex
