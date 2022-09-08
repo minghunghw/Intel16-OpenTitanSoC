@@ -1,5 +1,4 @@
-## Intel16-OpenTitanSoC
------------------------------------------------------------
+# Intel16-OpenTitanSoC
 
 Major directories are listed below, the diagram is generated with `tree`:
 
