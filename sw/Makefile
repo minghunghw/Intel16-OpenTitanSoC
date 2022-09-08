@@ -31,7 +31,7 @@ AS = riscv64-unknown-elf-as
 ELF2HEX = elf2hex
 
 # Programs
-all:	assembly
+all:
 
 compile: $(CRT) $(LINKERS)
 	$(GCC) $(CFLAGS) $(OFLAGS) $(CRT) $(SOURCE) -T $(LINKERS) -o program.elf
