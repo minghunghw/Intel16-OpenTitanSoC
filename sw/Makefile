@@ -3,8 +3,8 @@ ASM = src_asm
 C = src_c
 HEX = hex
 TESTDATA = ../sim/test_data
-# SOURCE_C = add
-# SOURCE = $(C)/$(SOURCE_C).c
+SOURCE_C = add
+SOURCE = $(C)/$(SOURCE_C).c
 SOURCE_S = gpio
 SOURCE = $(ASM)/$(SOURCE_S).s
 
