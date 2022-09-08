@@ -3,10 +3,14 @@ ASM = src_asm
 C = src_c
 HEX = hex
 TESTDATA = ../sim/test_data
-SOURCE_C = add
-SOURCE = $(C)/$(SOURCE_C).c
+SOURCE_C =
 SOURCE_S = gpio
+
+ifdef SOURCE_C
+SOURCE = $(C)/$(SOURCE_C).c
+else
 SOURCE = $(ASM)/$(SOURCE_S).s
+endif
 
 CRT = $(COMMON)/crt.s
 LINKERS = $(COMMON)/linker.lds
