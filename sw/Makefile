@@ -7,8 +7,10 @@ SOURCE_C =
 SOURCE_S = gpio
 
 ifdef SOURCE_C
+TEST = $(SOURCE_C)
 SOURCE = $(C)/$(SOURCE_C).c
 else
+TEST = $(SOURCE_S)
 SOURCE = $(ASM)/$(SOURCE_S).s
 endif
 
@@ -43,8 +45,8 @@ disassemble: program.debug.elf
 	rm program.debug.elf
 hex: program.elf
 	$(ELF2HEX) 4 4096 program.elf > program.hex
-	cp program.hex $(HEX)/$(SOURCE_S).hex
-	python $(TESTDATA)/trim.py $(SOURCE_S)
+	cp program.hex $(HEX)/$(TEST).hex
+	python $(TESTDATA)/trim.py $(TEST)
 	rm program*
 
 program: compile disassemble hex
