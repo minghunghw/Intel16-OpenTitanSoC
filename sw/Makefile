@@ -1,6 +1,6 @@
 COMMON = common
-ASM = asm
-C = c
+ASM = src_asm
+C = src_c
 HEX = hex
 # SOURCE_C = add
 # SOURCE = $(C)/$(SOURCE_C).c
