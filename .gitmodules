@@ -1,3 +1,6 @@
 [submodule "ip/opentitan"]
 	path = ip/opentitan
 	url = git@github.com:lowRISC/opentitan.git
+[submodule "ip"]
+	path = ip
+	url = git@github.com:lowRISC/opentitan.git
