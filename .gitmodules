@@ -1,3 +1,6 @@
 [submodule "ip/opentitan"]
 	path = ip/opentitan
 	url = git@github.com:lowRISC/opentitan.git
+[submodule "ip/debug"]
+	path = ip/debug
+	url = git@github.com:minghungumich/TestSetup-GF12-OpenTitanSoC.git
