@@ -553,7 +553,7 @@ desired, an `tlul_fifo_async` should be placed on the desired bus.
 The diagram below shows the dataflow of the `tlul_socket_1n` and how
 the `tlul_fifo_sync` modules are allocated.
 
-![tlul_socket_1n block diagram](tlul_socket_1n.svg)
+![tlul_socket_1n block diagram](svg/tlul_socket_1n.svg)
 
 In this diagram, the full socket (`1:4` in this case) is shown, with
 its single host port and four device ports. Also shown is the critical
@@ -613,7 +613,7 @@ must be instantiated on any ports that run asynchronously.
 The diagram below shows the dataflow of `tlul_socket_m1` for `4:1`
 case and how the `tlul_fifo_sync` modules are allocated.
 
-![tlul_socket_m1 block diagram](tlul_socket_m1.svg)
+![tlul_socket_m1 block diagram](svg/tlul_socket_m1.svg)
 
 Requests coming from each host ports are arbitrated in the socket based
 on round-robin scheme. `tlul_socket_m1`, unlike the `1:N` socket, doesn't
@@ -659,7 +659,7 @@ The memory interface is defined as follows:
 | rerror  | `input`   | Transaction read error from downstream |
 
 The diagram below is a block diagram that shows the construction of the adapter.
-![tlul_adapter_sram_block diagram](tlul_adapter_sram.svg)
+![tlul_adapter_sram_block diagram](svg/tlul_adapter_sram.svg)
 
 All incoming transactions are checked for protocol errors and integrity.
 The transactions are then forwarded to the `tlul_sram_byte` module, which determines whether the incoming transaction is a write, and whether the write transaction must be transformed to a read-modified-write.
