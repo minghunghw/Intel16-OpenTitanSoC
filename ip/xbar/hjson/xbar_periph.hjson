@@ -17,7 +17,7 @@
     [
       uart
       gpio
-      spi_host
+      spi
       i2c
       plic
     ]
@@ -73,12 +73,12 @@
       req_fifo_pass: true
     }
     {
-      name: spi_host
+      name: spi
       type: device
       clock: clk_i
       reset: rst_ni
       pipeline: false
-      inst_type: spi_host
+      inst_type: spi
       addr_range:
       [
         {

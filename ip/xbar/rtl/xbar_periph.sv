@@ -10,7 +10,7 @@
 //   -> s1n_6
 //     -> uart
 //     -> gpio
-//     -> spi_host
+//     -> spi
 //     -> i2c
 //     -> plic
 
@@ -27,8 +27,8 @@ module xbar_periph (
   input  tlul_pkg::tl_d2h_t tl_uart_i,
   output tlul_pkg::tl_h2d_t tl_gpio_o,
   input  tlul_pkg::tl_d2h_t tl_gpio_i,
-  output tlul_pkg::tl_h2d_t tl_spi_host_o,
-  input  tlul_pkg::tl_d2h_t tl_spi_host_i,
+  output tlul_pkg::tl_h2d_t tl_spi_o,
+  input  tlul_pkg::tl_d2h_t tl_spi_i,
   output tlul_pkg::tl_h2d_t tl_i2c_o,
   input  tlul_pkg::tl_d2h_t tl_i2c_i,
   output tlul_pkg::tl_h2d_t tl_plic_o,
@@ -63,8 +63,8 @@ module xbar_periph (
   assign tl_gpio_o = tl_s1n_6_ds_h2d[1];
   assign tl_s1n_6_ds_d2h[1] = tl_gpio_i;
 
-  assign tl_spi_host_o = tl_s1n_6_ds_h2d[2];
-  assign tl_s1n_6_ds_d2h[2] = tl_spi_host_i;
+  assign tl_spi_o = tl_s1n_6_ds_h2d[2];
+  assign tl_s1n_6_ds_d2h[2] = tl_spi_i;
 
   assign tl_i2c_o = tl_s1n_6_ds_h2d[3];
   assign tl_s1n_6_ds_d2h[3] = tl_i2c_i;
@@ -87,7 +87,7 @@ module xbar_periph (
       dev_sel_s1n_6 = 3'd1;
 
     end else if ((tl_s1n_6_us_h2d.a_address &
-                  ~(ADDR_MASK_SPI_HOST)) == ADDR_SPACE_SPI_HOST) begin
+                  ~(ADDR_MASK_SPI)) == ADDR_SPACE_SPI) begin
       dev_sel_s1n_6 = 3'd2;
 
     end else if ((tl_s1n_6_us_h2d.a_address &
