@@ -19,6 +19,7 @@
       uart
       i2c
       gpio
+      plic
     ]
     data:
     [
@@ -26,6 +27,7 @@
       uart
       i2c
       gpio
+      plic
     ]
   }
   nodes:
@@ -119,6 +121,24 @@
       [
         {
           base_addr: 0x40030000
+          size_byte: 0x10000
+        }
+      ]
+      xbar: false
+      stub: false
+      req_fifo_pass: true
+    }
+    {
+      name: plic
+      type: device
+      clock: clk_i
+      reset: rst_ni
+      pipeline: false
+      inst_type: plic
+      addr_range:
+      [
+        {
+          base_addr: 0x40040000
           size_byte: 0x10000
         }
       ]

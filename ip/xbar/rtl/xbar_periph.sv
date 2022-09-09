@@ -7,25 +7,29 @@
 //
 // Interconnect
 // instr
-//   -> s1n_6
-//     -> sm1_7
-//       -> spi
+//   -> s1n_7
 //     -> sm1_8
-//       -> uart
+//       -> spi
 //     -> sm1_9
-//       -> i2c
+//       -> uart
 //     -> sm1_10
+//       -> i2c
+//     -> sm1_11
 //       -> gpio
+//     -> sm1_12
+//       -> plic
 // data
-//   -> s1n_11
-//     -> sm1_7
-//       -> spi
+//   -> s1n_13
 //     -> sm1_8
-//       -> uart
+//       -> spi
 //     -> sm1_9
-//       -> i2c
+//       -> uart
 //     -> sm1_10
+//       -> i2c
+//     -> sm1_11
 //       -> gpio
+//     -> sm1_12
+//       -> plic
 
 module xbar_periph (
   input clk_i,
@@ -46,6 +50,8 @@ module xbar_periph (
   input  tlul_pkg::tl_d2h_t tl_i2c_i,
   output tlul_pkg::tl_h2d_t tl_gpio_o,
   input  tlul_pkg::tl_d2h_t tl_gpio_i,
+  output tlul_pkg::tl_h2d_t tl_plic_o,
+  input  tlul_pkg::tl_d2h_t tl_plic_i,
 
   input prim_mubi_pkg::mubi4_t scanmode_i
 );
@@ -58,22 +64,15 @@ module xbar_periph (
   logic unused_scanmode;
   assign unused_scanmode = ^scanmode_i;
 
-  tl_h2d_t tl_s1n_6_us_h2d ;
-  tl_d2h_t tl_s1n_6_us_d2h ;
+  tl_h2d_t tl_s1n_7_us_h2d ;
+  tl_d2h_t tl_s1n_7_us_d2h ;
 
 
-  tl_h2d_t tl_s1n_6_ds_h2d [4];
-  tl_d2h_t tl_s1n_6_ds_d2h [4];
+  tl_h2d_t tl_s1n_7_ds_h2d [5];
+  tl_d2h_t tl_s1n_7_ds_d2h [5];
 
   // Create steering signal
-  logic [2:0] dev_sel_s1n_6;
-
-
-  tl_h2d_t tl_sm1_7_us_h2d [2];
-  tl_d2h_t tl_sm1_7_us_d2h [2];
-
-  tl_h2d_t tl_sm1_7_ds_h2d ;
-  tl_d2h_t tl_sm1_7_ds_d2h ;
+  logic [2:0] dev_sel_s1n_7;
 
 
   tl_h2d_t tl_sm1_8_us_h2d [2];
@@ -96,99 +95,130 @@ module xbar_periph (
   tl_h2d_t tl_sm1_10_ds_h2d ;
   tl_d2h_t tl_sm1_10_ds_d2h ;
 
-  tl_h2d_t tl_s1n_11_us_h2d ;
-  tl_d2h_t tl_s1n_11_us_d2h ;
+
+  tl_h2d_t tl_sm1_11_us_h2d [2];
+  tl_d2h_t tl_sm1_11_us_d2h [2];
+
+  tl_h2d_t tl_sm1_11_ds_h2d ;
+  tl_d2h_t tl_sm1_11_ds_d2h ;
 
 
-  tl_h2d_t tl_s1n_11_ds_h2d [4];
-  tl_d2h_t tl_s1n_11_ds_d2h [4];
+  tl_h2d_t tl_sm1_12_us_h2d [2];
+  tl_d2h_t tl_sm1_12_us_d2h [2];
+
+  tl_h2d_t tl_sm1_12_ds_h2d ;
+  tl_d2h_t tl_sm1_12_ds_d2h ;
+
+  tl_h2d_t tl_s1n_13_us_h2d ;
+  tl_d2h_t tl_s1n_13_us_d2h ;
+
+
+  tl_h2d_t tl_s1n_13_ds_h2d [5];
+  tl_d2h_t tl_s1n_13_ds_d2h [5];
 
   // Create steering signal
-  logic [2:0] dev_sel_s1n_11;
+  logic [2:0] dev_sel_s1n_13;
 
 
 
-  assign tl_sm1_7_us_h2d[0] = tl_s1n_6_ds_h2d[0];
-  assign tl_s1n_6_ds_d2h[0] = tl_sm1_7_us_d2h[0];
+  assign tl_sm1_8_us_h2d[0] = tl_s1n_7_ds_h2d[0];
+  assign tl_s1n_7_ds_d2h[0] = tl_sm1_8_us_d2h[0];
 
-  assign tl_sm1_8_us_h2d[0] = tl_s1n_6_ds_h2d[1];
-  assign tl_s1n_6_ds_d2h[1] = tl_sm1_8_us_d2h[0];
+  assign tl_sm1_9_us_h2d[0] = tl_s1n_7_ds_h2d[1];
+  assign tl_s1n_7_ds_d2h[1] = tl_sm1_9_us_d2h[0];
 
-  assign tl_sm1_9_us_h2d[0] = tl_s1n_6_ds_h2d[2];
-  assign tl_s1n_6_ds_d2h[2] = tl_sm1_9_us_d2h[0];
+  assign tl_sm1_10_us_h2d[0] = tl_s1n_7_ds_h2d[2];
+  assign tl_s1n_7_ds_d2h[2] = tl_sm1_10_us_d2h[0];
 
-  assign tl_sm1_10_us_h2d[0] = tl_s1n_6_ds_h2d[3];
-  assign tl_s1n_6_ds_d2h[3] = tl_sm1_10_us_d2h[0];
+  assign tl_sm1_11_us_h2d[0] = tl_s1n_7_ds_h2d[3];
+  assign tl_s1n_7_ds_d2h[3] = tl_sm1_11_us_d2h[0];
 
-  assign tl_sm1_7_us_h2d[1] = tl_s1n_11_ds_h2d[0];
-  assign tl_s1n_11_ds_d2h[0] = tl_sm1_7_us_d2h[1];
+  assign tl_sm1_12_us_h2d[0] = tl_s1n_7_ds_h2d[4];
+  assign tl_s1n_7_ds_d2h[4] = tl_sm1_12_us_d2h[0];
 
-  assign tl_sm1_8_us_h2d[1] = tl_s1n_11_ds_h2d[1];
-  assign tl_s1n_11_ds_d2h[1] = tl_sm1_8_us_d2h[1];
+  assign tl_sm1_8_us_h2d[1] = tl_s1n_13_ds_h2d[0];
+  assign tl_s1n_13_ds_d2h[0] = tl_sm1_8_us_d2h[1];
 
-  assign tl_sm1_9_us_h2d[1] = tl_s1n_11_ds_h2d[2];
-  assign tl_s1n_11_ds_d2h[2] = tl_sm1_9_us_d2h[1];
+  assign tl_sm1_9_us_h2d[1] = tl_s1n_13_ds_h2d[1];
+  assign tl_s1n_13_ds_d2h[1] = tl_sm1_9_us_d2h[1];
 
-  assign tl_sm1_10_us_h2d[1] = tl_s1n_11_ds_h2d[3];
-  assign tl_s1n_11_ds_d2h[3] = tl_sm1_10_us_d2h[1];
+  assign tl_sm1_10_us_h2d[1] = tl_s1n_13_ds_h2d[2];
+  assign tl_s1n_13_ds_d2h[2] = tl_sm1_10_us_d2h[1];
 
-  assign tl_s1n_6_us_h2d = tl_instr_i;
-  assign tl_instr_o = tl_s1n_6_us_d2h;
+  assign tl_sm1_11_us_h2d[1] = tl_s1n_13_ds_h2d[3];
+  assign tl_s1n_13_ds_d2h[3] = tl_sm1_11_us_d2h[1];
 
-  assign tl_spi_o = tl_sm1_7_ds_h2d;
-  assign tl_sm1_7_ds_d2h = tl_spi_i;
+  assign tl_sm1_12_us_h2d[1] = tl_s1n_13_ds_h2d[4];
+  assign tl_s1n_13_ds_d2h[4] = tl_sm1_12_us_d2h[1];
 
-  assign tl_uart_o = tl_sm1_8_ds_h2d;
-  assign tl_sm1_8_ds_d2h = tl_uart_i;
+  assign tl_s1n_7_us_h2d = tl_instr_i;
+  assign tl_instr_o = tl_s1n_7_us_d2h;
 
-  assign tl_i2c_o = tl_sm1_9_ds_h2d;
-  assign tl_sm1_9_ds_d2h = tl_i2c_i;
+  assign tl_spi_o = tl_sm1_8_ds_h2d;
+  assign tl_sm1_8_ds_d2h = tl_spi_i;
 
-  assign tl_gpio_o = tl_sm1_10_ds_h2d;
-  assign tl_sm1_10_ds_d2h = tl_gpio_i;
+  assign tl_uart_o = tl_sm1_9_ds_h2d;
+  assign tl_sm1_9_ds_d2h = tl_uart_i;
 
-  assign tl_s1n_11_us_h2d = tl_data_i;
-  assign tl_data_o = tl_s1n_11_us_d2h;
+  assign tl_i2c_o = tl_sm1_10_ds_h2d;
+  assign tl_sm1_10_ds_d2h = tl_i2c_i;
+
+  assign tl_gpio_o = tl_sm1_11_ds_h2d;
+  assign tl_sm1_11_ds_d2h = tl_gpio_i;
+
+  assign tl_plic_o = tl_sm1_12_ds_h2d;
+  assign tl_sm1_12_ds_d2h = tl_plic_i;
+
+  assign tl_s1n_13_us_h2d = tl_data_i;
+  assign tl_data_o = tl_s1n_13_us_d2h;
 
   always_comb begin
     // default steering to generate error response if address is not within the range
-    dev_sel_s1n_6 = 3'd4;
-    if ((tl_s1n_6_us_h2d.a_address &
+    dev_sel_s1n_7 = 3'd5;
+    if ((tl_s1n_7_us_h2d.a_address &
          ~(ADDR_MASK_SPI)) == ADDR_SPACE_SPI) begin
-      dev_sel_s1n_6 = 3'd0;
+      dev_sel_s1n_7 = 3'd0;
 
-    end else if ((tl_s1n_6_us_h2d.a_address &
+    end else if ((tl_s1n_7_us_h2d.a_address &
                   ~(ADDR_MASK_UART)) == ADDR_SPACE_UART) begin
-      dev_sel_s1n_6 = 3'd1;
+      dev_sel_s1n_7 = 3'd1;
 
-    end else if ((tl_s1n_6_us_h2d.a_address &
+    end else if ((tl_s1n_7_us_h2d.a_address &
                   ~(ADDR_MASK_I2C)) == ADDR_SPACE_I2C) begin
-      dev_sel_s1n_6 = 3'd2;
+      dev_sel_s1n_7 = 3'd2;
 
-    end else if ((tl_s1n_6_us_h2d.a_address &
+    end else if ((tl_s1n_7_us_h2d.a_address &
                   ~(ADDR_MASK_GPIO)) == ADDR_SPACE_GPIO) begin
-      dev_sel_s1n_6 = 3'd3;
+      dev_sel_s1n_7 = 3'd3;
+
+    end else if ((tl_s1n_7_us_h2d.a_address &
+                  ~(ADDR_MASK_PLIC)) == ADDR_SPACE_PLIC) begin
+      dev_sel_s1n_7 = 3'd4;
 end
   end
 
   always_comb begin
     // default steering to generate error response if address is not within the range
-    dev_sel_s1n_11 = 3'd4;
-    if ((tl_s1n_11_us_h2d.a_address &
+    dev_sel_s1n_13 = 3'd5;
+    if ((tl_s1n_13_us_h2d.a_address &
          ~(ADDR_MASK_SPI)) == ADDR_SPACE_SPI) begin
-      dev_sel_s1n_11 = 3'd0;
+      dev_sel_s1n_13 = 3'd0;
 
-    end else if ((tl_s1n_11_us_h2d.a_address &
+    end else if ((tl_s1n_13_us_h2d.a_address &
                   ~(ADDR_MASK_UART)) == ADDR_SPACE_UART) begin
-      dev_sel_s1n_11 = 3'd1;
+      dev_sel_s1n_13 = 3'd1;
 
-    end else if ((tl_s1n_11_us_h2d.a_address &
+    end else if ((tl_s1n_13_us_h2d.a_address &
                   ~(ADDR_MASK_I2C)) == ADDR_SPACE_I2C) begin
-      dev_sel_s1n_11 = 3'd2;
+      dev_sel_s1n_13 = 3'd2;
 
-    end else if ((tl_s1n_11_us_h2d.a_address &
+    end else if ((tl_s1n_13_us_h2d.a_address &
                   ~(ADDR_MASK_GPIO)) == ADDR_SPACE_GPIO) begin
-      dev_sel_s1n_11 = 3'd3;
+      dev_sel_s1n_13 = 3'd3;
+
+    end else if ((tl_s1n_13_us_h2d.a_address &
+                  ~(ADDR_MASK_PLIC)) == ADDR_SPACE_PLIC) begin
+      dev_sel_s1n_13 = 3'd4;
 end
   end
 
@@ -197,31 +227,17 @@ end
   tlul_socket_1n #(
     .HReqDepth (4'h0),
     .HRspDepth (4'h0),
-    .DReqDepth (16'h0),
-    .DRspDepth (16'h0),
-    .N         (4)
-  ) u_s1n_6 (
+    .DReqDepth (20'h0),
+    .DRspDepth (20'h0),
+    .N         (5)
+  ) u_s1n_7 (
     .clk_i        (clk_i),
     .rst_ni       (rst_ni),
-    .tl_h_i       (tl_s1n_6_us_h2d),
-    .tl_h_o       (tl_s1n_6_us_d2h),
-    .tl_d_o       (tl_s1n_6_ds_h2d),
-    .tl_d_i       (tl_s1n_6_ds_d2h),
-    .dev_select_i (dev_sel_s1n_6)
-  );
-  tlul_socket_m1 #(
-    .HReqDepth (8'h0),
-    .HRspDepth (8'h0),
-    .DReqDepth (4'h0),
-    .DRspDepth (4'h0),
-    .M         (2)
-  ) u_sm1_7 (
-    .clk_i        (clk_i),
-    .rst_ni       (rst_ni),
-    .tl_h_i       (tl_sm1_7_us_h2d),
-    .tl_h_o       (tl_sm1_7_us_d2h),
-    .tl_d_o       (tl_sm1_7_ds_h2d),
-    .tl_d_i       (tl_sm1_7_ds_d2h)
+    .tl_h_i       (tl_s1n_7_us_h2d),
+    .tl_h_o       (tl_s1n_7_us_d2h),
+    .tl_d_o       (tl_s1n_7_ds_h2d),
+    .tl_d_i       (tl_s1n_7_ds_d2h),
+    .dev_select_i (dev_sel_s1n_7)
   );
   tlul_socket_m1 #(
     .HReqDepth (8'h0),
@@ -265,20 +281,48 @@ end
     .tl_d_o       (tl_sm1_10_ds_h2d),
     .tl_d_i       (tl_sm1_10_ds_d2h)
   );
+  tlul_socket_m1 #(
+    .HReqDepth (8'h0),
+    .HRspDepth (8'h0),
+    .DReqDepth (4'h0),
+    .DRspDepth (4'h0),
+    .M         (2)
+  ) u_sm1_11 (
+    .clk_i        (clk_i),
+    .rst_ni       (rst_ni),
+    .tl_h_i       (tl_sm1_11_us_h2d),
+    .tl_h_o       (tl_sm1_11_us_d2h),
+    .tl_d_o       (tl_sm1_11_ds_h2d),
+    .tl_d_i       (tl_sm1_11_ds_d2h)
+  );
+  tlul_socket_m1 #(
+    .HReqDepth (8'h0),
+    .HRspDepth (8'h0),
+    .DReqDepth (4'h0),
+    .DRspDepth (4'h0),
+    .M         (2)
+  ) u_sm1_12 (
+    .clk_i        (clk_i),
+    .rst_ni       (rst_ni),
+    .tl_h_i       (tl_sm1_12_us_h2d),
+    .tl_h_o       (tl_sm1_12_us_d2h),
+    .tl_d_o       (tl_sm1_12_ds_h2d),
+    .tl_d_i       (tl_sm1_12_ds_d2h)
+  );
   tlul_socket_1n #(
     .HReqDepth (4'h0),
     .HRspDepth (4'h0),
-    .DReqDepth (16'h0),
-    .DRspDepth (16'h0),
-    .N         (4)
-  ) u_s1n_11 (
+    .DReqDepth (20'h0),
+    .DRspDepth (20'h0),
+    .N         (5)
+  ) u_s1n_13 (
     .clk_i        (clk_i),
     .rst_ni       (rst_ni),
-    .tl_h_i       (tl_s1n_11_us_h2d),
-    .tl_h_o       (tl_s1n_11_us_d2h),
-    .tl_d_o       (tl_s1n_11_ds_h2d),
-    .tl_d_i       (tl_s1n_11_ds_d2h),
-    .dev_select_i (dev_sel_s1n_11)
+    .tl_h_i       (tl_s1n_13_us_h2d),
+    .tl_h_o       (tl_s1n_13_us_d2h),
+    .tl_d_o       (tl_s1n_13_ds_h2d),
+    .tl_d_i       (tl_s1n_13_ds_d2h),
+    .dev_select_i (dev_sel_s1n_13)
   );
 
 endmodule

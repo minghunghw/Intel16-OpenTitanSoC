@@ -10,20 +10,23 @@ package tl_periph_pkg;
   localparam logic [31:0] ADDR_SPACE_UART = 32'h 40010000;
   localparam logic [31:0] ADDR_SPACE_I2C  = 32'h 40020000;
   localparam logic [31:0] ADDR_SPACE_GPIO = 32'h 40030000;
+  localparam logic [31:0] ADDR_SPACE_PLIC = 32'h 40040000;
 
   localparam logic [31:0] ADDR_MASK_SPI  = 32'h 0000ffff;
   localparam logic [31:0] ADDR_MASK_UART = 32'h 0000ffff;
   localparam logic [31:0] ADDR_MASK_I2C  = 32'h 0000ffff;
   localparam logic [31:0] ADDR_MASK_GPIO = 32'h 0000ffff;
+  localparam logic [31:0] ADDR_MASK_PLIC = 32'h 0000ffff;
 
   localparam int N_HOST   = 2;
-  localparam int N_DEVICE = 4;
+  localparam int N_DEVICE = 5;
 
   typedef enum int {
     TlSpi = 0,
     TlUart = 1,
     TlI2C = 2,
-    TlGpio = 3
+    TlGpio = 3,
+    TlPlic = 4
   } tl_device_e;
 
   typedef enum int {
