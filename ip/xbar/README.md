@@ -1,4 +1,4 @@
-### Xbar for main and peirpheral
+# Crossbar
 
 Main crossbar connects core, instruction RAM, data RAM, and other communication protocol. If you want to generate the RTL, type
 ```
