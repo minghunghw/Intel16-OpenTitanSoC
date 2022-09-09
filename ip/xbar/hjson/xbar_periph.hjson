@@ -11,26 +11,13 @@
   type: xbar
   clock: clk_i
   reset: rst_ni
-  clock_srcs:
-  {
-    clk_i: sys
-  }
-  clock_group: infra
-  domain:
-  [
-    "primary"
-  ]
   clock_connections:
   {
     clk_i: sys
   }
   reset_connections:
   {
-    rst_ni:
-    {
-      name: sys
-      domain: "primary"
-    }
+    rst_ni: sys
   }
   connections:
   {
