@@ -1,7 +1,3 @@
----
-title: "Bus Specification"
----
-
 # Overview
 
 This document specifies the bus functionality within a Comportable top level
