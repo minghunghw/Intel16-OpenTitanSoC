@@ -1,5 +1,5 @@
 {
-  name: periph
+  name: main
   type: xbar
   clock: clk_i
   reset: rst_ni
@@ -13,19 +13,20 @@
   }
   connections:
   {
-    peri_host:
+    peripheral:
     [
       uart
       gpio
       spi_host
       i2c
+      jtag
       plic
     ]
   }
   nodes:
   [
     {
-      name: peri_host
+      name: peripheral
       type: host
       clock: clk_i
       reset: rst_ni
@@ -101,6 +102,24 @@
       [
         {
           base_addr: 0x30030000
+          size_byte: 0x10000
+        }
+      ]
+      xbar: false
+      stub: false
+      req_fifo_pass: true
+    }
+    {
+      name: jtag
+      type: device
+      clock: clk_i
+      reset: rst_ni
+      pipeline: false
+      inst_type: jtag
+      addr_range:
+      [
+        {
+          base_addr: 0x30040000
           size_byte: 0x10000
         }
       ]

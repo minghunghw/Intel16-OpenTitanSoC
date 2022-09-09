@@ -6,32 +6,31 @@
 
 package tl_periph_pkg;
 
-  localparam logic [31:0] ADDR_SPACE_SPI  = 32'h 40000000;
-  localparam logic [31:0] ADDR_SPACE_UART = 32'h 40010000;
-  localparam logic [31:0] ADDR_SPACE_I2C  = 32'h 40020000;
-  localparam logic [31:0] ADDR_SPACE_GPIO = 32'h 40030000;
-  localparam logic [31:0] ADDR_SPACE_PLIC = 32'h 40040000;
+  localparam logic [31:0] ADDR_SPACE_UART     = 32'h 30000000;
+  localparam logic [31:0] ADDR_SPACE_GPIO     = 32'h 30010000;
+  localparam logic [31:0] ADDR_SPACE_SPI_HOST = 32'h 30020000;
+  localparam logic [31:0] ADDR_SPACE_I2C      = 32'h 30030000;
+  localparam logic [31:0] ADDR_SPACE_PLIC     = 32'h 30050000;
 
-  localparam logic [31:0] ADDR_MASK_SPI  = 32'h 0000ffff;
-  localparam logic [31:0] ADDR_MASK_UART = 32'h 0000ffff;
-  localparam logic [31:0] ADDR_MASK_I2C  = 32'h 0000ffff;
-  localparam logic [31:0] ADDR_MASK_GPIO = 32'h 0000ffff;
-  localparam logic [31:0] ADDR_MASK_PLIC = 32'h 0000ffff;
+  localparam logic [31:0] ADDR_MASK_UART     = 32'h 0000ffff;
+  localparam logic [31:0] ADDR_MASK_GPIO     = 32'h 0000ffff;
+  localparam logic [31:0] ADDR_MASK_SPI_HOST = 32'h 0000ffff;
+  localparam logic [31:0] ADDR_MASK_I2C      = 32'h 0000ffff;
+  localparam logic [31:0] ADDR_MASK_PLIC     = 32'h 0000ffff;
 
-  localparam int N_HOST   = 2;
+  localparam int N_HOST   = 1;
   localparam int N_DEVICE = 5;
 
   typedef enum int {
-    TlSpi = 0,
-    TlUart = 1,
-    TlI2C = 2,
-    TlGpio = 3,
+    TlUart = 0,
+    TlGpio = 1,
+    TlSpiHost = 2,
+    TlI2C = 3,
     TlPlic = 4
   } tl_device_e;
 
   typedef enum int {
-    TlInstr = 0,
-    TlData = 1
+    TlPeriHost = 0
   } tl_host_e;
 
 endpackage
