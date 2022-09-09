@@ -1,0 +1,5 @@
+$(SRC_IP)/xbar/rtl/xbar_main.sv \\
+$(SRC_IP)/xbar/rtl/xbar_periph.sv \\
+$(SRC_IP)/tlul/rtl/tlul_fifo_sync.sv \\
+$(SRC_IP)/tlul/rtl/tlul_socket_1n.sv \\
+$(SRC_IP)/tlul/rtl/tlul_socket_m1.sv
