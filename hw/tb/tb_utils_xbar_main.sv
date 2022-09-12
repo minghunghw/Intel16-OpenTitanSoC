@@ -1,5 +1,3 @@
-`timescale 1ns/100ps
-
 module tb;
 
     localparam CLK_PERIOD   = 10;
@@ -66,12 +64,13 @@ endmodule
 task automatic invoke_peripheral;
     output tlul_pkg::tl_h2d_t tl_core_i;
     tl_core_i.a_valid    = 1;
-    tl_core_i.a_opcode   = tlul_pkg::tl_a_m_op'('0);
+    tl_core_i.a_opcode   = tlul_pkg::tl_a_op_e'('0);
     tl_core_i.a_param    = 0;
     tl_core_i.a_size     = 0;
     tl_core_i.a_source   = 0;
-    tl_core_i.a_address  = xbar_pkg::ADDR_SPACE_PERI_DEVICE;
+    tl_core_i.a_address  = tl_main_pkg::ADDR_SPACE_PERI_DEVICE;
     tl_core_i.a_mask     = 4'hf;
     tl_core_i.a_data     = 32'hffff_ffff;
+    tl_core_i.a_user     = tlul_pkg::TL_A_USER_DEFAULT;
     tl_core_i.d_ready    = 1;
 endtask

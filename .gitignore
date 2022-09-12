@@ -1,0 +1,13 @@
+# General
+*.swp
+*.log
+*.out
+*.vpd
+*.old
+csrc
+dve.daidir
+simv.daidir
+dve
+DVEfiles
+ucli.key
+simv
