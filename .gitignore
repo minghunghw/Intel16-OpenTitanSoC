@@ -4,6 +4,7 @@
 *.out
 *.vpd
 *.old
+.rebuild.tcl
 csrc
 dve.daidir
 simv.daidir
