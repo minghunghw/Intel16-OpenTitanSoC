@@ -21,4 +21,4 @@ The regression test will run all the files in the variable `TEST` in `regression
 ### How to add customized unit testbench 
 -----------------------------------------------------------
 
-This VCS uses fielist structure for simulation. First, create a testbench called `tb_utils_<test_name>.sv` in the folder. Then create `<test_name>.vc` in the `pre_syn_unit` vc folder defining source and include path.
+This VCS uses fielist structure for simulation. First, create a testbench called `tb_utils_<test_name>.sv` in the folder. Then create `<test_name>.vc` in the `pre_syn_unit/vc` folder defining source and include path.
