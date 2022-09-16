@@ -10,6 +10,13 @@ If youw want to run simulation with DVE, type
 ```
 make dve TEST=<test_name>
 ```
+### How to do regression test 
+-----------------------------------------------------------
+
+The regression test will run all the files in the variable `TEST` in `regression.sh`, type 
+```
+./regression.sh
+```
 
 ### How to add customized unit testbench 
 -----------------------------------------------------------
