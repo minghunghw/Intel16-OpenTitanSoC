@@ -5,6 +5,7 @@
 *.vpd
 *.old
 *rebuild.tcl
+logs
 csrc
 dve.daidir
 simv.daidir

@@ -49,11 +49,11 @@ module tb;
         #200;
         if (tl_peri_device_o.a_valid) begin
             $display("%c[1;32m",27);
-            $display("Success\n");
+            $display("SUCCESS\n");
             $display("%c[0m",27);
         end else begin
             $display("%c[1;31m",27);
-            $display("Failure\n");
+            $display("FAILED\n");
             $display("%c[0m",27);
         end
 	    $finish;

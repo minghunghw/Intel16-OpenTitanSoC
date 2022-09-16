@@ -43,11 +43,11 @@ module tb;
         wait (tl_d_o.d_valid == 1);
         if (tl_d_o.d_data == 12) begin
             $display("%c[1;32m",27);
-            $display("Success\n");
+            $display("SUCCESS\n");
             $display("%c[0m",27);
         end else begin
             $display("%c[1;31m",27);
-            $display("Failure\n");
+            $display("FAILED\n");
             $display("%c[0m",27);
         end
 	    $finish;

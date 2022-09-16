@@ -13,10 +13,10 @@ VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
 	+define+DUMP_VCD=1 +define+ARM_UD_MODEL 
 
 all:    simv
-	./simv | tee program.out
+	./simv | tee vcs.log
 
 sim:	simv
-	./simv | tee program.out
+	./simv | tee vcs.log
 
 simv:
 	$(VCS) -f $(VCFILE) -o simv
