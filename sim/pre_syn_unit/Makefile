@@ -9,8 +9,8 @@ VCFILE	= vc/$(TEST).vc
 
 VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
 	+vc +v2k -Mupdate -line -full64 +notimingcheck\
-	+memcbk +vcs+dumparrays +sdfverbose\
-	+define+DUMP_VCD=1 +define+ARM_UD_MODEL 
+	+memcbk +vcs+dumparrays +sdfverbose -assert svaext\
+	+define+DUMP_VCD=1 +define+INTC_NO_PWR_PINS
 
 all:    simv
 	./simv | tee vcs.log
@@ -38,3 +38,4 @@ clean:
 	@rm -rf .restartSimSession.tcl.old .synopsys_dve_rebuild.tcl
 
 nuke:   clean
+	@rm -rf logs

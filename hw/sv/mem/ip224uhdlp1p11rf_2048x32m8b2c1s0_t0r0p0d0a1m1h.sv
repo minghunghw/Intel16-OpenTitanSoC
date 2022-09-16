@@ -51,7 +51,7 @@
 //`define _ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_sv_
 
 
-`timescale 1ns/10ps
+// `timescale 1ns/10ps
 
 
 `ifdef INTC_SVA_OFF

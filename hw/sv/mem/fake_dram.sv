@@ -11,10 +11,9 @@ module fake_dram (
 
 localparam  DEPTH = 2**($bits(A));
 logic [DEPTH-1:0][31:0] mem; // 8 KBytes
-  
-assign Q = mem[A];
 
 always @(posedge CLK) begin
+    Q <= mem[A];
     if (~EN && ~WEN) begin
         for (int i=0; i<32; i=i+1) begin
             if (WMASK[i]) begin
