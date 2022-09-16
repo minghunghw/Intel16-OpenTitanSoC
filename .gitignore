@@ -4,7 +4,6 @@
 *.out
 *.vpd
 *.old
-*rebuild.tcl
 logs
 csrc
 dve.daidir
@@ -13,3 +12,7 @@ dve
 DVEfiles
 ucli.key
 simv
+
+# VCS
+*rebuild.tcl
+vc_hdrs.h
