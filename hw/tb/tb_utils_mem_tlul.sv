@@ -29,18 +29,18 @@ module tb;
         u_mem_tlul.u_fake_dram.mem = 0;
 
         for (int i=0; i<16; i++) begin
-            @(negedge clk_i)
+            @(negedge clk_i) @(negedge clk_i)
             addr = i*4;
             data = i;
             invoke_mem_tlul(0, addr, data, tl_d_i); //write to memory
         end
 
-        @(negedge clk_i)
+        @(negedge clk_i) @(negedge clk_i)
         addr = 12*4;
         data = 0;
         invoke_mem_tlul(4, addr, data, tl_d_i); // read from memory
 
-        #200;
+        wait (tl_d_o.d_valid == 1);
         if (tl_d_o.d_data == 12) begin
             $display("%c[1;32m",27);
             $display("Success\n");
@@ -64,7 +64,7 @@ begin
     tl_d_i.a_valid    = 1;
     tl_d_i.a_opcode   = tlul_pkg::tl_a_op_e'(opcode);
     tl_d_i.a_param    = 0;
-    tl_d_i.a_size     = 0;
+    tl_d_i.a_size     = 2;
     tl_d_i.a_source   = 0;
     tl_d_i.a_address  = addr;
     tl_d_i.a_mask     = 4'hf;

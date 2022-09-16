@@ -27,7 +27,7 @@ always_ff @(posedge clk_i or negedge rst_ni) begin
         rvalid          <= 'b0;
         rdata_buffer    <= 'b0;
     end else begin 
-        rvalid          <= req && wen;
+        rvalid          <= req && ~wen;
         rdata_buffer    <= rdata;
     end
 end 
