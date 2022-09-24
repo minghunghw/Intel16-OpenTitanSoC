@@ -16,3 +16,14 @@ simv
 # VCS
 *rebuild.tcl
 vc_hdrs.h
+
+# Design Compiler
+ddc
+mwdb
+outputs
+reports
+synopsys_cache
+*.svf
+WORK
+alib*
+.create_register_bank.tcl
