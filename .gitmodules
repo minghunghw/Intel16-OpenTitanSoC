@@ -1,3 +1,6 @@
 [submodule "ip/opentitan"]
 	path = ip/opentitan
 	url = git@github.com:lowRISC/opentitan.git
+[submodule "ip/OpenROAD-flow-scripts"]
+	path = ip/OpenROAD-flow-scripts
+	url = git@github.com:The-OpenROAD-Project/OpenROAD-flow-scripts.git
