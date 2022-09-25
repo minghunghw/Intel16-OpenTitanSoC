@@ -1,6 +1,12 @@
+# Clear all preloaded modules
+# ---------------------------
+module purge
+
+# Load cadre software
 module use /afs/eecs.umich.edu/cadre/software/modules
 module use /afs/eecs.umich.edu/cadre/software/openroad/modules
 
+# Load modules
 module load devtoolset-el7/8
 module load cmake/3.14.0
 module load boost
