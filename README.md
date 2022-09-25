@@ -24,4 +24,6 @@ Major directories are listed below, the diagram is generated with `tree`:
 │   └── src_c
 ├── syn
 └── apr
+```
 
+# Setup
