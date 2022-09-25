@@ -28,7 +28,8 @@ Major directories are listed below, the diagram is generated with `tree`:
 
 # Setup
 
-#### Clone repository and submodules
+### Clone repository and submodules
+-----------------------------------------------------------
 
 Clone the repo and init all submodules
 ```
@@ -37,14 +38,17 @@ cd Intel16-OpenTitanSoC
 ./gitmodules_init.sh
 ```
 
-#### Initialize vlsipool environment
+### Initialize vlsipool environment
+-----------------------------------------------------------
 
 Source `modules.sh` before doing any development or tool work. This will clear any other preloaded modules, so be sure to source other overriding module scripts after that. Remember to activate the authority through `eecstokens`.
 ```
 source modules.sh
 ```
 
-#### Running simulations
+### Running simulations
+-----------------------------------------------------------
+
 (Not available yet)
 ```
 cd sim/pre-syn
