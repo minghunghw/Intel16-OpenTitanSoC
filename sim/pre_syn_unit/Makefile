@@ -10,7 +10,7 @@ VCFILE	= vc/$(TEST).vc
 VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
 	+vc +v2k -Mupdate -line -full64 +notimingcheck\
 	+memcbk +vcs+dumparrays +sdfverbose -assert svaext\
-	+define+DUMP_VCD=1 +define+INTC_NO_PWR_PINS
+	+define+DUMP_VCD=1 +define+INTC_NO_PWR_PINS +define+INTCNOPWR
 
 all:    simv
 	./simv | tee vcs.log
@@ -29,7 +29,7 @@ clean:
 	@rm -rf vis_simv vis_simv.daidir
 	@rm -rf dve* inter.vpd DVEfiles
 	@rm -rf csrc vcdplus.vpd vc_hdrs.h
-	@rm -f *.out *.elf *.dump *.mem *.log
+	@rm -rf *.out *.elf *.dump *.mem *.log logs
 	@rm -f debug_bin
 	@rm -f .__*
 	@rm -f default.svf

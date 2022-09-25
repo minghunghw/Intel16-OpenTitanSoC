@@ -1,0 +1,3174 @@
+#############################################################################################
+## Intel Confidential                                                                      ##
+#############################################################################################
+## Copyright 2022 Intel Corporation. The information contained herein is the proprietary   ##
+## and confidential information of Intel or its licensors, and is supplied subject to, and ##
+## may be used only in accordance with, previously executed agreements with Intel.         ##
+## EXCEPT AS MAY OTHERWISE BE AGREED IN WRITING: (1) ALL MATERIALS FURNISHED BY INTEL      ##
+## HEREUNDER ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND; (2) INTEL SPECIFICALLY     ##
+## DISCLAIMS ANY WARRANTY OF NONINFRINGEMENT, FITNESS FOR A PARTICULAR PURPOSE OR          ##
+## MERCHANTABILITY; AND (3) INTEL WILL NOT BE LIABLE FOR ANY COSTS OF PROCUREMENT OF       ##
+## SUBSTITUTES, LOSS OF PROFITS, INTERRUPTION OF BUSINESS, OR FOR ANY OTHER SPECIAL,       ##
+## CONSEQUENTIAL OR INCIDENTAL DAMAGES, HOWEVER CAUSED, WHETHER FOR BREACH OF WARRANTY,    ##
+## CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY OR OTHERWISE.                              ##
+#############################################################################################
+#############################################################################################
+##                                                                                         ##
+##  Vendor:                Intel Corporation                                               ##
+##  Product:               ip224uhdlp1p11rf                                                ##
+##  Version:               r1.0.1                                                          ##
+##  Technology:            p1222.4                                                         ##
+##  Celltype:              MemoryIP                                                        ##
+##  IP Owner:              Intel CMO                                                       ##
+##  Creation Time:         Wed Sep 14 2022 15:16:16                                        ##
+##  Memory Name:           ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h                  ##
+##  Memory Name Generated: ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h                  ##
+##                                                                                         ##
+#############################################################################################
+
+VERSION 5.6 ;
+BUSBITCHARS "[]" ;
+DIVIDERCHAR "/" ;
+UNITS
+  DATABASE MICRONS 2000 ;
+END UNITS
+SITE ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h
+  SIZE 79.1 by 117.54 ;
+  SYMMETRY X Y ;
+  CLASS CORE ;
+END ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h
+
+
+MACRO ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h
+     FOREIGN ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h 0.00 0.00 ;
+     ORIGIN 0.00 0.00 ;
+     SIZE 79.1 by 117.54 ;
+     SYMMETRY X Y ;
+     CLASS BLOCK ;
+     SITE ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h ;
+     PIN adr[0]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 46.1075 62.924 47.2975 63 ;
+          END
+     END adr[0]
+     PIN adr[10]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 33.655 62.924 34.785 63 ;
+          END
+     END adr[10]
+     PIN adr[1]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 45.7125 61.804 46.6995 61.88 ;
+          END
+     END adr[1]
+     PIN adr[2]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 32.3935 57.49 33.545 57.546 ;
+          END
+     END adr[2]
+     PIN adr[3]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 45.538 60.848 46.712 60.924 ;
+          END
+     END adr[3]
+     PIN adr[4]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 46.792 60.848 47.742 60.924 ;
+          END
+     END adr[4]
+     PIN adr[5]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 30.993 52.96 31.95 53.036 ;
+          END
+     END adr[5]
+     PIN adr[6]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 32.2745 58.326 33.214 58.382 ;
+          END
+     END adr[6]
+     PIN adr[7]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 31.714 54.226 32.7775 54.302 ;
+          END
+     END adr[7]
+     PIN adr[8]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 31.34 54.376 32.689 54.452 ;
+          END
+     END adr[8]
+     PIN adr[9]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 33.643 61.804 34.5675 61.88 ;
+          END
+     END adr[9]
+     PIN clkbyp
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 42.715 58.326 43.5675 58.382 ;
+          END
+     END clkbyp
+     PIN din[0]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 114.488 37.566 114.596 ;
+          END
+     END din[0]
+     PIN din[10]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 82.088 37.566 82.196 ;
+          END
+     END din[10]
+     PIN din[11]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 78.848 37.566 78.956 ;
+          END
+     END din[11]
+     PIN din[12]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 75.608 37.566 75.716 ;
+          END
+     END din[12]
+     PIN din[13]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 72.368 37.566 72.476 ;
+          END
+     END din[13]
+     PIN din[14]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 69.128 37.566 69.236 ;
+          END
+     END din[14]
+     PIN din[15]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 65.888 37.566 65.996 ;
+          END
+     END din[15]
+     PIN din[16]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 50.048 37.566 50.156 ;
+          END
+     END din[16]
+     PIN din[17]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 46.808 37.566 46.916 ;
+          END
+     END din[17]
+     PIN din[18]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 43.568 37.566 43.676 ;
+          END
+     END din[18]
+     PIN din[19]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 40.328 37.566 40.436 ;
+          END
+     END din[19]
+     PIN din[1]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 111.248 37.566 111.356 ;
+          END
+     END din[1]
+     PIN din[20]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 37.088 37.566 37.196 ;
+          END
+     END din[20]
+     PIN din[21]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 33.848 37.566 33.956 ;
+          END
+     END din[21]
+     PIN din[22]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 30.608 37.566 30.716 ;
+          END
+     END din[22]
+     PIN din[23]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 27.368 37.566 27.476 ;
+          END
+     END din[23]
+     PIN din[24]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 24.128 37.566 24.236 ;
+          END
+     END din[24]
+     PIN din[25]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 20.888 37.566 20.996 ;
+          END
+     END din[25]
+     PIN din[26]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 17.648 37.566 17.756 ;
+          END
+     END din[26]
+     PIN din[27]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 14.408 37.566 14.516 ;
+          END
+     END din[27]
+     PIN din[28]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 11.168 37.566 11.276 ;
+          END
+     END din[28]
+     PIN din[29]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 7.928 37.566 8.036 ;
+          END
+     END din[29]
+     PIN din[2]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 108.008 37.566 108.116 ;
+          END
+     END din[2]
+     PIN din[30]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 4.688 37.566 4.796 ;
+          END
+     END din[30]
+     PIN din[31]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 1.448 37.566 1.556 ;
+          END
+     END din[31]
+     PIN din[3]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 104.768 37.566 104.876 ;
+          END
+     END din[3]
+     PIN din[4]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 101.528 37.566 101.636 ;
+          END
+     END din[4]
+     PIN din[5]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 98.288 37.566 98.396 ;
+          END
+     END din[5]
+     PIN din[6]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 95.048 37.566 95.156 ;
+          END
+     END din[6]
+     PIN din[7]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 91.808 37.566 91.916 ;
+          END
+     END din[7]
+     PIN din[8]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 88.568 37.566 88.676 ;
+          END
+     END din[8]
+     PIN din[9]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 34.714 85.328 37.566 85.436 ;
+          END
+     END din[9]
+     PIN fwen
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 46.3675 57.49 48.054 57.546 ;
+          END
+     END fwen
+     PIN mc[0]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 33.192 60.124 34.231 60.2 ;
+          END
+     END mc[0]
+     PIN mc[1]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 30.972 61.54 32.2 61.616 ;
+          END
+     END mc[1]
+     PIN mc[2]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 32.331 61.54 33.473 61.616 ;
+          END
+     END mc[2]
+     PIN mcen
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 32.4285 61.804 33.365 61.88 ;
+          END
+     END mcen
+     PIN q[0]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 114.488 39.371 114.596 ;
+          END
+     END q[0]
+     PIN q[10]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 82.088 39.371 82.196 ;
+          END
+     END q[10]
+     PIN q[11]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 78.848 39.371 78.956 ;
+          END
+     END q[11]
+     PIN q[12]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 75.608 39.371 75.716 ;
+          END
+     END q[12]
+     PIN q[13]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 72.368 39.371 72.476 ;
+          END
+     END q[13]
+     PIN q[14]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 69.128 39.371 69.236 ;
+          END
+     END q[14]
+     PIN q[15]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 65.888 39.371 65.996 ;
+          END
+     END q[15]
+     PIN q[16]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 50.048 39.371 50.156 ;
+          END
+     END q[16]
+     PIN q[17]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 46.808 39.371 46.916 ;
+          END
+     END q[17]
+     PIN q[18]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 43.568 39.371 43.676 ;
+          END
+     END q[18]
+     PIN q[19]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 40.328 39.371 40.436 ;
+          END
+     END q[19]
+     PIN q[1]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 111.248 39.371 111.356 ;
+          END
+     END q[1]
+     PIN q[20]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 37.088 39.371 37.196 ;
+          END
+     END q[20]
+     PIN q[21]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 33.848 39.371 33.956 ;
+          END
+     END q[21]
+     PIN q[22]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 30.608 39.371 30.716 ;
+          END
+     END q[22]
+     PIN q[23]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 27.368 39.371 27.476 ;
+          END
+     END q[23]
+     PIN q[24]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 24.128 39.371 24.236 ;
+          END
+     END q[24]
+     PIN q[25]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 20.888 39.371 20.996 ;
+          END
+     END q[25]
+     PIN q[26]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 17.648 39.371 17.756 ;
+          END
+     END q[26]
+     PIN q[27]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 14.408 39.371 14.516 ;
+          END
+     END q[27]
+     PIN q[28]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 11.168 39.371 11.276 ;
+          END
+     END q[28]
+     PIN q[29]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 7.928 39.371 8.036 ;
+          END
+     END q[29]
+     PIN q[2]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 108.008 39.371 108.116 ;
+          END
+     END q[2]
+     PIN q[30]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 4.688 39.371 4.796 ;
+          END
+     END q[30]
+     PIN q[31]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 1.448 39.371 1.556 ;
+          END
+     END q[31]
+     PIN q[3]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 104.768 39.371 104.876 ;
+          END
+     END q[3]
+     PIN q[4]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 101.528 39.371 101.636 ;
+          END
+     END q[4]
+     PIN q[5]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 98.288 39.371 98.396 ;
+          END
+     END q[5]
+     PIN q[6]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 95.048 39.371 95.156 ;
+          END
+     END q[6]
+     PIN q[7]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 91.808 39.371 91.916 ;
+          END
+     END q[7]
+     PIN q[8]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 88.568 39.371 88.676 ;
+          END
+     END q[8]
+     PIN q[9]
+     DIRECTION output ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 37.646 85.328 39.371 85.436 ;
+          END
+     END q[9]
+     PIN ren
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 42.098 57.49 43.0035 57.546 ;
+          END
+     END ren
+     PIN wa[0]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 44.66 59.858 45.6245 59.914 ;
+          END
+     END wa[0]
+     PIN wa[1]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 43.4475 59.858 44.478 59.914 ;
+          END
+     END wa[1]
+     PIN wen
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 43.562 57.49 44.45 57.546 ;
+          END
+     END wen
+     PIN wpulse[0]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 46.187 55.924 47.1725 56 ;
+          END
+     END wpulse[0]
+     PIN wpulse[1]
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 41.7065 55.2 42.75 55.276 ;
+          END
+     END wpulse[1]
+     PIN wpulseen
+     DIRECTION input ;
+          USE SIGNAL ;
+          PORT
+               LAYER m4 ;
+               RECT 42.5125 55.924 43.399 56 ;
+          END
+     END wpulseen
+     PIN clk
+     DIRECTION input ;
+          USE CLOCK ;
+          PORT
+               LAYER m4 ;
+               RECT 40.1725 58.326 41.2045 58.382 ;
+          END
+     END clk
+     PIN vddp
+     SHAPE ABUTMENT ;
+     DIRECTION input ;
+          USE POWER ;
+          PORT
+               LAYER m4 ;
+               RECT 0.48 0.958 33.505 1.034 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 1.846 29.388 1.922 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 10.678 33.505 10.754 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 100.306 29.388 100.382 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 101.038 33.505 101.114 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 101.926 29.388 102.002 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 102.658 29.56 102.734 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 103.546 29.388 103.622 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 104.278 33.505 104.354 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 105.166 29.388 105.242 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 105.898 29.56 105.974 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 106.786 29.388 106.862 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 107.518 33.505 107.594 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 108.406 29.388 108.482 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 109.138 29.56 109.214 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 11.566 29.388 11.642 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 110.026 29.388 110.102 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 110.758 33.505 110.834 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 111.646 29.388 111.722 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 112.378 29.56 112.454 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 113.266 29.388 113.342 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 113.998 33.505 114.074 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 114.886 29.388 114.962 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 115.618 29.56 115.694 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 116.506 29.388 116.582 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 12.298 29.56 12.374 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 13.186 29.388 13.262 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 13.918 33.505 13.994 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 14.806 29.388 14.882 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 15.538 29.56 15.614 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 16.426 29.388 16.502 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 17.158 33.505 17.234 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 18.046 29.388 18.122 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 18.778 29.56 18.854 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 19.666 29.388 19.742 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 2.578 29.56 2.654 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 20.398 33.505 20.474 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 21.286 29.388 21.362 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 22.018 29.56 22.094 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 22.906 29.388 22.982 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 23.638 33.505 23.714 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 24.526 29.388 24.602 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 25.258 29.56 25.334 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 26.146 29.388 26.222 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 26.878 33.505 26.954 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 27.766 29.388 27.842 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 28.498 29.56 28.574 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 29.386 29.388 29.462 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 3.466 29.388 3.542 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 30.118 33.505 30.194 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 31.006 29.388 31.082 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 31.738 29.56 31.814 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 32.626 29.388 32.702 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 33.358 33.505 33.434 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 34.246 29.388 34.322 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 34.978 29.56 35.054 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 35.866 29.388 35.942 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 36.598 33.505 36.674 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 37.486 29.388 37.562 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 38.218 29.56 38.294 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 39.106 29.388 39.182 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 39.838 33.505 39.914 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 4.198 33.505 4.274 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 40.726 29.388 40.802 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 41.458 29.56 41.534 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 42.346 29.388 42.422 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 43.078 33.505 43.154 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 43.966 29.388 44.042 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 44.698 29.56 44.774 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 45.586 29.388 45.662 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 46.318 33.505 46.394 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 47.206 29.388 47.282 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 47.938 29.56 48.014 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 48.826 29.388 48.902 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 49.558 33.505 49.634 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 5.086 29.388 5.162 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 5.818 29.56 5.894 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 50.446 29.388 50.522 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 51.178 29.56 51.254 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 52.066 29.388 52.142 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 6.706 29.388 6.782 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 65.398 33.505 65.474 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 66.286 29.388 66.362 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 67.018 29.56 67.094 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 67.906 29.388 67.982 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 68.638 33.505 68.714 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 69.526 29.388 69.602 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 7.438 33.505 7.514 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 70.258 29.56 70.334 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 71.146 29.388 71.222 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 71.878 33.505 71.954 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 72.766 29.388 72.842 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 73.498 29.56 73.574 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 74.386 29.388 74.462 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 75.118 33.505 75.194 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 76.006 29.388 76.082 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 76.738 29.56 76.814 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 77.626 29.388 77.702 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 78.358 33.505 78.434 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 79.246 29.388 79.322 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 79.978 29.56 80.054 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 8.326 29.388 8.402 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 80.866 29.388 80.942 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 81.598 33.505 81.674 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 82.486 29.388 82.562 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 83.218 29.56 83.294 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 84.106 29.388 84.182 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 84.838 33.505 84.914 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 85.726 29.388 85.802 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 86.458 29.56 86.534 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 87.346 29.388 87.422 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 88.078 33.505 88.154 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 88.966 29.388 89.042 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 89.698 29.56 89.774 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 9.058 29.56 9.134 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 9.946 29.388 10.022 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 90.586 29.388 90.662 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 91.318 33.505 91.394 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 92.206 29.388 92.282 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 92.938 29.56 93.014 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 93.826 29.388 93.902 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 94.558 33.505 94.634 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 95.446 29.388 95.522 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 96.178 29.56 96.254 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 97.066 29.388 97.142 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 97.798 33.505 97.874 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 98.686 29.388 98.762 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 99.418 29.56 99.494 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 53.948 29.56 54.024 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 54.508 78.484 54.584 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 54.904 78.484 54.98 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 55.2 29.56 55.276 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 55.924 29.56 56 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 56.992 28.912 57.036 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 57.49 29.56 57.546 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 58.326 29.56 58.382 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 59.244 28.912 59.288 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 60.256 78.484 60.332 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 60.98 78.484 61.056 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 61.276 78.484 61.352 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 61.672 78.484 61.748 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 62.232 78.484 62.308 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 64.176 78.484 64.284 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 1.264 55.632 28.912 55.74 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 1.264 56.188 28.912 56.296 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 1.264 59.96 28.912 60.068 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 1.264 60.516 28.912 60.624 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.6 52.564 49.5 52.64 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.6 53.816 49.5 53.892 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.6 55.332 49.5 55.408 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.6 64.9 49.5 64.976 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.669 55.924 42.4325 56 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7 59.97 49.4595 60.046 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 102.658 33.435 102.734 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 105.898 33.435 105.974 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 109.138 33.435 109.214 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 112.378 33.435 112.454 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 115.618 33.435 115.694 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 12.298 33.435 12.374 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 15.538 33.435 15.614 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 18.778 33.435 18.854 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 2.578 33.435 2.654 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 22.018 33.435 22.094 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 25.258 33.435 25.334 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 28.498 33.435 28.574 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 31.738 33.435 31.814 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 34.978 33.435 35.054 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 38.218 33.435 38.294 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 41.458 33.435 41.534 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 44.698 33.435 44.774 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 47.938 33.435 48.014 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 5.818 33.435 5.894 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 51.178 33.435 51.254 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 67.018 33.435 67.094 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 70.258 33.435 70.334 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 73.498 33.435 73.574 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 76.738 33.435 76.814 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 79.978 33.435 80.054 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 83.218 33.435 83.294 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 86.458 33.435 86.534 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 89.698 33.435 89.774 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 9.058 33.435 9.134 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 92.938 33.435 93.014 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 96.178 33.435 96.254 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7445 99.418 33.435 99.494 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 1.08 45.6435 1.156 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 10.8 45.6435 10.876 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 101.16 45.6435 101.236 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 104.4 45.6435 104.476 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 107.64 45.6435 107.716 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 110.88 45.6435 110.956 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 114.12 45.6435 114.196 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 14.04 45.6435 14.116 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 17.28 45.6435 17.356 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 20.52 45.6435 20.596 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 23.76 45.6435 23.836 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 27 45.6435 27.076 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 30.24 45.6435 30.316 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 33.48 45.6435 33.556 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 36.72 45.6435 36.796 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 39.96 45.6435 40.036 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 4.32 45.6435 4.396 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 43.2 45.6435 43.276 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 46.44 45.6435 46.516 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 49.68 45.6435 49.756 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 65.52 45.6435 65.596 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 68.76 45.6435 68.836 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 7.56 45.6435 7.636 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 72 45.6435 72.076 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 75.24 45.6435 75.316 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 78.48 45.6435 78.556 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 81.72 45.6435 81.796 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 84.96 45.6435 85.036 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 88.2 45.6435 88.276 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 91.44 45.6435 91.516 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 94.68 45.6435 94.756 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.429 97.92 45.6435 97.996 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 102.78 45.6525 102.856 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 106.02 45.6525 106.096 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 109.26 45.6525 109.336 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 112.5 45.6525 112.576 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 115.74 45.6525 115.816 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 12.42 45.6525 12.496 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 15.66 45.6525 15.736 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 18.9 45.6525 18.976 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 2.7 45.6525 2.776 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 22.14 45.6525 22.216 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 25.38 45.6525 25.456 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 28.62 45.6525 28.696 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 31.86 45.6525 31.936 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 35.1 45.6525 35.176 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 38.34 45.6525 38.416 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 41.58 45.6525 41.656 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 44.82 45.6525 44.896 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 48.06 45.6525 48.136 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 5.94 45.6525 6.016 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 51.3 45.6525 51.376 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 67.14 45.6525 67.216 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 70.38 45.6525 70.456 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 73.62 45.6525 73.696 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 76.86 45.6525 76.936 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 80.1 45.6525 80.176 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 83.34 45.6525 83.416 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 86.58 45.6525 86.656 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 89.82 45.6525 89.896 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 9.18 45.6525 9.256 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 93.06 45.6525 93.136 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 96.3 45.6525 96.376 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 33.435 99.54 45.6525 99.616 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 0.958 78.62 1.034 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 10.678 78.62 10.754 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 101.038 78.62 101.114 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 104.278 78.62 104.354 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 107.518 78.62 107.594 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 110.758 78.62 110.834 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 113.998 78.62 114.074 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 13.918 78.62 13.994 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 17.158 78.62 17.234 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 20.398 78.62 20.474 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 23.638 78.62 23.714 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 26.878 78.62 26.954 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 30.118 78.62 30.194 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 33.358 78.62 33.434 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 36.598 78.62 36.674 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 39.838 78.62 39.914 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 4.198 78.62 4.274 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 43.078 78.62 43.154 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 46.318 78.62 46.394 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 49.558 78.62 49.634 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 65.398 78.62 65.474 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 68.638 78.62 68.714 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 7.438 78.62 7.514 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 71.878 78.62 71.954 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 75.118 78.62 75.194 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 78.358 78.62 78.434 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 81.598 78.62 81.674 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 84.838 78.62 84.914 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 88.078 78.62 88.154 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 91.318 78.62 91.394 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 94.558 78.62 94.634 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5675 97.798 78.62 97.874 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 102.658 78.62 102.734 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 105.898 78.62 105.974 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 109.138 78.62 109.214 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 112.378 78.62 112.454 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 115.618 78.62 115.694 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 12.298 78.62 12.374 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 15.538 78.62 15.614 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 18.778 78.62 18.854 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 2.578 78.62 2.654 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 22.018 78.62 22.094 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 25.258 78.62 25.334 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 28.498 78.62 28.574 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 31.738 78.62 31.814 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 34.978 78.62 35.054 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 38.218 78.62 38.294 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 41.458 78.62 41.534 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 44.698 78.62 44.774 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 47.938 78.62 48.014 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 5.818 78.62 5.894 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 51.178 78.62 51.254 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 67.018 78.62 67.094 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 70.258 78.62 70.334 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 73.498 78.62 73.574 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 76.738 78.62 76.814 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 79.978 78.62 80.054 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 83.218 78.62 83.294 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 86.458 78.62 86.534 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 89.698 78.62 89.774 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 9.058 78.62 9.134 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 92.938 78.62 93.014 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 96.178 78.62 96.254 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 45.5765 99.418 78.62 99.494 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 53.948 78.484 54.024 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 55.924 78.484 56 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 57.49 78.484 57.546 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 58.326 78.484 58.382 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.58 55.2 78.484 55.276 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 1.846 78.62 1.922 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 100.306 78.62 100.382 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 101.926 78.62 102.002 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 103.546 78.62 103.622 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 105.166 78.62 105.242 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 106.786 78.62 106.862 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 108.406 78.62 108.482 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 11.566 78.62 11.642 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 110.026 78.62 110.102 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 111.646 78.62 111.722 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 113.266 78.62 113.342 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 114.886 78.62 114.962 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 116.506 78.62 116.582 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 13.186 78.62 13.262 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 14.806 78.62 14.882 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 16.426 78.62 16.502 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 18.046 78.62 18.122 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 19.666 78.62 19.742 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 21.286 78.62 21.362 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 22.906 78.62 22.982 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 24.526 78.62 24.602 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 26.146 78.62 26.222 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 27.766 78.62 27.842 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 29.386 78.62 29.462 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 3.466 78.62 3.542 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 31.006 78.62 31.082 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 32.626 78.62 32.702 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 34.246 78.62 34.322 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 35.866 78.62 35.942 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 37.486 78.62 37.562 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 39.106 78.62 39.182 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 40.726 78.62 40.802 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 42.346 78.62 42.422 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 43.966 78.62 44.042 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 45.586 78.62 45.662 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 47.206 78.62 47.282 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 48.826 78.62 48.902 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 5.086 78.62 5.162 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 50.446 78.62 50.522 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 52.066 78.62 52.142 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 6.706 78.62 6.782 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 66.286 78.62 66.362 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 67.906 78.62 67.982 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 69.526 78.62 69.602 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 71.146 78.62 71.222 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 72.766 78.62 72.842 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 74.386 78.62 74.462 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 76.006 78.62 76.082 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 77.626 78.62 77.702 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 79.246 78.62 79.322 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 8.326 78.62 8.402 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 80.866 78.62 80.942 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 82.486 78.62 82.562 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 84.106 78.62 84.182 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 85.726 78.62 85.802 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 87.346 78.62 87.422 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 88.966 78.62 89.042 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 9.946 78.62 10.022 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 90.586 78.62 90.662 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 92.206 78.62 92.282 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 93.826 78.62 93.902 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 95.446 78.62 95.522 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 97.066 78.62 97.142 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.645 98.686 78.62 98.762 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 50.188 55.632 77.836 55.74 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 50.188 56.188 77.836 56.296 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 50.188 56.992 78.484 57.036 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 50.188 59.244 78.484 59.288 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 50.188 59.96 77.836 60.068 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 50.188 60.516 78.484 60.624 ;
+          END
+     END vddp
+     PIN vss
+     SHAPE ABUTMENT ;
+     DIRECTION inout ;
+          USE GROUND ;
+          PORT
+               LAYER m4 ;
+               RECT 0.48 0.592 29.56 0.668 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 10.312 49.53 10.388 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 100.672 49.53 100.748 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 102.292 49.53 102.368 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 103.912 49.53 103.988 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 105.532 49.53 105.608 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 107.152 49.53 107.228 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 108.772 49.53 108.848 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 11.932 49.53 12.008 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 110.392 49.53 110.468 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 112.012 49.53 112.088 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 113.632 49.53 113.708 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 115.252 49.53 115.328 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 116.872 49.53 116.948 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 13.552 49.53 13.628 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 15.172 49.53 15.248 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 16.792 49.53 16.868 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 18.412 49.53 18.488 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 2.212 49.53 2.288 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 20.032 49.53 20.108 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 21.652 49.53 21.728 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 23.272 49.53 23.348 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 24.892 49.53 24.968 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 26.512 49.53 26.588 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 28.132 49.53 28.208 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 29.752 49.53 29.828 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 3.832 49.53 3.908 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 31.372 49.53 31.448 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 32.992 49.53 33.068 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 34.612 49.53 34.688 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 36.232 49.53 36.308 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 37.852 49.53 37.928 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 39.472 49.53 39.548 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 41.092 49.53 41.168 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 42.712 49.53 42.788 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 44.332 49.53 44.408 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 45.952 49.53 46.028 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 47.572 49.53 47.648 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 49.192 49.53 49.268 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 5.452 49.53 5.528 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 50.812 49.53 50.888 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 52.432 78.62 52.508 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 65.032 78.62 65.108 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 66.652 49.53 66.728 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 68.272 49.53 68.348 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 69.892 49.53 69.968 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 7.072 49.53 7.148 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 71.512 49.53 71.588 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 73.132 49.53 73.208 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 74.752 49.53 74.828 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 76.372 49.53 76.448 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 77.992 49.53 78.068 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 79.612 49.53 79.688 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 8.692 49.53 8.768 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 81.232 49.53 81.308 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 82.852 49.53 82.928 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 84.472 49.53 84.548 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 86.092 49.53 86.168 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 87.712 49.53 87.788 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 89.332 49.53 89.408 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 90.952 49.53 91.028 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 92.572 49.53 92.648 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 94.192 49.53 94.268 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 95.812 49.53 95.888 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 97.432 49.53 97.508 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.48 99.052 49.53 99.128 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 53.092 50.188 53.2 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 53.388 50.188 53.496 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 55.464 50.188 55.572 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 56.486 29.56 56.53 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 56.902 50.188 56.946 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 58 50.188 58.076 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 59.334 50.188 59.378 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 59.75 29.56 59.794 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 60.684 50.188 60.792 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 62.76 50.188 62.868 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 63.056 50.188 63.164 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 63.88 50.188 63.988 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 0.616 64.472 50.188 64.58 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.56 56.474 49.3755 56.53 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.61 0.592 49.53 0.668 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.702 59.756 49.4595 59.812 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 1.602 49.274 1.678 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 100.062 49.246 100.138 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 101.682 49.274 101.758 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 103.302 49.246 103.378 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 104.922 49.274 104.998 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 106.542 49.246 106.618 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 108.162 49.274 108.238 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 109.782 49.246 109.858 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 11.322 49.274 11.398 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 111.402 49.274 111.478 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 113.022 49.246 113.098 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 114.642 49.274 114.718 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 116.262 49.246 116.338 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 12.942 49.246 13.018 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 14.562 49.274 14.638 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 16.182 49.246 16.258 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 17.802 49.274 17.878 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 19.422 49.246 19.498 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 21.042 49.274 21.118 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 22.662 49.246 22.738 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 24.282 49.274 24.358 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 25.902 49.246 25.978 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 27.522 49.274 27.598 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 29.142 49.246 29.218 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 3.222 49.246 3.298 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 30.762 49.274 30.838 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 32.382 49.246 32.458 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 34.002 49.274 34.078 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 35.622 49.246 35.698 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 37.242 49.274 37.318 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 38.862 49.246 38.938 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 4.842 49.274 4.918 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 40.482 49.274 40.558 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 42.102 49.246 42.178 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 43.722 49.274 43.798 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 45.342 49.246 45.418 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 46.962 49.274 47.038 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 48.582 49.246 48.658 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 50.202 49.274 50.278 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 51.822 49.246 51.898 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 6.462 49.246 6.538 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 66.042 49.274 66.118 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 67.662 49.246 67.738 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 69.282 49.274 69.358 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 70.902 49.246 70.978 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 72.522 49.274 72.598 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 74.142 49.246 74.218 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 75.762 49.274 75.838 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 77.382 49.246 77.458 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 79.002 49.274 79.078 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 8.082 49.274 8.158 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 80.622 49.246 80.698 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 82.242 49.274 82.318 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 83.862 49.246 83.938 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 85.482 49.274 85.558 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 87.102 49.246 87.178 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 88.722 49.274 88.798 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 9.702 49.246 9.778 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 90.342 49.246 90.418 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 91.962 49.274 92.038 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 93.582 49.246 93.658 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 95.202 49.274 95.278 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 96.822 49.246 96.898 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 29.7945 98.442 49.274 98.518 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 0.592 78.62 0.668 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 10.312 78.62 10.388 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 100.672 78.62 100.748 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 102.292 78.62 102.368 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 103.912 78.62 103.988 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 105.532 78.62 105.608 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 107.152 78.62 107.228 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 108.772 78.62 108.848 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 11.932 78.62 12.008 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 110.392 78.62 110.468 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 112.012 78.62 112.088 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 113.632 78.62 113.708 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 115.252 78.62 115.328 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 116.872 78.62 116.948 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 13.552 78.62 13.628 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 15.172 78.62 15.248 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 16.792 78.62 16.868 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 18.412 78.62 18.488 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 2.212 78.62 2.288 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 20.032 78.62 20.108 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 21.652 78.62 21.728 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 23.272 78.62 23.348 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 24.892 78.62 24.968 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 26.512 78.62 26.588 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 28.132 78.62 28.208 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 29.752 78.62 29.828 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 3.832 78.62 3.908 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 31.372 78.62 31.448 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 32.992 78.62 33.068 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 34.612 78.62 34.688 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 36.232 78.62 36.308 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 37.852 78.62 37.928 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 39.472 78.62 39.548 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 41.092 78.62 41.168 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 42.712 78.62 42.788 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 44.332 78.62 44.408 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 45.952 78.62 46.028 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 47.572 78.62 47.648 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 49.192 78.62 49.268 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 5.452 78.62 5.528 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 50.812 78.62 50.888 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 66.652 78.62 66.728 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 68.272 78.62 68.348 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 69.892 78.62 69.968 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 7.072 78.62 7.148 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 71.512 78.62 71.588 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 73.132 78.62 73.208 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 74.752 78.62 74.828 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 76.372 78.62 76.448 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 77.992 78.62 78.068 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 79.612 78.62 79.688 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 8.692 78.62 8.768 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 81.232 78.62 81.308 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 82.852 78.62 82.928 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 84.472 78.62 84.548 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 86.092 78.62 86.168 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 87.712 78.62 87.788 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 89.332 78.62 89.408 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 90.952 78.62 91.028 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 92.572 78.62 92.648 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 94.192 78.62 94.268 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 95.812 78.62 95.888 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 97.432 78.62 97.508 ;
+          END
+          PORT
+               LAYER m4 ;
+               RECT 49.54 99.052 78.62 99.128 ;
+          END
+     END vss
+     OBS
+          LAYER m1 SPACING 0 ;
+               RECT 0.248 0.198 78.852 117.342 ;
+          LAYER m2 SPACING 0 ;
+               RECT 0.32 0.268 78.78 117.272 ;
+          LAYER m3 SPACING 0 ;
+               RECT 0.342 0.24 78.758 117.3 ;
+          LAYER m4 SPACING 0 ;
+               RECT 0.32 0.31 78.78 117.18 ;
+     END
+END ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h
+END LIBRARY

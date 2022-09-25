@@ -1,6 +1,6 @@
 module tb;
 
-    localparam CLK_PERIOD   = 10;
+    localparam CLK_PERIOD   = 1000;
 
     logic clk_i;
     logic rst_ni;
