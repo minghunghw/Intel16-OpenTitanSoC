@@ -29,7 +29,7 @@ clean:
 	@rm -rf vis_simv vis_simv.daidir
 	@rm -rf dve* inter.vpd DVEfiles
 	@rm -rf csrc vcdplus.vpd vc_hdrs.h
-	@rm -rf *.out *.elf *.dump *.mem *.log logs
+	@rm -rf *.out *.elf *.dump *.mem *.log
 	@rm -f debug_bin
 	@rm -f .__*
 	@rm -f default.svf

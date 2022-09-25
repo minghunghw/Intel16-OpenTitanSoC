@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Ultra(TM) in topographical mode
 // Version   : S-2021.06-SP1
-// Date      : Sat Sep 24 16:11:30 2022
+// Date      : Sun Sep 25 02:32:31 2022
 /////////////////////////////////////////////////////////////
 
 
@@ -482,6 +482,12 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
   b15cilb05ah1n02x3 u_tlul_adapter_sram_u_rspfifo_clk_gate_gen_normal_fifo_storage_reg_0__latch ( 
         .clk(clk_i), .en(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N9), .te(1'b0), .clkout(u_tlul_adapter_sram_u_rspfifo_net616) );
+  b15fpy200ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__12__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__13_ ( 
+        .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[4]), .ssb(1'b1), 
+        .clk(u_tlul_adapter_sram_u_rspfifo_net616), .o1(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[12]), 
+        .si2(1'b0), .d2(u_tlul_adapter_sram_rdata_tlword[5]), .o2(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[13]) );
   b15fqy403ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_0__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_0__u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_0__u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_0_ ( 
         .si1(1'b0), .d1(n131), .ssb(1'b1), .clk(clk_i), .rb(rst_ni), .o1(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_rptr_value_0_), .si2(
@@ -524,12 +530,6 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[6]), .si4(
         1'b0), .d4(tl_d_i[99]), .o4(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[7]) );
-  b15fpy200ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__12__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__13_ ( 
-        .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[4]), .ssb(1'b1), 
-        .clk(u_tlul_adapter_sram_u_rspfifo_net616), .o1(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[12]), 
-        .si2(1'b0), .d2(u_tlul_adapter_sram_rdata_tlword[5]), .o2(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[13]) );
   b15fpy400ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__27__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__28__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__29__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__30_ ( 
         .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[19]), .ssb(1'b1), 
         .clk(u_tlul_adapter_sram_u_rspfifo_net622), .o1(

@@ -3,6 +3,17 @@ function echolog {
 	echo -e $1 >> $LOG_FILE
 }
 
+function prerun_steps {
+    logs=*.log
+    if [ -f "$logs" ]; then
+        rm $logs
+    fi
+    if [ -d $LOG_DIR ]; then
+        rm -rf $LOG_DIR
+    fi
+    mkdir $LOG_DIR
+}
+
 function postrun_steps {
 	tname=$1
 	make_exit_code=$2
@@ -24,17 +35,6 @@ function postrun_steps {
 		fi
 		rm vcs.log
 	fi
-}
-
-function prerun_steps {
-    logs=*.log
-    if [ -f "$logs" ]; then
-        rm $logs
-    fi
-    if [ -d $LOG_DIR ]; then
-        rm -rf $LOG_DIR
-    fi
-    mkdir $LOG_DIR
 }
 
 function regress_report {
