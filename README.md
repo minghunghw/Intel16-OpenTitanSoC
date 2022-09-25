@@ -41,7 +41,7 @@ cd Intel16-OpenTitanSoC
 ### Initialize vlsipool environment
 -----------------------------------------------------------
 
-Source `modules.sh` before doing any development or tool work. This will clear any other preloaded modules, so be sure to source other overriding module scripts after that. Remember to activate the authority through `eecstokens`.
+Source `modules.sh` before doing any development or tool work. This will clear any other preloaded modules, so be sure to source other overriding module scripts after that. Remember to validate `eecstokens` before proceeding.
 ```
 source modules.sh
 ```

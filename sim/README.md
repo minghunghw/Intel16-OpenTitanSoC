@@ -6,7 +6,7 @@ The testbench is located in [hw/tb](https://github.com/minghungumich/Intel16-Ope
 make TEST=<test_name>
 ```
 
-If youw want to run simulation with DVE, type 
+If you want to run simulation with DVE, type 
 ```
 make dve TEST=<test_name>
 ```
