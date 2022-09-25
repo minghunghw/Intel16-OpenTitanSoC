@@ -46,8 +46,7 @@ Source `modules.sh` before doing any development or tool work. This will clear a
 source modules.sh
 ```
 
-### Running simulations
------------------------------------------------------------
+# Running simulations
 
 (Not available yet)
 ```
