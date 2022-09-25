@@ -7,7 +7,7 @@ export INTEL_PDK  		:= $(INTEL_KITS_DIR)/pdk224_r0.9HP3
 export INTEL_STDCELLS	:= $(INTEL_KITS_DIR)/lib224_b15_7t_108pp_pdk090_r1v0p0_fv
 export INTEL_TIC 		:= $(INTEL_KITS_DIR)/pdk224_r0.9HP3
 export SYN_TCL_DIR 		:= $(INTEL_ASIC)/asicflows/synopsys/syn
-export 7T_108_TCL_DIR 	:= $(INTEL_ASIC)/asicflows/synopsys/tech.dot4.7t108.tp0
+export STD_TCL_DIR 		:= $(INTEL_ASIC)/asicflows/synopsys/tech.dot4.7t108.tp0
 
 # Design parameters
 # --------------------------------
@@ -20,7 +20,7 @@ all: dc
 dc:
 	cd $(DESIGN_NAME) && \
 	dc_shell -64 -topo -x	\
-	"source $(7T_108_TCL_DIR)/tech_config.tcl; \
+	"source $(STD_TCL_DIR)/tech_config.tcl; \
 	source $(SYN_TCL_DIR)/run.tcl; \
 	runADF; \
 	exit"
