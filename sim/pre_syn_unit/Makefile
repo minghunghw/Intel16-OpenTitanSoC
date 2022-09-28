@@ -1,7 +1,7 @@
-export TB 			= ../../hw/tb
-export IP			= ../../ip
-export HW  			= ../../hw/sv
-export OPENTITAN	= $(IP)/opentitan/hw/ip
+export TB           = ../../hw/tb
+export IP           = ../../ip
+export HW           = ../../hw/sv
+export OPENTITAN    = $(IP)/opentitan/hw/ip
 
 TEST 	= 
 VCFILE	= vc/$(TEST).vc

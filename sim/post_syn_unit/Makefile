@@ -1,11 +1,11 @@
 TEST 	= 
 VCFILE	= vc/$(TEST).vc
 
-export TB			= ../../hw/tb
-export HW 			= ../../hw/sv
-export OPENTITAN	= ../../ip/opentitan/hw/ip
-export NETLIST		= ../../syn/$(TEST)/netlist
-export LIB			= /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/lib224_b15_7t_108pp_pdk090_r1v0p0_fv
+export TB           = ../../hw/tb
+export HW           = ../../hw/sv
+export OPENTITAN    = ../../ip/opentitan/hw/ip
+export NETLIST      = ../../syn/$(TEST)/netlist
+export LIB          = /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/lib224_b15_7t_108pp_pdk090_r1v0p0_fv
 
 VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
 	+vc +v2k -Mupdate -line -full64\
