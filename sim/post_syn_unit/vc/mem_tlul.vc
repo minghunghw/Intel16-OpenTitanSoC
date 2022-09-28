@@ -2,14 +2,14 @@
 
 // stdcell
 ////////////////////////////////////////////////////////////////////////////////
--v lib/lib224_b15_7t_108pp_base_lp.sv
--v lib/lib224_b15_7t_108pp_base_hp.sv
--v lib/lib224_b15_7t_108pp_base_ulp.sv
--v lib/lib224_b15_7t_108pp_base_nom.sv
--v lib/lib224_b15_7t_108pp_base_ulvt.sv
--v lib/lib224_b15_7t_108pp_seq_ulp.sv
--v lib/lib224_b15_7t_108pp_seq_hp.sv
--v lib/lib224_b15_7t_108pp_seq_lvt.sv
+-v $LIB/base_lp/verilog/lib224_b15_7t_108pp_base_lp.v
+-v $LIB/base_hp/verilog/lib224_b15_7t_108pp_base_hp.v
+-v $LIB/base_ulp/verilog/lib224_b15_7t_108pp_base_ulp.v
+-v $LIB/base_nom/verilog/lib224_b15_7t_108pp_base_nom.v
+-v $LIB/base_ulvt/verilog/lib224_b15_7t_108pp_base_ulvt.v
+-v $LIB/seq_ulp/verilog/lib224_b15_7t_108pp_seq_ulp.v
+-v $LIB/seq_hp/verilog/lib224_b15_7t_108pp_seq_hp.v
+-v $LIB/seq_lvt/verilog/lib224_b15_7t_108pp_seq_lvt.v
 
 // netlist
 ////////////////////////////////////////////////////////////////////////////////

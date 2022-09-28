@@ -10,6 +10,7 @@ export LIB 			= /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/lib224_b15_7t_108
 VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
 	+vc +v2k -Mupdate -line -full64\
 	+memcbk +vcs+dumparrays +sdfverbose -assert svaext\
+	-override_timescale=1ns/1ps +nospecify +notimingcheck\
 	+define+DUMP_VCD=1 +define+INTC_NO_PWR_PINS +define+INTCNOPWR
 
 all:    simv
