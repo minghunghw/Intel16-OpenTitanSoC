@@ -25,7 +25,7 @@ set_layer_rc -via v7 -resistance 0.121758
 set_layer_rc -via v8 -resistance 0.121758 
 set_layer_rc -via vmz -resistance 0.121758
 
-if { [llength [sta:: corners]] != 1 } {
+if { [llength [sta::corners]] != 1 } {
     # typical temperature 25 skew tttt 
     set_layer_rc -layer gm0 -resistance 0.0165682 -capacitance 0.460484 -corner typical
     set_layer_rc -layer gmb -resistance 0.00559894 -capacitance 0.413999 -corner typical 

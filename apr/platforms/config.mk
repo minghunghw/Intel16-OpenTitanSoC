@@ -39,11 +39,12 @@ export PLACE_SITE = core_6T_108pp
 export PLACE_DENSITY ?= 0.40
 
 # Standard cells: intel 
-export DONT_USE_CELLS = *01x5 *x7 *x3
+export DONT_USE_CELLS   = *01x5 *x7 *x3
 
-# the following dont_use cells are temporary pending feature SYMMETRY support in placer export DONT USE CELLS += *b0mfpn* *b0mfqn* *b0mcdi* *b0mfpy* *b0mfqy* *b0mfdw* *b0mfhw* *hn1n*
+# the following dont_use cells are temporary pending feature SYMMETRY support in placer 
+export DONT_USE_CELLS   += *b0mfpn* *b0mfqn* *b0mcdi* *b0mfpy* *b0mfqy* *b0mfdw* *b0mfhw* *hn1n*
 
-export FILL_CELLS 		= b0mzdnd00an1n01x5 b0mzdnd00an1n02x5
+export FILL_CELLS 		=  b0mzdnd00an1n01x5 b0mzdnd00an1n02x5
 export FILL_CELLS 		+= b0mzdnd11an1n04x5 b0mzdnd11an1n08x5 b0mzdnd11an1n16x5 b0mzdnd11an1n32x5 b0mzdnd11an1n64x5
 
 # export FILL_CELLS 		+= b0mzdnd33an1n04x5 b0mzdnd33an1n08x5 b0mzdnd33an1n16x5 b0mzdnd33an1n32x5 b0mzdnd33an1n64x5
