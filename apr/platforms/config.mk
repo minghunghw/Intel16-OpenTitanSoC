@@ -18,12 +18,12 @@ export OPENROAD_PATCHES +=
 export TECH_LEF 		= $(FOUNDRY DIR)/lef/p1222.lef
 export SC_LEF 			= $(FOUNDRY DIR)/lef/lib224_bom_6t_108pp_base_nom.lef
 export ADDITIONAL_LEFS += $(FOUNDRY_DIR)/lef/lib224_bom_6t_108pp_spcl_nom.lef \
-						  $(FOUNDRY_DIR)/lef/lib224_bom_6t_108pp_seq_nom.lef
+                          $(FOUNDRY_DIR)/lef/lib224_bom_6t_108pp_seq_nom.lef
 
 export GDS_FILES  = $(FOUNDRY DIR)/gds/lib224 bom 6t_108pp_base_nom.gds \
-					$(FOUNDRY_DIR)/gds/lib224_bom_6t_108pp_spcl_nom.gds \
-					$(FOUNDRY_DIR)/gds/lib224_bom_6t_108pp_seq_nom.gds \
-					$(ADDITIONAL_GDS)
+                    $(FOUNDRY_DIR)/gds/lib224_bom_6t_108pp_spcl_nom.gds \
+                    $(FOUNDRY_DIR)/gds/lib224_bom_6t_108pp_seq_nom.gds \
+                    $(ADDITIONAL_GDS)
 
 export GDS_MAP_FILE = $(FOUNDRY_DIR)/gds/p1222.cdns_gds.map
 export POWER_NET 	= VDD
@@ -52,32 +52,32 @@ export FILL_CELLS 		+= b0mzdnd11an1n04x5 b0mzdnd11an1n08x5 b0mzdnd11an1n16x5 b0m
 export DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/dff.lib.fixed
 
 export BC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
-					  	  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \ 
-					  	  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \ 
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz
 
 export BC_DB_FILES 		= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_pfff_1p050v_125c_tttt_ctyp_nldm.ldb \
-					  	  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_psss_0p585v_m40c_tttt_ctyp_nldm.ldb \ 
-					  	  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_psss_0p585v_m40c_tttt_ctyp_nldm.ldb
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_psss_0p585v_m40c_tttt_ctyp_nldm.ldb \ 
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_psss_0p585v_m40c_tttt_ctyp_nldm.ldb
 
 export BC_TEMPERATURE	= -40C
 
 export WC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \ 
-						  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_pfff_1p050v_125c_tttt_typ_nldm.lib.gz \ 
-					  	  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_pfff_1p050v_125c_tttt_typ_nldm.lib.gz \ 
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz
 
 export WC_DB_FILES 		= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_pfff_1p050v_125c_tttt_ctyp_nldm.ldb \
-					      $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_pfff_1p050v_125c_tttt_ctyp_nldm.ldb \
-					      $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.ldb
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_pfff_1p050v_125c_tttt_ctyp_nldm.ldb \
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.ldb
 
 export WC_TEMPERATURE 	= 125
 
 export TC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
-						  $(FOUNDRY DIR)/lib/lib224_b0m_6t_108pp_spcl_nom tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
-						  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz 
+                          $(FOUNDRY DIR)/lib/lib224_b0m_6t_108pp_spcl_nom tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz 
 
 export TC_DB_FILES		= $(FOUNDRY DIR)/lib/lib224_b0m_6t_108pp_base nom_tttt_0p850v_25c_tttt_ctyp_nldm.ldb \
-						  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_tttt_0p850v_25c_tttt_ctyp_nldm.ldb \
-						  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_tttt_0p850v_25c_tttt_ctyp_nldm.ldb
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_tttt_0p850v_25c_tttt_ctyp_nldm.ldb \
+                          $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_tttt_0p850v_25c_tttt_ctyp_nldm.ldb
 
 export TC_TEMPERATURE 	= 25
 
@@ -89,7 +89,7 @@ export DB_FILES 		+= $($(CORNER)_DB_FILES)
 export DB_DIRS 			+= $($(CORNER)_DB_DIRS)
 export WRAP_LIBS 		+= $(WRAP_$(CORNER)_LIBS)
 export WRAP_LEFS 		+= $(WRAP_$(CORNER)_LEFS)
-export TEMPERATURE 		= $($(CORNER)_TEMPERATURE)
+export TEMPERATURE 		 = $($(CORNER)_TEMPERATURE)
 
 # Power grid configuration
 export PDN_TCL 			?= $(FOUNDRY_DIR)/openRoad/pdn/grid_strategy-M1-M7.tcl
