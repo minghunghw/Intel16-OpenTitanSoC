@@ -24,3 +24,13 @@ module load qt5-qtbase-devel/5.9.7
 module load python/3.8.11
 module load anaconda3/2018.12
 module load klayout-el7/0.27.3
+
+# Load OpenROAD-flow-srcipts tool
+if [ -d "ip/OpenROAD-flow-scripts/tools/install" ]; then
+    source ip/OpenROAD-flow-scripts/setup_env.sh
+else
+    echo -e "\e[31m[ERROR]\e[0m Follow the ORFS installtion guide in apr folder first!"
+    return
+fi
+
+echo "OpenTitan module setup done"

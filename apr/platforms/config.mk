@@ -62,7 +62,7 @@ export BC_DB_FILES 		= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_pfff_1p05
 export BC_TEMPERATURE	= -40C
 
 export WC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \ 
-						  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_pfff 1p050v_125c_tttt_typ_nldm.lib.gz \ 
+						  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_spcl_nom_pfff_1p050v_125c_tttt_typ_nldm.lib.gz \ 
 					  	  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz
 
 export WC_DB_FILES 		= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_pfff_1p050v_125c_tttt_ctyp_nldm.ldb \
@@ -71,7 +71,7 @@ export WC_DB_FILES 		= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_pfff_1p05
 
 export WC_TEMPERATURE 	= 125
 
-export TC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_tttt_0p850v_25c_tttt_ctyp_nldm. lib.gz \
+export TC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_base_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
 						  $(FOUNDRY DIR)/lib/lib224_b0m_6t_108pp_spcl_nom tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
 						  $(FOUNDRY_DIR)/lib/lib224_b0m_6t_108pp_seq_nom tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz 
 
