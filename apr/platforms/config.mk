@@ -220,5 +220,5 @@ export STARRC_BC_NXTGRD_FILE 		= $(FOUNDRY_DIR)/starrc/techfiles/svrf/pcss.nxtgr
 export STARRC_WC_NXTGRD_FILE 		= $(FOUNDRY_DIR)/starrc/techfiles/surf/pcff.nxtgrd
 export STARRC_TC_NXTGRD_FILE 		= $(FOUNDRY_DIR)/starrc/techfiles/svrf/tttt.nxtgrd
   
-export STARRC_MAPPING_FILE 			= $(FOUNDRY_DIR)/starrc/asic/svrf/asic.starrc.map
+export STARRC_MAPPING_FILE          = $(FOUNDRY_DIR)/starrc/asic/svrf/asic.starrc.map
 export STARRC_GDS_LAYER_MAP_FILE 	= $(FOUNDRY_DIR)/starrc/asic/svrf/gds.fill.starrc.map
