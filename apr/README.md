@@ -3,7 +3,7 @@
 
 You need to build the [OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts) before running APR.
 
-Go to `ip/OpenROAD-flow-scripts` first. Remember to souce `modules.sh` before proceeding.
+Go to `ip/OpenROAD-flow-scripts` first. Remember to source `modules.sh` before proceeding.
 ```
 cd ../ip/OpenROAD-flow-scripts
 ```
