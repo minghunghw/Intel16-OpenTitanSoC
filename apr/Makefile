@@ -2,8 +2,6 @@
 # Uncomment or add the design to run
 # ==============================================================================
 
-# DESIGN_CONFIG=./designs/nangate45/gcd/config.mk
-# DESIGN_CONFIG=./designs/tsmc65lp/gcd/config.mk
 DESIGN_CONFIG=./designs/intel16/gcd/config.mk
 #
 # Default design

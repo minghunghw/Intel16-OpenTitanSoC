@@ -13,8 +13,6 @@ export FOUNDRY_DIR FOUNDRY_VERSION FOUNDRY_PDK_VERSION
 export PLATFORM = intel16
 export PROCESS 	= 16
 
-export OPENROAD_PATCHES +=
-
 export TECH_LEF 		= $(FOUNDRY_DIR)/lef/p1222.lef
 export SC_LEF 			= $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_base_nom.lef
 export ADDITIONAL_LEFS += $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_spcl_nom.lef \
@@ -34,7 +32,7 @@ export KLAYOUT_TECH_FILE = $(FOUNDRY_DIR)/intel16.lyt
 
 # Placement site for core cells
 # This can be found in the technology lef 
-export PLACE_SITE = core_7T_108pp
+export PLACE_SITE = core
 
 export PLACE_DENSITY ?= 0.40
 

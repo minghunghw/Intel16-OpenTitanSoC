@@ -15,4 +15,4 @@ export CORE_MARGIN         = 1
 export PLACE_DENSITY = uniform
 export ABC_CLOCK_PERIOD_IN_PS = 1000
 
-# export DC_DIFF_FILE = $($(CORNER)_DFF_LIB_FILE)
+export DC_DIFF_FILE = $($(CORNER)_DFF_LIB_FILE)
