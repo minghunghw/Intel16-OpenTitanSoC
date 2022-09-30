@@ -1,0 +1,627 @@
+#------------------------------------------------
+# Map layer puposes into GDSII layer [datatypes]
+#------------------------------------------------
+
+# layer [purpose]   GDS_layer [datatype]
+#-----------------------------------------
+# Process Name : p1222_4_opt1
+# Date         : 27/01/2022
+#-----------------------------------------
+
+DIEAREA                                         ALL   50    0
+
+
+nwell_blockage                               LEFOBS   11    1
+deepnwell_blockage                           LEFOBS   20    1
+
+tcn                                             NET    5    0
+tcn                                           SPNET    5    0
+tcn                                             PIN    5    0
+tcn                                          LEFPIN    5    0
+tcn                                             VIA    5    0
+tcn_fill                              FILL:FLOATING    5  250
+tcn_fill                           FILLOPC:FLOATING    5  250
+NAME                                        tcn/NET    5    0
+NAME                                      tcn/SPNET    5    0
+NAME                                        tcn/PIN    5    0
+NAME                                     tcn/LEFPIN    5    0
+NAME                                        tcn/VIA    5    0
+v0                                              NET   56    0
+v0                                            SPNET   56    0
+v0                                              PIN   56    0
+v0                                           LEFPIN   56    0
+v0                                              VIA   56    0
+v0                                              PIN   56    2
+v0                                             TEXT   56    2
+v0                                 VIAFILL:FLOATING   56  250
+v0                              VIAFILLOPC:FLOATING   56  250
+v0                                           LEFOBS   56    1
+v0                                           BLOCKAGE   56    1
+
+m1                                              NET    4    0
+m1                                            SPNET    4    0
+m1                                              PIN    4    0
+m1                                           LEFPIN    4    0
+m1                                              VIA    4    0
+NAME                                         m1/NET    4    0
+NAME                                       m1/SPNET    4    0
+NAME                                         m1/PIN    4    0
+NAME                                      m1/LEFPIN    4    0
+NAME                                         m1/VIA    4    0
+m1                                              PIN    4    2
+m1                                             TEXT    4    2
+m1                                    FILL:FLOATING    4  250
+m1                                 FILLOPC:FLOATING    4  250
+m1                                           LEFOBS    4    1
+m1                                         BLOCKAGE    4    1
+
+v1                                              NET   13    0
+v1                                            SPNET   13    0
+v1                                              PIN   13    0
+v1                                           LEFPIN   13    0
+v1                                              VIA   13    0
+v1                                              PIN   13    2
+v1                                             TEXT   13    2
+v1                                 VIAFILL:FLOATING   13  250
+v1                              VIAFILLOPC:FLOATING   13  250
+v1                                           LEFOBS   13    1
+v1                                           BLOCKAGE   13    1
+
+m2                                              NET   14    0
+m2                                            SPNET   14    0
+m2                                              PIN   14    0
+m2                                           LEFPIN   14    0
+m2                                              VIA   14    0
+NAME                                         m2/NET   14    0
+NAME                                       m2/SPNET   14    0
+NAME                                         m2/PIN   14    0
+NAME                                      m2/LEFPIN   14    0
+NAME                                         m2/VIA   14    0
+m2                                              PIN   14    2
+m2                                             TEXT   14    2
+m2                                    FILL:FLOATING   14  250
+m2                                 FILLOPC:FLOATING   14  250
+m2                                           LEFOBS   14    1
+m2                                         BLOCKAGE   14    1
+
+v2                                              NET   17    0
+v2                                            SPNET   17    0
+v2                                              PIN   17    0
+v2                                           LEFPIN   17    0
+v2                                              VIA   17    0
+v2                                              PIN   17    2
+v2                                             TEXT   17    2
+v2                                 VIAFILL:FLOATING   17  250
+v2                              VIAFILLOPC:FLOATING   17  250
+v2                                           LEFOBS   17    1
+v2                                           BLOCKAGE   17    1
+
+m3                                              NET   18    0
+m3                                            SPNET   18    0
+m3                                              PIN   18    0
+m3                                           LEFPIN   18    0
+m3                                              VIA   18    0
+NAME                                         m3/NET   18    0
+NAME                                       m3/SPNET   18    0
+NAME                                         m3/PIN   18    0
+NAME                                      m3/LEFPIN   18    0
+NAME                                         m3/VIA   18    0
+m3                                              PIN   18    2
+m3                                             TEXT   18    2
+m3                                    FILL:FLOATING   18  250
+m3                                 FILLOPC:FLOATING   18  250
+m3                                           LEFOBS   18    1
+m3                                         BLOCKAGE   18    1
+
+v3                                              NET   21    0
+v3                                            SPNET   21    0
+v3                                              PIN   21    0
+v3                                           LEFPIN   21    0
+v3                                              VIA   21    0
+v3                                              PIN   21    2
+v3                                             TEXT   21    2
+v3                                 VIAFILL:FLOATING   21  250
+v3                              VIAFILLOPC:FLOATING   21  250
+v3                                           LEFOBS   21    1
+v3                                           BLOCKAGE   21    1
+
+m4                                              NET   22    0
+m4                                            SPNET   22    0
+m4                                              PIN   22    0
+m4                                           LEFPIN   22    0
+m4                                              VIA   22    0
+NAME                                         m4/NET   22    0
+NAME                                       m4/SPNET   22    0
+NAME                                         m4/PIN   22    0
+NAME                                      m4/LEFPIN   22    0
+NAME                                         m4/VIA   22    0
+m4                                              PIN   22    2
+m4                                             TEXT   22    2
+m4                                    FILL:FLOATING   22  250
+m4                                 FILLOPC:FLOATING   22  250
+m4                                           LEFOBS   22    1
+m4                                         BLOCKAGE   22    1
+
+v4                                              NET   25    0
+v4                                            SPNET   25    0
+v4                                              PIN   25    0
+v4                                           LEFPIN   25    0
+v4                                              VIA   25    0
+v4                                              PIN   25    2
+v4                                             TEXT   25    2
+v4                                 VIAFILL:FLOATING   25  250
+v4                              VIAFILLOPC:FLOATING   25  250
+v4                                           LEFOBS   25    1
+v4                                           BLOCKAGE   25    1
+
+m5                                              NET   26    0
+m5                                            SPNET   26    0
+m5                                              PIN   26    0
+m5                                           LEFPIN   26    0
+m5                                              VIA   26    0
+NAME                                         m5/NET   26    0
+NAME                                       m5/SPNET   26    0
+NAME                                         m5/PIN   26    0
+NAME                                      m5/LEFPIN   26    0
+NAME                                         m5/VIA   26    0
+m5                                              PIN   26    2
+m5                                             TEXT   26    2
+m5                                    FILL:FLOATING   26  250
+m5                                 FILLOPC:FLOATING   26  250
+m5                                           LEFOBS   26    1
+m5                                         BLOCKAGE   26    1
+
+v5                                              NET   29    0
+v5                                            SPNET   29    0
+v5                                              PIN   29    0
+v5                                           LEFPIN   29    0
+v5                                              VIA   29    0
+v5                                              PIN   29    2
+v5                                             TEXT   29    2
+v5                                 VIAFILL:FLOATING   29  250
+v5                              VIAFILLOPC:FLOATING   29  250
+v5                                           LEFOBS   29    1
+v5                                           BLOCKAGE   29    1
+
+m6                                              NET   30    0
+m6                                            SPNET   30    0
+m6                                              PIN   30    0
+m6                                           LEFPIN   30    0
+m6                                              VIA   30    0
+NAME                                         m6/NET   30    0
+NAME                                       m6/SPNET   30    0
+NAME                                         m6/PIN   30    0
+NAME                                      m6/LEFPIN   30    0
+NAME                                         m6/VIA   30    0
+m6                                              PIN   30    2
+m6                                             TEXT   30    2
+m6                                    FILL:FLOATING   30  250
+m6                                 FILLOPC:FLOATING   30  250
+m6                                           LEFOBS   30    1
+m6                                         BLOCKAGE   30    1
+
+via3e7                                            NET  500    0
+via3e7                                          SPNET  500    0
+via3e7                                            PIN  500    0
+via3e7                                         LEFPIN  500    0
+via3e7                                            VIA  500    0
+via3e7                                            PIN  500    2
+via3e7                                           TEXT  500    2
+via3e7                                         LEFOBS  500    1
+via3e7                                         BLOCKAGE  500    1
+
+v6                                              NET   33    0
+v6                                            SPNET   33    0
+v6                                              PIN   33    0
+v6                                           LEFPIN   33    0
+v6                                              VIA   33    0
+v6                                              PIN   33    2
+v6                                             TEXT   33    2
+v6                                 VIAFILL:FLOATING   33  250
+v6                              VIAFILLOPC:FLOATING   33  250
+v6                                           LEFOBS   33    1
+v6                                           BLOCKAGE   33    1
+
+m7                                              NET   34    0
+m7                                            SPNET   34    0
+m7                                              PIN   34    0
+m7                                           LEFPIN   34    0
+m7                                              VIA   34    0
+NAME                                         m7/NET   34    0
+NAME                                       m7/SPNET   34    0
+NAME                                         m7/PIN   34    0
+NAME                                      m7/LEFPIN   34    0
+NAME                                         m7/VIA   34    0
+m7                                              PIN   34    2
+m7                                             TEXT   34    2
+m7                                    FILL:FLOATING   34  250
+m7                                 FILLOPC:FLOATING   34  250
+m7                                           LEFOBS   34    1
+m7                                         BLOCKAGE   34    1
+
+v7                                              NET   37    0
+v7                                            SPNET   37    0
+v7                                              PIN   37    0
+v7                                           LEFPIN   37    0
+v7                                              VIA   37    0
+v7                                              PIN   37    2
+v7                                             TEXT   37    2
+v7                                 VIAFILL:FLOATING   37  250
+v7                              VIAFILLOPC:FLOATING   37  250
+v7                                           LEFOBS   37    1
+v7                                           BLOCKAGE   37    1
+
+m8                                              NET   38    0
+m8                                            SPNET   38    0
+m8                                              PIN   38    0
+m8                                           LEFPIN   38    0
+m8                                              VIA   38    0
+NAME                                         m8/NET   38    0
+NAME                                       m8/SPNET   38    0
+NAME                                         m8/PIN   38    0
+NAME                                      m8/LEFPIN   38    0
+NAME                                         m8/VIA   38    0
+m8                                              PIN   38    2
+m8                                             TEXT   38    2
+m8                                    FILL:FLOATING   38  250
+m8                                 FILLOPC:FLOATING   38  250
+m8                                           LEFOBS   38    1
+m8                                         BLOCKAGE   38    1
+
+v8                                              NET   41    0
+v8                                            SPNET   41    0
+v8                                              PIN   41    0
+v8                                           LEFPIN   41    0
+v8                                              VIA   41    0
+v8                                              PIN   41    2
+v8                                             TEXT   41    2
+v8                                 VIAFILL:FLOATING   41  250
+v8                              VIAFILLOPC:FLOATING   41  250
+v8                                           LEFOBS   41    1
+v8                                           BLOCKAGE   41    1
+
+gmz                                             NET  257    0
+gmz                                           SPNET  257    0
+gmz                                             PIN  257    0
+gmz                                          LEFPIN  257    0
+gmz                                             VIA  257    0
+NAME                                        gmz/NET  257    0
+NAME                                      gmz/SPNET  257    0
+NAME                                        gmz/PIN  257    0
+NAME                                     gmz/LEFPIN  257    0
+NAME                                        gmz/VIA  257    0
+gmz                                             PIN  257    2
+gmz                                            TEXT  257    2
+gmz                                   FILL:FLOATING  257  250
+gmz                                FILLOPC:FLOATING  257  250
+gmz                                          LEFOBS  257    1
+gmz                                        BLOCKAGE  257    1
+
+vmz                                             NET  259    0
+vmz                                           SPNET  259    0
+vmz                                             PIN  259    0
+vmz                                          LEFPIN  259    0
+vmz                                             VIA  259    0
+vmz                                             PIN  259    2
+vmz                                            TEXT  259    2
+vmz                                VIAFILL:FLOATING  259  250
+vmz                             VIAFILLOPC:FLOATING  259  250
+vmz                                          LEFOBS  259    1
+vmz                                          BLOCKAGE  259    1
+
+gm0                                             NET  344    0
+gm0                                           SPNET  344    0
+gm0                                             PIN  344    0
+gm0                                          LEFPIN  344    0
+gm0                                             VIA  344    0
+NAME                                        gm0/NET  344    0
+NAME                                      gm0/SPNET  344    0
+NAME                                        gm0/PIN  344    0
+NAME                                     gm0/LEFPIN  344    0
+NAME                                        gm0/VIA  344    0
+gm0                                             PIN  344    2
+gm0                                            TEXT  344    2
+gm0                                   FILL:FLOATING  344  250
+gm0                                FILLOPC:FLOATING  344  250
+gm0                                          LEFOBS  344    1
+gm0                                        BLOCKAGE  344    1
+
+gv0                                             NET  346    0
+gv0                                           SPNET  346    0
+gv0                                             PIN  346    0
+gv0                                          LEFPIN  346    0
+gv0                                             VIA  346    0
+gv0                                             PIN  346    2
+gv0                                            TEXT  346    2
+gv0                                VIAFILL:FLOATING  346  250
+gv0                             VIAFILLOPC:FLOATING  346  250
+gv0                                          LEFOBS  346    1
+gv0                                          BLOCKAGE  346    1
+
+gmb                                             NET  258    0
+gmb                                           SPNET  258    0
+gmb                                             PIN  258    0
+gmb                                          LEFPIN  258    0
+gmb                                             VIA  258    0
+NAME                                        gmb/NET  258    0
+NAME                                      gmb/SPNET  258    0
+NAME                                        gmb/PIN  258    0
+NAME                                     gmb/LEFPIN  258    0
+NAME                                        gmb/VIA  258    0
+gmb                                             PIN  258    2
+gmb                                            TEXT  258    2
+gmb                                   FILL:FLOATING  258  250
+gmb                                FILLOPC:FLOATING  258  250
+gmb                                          LEFOBS  258    1
+gmb                                        BLOCKAGE  258    1
+
+gv1                                             NET  365    0
+gv1                                           SPNET  365    0
+gv1                                             PIN  365    0
+gv1                                          LEFPIN  365    0
+gv1                                             VIA  365    0
+gv1                                             PIN  365    2
+gv1                                            TEXT  365    2
+gv1                                VIAFILL:FLOATING  365  250
+gv1                             VIAFILLOPC:FLOATING  365  250
+gv1                                          LEFOBS  365    1
+gv1                                          BLOCKAGE  365    1
+
+c4                                              NET   92    0
+c4                                            SPNET   92    0
+c4                                              PIN   92    0
+c4                                           LEFPIN   92    0
+c4                                              VIA   92    0
+c4                                              PIN   92    2
+c4                                             TEXT   92    2
+c4                                           LEFOBS   92    1
+c4                                         BLOCKAGE   92    1
+
+c4emib                                         NET  173   55
+c4emib                                       SPNET  173   55
+c4emib                                         PIN  173   55
+c4emib                                      LEFPIN  173   55
+c4emib                                         VIA  173   55
+c4emib                                         PIN  173   89
+c4emib                                        TEXT  173   89
+c4emib                                      LEFOBS  173  125
+c4emib                                    BLOCKAGE  173  125
+
+
+
+v0_fillBlockage                                FILL   56   93
+v0_fillBlockage                             FILLOPC   56   93
+v0_fillBlockage                              LEFOBS   56   93
+
+m1_fillBlockage                                FILL    4   93
+m1_fillBlockage                             FILLOPC    4   93
+m1_fillBlockage                              LEFOBS    4   93
+
+v1_fillBlockage                                FILL   13   93
+v1_fillBlockage                             FILLOPC   13   93
+v1_fillBlockage                              LEFOBS   13   93
+
+m2_fillBlockage                                FILL   14   93
+m2_fillBlockage                             FILLOPC   14   93
+m2_fillBlockage                              LEFOBS   14   93
+
+v2_fillBlockage                                FILL   17   93
+v2_fillBlockage                             FILLOPC   17   93
+v2_fillBlockage                              LEFOBS   17   93
+
+m3_fillBlockage                                FILL   18   93
+m3_fillBlockage                             FILLOPC   18   93
+m3_fillBlockage                              LEFOBS   18   93
+
+v3_fillBlockage                                FILL   21   93
+v3_fillBlockage                             FILLOPC   21   93
+v3_fillBlockage                              LEFOBS   21   93
+
+m4_fillBlockage                                FILL   22   93
+m4_fillBlockage                             FILLOPC   22   93
+m4_fillBlockage                              LEFOBS   22   93
+
+v4_fillBlockage                                FILL   25   93
+v4_fillBlockage                             FILLOPC   25   93
+v4_fillBlockage                              LEFOBS   25   93
+
+m5_fillBlockage                                FILL   26   93
+m5_fillBlockage                             FILLOPC   26   93
+m5_fillBlockage                              LEFOBS   26   93
+
+v5_fillBlockage                                FILL   29   93
+v5_fillBlockage                             FILLOPC   29   93
+v5_fillBlockage                              LEFOBS   29   93
+
+m6_fillBlockage                                FILL   30   93
+m6_fillBlockage                             FILLOPC   30   93
+m6_fillBlockage                              LEFOBS   30   93
+
+v6_fillBlockage                                FILL   33   93
+v6_fillBlockage                             FILLOPC   33   93
+v6_fillBlockage                              LEFOBS   33   93
+
+m7_fillBlockage                                FILL   34   93
+m7_fillBlockage                             FILLOPC   34   93
+m7_fillBlockage                              LEFOBS   34   93
+
+v7_fillBlockage                                FILL   37   93
+v7_fillBlockage                             FILLOPC   37   93
+v7_fillBlockage                              LEFOBS   37   93
+
+m8_fillBlockage                                FILL   38   93
+m8_fillBlockage                             FILLOPC   38   93
+m8_fillBlockage                              LEFOBS   38   93
+
+v8_fillBlockage                                FILL   41   93
+v8_fillBlockage                             FILLOPC   41   93
+v8_fillBlockage                              LEFOBS   41   93
+
+gmz_fillBlockage                               FILL  257   93
+gmz_fillBlockage                            FILLOPC  257   93
+gmz_fillBlockage                             LEFOBS  257   93
+
+vmz_fillBlockage                               FILL  259   93
+vmz_fillBlockage                            FILLOPC  259   93
+vmz_fillBlockage                             LEFOBS  259   93
+
+gm0_fillBlockage                               FILL  344   93
+gm0_fillBlockage                            FILLOPC  344   93
+gm0_fillBlockage                             LEFOBS  344   93
+
+gv0_fillBlockage                               FILL  346   93
+gv0_fillBlockage                            FILLOPC  346   93
+gv0_fillBlockage                             LEFOBS  346   93
+
+gmb_fillBlockage                               FILL  258   93
+gmb_fillBlockage                            FILLOPC  258   93
+gmb_fillBlockage                             LEFOBS  258   93
+
+gv1_fillBlockage                               FILL  365   93
+gv1_fillBlockage                            FILLOPC  365   93
+gv1_fillBlockage                             LEFOBS  365   93
+
+c4_fillBlockage                                    FILL   92   93
+c4_fillBlockage                                 FILLOPC   92   93
+c4_fillBlockage                                  LEFOBS   92   93
+
+GLOBALFILLKOR    NET              255    93
+GLOBALFILLKOR    SPNET            255    93
+GLOBALFILLKOR    PIN              255    93
+GLOBALFILLKOR    LEFPIN           255    93
+GLOBALFILLKOR    FILL             255    93
+GLOBALFILLKOR    FILLOPC          255    93
+GLOBALFILLKOR    LEFOBS           255    93
+GLOBALFILLKOR    VIA              255    93
+GLOBALFILLKOR    VIAFILL          255    93
+GLOBALFILLKOR    VIAFILLOPC       255    93
+
+eoa    NET                        81    29
+eoa    SPNET                      81    29
+eoa    PIN                        81    29
+eoa    LEFPIN                     81    29
+eoa    FILL                       81    29
+eoa    FILLOPC                    81    29
+eoa    LEFOBS                     81    29
+eoa    VIA                        81    29
+eoa    VIAFILL                    81    29
+eoa    VIAFILLOPC                 81    29
+
+
+
+nwell       LEFOBS  11      1
+nwell       NET     11      0
+nwell       SPNET   11      0
+nwell       PIN     11      0
+nwell       LEFPIN  11      0
+nwell       FILL    11      0
+nwell       FILLOPC 11      0
+
+
+TGOXID                    NET                  81    225
+TGOXID                    SPNET                81    225
+TGOXID                    PIN                  81    225
+TGOXID                    LEFPIN               81    225
+TGOXID                    FILL                 81    225
+TGOXID                    FILLOPC              81    225
+TGOXID                    LEFOBS               81    225
+TGOXID                    VIA                  81    225
+TGOXID                    VIAFILL              81    225
+TGOXID                    VIAFILLOPC           81    225
+
+
+gcn	NET		        6	0
+gcn	SPNET		        6	0
+gcn	PIN		        6	0
+gcn     LEFPIN                  6       0 
+gcn	FILL:FLOATING	        6	250
+gcn	FILLOPC:FLOATING	6	250
+gcn	VIA		        6	0
+gcn	VIAFILL:FLOATING        6	250
+gcn	VIAFILLOPC:FLOATING     6	250
+gcn     LEFOBS                  6       1
+gcn     TEXT                    6       2
+NAME    gcn/SPNET               6       0
+
+
+
+diffCheck       NET     108     0
+diffCheck       SPNET   108     0
+diffCheck       PIN     108     0
+diffCheck       LEFPIN  108     0
+diffCheck       FILL    108     0
+diffCheck       FILLOPC 108     0
+diffCheck       LEFOBS  108     1
+diffCheck       VIA     108     0
+diffCheck       VIAFILL 108     0
+diffCheck       VIAFILLOPC      108     0
+
+esd_id    NET                     81    286
+esd_id    SPNET                   81    286
+esd_id    PIN                     81    285
+esd_id    LEFPIN                  81    286
+esd_id    FILL                    81    286
+esd_id    FILLOPC                 81    286
+esd_id    LEFOBS                  81    286
+esd_id    VIA                     81    286
+esd_id    VIAFILL                 81    286
+esd_id    VIAFILLOPC              81    286
+
+CE1     NET                     91      0
+CE1     SPNET                   91      0
+CE1     PIN                     91      0
+CE1     LEFPIN                  91      0
+CE1     FILL:FLOATING           91      250
+CE1     FILLOPC:FLOATING        91      250
+
+CE2     NET                     90      0
+CE2     SPNET                   90      0
+CE2     PIN                     90      0
+CE2     LEFPIN                  90      0
+CE2     FILL:FLOATING           90      250
+CE2     FILLOPC:FLOATING        90      250
+
+emib2bump_zone    NET              81    211
+emib2bump_zone    SPNET            81    211
+emib2bump_zone    PIN              81    211
+emib2bump_zone    LEFPIN           81    211
+emib2bump_zone    FILL             81    211
+emib2bump_zone    FILLOPC          81    211
+emib2bump_zone    LEFOBS           81    211
+emib2bump_zone    VIA              81    211
+emib2bump_zone    VIAFILL          81    211
+emib2bump_zone    VIAFILLOPC       81    211
+
+emib3bump_zone    NET              81    346
+emib3bump_zone    SPNET            81    346
+emib3bump_zone    PIN              81    346
+emib3bump_zone    LEFPIN           81    346
+emib3bump_zone    FILL             81    346
+emib3bump_zone    FILLOPC          81    346
+emib3bump_zone    LEFOBS           81    346
+emib3bump_zone    VIA              81    346
+emib3bump_zone    VIAFILL          81    346
+emib3bump_zone    VIAFILLOPC       81    346
+
+emibbump_boundary    NET              81    337
+emibbump_boundary    SPNET            81    337
+emibbump_boundary    PIN              81    337
+emibbump_boundary    LEFPIN           81    337
+emibbump_boundary    FILL             81    337
+emibbump_boundary    FILLOPC          81    337
+emibbump_boundary    LEFOBS           81    337
+emibbump_boundary    VIA              81    337
+emibbump_boundary    VIAFILL          81    337
+emibbump_boundary    VIAFILLOPC       81    337
+
+IP    NET             63        63 
+IP    SPNET           63        63 
+IP    PIN             63        63 
+IP    LEFPIN          63        63 
+IP    FILL            63        63 
+IP    FILLOPC         63        63 
+IP    LEFOBS          63        63 
+IP    VIA             63        63 
+IP    VIAFILL         63        63 
+IP    VIAFILLOPC      63        63 
+

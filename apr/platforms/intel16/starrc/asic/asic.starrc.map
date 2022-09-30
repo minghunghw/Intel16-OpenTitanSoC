@@ -1,0 +1,46 @@
+conducting_layers
+c4 c4 
+c4emib c4 
+gmb gmb 
+CE2 ce2 
+CE1 ce1 
+gm0 gm0 
+gmz gmz 
+m8 m8 
+m7 m7 
+m6 m6 
+m5 m5 
+m4 m4 
+m3 m3 
+m2 m2 
+m1 m1 
+
+via_layers
+v1 via1 
+v2 via2 
+v3 via3 
+v3e7 via3e7 
+v4 via4 
+v5 via5 
+v6 via6 
+v7 via7 
+v8 via8 
+vmz viamz 
+gv0 gv0 
+gv1 gv1 
+
+remove_layers
+poly 
+ESD 
+deepnwell 
+gcn 
+diffCheck 
+chkBoundary 
+nwell 
+dummy81 
+tcn 
+pdiff 
+ndiff 
+v0 
+dummy273 
+dummy82 

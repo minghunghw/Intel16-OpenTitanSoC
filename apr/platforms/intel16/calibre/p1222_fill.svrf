@@ -1,0 +1,450 @@
+#!tvf
+
+# This file includes SVRF/TVF Technology under license by Mentor Graphics
+# Corporation.  "SVRF/TVF Technology" shall mean Mentor Graphics' Standard
+# Verification Rule Format ("SVRF") and Tcl Verification Format ("TVF")
+# proprietary syntaxes for expressing process rules.  You shall not use
+# SVRF/TVF Technology unless you are a Mentor Graphics customer with a license
+# to use the applicable Mentor Graphics software.  The exact terms of your
+# obligations and rights are governed by your respective license.
+# You shall not use SVRF/TVF Technology except:
+#      (a) for your internal business purposes and
+#      (b) for use with Mentor Graphics' Calibre(R) tools.
+# All SVRF/TVF Technology constitutes or contains trade secrets and
+# confidential information of Mentor Graphics or its licensors.  You shall not
+# make SVRF/TVF Technology available in any form to any person other than your
+# employees and on-site contractors, excluding Mentor Graphics competitors,
+# whose job performance requires access and who are under obligations
+# of confidentiality.
+
+namespace import tvf::*
+
+################################################################################
+# procedures
+################################################################################
+
+#===============================================================================
+# check CONFIG variables
+#===============================================================================
+
+if { [info exists env(FILL_CONFIG_OUTPUT_CELL_NAME)] } {
+
+ set env(FILL_OUTPUT_CELL) $env(FILL_CONFIG_OUTPUT_CELL_NAME)
+}
+
+if { [info exists env(FILL_CONFIG_INPUT_CELL_NAME)] } {
+
+ set env(FILL_INPUT_CELL) $env(FILL_CONFIG_INPUT_CELL_NAME)
+}
+
+if { [info exists env(FILL_CONFIG_INPUT_FILE_TYPE)] } {
+
+ set env(FILL_INPUT_FILE_TYPE) $env(FILL_CONFIG_INPUT_FILE_TYPE)
+}
+
+if { [info exists env(FILL_CONFIG_INPUT_FILE_PATH)] } {
+
+ set env(FILL_INPUT_FILE) $env(FILL_CONFIG_INPUT_FILE_PATH)
+}
+
+if { [info exists env(FILL_CONFIG_OUTPUT_FILE_TYPE)] } {
+
+ set env(FILL_OUTPUT_FILE_TYPE) $env(FILL_CONFIG_OUTPUT_FILE_TYPE)
+}
+
+if { [info exists env(FILL_CONFIG_OUTPUT_NAME_SUFFIX)] } {
+
+ set env(FILL_OUTPUT_NAME_SUFFIX) $env(FILL_CONFIG_OUTPUT_NAME_SUFFIX)
+}
+
+if { [info exists env(FILL_CONFIG_OUTPUT_FILE_NAME)] } {
+
+ set env(FILL_OUTPUT_FILE_NAME) $env(FILL_CONFIG_OUTPUT_FILE_NAME)
+}
+
+
+if { [info exists env(RUN_MERGING_SCRIPT)]  && $env(RUN_MERGING_SCRIPT) == "NO" } {
+
+ set env(FILL_CONFIG_VIRTUOSO_RUN) "TRUE" 
+}
+
+
+################################################################################
+# Pre-process Environment Variables
+################################################################################
+
+# The following is to resolve trailing slashes on the Calibre_RUNSET variable.   
+set cal_rule_dir [file normalize $env(Fill_RUNSET)]
+#to test
+set env(Fill_RUNSET) $cal_rule_dir
+
+#===============================================================================
+# check Fill_RUNSET variable
+#===============================================================================
+    if {![info exists env(Fill_RUNSET)]} {
+      puts "\n\nERROR1 - INTEL's Calibre environment variable setting the fill flow path \"Fill_RUNSET\" must be set. \n\n"
+      exit 1
+    }
+
+
+#-------------------------------------------------------------------------------
+# $FILL_OUTPUT_GDS - NO/YES
+# This will set if the output file is to be GDS or OASIS... OAS is default
+#-------------------------------------------------------------------------------
+
+if { [info exists env(FILL_OUTPUT_FILE_TYPE)] && $env(FILL_OUTPUT_FILE_TYPE) == "GDS" } {
+   set env(FILL_CONFIG_OUTPUT_GDS) YES
+   set FILL_OUTPUT_FILE_TYPE "gds"
+   set outputCmd "-gdsout"
+} else {
+   set FILL_OUTPUT_FILE_TYPE "oas"
+   set outputCmd "-oasisout"
+}
+
+
+#-------------------------------------------------------------------------------
+# $FILL_OUTPUT_FILE_NAME - <FILL_OUTPUT_CELL_NAME>_<FILL_OUTPUT_NAME_SUFFIX>.<FILL_OUTPUT_GDS_setting>
+# This sets the fill output file name.  If it is not set the default is to use
+# three variables.
+#  ${output_cell_name}${output_name_suffix}.${output_gds_setting}
+# If none of them are set the default is "<topcell>_fill.oas"
+#-------------------------------------------------------------------------------
+#if { [info exists env(FILL_OUTPUT_FILE_NAME)] } {
+#   puts "Top file is set to $env(FILL_OUTPUT_FILE)"
+#} else {
+#  set env(FILL_OUTPUT_FILE_NAME) "$env(FILL_OUTPUT_CELL)$env(FILL_OUTPUT_NAME_SUFFIX).${FILL_OUTPUT_GDS_setting}"
+#}
+
+#-------------------------------------------------------------------------------
+# $FILL_CONFIG_OUTPUT_CELL_NAME - Top cell name
+# This variable sets the output cell name.  If this variable is not defined and
+# FILL_CONFIG_INPUT_CELL_NAME is set then the top cell from the input cell name
+# is used.  If neither is set the flow will look at the layout and pick the
+# first top cell Calibre identifies.
+#-------------------------------------------------------------------------------
+
+if { [info exists env(FILL_OUTPUT_CELL)] } {
+   puts "Top cell is set to $env(FILL_OUTPUT_CELL)"
+} else {
+  if { [info exists env(FILL_INPUT_CELL)] } {
+   set env(FILL_OUTPUT_CELL) $env(FILL_INPUT_CELL)
+   } else {
+     set env(FILL_OUTPUT_CELL) [exec calibredrv -a puts \[layout peek $env(FILL_INPUT_FILE) -topcell\] | grep -v "^//"]
+   }
+}
+
+#-------------------------------------------------------------------------------
+# $FILL_CONFIG_OUTPUT_NAME_SUFFIX - "_fill"
+# This is to set a suffix for the top fill container.  The default is "_fill"
+#-------------------------------------------------------------------------------
+if { [info exists env(FILL_OUTPUT_NAME_SUFFIX)] } {
+   puts "Top suffix is set to $env(FILL_OUTPUT_NAME_SUFFIX)"
+} else {
+   set env(FILL_OUTPUT_NAME_SUFFIX) "_fill"
+}
+
+
+
+#set baseFillFileName "$env(FILL_OUTPUT_CELL)_base.${FILL_OUTPUT_FILE_TYPE}"
+#set metalFillFileName "$env(FILL_OUTPUT_CELL)_metal.${FILL_OUTPUT_FILE_TYPE}"
+set baseFillCellSuffix "_base$env(FILL_OUTPUT_NAME_SUFFIX)"
+set metalFillCellSuffix "_metal$env(FILL_OUTPUT_NAME_SUFFIX)"
+
+set env(baseFillCellSuffix) "$baseFillCellSuffix"
+set env(metalFillCellSuffix) "$metalFillCellSuffix"
+
+VERBATIM "
+VARIABLE baseFillCellSuffix \"$baseFillCellSuffix\"
+VARIABLE metalFillCellSuffix \"$metalFillCellSuffix\"
+VARIABLE FILL_OUTPUT_NAME_SUFFIX \"$env(FILL_OUTPUT_NAME_SUFFIX)\"
+"
+#-------------------------------------------------------------------------------
+# $FILL_CONFIG_OUTPUT_FILE_NAME - <FILL_CONFIG_OUTPUT_CELL_NAME>_<FILL_CONFIG_OUTPUT_NAME_SUFFIX>.<FILL_CONFIG_OUTPUT_GDS_setting>
+# This sets the fill output file name.  If it is not set the default is to use
+# three variables.
+#  ${output_cell_name}${output_name_suffix}.${output_gds_setting}
+# If none of them are set the default is "<topcell>_fill.oas"
+#-------------------------------------------------------------------------------
+if { [info exists env(FILL_OUTPUT_FILE_NAME)] } {
+   puts "Top file is set to $env(FILL_OUTPUT_FILE_NAME)"
+} else {
+  set env(FILL_OUTPUT_FILE_NAME) "$env(FILL_OUTPUT_CELL)$env(FILL_OUTPUT_NAME_SUFFIX).${FILL_OUTPUT_FILE_TYPE}"
+}
+
+
+
+#-------------------------------------------------------------------------------
+# $FILL_INPUT_CELL - Top cell name
+# This variable sets the input cell name.  If this variable is not defined 
+# then the top cell from the input file is used.
+#-------------------------------------------------------------------------------
+
+if { [info exists env(FILL_INPUT_CELL)] } {
+   puts "Top cell is set to $env(FILL_INPUT_CELL)"
+} else {
+     set env(FILL_INPUT_CELL) [exec calibredrv -a puts \[layout peek $env(FILL_INPUT_FILE) -topcell\] | grep -v "^//"]
+}
+
+
+#-------------------------------------------------------------------------------
+# This sets the fill output file name.  If it is not set the default is to use
+# three variables.
+#  ${output_cell_name}${output_name_suffix}.${output_gds_setting}
+# If none of them are set the default is "<topcell>_fill.oas"
+#-------------------------------------------------------------------------------
+# Not allowing intermediate files to be gds. 
+#set baseFillFileName "$env(FILL_OUTPUT_CELL)_base$env(FILL_OUTPUT_NAME_SUFFIX).${FILL_OUTPUT_FILE_TYPE}"
+#set metalFillFileName "$env(FILL_OUTPUT_CELL)_metal$env(FILL_OUTPUT_NAME_SUFFIX).${FILL_OUTPUT_FILE_TYPE}"
+set baseFillFileName "$env(FILL_OUTPUT_CELL)_base$env(FILL_OUTPUT_NAME_SUFFIX).${FILL_OUTPUT_FILE_TYPE}"
+set metalFillFileName "$env(FILL_OUTPUT_CELL)_metal$env(FILL_OUTPUT_NAME_SUFFIX).${FILL_OUTPUT_FILE_TYPE}"
+
+
+set env(baseFillFileName) "$baseFillFileName"
+set env(metalFillFileName) "$metalFillFileName"
+#===============================================================================
+# Identify mgc/calibre home path
+#===============================================================================
+if {![info exists env(CALIBRE_HOME)]} {
+   if {[info exists env(MGC_HOME)]}     {
+      set tool $env(MGC_HOME)
+   }     
+} else {
+      set tool $env(CALIBRE_HOME)
+}
+
+
+#------------------------------------#
+# Tabulate Run Environment Variables #
+#------------------------------------#
+# List of env vars for FILL. 
+# These lists will be altered to formulate other flows var lists.
+#------------------------------------#
+set envarList(output)  "FILL_OUTPUT_FILE FILL_OUTPUT_FILE_TYPE FILL_OUTPUT_NAME_SUFFIX FILL_OUTPUT_CELL "
+set envarList(input)   "FILL_INPUT_FILE FILL_INPUT_CELL FILL_INPUT_FILE_TYPE"
+set envarList(output)   "FILL_OUTPUT_FILE_NAME"
+set envarList(process) "DR_PROCESS"
+set envarList(runset)  "Fill_RUNSET"
+set envarList(misc)    {FILL_UV FILL_M1 FILL_M2 FILL_M3 FILL_M4 FILL_M5 FILL_M6 FILL_M7 FILL_M8 FILL_MIM FILL_VIA1 FILL_VIA2 FILL_VIA3 FILL_VIA4 FILL_VIA5 FILL_VIA6 FILL_VIA7 } 
+set envarList(debug)   "FILL_DEBUG"
+
+# Extract runset version and release date from release notes
+set VERSION $env(Fill_RUNSET)/VERSION.txt
+set rel_name "" ; set rel_date ""
+if {[file exists $VERSION]} {
+   set fp [open "$VERSION" r]
+   set file_data [read $fp]
+   close $fp
+   set data [split $file_data "\n"]
+   foreach line $data {
+     if {$line == ""} {continue}
+     if {[regexp "Runset Version:" $line] && [llength $line] == 3} {set rel_name [lindex $line 2]}
+     if {[regexp "Date:" $line] && [llength $line] == 2} {set rel_date [lindex $line 1]}
+     if {$rel_name != "" && $rel_date != ""} {break} 
+   }
+}
+
+set envarList(tool) ""
+if {[info exists env(CALIBRE_HOME)]} {lappend envarList(tool) CALIBRE_HOME} 
+if {[info exists env(MGC_HOME)]}     {lappend envarList(tool) MGC_HOME} 
+set env(Calibre_VERSION) [lindex [exec calibre -version] 2]
+lappend envarList(tool) Calibre_VERSION
+
+#Finding column width
+set w2 5 ; set w1 5
+foreach list {output input process runset misc debug tool} {
+   foreach var $envarList($list) { 
+      set l1 [string length $var]
+      if {"$l1" > "$w1"} {set w1 $l1}
+      if {[info exists env($var)]} {
+         set l2 [string length $env($var)]
+         if {"$l2" > "$w2"} {set w2 $l2}
+      }
+   } 
+}
+incr w1 1 ; incr w2 1
+    
+puts "\n"
+if {$rel_name != "" && $rel_date != ""} {
+   puts "Calibre runset version and date:  $rel_name $rel_date"
+   VERBATIM "TITLE \"Calibre runset version and date: $rel_name $rel_date\" "
+}
+set sep +-[string repeat - $w1]-+-[string repeat - $w2]-+
+puts "\n"
+puts "Fill run environment variables and settings ... "
+#puts $sep
+#puts [format "| %-*s | %-*s |" $w1 "\$rel_ver" $w2 \$redbook_ver]
+puts $sep
+puts [format "| %-*s | %-*s |" $w1 "Environment Variable" $w2 "Value"]
+puts $sep
+proc table_section {list} {
+global env envarList w1 w2 sep
+   foreach envVar $list {
+        set varName [join "\$ $envVar" ""]
+        if {[info exists env($envVar)]} {
+                set envVarValue $env($envVar)
+                puts [format "| %-*s | %-*s |" $w1 $varName $w2 $envVarValue]
+        } else {
+                puts [format "| %-*s | %-*s |" $w1 $varName $w2 UNDEFINED]
+        }
+   }
+   puts $sep 
+}
+table_section $envarList(process)
+table_section $envarList(input)
+table_section $envarList(output)
+table_section $envarList(runset)
+table_section $envarList(misc)
+table_section $envarList(debug)
+table_section $envarList(tool)
+
+# We Are Done Pre_Processing.
+
+
+#------------------------------------#
+#Include Rules:                      #
+#------------------------------------#
+#Check if runset path has "/" and trim it
+
+if {[string match "*/" $env(Fill_RUNSET)] } {
+set str [string range $env(Fill_RUNSET) 0 end-1]
+puts "Debug1 $str"
+set env(Fill_RUNSET) $str
+puts "Debug2 $env(Fill_RUNSET)"
+}
+
+
+tvf::VERBATIM "
+  // ********************************************************************
+  INCLUDE $env(Fill_RUNSET)/includes/p1222_main.svrf
+  // ********************************************************************
+"
+
+set runPlcfll [open run_place_fill.sh w+]
+
+puts $runPlcfll "#!/usr/bin/env bash
+
+cellName=$env(FILL_INPUT_CELL)
+layPath=$env(FILL_INPUT_FILE)
+pidvar=[pid]
+baseFillFileName=\"$baseFillFileName\"
+metalFillFileName=\"$metalFillFileName\"
+output_file_name=$env(FILL_OUTPUT_FILE_NAME)
+FILL_OUTPUT_NAME_SUFFIX=\"$env(FILL_OUTPUT_NAME_SUFFIX)\"
+baseFillCellSuffix=\"$baseFillCellSuffix\"
+metalFillCellSuffix=\"$metalFillCellSuffix\"
+outputCmd=\"$outputCmd\"
+"
+
+if { ![info exists env(FILL_CONFIG_MERGE_OUTPUT_WITH_INPUT)] || $env(FILL_CONFIG_MERGE_OUTPUT_WITH_INPUT) != "NO" } {
+puts $runPlcfll {
+mergeOrig="-in $layPath -smartdiff -reportconflicts"
+}
+} else {
+puts $runPlcfll {
+mergeOrig=""
+}
+}
+
+puts $runPlcfll {
+
+echo ""
+echo ""
+echo " Starting merge script.  Waiting for PID $pidvar to finish before merging."
+echo ""
+echo ""
+
+tail --pid=$pidvar -f /dev/null
+
+
+echo ""
+echo ""
+echo " PID finished.  Starting merge process. "
+echo ""
+echo ""
+
+
+baseChk=`calibredrv -a puts [layout peek $baseFillFileName -topcell] | grep -o "[^ ]*base[^ ]*"`
+metalChk=`calibredrv -a puts [layout peek $metalFillFileName -topcell] | grep -o "[^ ]*metal[^ ]*"`
+
+
+
+echo "==========="
+echo "Base cell = $baseChk"
+echo "Metal cell = $metalChk"
+echo "==========="
+echo ""
+
+
+if [[ "$baseChk" == "${cellName}${baseFillCellSuffix}" ]] ; then
+    base="-in [list -name $baseFillFileName -placecell [list -refcell ${cellName}${baseFillCellSuffix}]]"
+    echo "base is $base"
+else
+    echo "base fill is empty"
+    base=""
+fi
+
+if [[ $metalChk == ${cellName}${metalFillCellSuffix} ]] ; then
+    metal="-in [list -name $metalFillFileName -placecell [list -refcell ${cellName}${metalFillCellSuffix}]]"
+else
+    echo "metal fill is empty"
+    metal=""
+fi
+
+layouts=($baseFillFileName $metalFillFileName)
+
+# for layout in ${layouts[@]}
+# do
+#   if [ ! -f "$layout" ] ; then
+#     echo "The following layout is missing "
+#     exit 1
+#   fi
+# done
+# 
+# echo "count is $count"
+#   if [ $count -gt 1 ] ; then
+#     echo "ERROR - There were no fill result files generated."
+#     exit 1
+#   fi
+
+  
+}
+
+
+
+puts $runPlcfll {
+    calibredrv -a layout filemerge $base $metal -createtop ${FILL_OUTPUT_CELL}${FILL_OUTPUT_NAME_SUFFIX} $outputCmd ${output_file_name}_tmp
+}
+ 
+
+if { ![info exists env(FILL_CONFIG_MERGE_OUTPUT_WITH_INPUT)] || $env(FILL_CONFIG_MERGE_OUTPUT_WITH_INPUT) != "NO" } {
+puts $runPlcfll {
+    calibredrv -a layout filemerge -in [list -name ${output_file_name}_tmp -placecell [list -refcell ${FILL_OUTPUT_CELL}${FILL_OUTPUT_NAME_SUFFIX}]] -createtop $cellName -out ${cellName}_fill_pre2.oas
+    rm ${output_file_name}_tmp &
+    calibredrv -a layout filemerge -in ${cellName}_fill_pre2.oas $mergeOrig $outputCmd $output_file_name | grep -v "Note.*${cellName} .*" | tee merge_log.log
+    if grep "Note" "merge_log.log"; then
+        echo "#############################################################"
+        echo "WARNING:Possible data corruption due to existing fill container in input layout , delete fill container from input layout"
+        echo "#############################################################"
+    fi
+    rm merge_log.log &
+    rm ${cellName}_fill_pre2.oas &
+}
+} else {
+puts $runPlcfll {
+    mv ${output_file_name}_tmp $output_file_name
+}
+}
+
+
+
+close $runPlcfll
+
+exec chmod 770 ./run_place_fill.sh
+
+if { ![info exists env(FILL_CONFIG_VIRTUOSO_RUN)] || $env(FILL_CONFIG_VIRTUOSO_RUN) != "TRUE" } {
+
+catch {eval exec ./run_place_fill.sh &} run_place_fill
+
+puts "run_place_fill.sh pid is: $run_place_fill"
+
+}

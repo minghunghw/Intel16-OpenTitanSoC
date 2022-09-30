@@ -29,3 +29,7 @@ synopsys_cache
 WORK
 alib*
 .create_register_bank.tcl
+
+# OpenROAD-flow-script
+objects
+results
