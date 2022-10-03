@@ -16,7 +16,16 @@ export PROCESS 	= 16
 export TECH_LEF 		= $(FOUNDRY_DIR)/lef/p1222.lef
 export SC_LEF 			= $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_base_nom.lef
 export ADDITIONAL_LEFS += $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_spcl_nom.lef \
-                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_seq_nom.lef
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_seq_nom.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_base_lp.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_base_hp.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_base_ulp.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_base_ulvt.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_base_lvt.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_seq_ulp.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_seq_hp.lef \
+                          $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_seq_lvt.lef
+
 
 export GDS_FILES  = $(FOUNDRY DIR)/gds/lib224_b15_7t_108pp_base_nom.gds \
                     $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_spcl_nom.gds \
@@ -52,7 +61,15 @@ export BC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_psss_0p
 
 export BC_LIB_FILES     = $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
                           $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_spcl_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
-                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_lp_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_hp_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_ulp_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_ulvt_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_lvt_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_ulp_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_hp_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_lvt_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz
 
 export BC_TEMPERATURE	= -40
 
@@ -60,7 +77,15 @@ export WC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_pfff_1p
 
 export WC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
                           $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_spcl_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
-                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_lp_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_hp_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_ulp_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_ulvt_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_lvt_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_ulp_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_hp_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_lvt_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz
 
 export WC_TEMPERATURE 	= 125
 
@@ -68,7 +93,15 @@ export TC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_tttt_0p
 
 export TC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
                           $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_spcl_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
-                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_lp_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_hp_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_ulp_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_ulvt_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_lvt_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_ulp_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_hp_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
+                          $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_lvt_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz
 
 export TC_TEMPERATURE 	= 25
 
@@ -79,6 +112,7 @@ export LIB_DIRS 		+= $($(CORNER)_LIB_DIRS)
 export WRAP_LIBS 		+= $(WRAP_$(CORNER)_LIBS)
 export WRAP_LEFS 		+= $(WRAP_$(CORNER)_LEFS)
 export TEMPERATURE 		 = $($(CORNER)_TEMPERATURE)
+# export DFF_LIB_FILE      = $($(CORNER)_DFF_LIB_FILE)
 
 # Power grid configuration
 export PDN_TCL 			?= $(FOUNDRY_DIR)/grid_strategy-M1-M7.tcl
@@ -91,6 +125,7 @@ export ABC_LOAD_IN_FF 			= 1.805064006547858
 export MIN_BUF_CELL_AND_PORTS 	= b15bfm201an1n04x5 a o 
 export TIEHI_CELL_AND_PORT 		= b15tihi00an1n03x5 o 
 export TIELO_CELL_AND_PORT 		= b15tilo00an1n03x5 o
+# export LATCH_MAP_FILE           = $(PLATFORM_DIR)/cells_latch.v
 
 # IO placer 
 export IO_PLACER_H ?= m4 
@@ -104,7 +139,7 @@ export CELL_PAD_IN_SITES_GLOBAL_PLACEMENT ?= 2
 export CTS_BUF_CELL 				= b15cbf000an1n16x5 b15cbf000an1n08x5 b15cbf000an1n04x5 b15cbf000an1n02x5
 
 # Information for FastRoute
-export FASTROUTE_TCL 				?= $(FOUNDRY_DIR)/fastroute.tcl 
+export FASTROUTE_TCL 				?= $(FOUNDRY_DIR)/fastroute.tcl
 export MAX_ROUTING_LAYER 			?= m7 
 export MIN_ROUTING_LAYER 			?= m2
 
@@ -116,7 +151,7 @@ export MACRO_PLACE_CHANNEL 			?= 10 10
 export MACRO_PLACE_HALO 			?= 5 5
 
 # Information to build Tap Cells 
-export TAPCELL_TCL 					= $(FOUNDRY_DIR)/tapCell.tcl 
+export TAPCELL_TCL 					= $(FOUNDRY_DIR)/tapCell.tcl
 export MAKE_TRACKS 					= $(FOUNDRY_DIR)/make_tracks.tcl
 
 # Innovus Settings 

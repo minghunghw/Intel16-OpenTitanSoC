@@ -27,7 +27,8 @@ dc:
 
 netlist:
 	cd $(DESIGN_NAME) && rm -rf netlist && mkdir netlist && \
-	cp outputs/$(DESIGN_NAME).syn.vg netlist/$(DESIGN_NAME).sv
+	cp outputs/$(DESIGN_NAME).syn.vg netlist/$(DESIGN_NAME).sv && \
+	cp outputs/$(DESIGN_NAME).syn.FUNC_WORST.sdc netlist/$(DESIGN_NAME).sdc
 
 clean:
 	rm -rf $(DESIGN_NAME)/ddc 

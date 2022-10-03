@@ -1,4 +1,4 @@
 tapcell \
-    -distance "77.544" \
-    -tapcell_master "b0mztpn00an1n08x5" \
-    -endcap_master "b0mztpn00an1n08x5"
+    -distance "77.584" \
+    -tapcell_master "b15ztpn00an1n08x5" \
+    -endcap_master "b15ztpn00an1n08x5"
