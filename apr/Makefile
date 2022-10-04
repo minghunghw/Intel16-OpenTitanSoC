@@ -2,8 +2,8 @@
 # Uncomment or add the design to run
 # ==============================================================================
 
-# DESIGN_CONFIG=./designs/intel16/gcd/config.mk
-DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
+DESIGN_CONFIG=./designs/intel16/gcd/config.mk
+# DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk

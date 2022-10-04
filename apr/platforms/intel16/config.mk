@@ -57,7 +57,7 @@ export FILL_CELLS 		+= b15zdnd11an1n04x5 b15zdnd11an1n08x5 b15zdnd11an1n16x5 b15
 # export FILL_CELLS 		+= b15zdnd33an1n04x5 b15zdnd33an1n08x5 b15zdnd33an1n16x5 b15zdnd33an1n32x5 b15zdnd33an1n64x5
 # export FILL_CELLS 		+= b15zdnd44an1n04x5 b15zdnd44an1n08x5 b15zdnd44an1n16x5 b15zdnd44an1n32x5 b15zdnd44an1n64x5
 
-export BC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz
+export BC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/dff_bc.lib.fixed
 
 export BC_LIB_FILES     = $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
                           $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_spcl_nom_psss_0p585v_m40c_tttt_ctyp_nldm.lib.gz \
@@ -73,7 +73,7 @@ export BC_LIB_FILES     = $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_psss_0
 
 export BC_TEMPERATURE	= -40
 
-export WC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz
+export WC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/dff_wc.lib.fixed
 
 export WC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
                           $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_spcl_nom_pfff_1p050v_125c_tttt_ctyp_nldm.lib.gz \
@@ -89,7 +89,7 @@ export WC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_pfff_1p05
 
 export WC_TEMPERATURE 	= 125
 
-export TC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_seq_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz
+export TC_DFF_LIB_FILE 	= $(FOUNDRY_DIR)/lib/dff_tc.lib.fixed
 
 export TC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
                           $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_spcl_nom_tttt_0p850v_25c_tttt_ctyp_nldm.lib.gz \
@@ -105,14 +105,14 @@ export TC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_tttt_0p85
 
 export TC_TEMPERATURE 	= 25
 
-export CORNER 			?= TC
+export CORNER 			?= BC
 
 export LIB_FILES 		+= $($(CORNER)_LIB_FILES) 
 export LIB_DIRS 		+= $($(CORNER)_LIB_DIRS) 
 export WRAP_LIBS 		+= $(WRAP_$(CORNER)_LIBS)
 export WRAP_LEFS 		+= $(WRAP_$(CORNER)_LEFS)
 export TEMPERATURE 		 = $($(CORNER)_TEMPERATURE)
-# export DFF_LIB_FILE      = $($(CORNER)_DFF_LIB_FILE)
+export DFF_LIB_FILE      = $($(CORNER)_DFF_LIB_FILE)
 
 # Power grid configuration
 export PDN_TCL 			?= $(FOUNDRY_DIR)/grid_strategy-M1-M7.tcl

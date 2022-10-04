@@ -9,14 +9,14 @@ if {"$CORNER" eq "TC"} {
     set_layer_rc -layer gm0 -resistance 0.0165682 -capacitance 0.460484 
     set_layer_rc -layer gmb -resistance 0.00559894 -capacitance 0.413999  
     set_layer_rc -layer gmz -resistance 0.0165682 -capacitance 0.479293  
-    set_layer_rc -layer m1 -resistance 8.89557058823529 -capacitance 0.123672352941176  
+    set_layer_rc -layer m1 -resistance 13.7477 -capacitance 0.19113  
     set_layer_rc -layer m2 -resistance 14.0684 -capacitance 0.2003  
     set_layer_rc -layer m3 -resistance 14.0684 -capacitance 0.2003 
     set_layer_rc -layer m4 -resistance 14.0684 -capacitance 0.2003  
     set_layer_rc -layer m5 -resistance 14.0684 -capacitance 0.2003  
     set_layer_rc -layer m6 -resistance 14.0684 -capacitance 0.20389  
-    set_layer_rc -layer m7 -resistance 0.42735 -capacitance 0.250428  
-    set_layer_rc -layer m8 -resistance 0.42735 -capacitance 0.239086 
+    set_layer_rc -layer m7 -resistance 0.401897 -capacitance 0.243924 
+    set_layer_rc -layer m8 -resistance 0.401897 -capacitance 0.232623
     set_layer_rc -via gv0 -resistance 0.005239  
     set_layer_rc -via gv1 -resistance 0.000147  
     set_layer_rc -via v0 -resistance 7.69737 
@@ -34,14 +34,14 @@ if {"$CORNER" eq "TC"} {
     set_layer_rc -layer gm0 -resistance 0.0280631 -capacitance 0.40804  
     set_layer_rc -layer gmb -resistance 0.00956714 -capacitance 0.372604  
     set_layer_rc -layer gmz -resistance 0.0280631 -capacitance 0.435021  
-    set_layer_rc -layer m1 -resistance 12.5830941176471 -capacitance 0.114610294117647 
+    set_layer_rc -layer m1 -resistance 19.4466 -capacitance 0.177125 
     set_layer_rc -layer m2 -resistance 20.0448 -capacitance 0.185823  
     set_layer_rc -layer m3 -resistance 20.0448 -capacitance 0.185823  
     set_layer_rc -layer m4 -resistance 20.0448 -capacitance 0.185823  
     set_layer_rc -layer m5 -resistance 20.0448 -capacitance 0.185823  
     set_layer_rc -layer m6 -resistance 20.0448 -capacitance 0.189872  
-    set_layer_rc -layer m7 -resistance 0.687816 -capacitance 0.225432  
-    set_layer_rc -layer m8 -resistance 0.687816 -capacitance 0.212091 
+    set_layer_rc -layer m7 -resistance 0.687816 -capacitance 0.220551  
+    set_layer_rc -layer m8 -resistance 0.687816 -capacitance 0.207283 
     set_layer_rc -via gv0 -resistance 0.0086292  
     set_layer_rc -via gv1 -resistance 0.00024165  
     set_layer_rc -via v0 -resistance 9.86033  
@@ -59,16 +59,14 @@ if {"$CORNER" eq "TC"} {
     set_layer_rc -layer gm0 -resistance 0.0104022 -capacitance 0.535236  
     set_layer_rc -layer gmb -resistance 0.00347645 -capacitance 0.470783  
     set_layer_rc -layer gmz -resistance 0.0104022 -capacitance 0.548403  
-    set_layer_rc -layer m1 -resistance 6.74280588235294 -capacitance 0.130069176470588 
-    set_layer_rc -layer gmz -resistance 0.0104022 -capacitance 0.548403  
-    set_layer_rc -layer m1 -resistance 6.74280588235294 -capacitance 0.130069176470588  
+    set_layer_rc -layer m1 -resistance 10.4207 -capacitance 0.201016  
     set_layer_rc -layer m2 -resistance 10.6545 -capacitance 0.20944  
     set_layer_rc -layer m3 -resistance 10.6545 -capacitance 0.20944  
     set_layer_rc -layer m4 -resistance 10.6545 -capacitance 0.20944  
     set_layer_rc -layer m5 -resistance 10.6545 -capacitance 0.20944  
     set_layer_rc -layer m6 -resistance 10.6545 -capacitance 0.213572  
-    set_layer_rc -layer m7 -resistance 0.284841 -capacitance 0.282129  
-    set_layer_rc -layer m8 -resistance 0.284841 -capacitance 0.271865 
+    set_layer_rc -layer m7 -resistance 0.267944 -capacitance 0.273854  
+    set_layer_rc -layer m8 -resistance 0.267944 -capacitance 0.263639 
     set_layer_rc -via gv0 -resistance 0.00315643  
     set_layer_rc -via gv1 -resistance 0.0000888  
     set_layer_rc -via v0 -resistance 5.80882  
