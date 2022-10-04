@@ -27,10 +27,18 @@ export ADDITIONAL_LEFS += $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_spcl_nom.lef \
                           $(FOUNDRY_DIR)/lef/lib224_b15_7t_108pp_seq_lvt.lef
 
 
-export GDS_FILES  = $(FOUNDRY DIR)/gds/lib224_b15_7t_108pp_base_nom.gds \
-                    $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_spcl_nom.gds \
-                    $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_seq_nom.gds \
-                    $(ADDITIONAL_GDS)
+export GDS_FILES       += $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_base_nom.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_spcl_nom.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_seq_nom.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_base_lp.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_base_hp.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_base_ulp.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_base_ulvt.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_base_lvt.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_seq_ulp.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_seq_hp.gds \
+                          $(FOUNDRY_DIR)/gds/lib224_b15_7t_108pp_seq_lvt.gds \
+                          $(ADDITIONAL_GDS)
 
 export GDS_MAP_FILE = $(FOUNDRY_DIR)/gds/p1222.cdns_gds.map
 export POWER_NET 	= VDD
