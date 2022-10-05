@@ -4,9 +4,3 @@
 [submodule "ip/OpenROAD-flow-scripts"]
 	path = ip/OpenROAD-flow-scripts
 	url = git@github.com:The-OpenROAD-Project/OpenROAD-flow-scripts.git
-[submodule "ip/memory"]
-	path = ip/memory
-	url = git@github.com:minghungumich/Intel16-Memory.git
-[submodule "apr/platforms/intel16"]
-	path = apr/platforms/intel16
-	url = git@github.com:minghungumich/Intel16-Platform.git
