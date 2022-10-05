@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Ultra(TM) in topographical mode
 // Version   : S-2021.06-SP1
-// Date      : Sun Sep 25 02:32:31 2022
+// Date      : Wed Oct  5 01:39:31 2022
 /////////////////////////////////////////////////////////////
 
 
@@ -53,7 +53,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
          n400, n401, n402, n403, n404, n408, n409, n410, n411, n412, n413,
          n414, n415, n416, n417, n418, n419, n420, n421, n422, n423, n424,
          n425, n426, n427, n428, n429, n430, n431, n433, n460, n461, n462,
-         n463, n465, n493;
+         n463, n493, n494;
   wire   [10:0] addr;
   wire   [31:0] wdata;
   wire   [31:0] rdata;
@@ -82,6 +82,10 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_rspfifo_net622), .o(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[39]) );
   b15nandp2ar1n05x5 U428 ( .a(n333), .b(rvalid), .o1(n414) );
+  b15aoi022ar1n04x5 U431 ( .a(n319), .b(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_rptr_value_0_), .c(n427), 
+        .d(u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_wptr_value_0_), .o1(
+        n322) );
   b15aob012ar1n04x5 U434 ( .b(n322), .c(n324), .a(n317), .out0(n318) );
   b15nor002ar1n03x5 U435 ( .a(n414), .b(n318), .o1(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N9) );
@@ -97,6 +101,9 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
   b15nandp2ar1n03x5 U452 ( .a(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[0]), .b(
         n431), .o1(n331) );
+  b15inv000ar1n03x5 U453 ( .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[14]), .o1(
+        n330) );
   b15nandp2ar1n05x5 U458 ( .a(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_storage_rdata[4]), 
         .b(n415), .o1(n350) );
@@ -104,7 +111,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[29]) );
   b15aoi022ar1n02x3 U466 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[37]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[29]), .o1(n343) );
+        n461), .d(u_tlul_adapter_sram_rdata_tlword[29]), .o1(n343) );
   b15nandp2ar1n03x5 U468 ( .a(n431), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[0]), .o1(
         n341) );
@@ -113,6 +120,8 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[13]), .c(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[10]), .o1(
         n339) );
+  b15aoi022ar1n04x5 U472 ( .a(n430), .b(n341), .c(n340), .d(n339), .o1(n342)
+         );
   b15nandp2ar1n05x5 U474 ( .a(n343), .b(n433), .o1(tl_d_o[45]) );
   b15nonb02ar1n02x3 U475 ( .a(rdata[28]), .b(n350), .out0(
         u_tlul_adapter_sram_rdata_tlword[28]) );
@@ -124,13 +133,13 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[31]) );
   b15aoi022ar1n02x3 U479 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[39]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[31]), .o1(n345) );
+        n461), .d(u_tlul_adapter_sram_rdata_tlword[31]), .o1(n345) );
   b15nandp2ar1n05x5 U480 ( .a(n345), .b(n433), .o1(tl_d_o[47]) );
   b15nonb02ar1n02x3 U481 ( .a(rdata[30]), .b(n350), .out0(
         u_tlul_adapter_sram_rdata_tlword[30]) );
   b15aoi022ar1n02x3 U482 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[38]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[30]), .o1(n346) );
+        n461), .d(u_tlul_adapter_sram_rdata_tlword[30]), .o1(n346) );
   b15nandp2ar1n05x5 U483 ( .a(n346), .b(n433), .o1(tl_d_o[46]) );
   b15nonb02ar1n02x3 U484 ( .a(rdata[26]), .b(n350), .out0(
         u_tlul_adapter_sram_rdata_tlword[26]) );
@@ -142,7 +151,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[27]) );
   b15aoi022ar1n02x3 U488 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[35]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[27]), .o1(n348) );
+        n461), .d(u_tlul_adapter_sram_rdata_tlword[27]), .o1(n348) );
   b15nandp2ar1n05x5 U489 ( .a(n348), .b(n433), .o1(tl_d_o[43]) );
   b15nonb02ar1n02x3 U490 ( .a(rdata[25]), .b(n350), .out0(
         u_tlul_adapter_sram_rdata_tlword[25]) );
@@ -154,7 +163,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[24]) );
   b15aoi022ar1n02x3 U494 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[32]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[24]), .o1(n351) );
+        n461), .d(u_tlul_adapter_sram_rdata_tlword[24]), .o1(n351) );
   b15nandp2ar1n05x5 U495 ( .a(n351), .b(n460), .o1(tl_d_o[40]) );
   b15inv000ar1n05x5 U496 ( .a(tl_d_i[61]), .o1(n355) );
   b15nor003ar1n02x7 U497 ( .a(tl_d_i[57]), .b(tl_d_i[56]), .c(n355), .o1(n373)
@@ -208,7 +217,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[22]) );
   b15aoi022ar1n02x3 U531 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[30]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[22]), .o1(n379) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[22]), .o1(n379) );
   b15nandp2ar1n05x5 U532 ( .a(n379), .b(n460), .o1(tl_d_o[38]) );
   b15nandp2ar1n05x5 U533 ( .a(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_storage_rdata[2]), 
@@ -217,7 +226,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[14]) );
   b15aoi022ar1n02x3 U535 ( .a(n462), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[22]), .c(
-        n461), .d(u_tlul_adapter_sram_rdata_tlword[14]), .o1(n380) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[14]), .o1(n380) );
   b15nandp2ar1n05x5 U536 ( .a(n380), .b(n433), .o1(tl_d_o[30]) );
   b15nandp2ar1n05x5 U537 ( .a(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_storage_rdata[1]), 
@@ -232,7 +241,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[20]) );
   b15aoi022ar1n02x3 U542 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[28]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[20]), .o1(n382) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[20]), .o1(n382) );
   b15nandp2ar1n05x5 U543 ( .a(n382), .b(n460), .o1(tl_d_o[36]) );
   b15nonb02ar1n02x3 U544 ( .a(rdata[4]), .b(n402), .out0(
         u_tlul_adapter_sram_rdata_tlword[4]) );
@@ -250,7 +259,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[19]) );
   b15aoi022ar1n02x3 U551 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[27]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[19]), .o1(n385) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[19]), .o1(n385) );
   b15nandp2ar1n05x5 U552 ( .a(n385), .b(n460), .o1(tl_d_o[35]) );
   b15nonb02ar1n02x3 U553 ( .a(rdata[7]), .b(n402), .out0(
         u_tlul_adapter_sram_rdata_tlword[7]) );
@@ -274,7 +283,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[10]) );
   b15aoi022ar1n02x3 U563 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[18]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[10]), .o1(n389) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[10]), .o1(n389) );
   b15nandp2ar1n05x5 U564 ( .a(n389), .b(n460), .o1(tl_d_o[26]) );
   b15nonb02ar1n02x3 U565 ( .a(rdata[3]), .b(n402), .out0(
         u_tlul_adapter_sram_rdata_tlword[3]) );
@@ -286,19 +295,19 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[17]) );
   b15aoi022ar1n02x3 U569 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[25]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[17]), .o1(n391) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[17]), .o1(n391) );
   b15nandp2ar1n05x5 U570 ( .a(n391), .b(n460), .o1(tl_d_o[33]) );
   b15nonb02ar1n02x3 U571 ( .a(rdata[18]), .b(n398), .out0(
         u_tlul_adapter_sram_rdata_tlword[18]) );
   b15aoi022ar1n02x3 U572 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[26]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[18]), .o1(n392) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[18]), .o1(n392) );
   b15nandp2ar1n05x5 U573 ( .a(n392), .b(n460), .o1(tl_d_o[34]) );
   b15nonb02ar1n02x3 U574 ( .a(rdata[11]), .b(n404), .out0(
         u_tlul_adapter_sram_rdata_tlword[11]) );
   b15aoi022ar1n02x3 U575 ( .a(n462), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[19]), .c(
-        n461), .d(u_tlul_adapter_sram_rdata_tlword[11]), .o1(n393) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[11]), .o1(n393) );
   b15nandp2ar1n05x5 U576 ( .a(n393), .b(n460), .o1(tl_d_o[27]) );
   b15nonb02ar1n02x3 U577 ( .a(rdata[2]), .b(n402), .out0(
         u_tlul_adapter_sram_rdata_tlword[2]) );
@@ -310,49 +319,49 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_rdata_tlword[21]) );
   b15aoi022ar1n02x3 U581 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[29]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[21]), .o1(n395) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[21]), .o1(n395) );
   b15nandp2ar1n05x5 U582 ( .a(n395), .b(n460), .o1(tl_d_o[37]) );
   b15nonb02ar1n02x3 U583 ( .a(rdata[12]), .b(n404), .out0(
         u_tlul_adapter_sram_rdata_tlword[12]) );
   b15aoi022ar1n02x3 U584 ( .a(n462), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[20]), .c(
-        n461), .d(u_tlul_adapter_sram_rdata_tlword[12]), .o1(n396) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[12]), .o1(n396) );
   b15nandp2ar1n05x5 U585 ( .a(n396), .b(n460), .o1(tl_d_o[28]) );
   b15nonb02ar1n02x3 U586 ( .a(rdata[23]), .b(n398), .out0(
         u_tlul_adapter_sram_rdata_tlword[23]) );
   b15aoi022ar1n02x3 U587 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[31]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[23]), .o1(n397) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[23]), .o1(n397) );
   b15nandp2ar1n05x5 U588 ( .a(n397), .b(n460), .o1(tl_d_o[39]) );
   b15nonb02ar1n02x3 U589 ( .a(rdata[16]), .b(n398), .out0(
         u_tlul_adapter_sram_rdata_tlword[16]) );
   b15aoi022ar1n02x3 U590 ( .a(n462), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[24]), .c(
-        n461), .d(u_tlul_adapter_sram_rdata_tlword[16]), .o1(n399) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[16]), .o1(n399) );
   b15nandp2ar1n05x5 U591 ( .a(n399), .b(n460), .o1(tl_d_o[32]) );
   b15nonb02ar1n02x3 U592 ( .a(rdata[0]), .b(n402), .out0(
         u_tlul_adapter_sram_rdata_tlword[0]) );
   b15aoi022ar1n02x3 U593 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[8]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[0]), .o1(n400) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[0]), .o1(n400) );
   b15nandp2ar1n05x5 U594 ( .a(n400), .b(n460), .o1(tl_d_o[16]) );
   b15nonb02ar1n02x3 U595 ( .a(rdata[13]), .b(n404), .out0(
         u_tlul_adapter_sram_rdata_tlword[13]) );
   b15aoi022ar1n02x3 U596 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[21]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[13]), .o1(n401) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[13]), .o1(n401) );
   b15nandp2ar1n05x5 U597 ( .a(n401), .b(n460), .o1(tl_d_o[29]) );
   b15nonb02ar1n02x3 U598 ( .a(rdata[1]), .b(n402), .out0(
         u_tlul_adapter_sram_rdata_tlword[1]) );
   b15aoi022ar1n02x3 U599 ( .a(n463), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[9]), .c(
-        n465), .d(u_tlul_adapter_sram_rdata_tlword[1]), .o1(n403) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[1]), .o1(n403) );
   b15nandp2ar1n05x5 U600 ( .a(n403), .b(n460), .o1(tl_d_o[17]) );
   b15nonb02ar1n02x3 U601 ( .a(rdata[15]), .b(n404), .out0(
         u_tlul_adapter_sram_rdata_tlword[15]) );
   b15aoi022ar1n02x3 U602 ( .a(n462), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[23]), .c(
-        n461), .d(u_tlul_adapter_sram_rdata_tlword[15]), .o1(n408) );
+        n493), .d(u_tlul_adapter_sram_rdata_tlword[15]), .o1(n408) );
   b15nandp2ar1n05x5 U603 ( .a(n408), .b(n460), .o1(tl_d_o[31]) );
   b15nonb02ar1n02x5 U605 ( .a(tl_d_i[64]), .b(n409), .out0(addr[2]) );
   b15nonb02ar1n02x5 U606 ( .a(tl_d_i[63]), .b(n409), .out0(addr[1]) );
@@ -376,7 +385,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
   b15nonb02ar1n02x3 U624 ( .a(tl_d_i[31]), .b(n410), .out0(wdata[7]) );
   b15nandp2ar1n03x5 U625 ( .a(tl_d_i[59]), .b(wen), .o1(n411) );
   b15nonb02ar1n02x3 U626 ( .a(tl_d_i[55]), .b(n411), .out0(wdata[31]) );
-  b15nonb02ar1n02x5 U627 ( .a(tl_d_i[54]), .b(n411), .out0(wdata[30]) );
+  b15nonb02ar1n02x3 U627 ( .a(tl_d_i[54]), .b(n411), .out0(wdata[30]) );
   b15nonb02ar1n02x3 U628 ( .a(tl_d_i[53]), .b(n411), .out0(wdata[29]) );
   b15nonb02ar1n02x3 U629 ( .a(tl_d_i[52]), .b(n411), .out0(wdata[28]) );
   b15nonb02ar1n02x3 U630 ( .a(tl_d_i[49]), .b(n411), .out0(wdata[25]) );
@@ -461,7 +470,10 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[6]), .c(
         n431), .a(n430), .out0(tl_d_o[7]) );
   b15nor002ar1n03x5 U464 ( .a(n431), .b(n426), .o1(n337) );
-  b15inv040ar1n03x5 U467 ( .a(n426), .o1(n430) );
+  b15nonb03ar1n03x5 U460 ( .a(n333), .b(n332), .c(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[14]), 
+        .out0(n334) );
+  b15inv040aq1n06x5 U463 ( .a(n342), .o1(n433) );
   b15inv000ar1n03x5 U638 ( .a(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_rptr_value_0_), .o1(
         n416) );
@@ -470,6 +482,7 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_rptr_value_0_), .o1(n427) );
   b15inv000ar1n03x5 U429 ( .a(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_wptr_value_0_), .o1(n319) );
+  b15inv040aq1n06x5 U716 ( .a(n342), .o1(n460) );
   b15cilb05ah1n02x3 u_tlul_adapter_sram_u_reqfifo_clk_gate_gen_normal_fifo_storage_reg_0__0_latch ( 
         .clk(clk_i), .en(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N9), .te(1'b0), .clkout(u_tlul_adapter_sram_u_reqfifo_net650) );
@@ -482,12 +495,6 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
   b15cilb05ah1n02x3 u_tlul_adapter_sram_u_rspfifo_clk_gate_gen_normal_fifo_storage_reg_0__latch ( 
         .clk(clk_i), .en(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N9), .te(1'b0), .clkout(u_tlul_adapter_sram_u_rspfifo_net616) );
-  b15fpy200ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__12__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__13_ ( 
-        .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[4]), .ssb(1'b1), 
-        .clk(u_tlul_adapter_sram_u_rspfifo_net616), .o1(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[12]), 
-        .si2(1'b0), .d2(u_tlul_adapter_sram_rdata_tlword[5]), .o2(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[13]) );
   b15fqy403ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_0__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_0__u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_0__u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_0_ ( 
         .si1(1'b0), .d1(n131), .ssb(1'b1), .clk(clk_i), .rb(rst_ni), .o1(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_rptr_value_0_), .si2(
@@ -520,6 +527,12 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[6]), .si4(
         1'b0), .d4(1'b0), .o4(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[7]) );
+  b15fpy200ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__12__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__13_ ( 
+        .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[4]), .ssb(1'b1), 
+        .clk(u_tlul_adapter_sram_u_rspfifo_net616), .o1(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[12]), 
+        .si2(1'b0), .d2(u_tlul_adapter_sram_rdata_tlword[5]), .o2(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[13]) );
   b15fpy400ar1d02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__4__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__5__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__6__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__7_ ( 
         .si1(1'b0), .d1(tl_d_i[96]), .ssb(1'b1), .clk(
         u_tlul_adapter_sram_u_reqfifo_net644), .o1(
@@ -530,6 +543,16 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[6]), .si4(
         1'b0), .d4(tl_d_i[99]), .o4(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[7]) );
+  b15fpy400ar1d02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__0__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__1__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__2__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__3_ ( 
+        .si1(1'b0), .d1(tl_d_i[92]), .ssb(1'b1), .clk(
+        u_tlul_adapter_sram_u_reqfifo_net644), .o1(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[0]), .si2(
+        1'b0), .d2(tl_d_i[93]), .o2(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[1]), .si3(
+        1'b0), .d3(tl_d_i[94]), .o3(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[2]), .si4(
+        1'b0), .d4(tl_d_i[95]), .o4(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[3]) );
   b15fpy400ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__27__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__28__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__29__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__30_ ( 
         .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[19]), .ssb(1'b1), 
         .clk(u_tlul_adapter_sram_u_rspfifo_net622), .o1(
@@ -550,16 +573,6 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[16]), 
         .si4(1'b0), .d4(u_tlul_adapter_sram_rdata_tlword[9]), .o4(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[17]) );
-  b15fpy400ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__35__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__36__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__37__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__38_ ( 
-        .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[27]), .ssb(1'b1), 
-        .clk(u_tlul_adapter_sram_u_rspfifo_net622), .o1(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[35]), 
-        .si2(1'b0), .d2(u_tlul_adapter_sram_rdata_tlword[28]), .o2(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[36]), 
-        .si3(1'b0), .d3(u_tlul_adapter_sram_rdata_tlword[29]), .o3(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[37]), 
-        .si4(1'b0), .d4(u_tlul_adapter_sram_rdata_tlword[30]), .o4(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[38]) );
   b15fpy400ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__18__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__19__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__20__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__21_ ( 
         .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[10]), .ssb(1'b1), 
         .clk(u_tlul_adapter_sram_u_rspfifo_net622), .o1(
@@ -580,6 +593,16 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[33]), 
         .si4(1'b0), .d4(u_tlul_adapter_sram_rdata_tlword[26]), .o4(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[34]) );
+  b15fpy400ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__35__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__36__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__37__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__38_ ( 
+        .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[27]), .ssb(1'b1), 
+        .clk(u_tlul_adapter_sram_u_rspfifo_net622), .o1(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[35]), 
+        .si2(1'b0), .d2(u_tlul_adapter_sram_rdata_tlword[28]), .o2(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[36]), 
+        .si3(1'b0), .d3(u_tlul_adapter_sram_rdata_tlword[29]), .o3(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[37]), 
+        .si4(1'b0), .d4(u_tlul_adapter_sram_rdata_tlword[30]), .o4(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[38]) );
   b15fpy400ar1d02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__22__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__23__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__24__u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_reg_0__25_ ( 
         .si1(1'b0), .d1(u_tlul_adapter_sram_rdata_tlword[14]), .ssb(1'b1), 
         .clk(u_tlul_adapter_sram_u_rspfifo_net622), .o1(
@@ -610,9 +633,6 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[2]), .si4(
         1'b0), .d4(1'b0), .o4(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[3]) );
-  b15fqy00car1n02x5 u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_under_rst_reg ( 
-        .si(1'b0), .d(1'b0), .ssb(1'b1), .clk(clk_i), .psb(rst_ni), .o(
-        u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_under_rst) );
   b15fpy400ar1d02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__9__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__10__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__11__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__12_ ( 
         .si1(1'b0), .d1(tl_d_i[101]), .ssb(1'b1), .clk(
         u_tlul_adapter_sram_u_reqfifo_net650), .o1(
@@ -623,6 +643,9 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[11]), 
         .si4(1'b0), .d4(tl_d_i[17]), .o4(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[12]) );
+  b15fqy00car1n02x5 u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_under_rst_reg ( 
+        .si(1'b0), .d(1'b0), .ssb(1'b1), .clk(clk_i), .psb(rst_ni), .o(
+        u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_under_rst) );
   b15fqy00car1n02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_under_rst_reg ( 
         .si(1'b0), .d(1'b0), .ssb(1'b1), .clk(clk_i), .psb(rst_ni), .o(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_under_rst) );
@@ -632,21 +655,6 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         .den(u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_u_fifo_cnt_N23), 
         .ssb(1'b1), .clk(clk_i), .rb(rst_ni), .o(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_fifo_rptr_1_) );
-  b15inv000ar1n03x5 U502 ( .a(tl_d_i[60]), .o1(n362) );
-  b15inv000ar1n03x5 U511 ( .a(tl_d_i[101]), .o1(n359) );
-  b15inv000ar1n03x5 U514 ( .a(tl_d_i[57]), .o1(n417) );
-  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_1_ ( 
-        .si(1'b0), .d(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N11), .den(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N9), .ssb(
-        1'b1), .clk(clk_i), .rb(rst_ni), .o(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_fifo_wptr_1_) );
-  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_1_ ( 
-        .si(1'b0), .d(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N25), .den(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N23), .ssb(
-        1'b1), .clk(clk_i), .rb(rst_ni), .o(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_fifo_rptr_1_) );
   b15fpy400ar1d02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__13__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__14__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__15__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__16_ ( 
         .si1(1'b0), .d1(tl_d_i[18]), .ssb(1'b1), .clk(
         u_tlul_adapter_sram_u_reqfifo_net650), .o1(
@@ -657,6 +665,42 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[15]), 
         .si4(1'b0), .d4(1'b0), .o4(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[16]) );
+  b15inv000ar1n03x5 U502 ( .a(tl_d_i[60]), .o1(n362) );
+  b15inv000ar1n03x5 U511 ( .a(tl_d_i[101]), .o1(n359) );
+  b15inv000ar1n03x5 U514 ( .a(tl_d_i[57]), .o1(n417) );
+  b15fqy403ar1d03x5 rvalid_reg_u_tlul_adapter_sram_intg_error_q_reg_u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_0__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_0_ ( 
+        .si1(1'b0), .d1(N1), .ssb(1'b1), .clk(clk_i), .rb(rst_ni), .o1(rvalid), 
+        .si2(1'b0), .d2(n211), .o2(n211), .si3(1'b0), .d3(n197), .o3(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_rptr_value_0_), .si4(
+        1'b0), .d4(n170), .o4(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_wptr_value_0_) );
+  b15fqy00car1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_under_rst_reg ( 
+        .si(1'b0), .d(1'b0), .ssb(1'b1), .clk(clk_i), .psb(rst_ni), .o(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_under_rst) );
+  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_1_ ( 
+        .si(1'b0), .d(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N11), .den(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N9), .ssb(
+        1'b1), .clk(clk_i), .rb(rst_ni), .o(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_fifo_wptr_1_) );
+  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_1_ ( 
+        .si(1'b0), .d(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N25), .den(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N23), .ssb(
+        1'b1), .clk(clk_i), .rb(rst_ni), .o(
+        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_fifo_rptr_1_) );
+  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_1_ ( 
+        .si(1'b0), .d(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N25), .den(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N23), .ssb(
+        1'b1), .clk(clk_i), .rb(rst_ni), .o(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_fifo_rptr_1_) );
+  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_1_ ( 
+        .si(1'b0), .d(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N11), .den(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N9), .ssb(
+        1'b1), .clk(clk_i), .rb(rst_ni), .o(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_fifo_wptr_1_) );
   b15inv000ar1n03x5 U443 ( .a(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_under_rst), .o1(n325) );
   b15fqy043ar1n02x5 u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_1_ ( 
@@ -666,6 +710,9 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         .ssb(1'b1), .clk(clk_i), .rb(rst_ni), .o(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_fifo_wptr_1_) );
   b15inv000ar1n03x5 U444 ( .a(n325), .o1(n327) );
+  b15oab012aq1n06x5 U427 ( .b(n375), .c(n374), .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_under_rst), .out0(n333)
+         );
   b15fpy040ar1n02x5 u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_storage_reg_0__4_ ( 
         .si(1'b0), .d(tl_d_i[59]), .den(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_u_fifo_cnt_N9), 
@@ -690,24 +737,12 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[12]), .b(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[11]), .o(
         n340) );
+  b15inv000ar1n03x5 U467 ( .a(n426), .o1(n430) );
   b15nonb03ar1n02x5 U525 ( .a(n412), .b(wen), .c(u_tlul_adapter_sram_N210), 
         .out0(N1) );
   b15inv000ar1n03x5 U433 ( .a(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_under_rst), .o1(n317) );
   b15inv000ar1n03x5 U449 ( .a(tl_d_i[0]), .o1(n329) );
-  b15fpy400ar1d02x5 u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__0__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__1__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__2__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_reg_0__3_ ( 
-        .si1(1'b0), .d1(tl_d_i[92]), .ssb(1'b1), .clk(
-        u_tlul_adapter_sram_u_reqfifo_net644), .o1(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[0]), .si2(
-        1'b0), .d2(tl_d_i[93]), .o2(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[1]), .si3(
-        1'b0), .d3(tl_d_i[94]), .o3(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[2]), .si4(
-        1'b0), .d4(tl_d_i[95]), .o4(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[3]) );
-  b15inv000ar1n03x5 U453 ( .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[14]), .o1(
-        n330) );
   b15inv000ar1n03x5 U674 ( .a(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_fifo_rptr_1_), .o1(n428)
          );
@@ -725,65 +760,18 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
   b15and002ar1n02x5 U671 ( .a(n425), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[7]), .o(
         tl_d_o[8]) );
-  b15nonb02ar1n02x3 U686 ( .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[9]), .b(
-        n429), .out0(tl_d_o[58]) );
-  b15nonb02ar1n02x3 U680 ( .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[6]), .b(
-        n429), .out0(tl_d_o[55]) );
-  b15nonb02ar1n02x3 U683 ( .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[4]), .b(
-        n429), .out0(tl_d_o[53]) );
-  b15nonb02ar1n02x3 U685 ( .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[5]), .b(
-        n429), .out0(tl_d_o[54]) );
   b15inv000ar1n03x5 U676 ( .a(n429), .o1(tl_d_o[65]) );
   b15nonb03ar1n02x5 U604 ( .a(tl_d_i[107]), .b(tl_d_i[105]), .c(tl_d_i[106]), 
         .out0(u_tlul_adapter_sram_reqfifo_wdata_op__0_) );
-  b15fqy403hq1d02x5 rvalid_reg_u_tlul_adapter_sram_intg_error_q_reg_u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_0__u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_0_ ( 
-        .si1(1'b0), .d1(N1), .ssb(1'b1), .clk(clk_i), .rb(rst_ni), .o1(rvalid), 
-        .si2(1'b0), .d2(n211), .o2(n211), .si3(1'b0), .d3(n197), .o3(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_rptr_value_0_), .si4(
-        1'b0), .d4(n170), .o4(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_wptr_value_0_) );
-  b15fqy00car1n04x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_under_rst_reg ( 
-        .si(1'b0), .d(1'b0), .ssb(1'b1), .clk(clk_i), .psb(rst_ni), .o(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_under_rst) );
-  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_rptr_o_reg_1_ ( 
-        .si(1'b0), .d(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N25), .den(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N23), .ssb(
-        1'b1), .clk(clk_i), .rb(rst_ni), .o(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_fifo_rptr_1_) );
-  b15fqy043ar1n02x5 u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_wptr_o_reg_1_ ( 
-        .si(1'b0), .d(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N11), .den(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N9), .ssb(
-        1'b1), .clk(clk_i), .rb(rst_ni), .o(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_fifo_wptr_1_) );
-  b15aoi022an1n02x3 U431 ( .a(n319), .b(
-        u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_rptr_value_0_), .c(n427), 
-        .d(u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_wptr_value_0_), .o1(
-        n322) );
-  b15xor002al1n02x5 U425 ( .a(
+  b15xor002ar1n02x5 U425 ( .a(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_fifo_rptr_1_), .b(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_fifo_wptr_1_), .out0(
         n375) );
-  b15xor002al1n02x5 U432 ( .a(
+  b15xor002ar1n02x5 U432 ( .a(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_fifo_rptr_1_), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_fifo_wptr_1_), .out0(
         n324) );
-  b15xor002aq1n02x5 U426 ( .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_rptr_value_0_), .b(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_wptr_value_0_), .out0(
-        n374) );
-  b15oab012al1n03x5 U427 ( .b(n375), .c(n374), .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_under_rst), .out0(n333)
-         );
-  b15nonb03aq1n03x5 U460 ( .a(n333), .b(n332), .c(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[14]), 
-        .out0(n334) );
-  b15xnr002ar1n02x5 U456 ( .a(
+  b15xnr002ar1n03x5 U456 ( .a(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_rptr_value_0_), .b(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_wptr_value_0_), 
         .out0(n377) );
@@ -791,49 +779,61 @@ module mem_tlul ( clk_i, rst_ni, tl_d_i, tl_d_o );
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_fifo_rptr_1_), .b(
         u_tlul_adapter_sram_u_sramreqfifo_gen_normal_fifo_fifo_wptr_1_), 
         .out0(n378) );
-  b15nandp2as1n05x5 U461 ( .a(n335), .b(n334), .o1(n426) );
+  b15nandp2al1n05x5 U461 ( .a(n335), .b(n334), .o1(n426) );
   b15nanb02al1n02x5 U457 ( .a(n378), .b(n377), .out0(n415) );
-  b15nor003aq1n02x7 U462 ( .a(n424), .b(
+  b15norp03an1n04x5 U462 ( .a(n424), .b(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_storage_rdata[0]), .c(
         n426), .o1(n336) );
   b15inv000ar1n03x5 U447 ( .a(tl_d_o[62]), .o1(n328) );
-  b15aoi022aq1n02x3 U472 ( .a(n430), .b(n341), .c(n340), .d(n339), .o1(n342)
-         );
-  b15bfn001ar1n06x5 U718 ( .a(n336), .o(n462) );
-  b15bfn001al1n06x5 U720 ( .a(n336), .o(n463) );
-  b15bfn000aq1n03x5 U717 ( .a(n337), .o(n461) );
-  b15bfn001al1n06x5 U719 ( .a(n337), .o(n465) );
+  b15bfn001al1n06x5 U717 ( .a(n337), .o(n461) );
   b15oaoi13aq1n04x3 U448 ( .c(n335), .d(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[14]), .b(
         n333), .a(n328), .o1(n429) );
-  b15inv000an1n05x5 U463 ( .a(n342), .o1(n433) );
-  b15inv000aq1n05x5 U716 ( .a(n342), .o1(n460) );
   b15nor002an1n03x5 U450 ( .a(n429), .b(n329), .o1(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_u_fifo_cnt_N23) );
-  b15nonb02aq1n02x3 U672 ( .a(tl_d_i[0]), .b(n426), .out0(
+  b15nonb02an1n02x3 U672 ( .a(tl_d_i[0]), .b(n426), .out0(
         u_tlul_adapter_sram_u_rspfifo_gen_normal_fifo_u_fifo_cnt_N23) );
-  b15oaoi13an1n02x3 U454 ( .c(n332), .d(n331), .b(n330), .a(n429), .o1(
+  b15oaoi13al1n02x3 U454 ( .c(n332), .d(n331), .b(n330), .a(n429), .o1(
         tl_d_o[1]) );
-  b15nonb02ar1n02x3 U679 ( .a(
-        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[8]), .b(
-        n429), .out0(tl_d_o[57]) );
   b15nonb02ar1n02x3 U677 ( .a(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[1]), .b(
         n429), .out0(tl_d_o[50]) );
   b15nonb02ar1n02x3 U678 ( .a(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[3]), .b(
         n429), .out0(tl_d_o[52]) );
+  b15nonb02ar1n02x3 U679 ( .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[8]), .b(
+        n429), .out0(tl_d_o[57]) );
+  b15nonb02ar1n02x3 U680 ( .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[6]), .b(
+        n429), .out0(tl_d_o[55]) );
   b15nonb02ar1n02x3 U682 ( .a(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[0]), .b(
         n429), .out0(tl_d_o[49]) );
+  b15nonb02ar1n02x3 U683 ( .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[4]), .b(
+        n429), .out0(tl_d_o[53]) );
   b15nonb02ar1n02x3 U684 ( .a(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[7]), .b(
         n429), .out0(tl_d_o[56]) );
+  b15nonb02ar1n02x3 U685 ( .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[5]), .b(
+        n429), .out0(tl_d_o[54]) );
+  b15nonb02ar1n02x3 U686 ( .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[9]), .b(
+        n429), .out0(tl_d_o[58]) );
   b15nonb02ar1n02x3 U681 ( .a(
         u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_storage_rdata[2]), .b(
         n429), .out0(tl_d_o[51]) );
-  b15oai012al1n03x5 U446 ( .b(n424), .c(n327), .a(n326), .o1(n335) );
-  b15inv000aq1n02x5 U441 ( .a(n324), .o1(n493) );
-  b15and002al1n04x5 U442 ( .a(n493), .b(n322), .o(n424) );
+  b15bfn001aq1n06x5 U719 ( .a(n337), .o(n493) );
+  b15xor002ar1n02x5 U426 ( .a(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_rptr_value_0_), .b(
+        u_tlul_adapter_sram_u_reqfifo_gen_normal_fifo_wptr_value_0_), .out0(
+        n374) );
+  b15oai012al1n04x5 U446 ( .b(n424), .c(n327), .a(n326), .o1(n335) );
+  b15bfn001ar1n08x5 U718 ( .a(n336), .o(n462) );
+  b15bfn001ar1n08x5 U720 ( .a(n336), .o(n463) );
+  b15inv000aq1n02x5 U441 ( .a(n324), .o1(n494) );
+  b15and002al1n04x5 U442 ( .a(n494), .b(n322), .o(n424) );
 endmodule
 
