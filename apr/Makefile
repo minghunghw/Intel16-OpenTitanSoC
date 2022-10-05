@@ -2,7 +2,7 @@
 # Uncomment or add the design to run
 # ==============================================================================
 
-DESIGN_CONFIG=./designs/intel16/aes/config.mk
+# DESIGN_CONFIG=./designs/intel16/aes/config.mk
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
 #
 # Default design

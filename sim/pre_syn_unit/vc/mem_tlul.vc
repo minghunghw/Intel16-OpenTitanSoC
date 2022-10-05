@@ -23,6 +23,7 @@ $OPENTITAN/tlul/rtl/tlul_pkg.sv
 
 // mem
 ////////////////////////////////////////////////////////////////////////////////
+-v $MEM/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h.sv
 -y $HW/mem
 
 // testbench
