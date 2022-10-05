@@ -12,3 +12,6 @@
 	path = apr/platforms/intel16
 	url = git@github.com:minghungumich/Intel16-Platform.git
 	branch = main
+[submodule "apr/private_tool_scripts"]
+	path = apr/private_tool_scripts
+	url = git@github.com:The-OpenROAD-Project-private/OpenROAD-flow-private_tool_scripts.git
