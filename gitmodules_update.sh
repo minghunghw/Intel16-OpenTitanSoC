@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # update all submodules
-git submodule update --init --recursive
+git submodule update --remote --merge --recursive

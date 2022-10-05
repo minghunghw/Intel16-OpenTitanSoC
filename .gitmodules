@@ -7,6 +7,8 @@
 [submodule "ip/memory"]
 	path = ip/memory
 	url = git@github.com:minghungumich/Intel16-Memory.git
+	branch = main
 [submodule "apr/platforms/intel16"]
 	path = apr/platforms/intel16
 	url = git@github.com:minghungumich/Intel16-Platform.git
+	branch = main
