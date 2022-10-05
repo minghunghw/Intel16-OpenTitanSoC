@@ -2,11 +2,11 @@
 # Uncomment or add the design to run
 # ==============================================================================
 
-DESIGN_CONFIG=./designs/intel16/gcd/config.mk
+DESIGN_CONFIG=./designs/intel16/aes/config.mk
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
 #
 # Default design
-DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
+DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
 
 # If we are running headless use offscreen rendering for save_image
 ifndef DISPLAY

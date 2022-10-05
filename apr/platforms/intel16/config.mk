@@ -113,7 +113,7 @@ export TC_LIB_FILES 	= $(FOUNDRY_DIR)/lib/lib224_b15_7t_108pp_base_nom_tttt_0p85
 
 export TC_TEMPERATURE 	= 25
 
-export CORNER 			?= BC
+export CORNER 			?= TC
 
 export LIB_FILES 		+= $($(CORNER)_LIB_FILES) 
 export LIB_DIRS 		+= $($(CORNER)_LIB_DIRS) 

@@ -1,10 +1,9 @@
 #based on files from: /data/PDKs/intel/Intel16/pdk/pdk224_r0.9HP2/models/core/datasheets/m11_1x_3xa_1xb_1xc_2y_2ga_mim2_lgb__bumpp 
 
-set CORNER TC
-puts "\[INFO\]\[FLOW\] Using corner $CORNER"
+puts "\[INFO RC\] Using corner $::env(CORNER)"
 
 # Liberty units are fF,kOhm
-if {"$CORNER" eq "TC"} {
+if { $::env(CORNER) == "TC" } {
     # typical temperature 25 skew tttt 
     set_layer_rc -layer gm0 -resistance 0.0165682 -capacitance 0.460484 
     set_layer_rc -layer gmb -resistance 0.00559894 -capacitance 0.413999  
@@ -29,7 +28,7 @@ if {"$CORNER" eq "TC"} {
     set_layer_rc -via v7 -resistance 0.202071  
     set_layer_rc -via v8 -resistance 0.202071  
     set_layer_rc -via vmz -resistance 0.202071 
-} elseif {"$CORNER" eq "WC"} {
+} elseif { $::env(CORNER) == "WC" } {
     # slow temperature 125 skew prcs 
     set_layer_rc -layer gm0 -resistance 0.0280631 -capacitance 0.40804  
     set_layer_rc -layer gmb -resistance 0.00956714 -capacitance 0.372604  
@@ -54,7 +53,7 @@ if {"$CORNER" eq "TC"} {
     set_layer_rc -via v7 -resistance 0.332811  
     set_layer_rc -via v8 -resistance 0.332811  
     set_layer_rc -via vmz -resistance 0.332811 
-} elseif {"$CORNER" eq "BC"} {
+} elseif { $::env(CORNER) == "BC" } {
     # fast temperature -40 skew prcf 
     set_layer_rc -layer gm0 -resistance 0.0104022 -capacitance 0.535236  
     set_layer_rc -layer gmb -resistance 0.00347645 -capacitance 0.470783  
