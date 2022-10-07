@@ -27,14 +27,14 @@ module tb;
     logic [31:0]    data;
 
     ibex_tlul u_ibex_tlul (
-        .hart_id_i(32'b0),
-        .boot_addr_i(32'b0),
-        .irq_software_i(1'b0),
-        .irq_timer_i(1'b0),
-        .irq_external_i(1'b0),
-        .irq_nm_i(1'b0),
-        .debug_req_i(1'b0),
-        .fetch_enable_i('1),
+        .hart_id_i      (32'b0),
+        .boot_addr_i    (32'b0),
+        .irq_software_i (1'b0),
+        .irq_timer_i    (1'b0),
+        .irq_external_i (1'b0),
+        .irq_nm_i       (1'b0),
+        .debug_req_i    (1'b0),
+        .fetch_enable_i (ibex_pkg::FetchEnableOn),
         .*
     );
 
@@ -56,6 +56,8 @@ module tb;
         invoke_ibex_tlul(4, addr, data, tl_i_i); // read from memory
 
         @(negedge clk_i)
+
+        #200
         // wait (tl_d_o.d_valid == 1);
         // if (tl_d_o.d_data == 12) begin
         //     $display("%c[1;32m",27);
@@ -66,7 +68,7 @@ module tb;
         //     $display("FAILED\n");
         //     $display("%c[0m",27);
         // end
-	    $finish;
+        $finish;
     end
 
 endmodule

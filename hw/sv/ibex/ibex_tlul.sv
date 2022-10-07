@@ -44,16 +44,16 @@ module ibex_tlul #(
     input   logic               irq_nm_i,
 
     // Debug interface
-    input   logic               debug_req_i,
+    input   logic                  debug_req_i,
     output  ibex_pkg::crash_dump_t crash_dump_o,
-    output  logic               debug_fault_seen_o,
+    output  logic                  debug_fault_seen_o,
 
     // CPU Control Signals
     input   ibex_pkg::fetch_enable_t fetch_enable_i,
-    output  logic               alert_minor_o,
-    output  logic               alert_major_internal_o,
-    output  logic               alert_major_bus_o, 
-    output  logic               core_sleep_o
+    output  logic                    alert_minor_o,
+    output  logic                    alert_major_internal_o,
+    output  logic                    alert_major_bus_o, 
+    output  logic                    core_sleep_o
 );
 
 import ibex_pkg::*;
