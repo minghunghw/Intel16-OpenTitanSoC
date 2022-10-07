@@ -25,6 +25,9 @@ module load python/3.8.11
 module load anaconda3/2018.12
 module load klayout-el7/0.27.3
 
+# Load commercial tools
+module load calibre/2022.2_15.10_aoi
+
 # Load OpenROAD-flow-srcipts tool
 if [ -d "ip/OpenROAD-flow-scripts/tools/install" ]; then
     source ip/OpenROAD-flow-scripts/setup_env.sh
