@@ -2,8 +2,8 @@ module tb;
 
     localparam CLK_PERIOD   = 1000;
 
-    logic clk_i;
-    logic rst_ni;
+    logic               clk_i;
+    logic               rst_ni;
 
     // instruction memory interface 
     tlul_pkg::tl_d2h_t  tl_i_i;
@@ -14,16 +14,15 @@ module tb;
     tlul_pkg::tl_h2d_t  tl_d_o;
 
     // Debug interface
-    output  ibex_pkg::crash_dump_t crash_dump_o,
-    output  logic               debug_fault_seen_o,
+    ibex_pkg::crash_dump_t crash_dump_o;
+    logic               debug_fault_seen_o;
 
     // CPU Control Signals
-    output  logic               alert_minor_o,
-    output  logic               alert_major_internal_o,
-    output  logic               alert_major_bus_o, 
-    output  logic               core_sleep_o
+    logic               alert_minor_o;
+    logic               alert_major_internal_o;
+    logic               alert_major_bus_o;
+    logic               core_sleep_o;
 
-    logic [31:0]    addr;
     logic [31:0]    data;
 
     ibex_tlul u_ibex_tlul (
@@ -34,7 +33,7 @@ module tb;
         .irq_external_i(1'b0),
         .irq_nm_i(1'b0),
         .debug_req_i(1'b0),
-        .fetch_enable_i('1),
+        .fetch_enable_i(ibex_pkg::FetchEnableOn),
         .*
     );
 
@@ -50,22 +49,27 @@ module tb;
         @(negedge clk_i)
         rst_ni      = 1;
 
+        wait (tl_i_o.a_valid == 1);
+        if (tl_i_o.a_address != 0) begin
+            $display("%c[1;31m",27);
+            $display("FAILED\n");
+            $display("%c[0m",27);
+        end
+
         @(negedge clk_i) @(negedge clk_i)
-        addr = 0;
         data = 0;
-        invoke_ibex_tlul(4, addr, data, tl_i_i); // read from memory
+        invoke_ibex_tlul(1, data, tl_i_i);
 
         @(negedge clk_i)
-        // wait (tl_d_o.d_valid == 1);
-        // if (tl_d_o.d_data == 12) begin
-        //     $display("%c[1;32m",27);
-        //     $display("SUCCESS\n");
-        //     $display("%c[0m",27);
-        // end else begin
-        //     $display("%c[1;31m",27);
-        //     $display("FAILED\n");
-        //     $display("%c[0m",27);
-        // end
+        wait (tl_i_o.a_valid == 1);
+        if (tl_i_o.a_address != 4) begin
+            $display("%c[1;31m",27);
+            $display("FAILED\n");
+            $display("%c[0m",27);
+        end
+        $display("%c[1;32m",27);
+        $display("SUCCESS\n");
+        $display("%c[0m",27);
 	    $finish;
     end
 
@@ -73,19 +77,17 @@ endmodule
 
 task automatic invoke_ibex_tlul;
     input [ 2:0]    opcode;
-    input [31:0]    addr;
     input [31:0]    data;
-    output tlul_pkg::tl_h2d_t tl_i_i;
+    output tlul_pkg::tl_d2h_t tl_i_i;
 begin
-    tl_i_i.a_valid    = 1;
-    tl_i_i.a_opcode   = tlul_pkg::tl_a_op_e'(opcode);
-    tl_i_i.a_param    = 0;
-    tl_i_i.a_size     = 2;
-    tl_i_i.a_source   = 0;
-    tl_i_i.a_address  = addr;
-    tl_i_i.a_mask     = 4'hf;
-    tl_i_i.a_data     = data;
-    tl_i_i.a_user     = tlul_pkg::TL_A_USER_DEFAULT;
-    tl_i_i.d_ready    = 1;
+    tl_i_i.d_valid    = 1;
+    tl_i_i.d_opcode   = tlul_pkg::tl_d_op_e'(opcode);
+    tl_i_i.d_param    = 0;
+    tl_i_i.d_size     = 2;
+    tl_i_i.d_source   = 0;
+    tl_i_i.d_sink     = 4'hf;
+    tl_i_i.d_data     = data;
+    tl_i_i.d_user     = tlul_pkg::TL_D_USER_DEFAULT;
+    tl_i_i.a_ready    = 1;
 end
 endtask

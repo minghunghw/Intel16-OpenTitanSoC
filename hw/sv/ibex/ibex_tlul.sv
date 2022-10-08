@@ -5,9 +5,9 @@ module ibex_tlul #(
     parameter int unsigned          MHPMCounterNum   = 0,
     parameter int unsigned          MHPMCounterWidth = 40,
     parameter bit                   RV32E            = 1'b0,
-    parameter ibex_pkg::rv32m_e     RV32M            = RV32MFast,
-    parameter ibex_pkg::rv32b_e     RV32B            = RV32BNone,
-    parameter ibex_pkg::regfile_e   RegFile          = RegFileFF,
+    parameter ibex_pkg::rv32m_e     RV32M            = ibex_pkg::RV32MFast,
+    parameter ibex_pkg::rv32b_e     RV32B            = ibex_pkg::RV32BNone,
+    parameter ibex_pkg::regfile_e   RegFile          = ibex_pkg::RegFileFF,
     parameter bit                   BranchTargetALU  = 1'b0,
     parameter bit                   WritebackStage   = 1'b0,
     parameter bit                   ICache           = 1'b0,
@@ -17,8 +17,8 @@ module ibex_tlul #(
     parameter int unsigned          DbgHwBreakNum    = 1,
     parameter bit                   SecureIbex       = 1'b0,
     parameter bit                   ICacheScramble   = 1'b0,
-    parameter ibex_pkg::lfsr_seed_t RndCnstLfsrSeed  = RndCnstLfsrSeedDefault,
-    parameter ibex_pkg::lfsr_perm_t RndCnstLfsrPerm  = RndCnstLfsrPermDefault,
+    parameter ibex_pkg::lfsr_seed_t RndCnstLfsrSeed  = ibex_pkg::RndCnstLfsrSeedDefault,
+    parameter ibex_pkg::lfsr_perm_t RndCnstLfsrPerm  = ibex_pkg::RndCnstLfsrPermDefault,
     parameter int unsigned          DmHaltAddr       = 32'h1A110800,
     parameter int unsigned          DmExceptionAddr  = 32'h1A110808,
     parameter logic [ibex_pkg::SCRAMBLE_KEY_W-1:0]   RndCnstIbexKey   = ibex_pkg::RndCnstIbexKeyDefault,
@@ -55,8 +55,6 @@ module ibex_tlul #(
     output  logic               alert_major_bus_o, 
     output  logic               core_sleep_o
 );
-
-import ibex_pkg::*;
 
 // Instruction interface
 logic        instr_req;
@@ -177,7 +175,7 @@ tlul_adapter_host #(
     .wdata_i        (32'b0),
     .wdata_intg_i   (instr_wdata_intg),
     .be_i           (4'hf),
-    .instr_type_i   (prim_mubi_pkg::Mubi4True),
+    .instr_type_i   (prim_mubi_pkg::mubi4_t'(4'h6)),
     .valid_o        (instr_rvalid),
     .rdata_o        (instr_rdata),
     .rdata_intg_o   (instr_rdata_intg),
@@ -199,7 +197,7 @@ tlul_adapter_host #(
     .wdata_i        (data_wdata),
     .wdata_intg_i   (data_wdata_intg),
     .be_i           (data_be),
-    .instr_type_i   (prim_mubi_pkg::Mubi4False),
+    .instr_type_i   (prim_mubi_pkg::mubi4_t'(4'h9)),
     .valid_o        (data_rvalid),
     .rdata_o        (data_rdata),
     .rdata_intg_o   (data_rdata_intg),
