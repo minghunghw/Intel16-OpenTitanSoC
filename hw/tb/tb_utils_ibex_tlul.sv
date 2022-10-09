@@ -26,6 +26,7 @@ module tb;
     logic [31:0]    data;
 
     ibex_tlul u_ibex_tlul (
+        .ram_cfg_i      (prim_ram_1p_pkg::RAM_1P_CFG_DEFAULT),  
         .hart_id_i      (32'b0),
         .boot_addr_i    (32'b0),
         .irq_software_i (1'b0),
@@ -33,7 +34,9 @@ module tb;
         .irq_external_i (1'b0),
         .irq_nm_i       (1'b0),
         .debug_req_i    (1'b0),
-        .fetch_enable_i (ibex_pkg::FetchEnableOn),
+        .fetch_enable_i (4'hf),
+        .scan_rst_ni    (1'b0),
+        .scanmode_i     (prim_mubi_pkg::mubi4_t'(4'h9)),
         .*
     );
 
@@ -50,19 +53,19 @@ module tb;
         rst_ni      = 1;
 
         wait (tl_i_o.a_valid == 1);
-        if (tl_i_o.a_address != 0) begin
+        if (tl_i_o.a_address != 128) begin
             $display("%c[1;31m",27);
             $display("FAILED\n");
             $display("%c[0m",27);
         end
 
-        @(negedge clk_i) @(negedge clk_i)
+        @(negedge clk_i)
         data = 0;
         invoke_ibex_tlul(1, data, tl_i_i);
 
         @(negedge clk_i)
         wait (tl_i_o.a_valid == 1);
-        if (tl_i_o.a_address != 4) begin
+        if (tl_i_o.a_address != 132) begin
             $display("%c[1;31m",27);
             $display("FAILED\n");
             $display("%c[0m",27);

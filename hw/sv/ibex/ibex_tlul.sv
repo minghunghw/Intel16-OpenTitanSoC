@@ -9,7 +9,7 @@ module ibex_tlul import ibex_pkg::*; #(
     parameter rv32b_e       RV32B            = RV32BNone,
     parameter regfile_e     RegFile          = RegFileFF,
     parameter bit           BranchTargetALU  = 1'b0,
-    parameter bit           WritebackStage   = 1'b0,
+    parameter bit           WritebackStage   = 1'b1,
     parameter bit           ICache           = 1'b0,
     parameter bit           ICacheECC        = 1'b0,
     parameter bit           BranchPredictor  = 1'b0,
@@ -19,13 +19,15 @@ module ibex_tlul import ibex_pkg::*; #(
     parameter bit           ICacheScramble   = 1'b0,
     parameter lfsr_seed_t   RndCnstLfsrSeed  = RndCnstLfsrSeedDefault,
     parameter lfsr_perm_t   RndCnstLfsrPerm  = RndCnstLfsrPermDefault,
-    parameter int unsigned  DmHaltAddr       = 32'h1A110800,
-    parameter int unsigned  DmExceptionAddr  = 32'h1A110808,
+    parameter int unsigned  DmHaltAddr       = 32'h0,
+    parameter int unsigned  DmExceptionAddr  = 32'h0,
     parameter logic [SCRAMBLE_KEY_W-1:0]   RndCnstIbexKey   = RndCnstIbexKeyDefault,
     parameter logic [SCRAMBLE_NONCE_W-1:0] RndCnstIbexNonce = RndCnstIbexNonceDefault
     ) (
     input                       clk_i,
     input                       rst_ni,
+
+    input   prim_ram_1p_pkg::ram_1p_cfg_t ram_cfg_i,
     input   logic [31:0]        hart_id_i,
     input   logic [31:0]        boot_addr_i,
 
@@ -53,7 +55,11 @@ module ibex_tlul import ibex_pkg::*; #(
     output  logic               alert_minor_o,
     output  logic               alert_major_internal_o,
     output  logic               alert_major_bus_o, 
-    output  logic               core_sleep_o
+    output  logic               core_sleep_o,
+
+    // dft bypass
+    input scan_rst_ni,
+    input prim_mubi_pkg::mubi4_t scanmode_i
 );
 
 // Instruction interface
@@ -88,7 +94,7 @@ logic        scramble_req;
 ibex_top #(
     .PMPEnable        (PMPEnable),
     .PMPGranularity   (PMPGranularity),
-    .PMPNumRegions    (PMPGranularity),
+    .PMPNumRegions    (PMPNumRegions),
     .MHPMCounterNum   (MHPMCounterNum),
     .MHPMCounterWidth (MHPMCounterWidth),
     .RV32E            (RV32E),
@@ -114,8 +120,8 @@ ibex_top #(
     // Clock and Reset
     .clk_i                  (clk_i),
     .rst_ni                 (rst_ni),
-    .test_en_i              (1'b1),
-    .ram_cfg_i              (10'b0),
+    .test_en_i              (prim_mubi_pkg::mubi4_test_true_strict(scanmode_i)),
+    .ram_cfg_i              (ram_cfg_i),
     .hart_id_i              (hart_id_i),
     .boot_addr_i            (boot_addr_i),
     // Instruction memory interface
@@ -160,7 +166,7 @@ ibex_top #(
     .alert_major_bus_o      (alert_major_bus_o),
     .core_sleep_o           (core_sleep_o),
     // DFT bypass controls
-    .scan_rst_ni            (1'b0)
+    .scan_rst_ni            (scan_rst_ni)
 );
 
 tlul_adapter_host #(
