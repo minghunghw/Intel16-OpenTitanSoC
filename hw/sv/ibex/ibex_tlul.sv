@@ -19,8 +19,8 @@ module ibex_tlul import ibex_pkg::*; #(
     parameter bit           ICacheScramble   = 1'b0,
     parameter lfsr_seed_t   RndCnstLfsrSeed  = RndCnstLfsrSeedDefault,
     parameter lfsr_perm_t   RndCnstLfsrPerm  = RndCnstLfsrPermDefault,
-    parameter int unsigned  DmHaltAddr       = 32'h0,
-    parameter int unsigned  DmExceptionAddr  = 32'h0,
+    parameter int unsigned  DmHaltAddr       = 32'h1A110808,
+    parameter int unsigned  DmExceptionAddr  = 32'h1A110808,
     parameter logic [SCRAMBLE_KEY_W-1:0]   RndCnstIbexKey   = RndCnstIbexKeyDefault,
     parameter logic [SCRAMBLE_NONCE_W-1:0] RndCnstIbexNonce = RndCnstIbexNonceDefault
     ) (

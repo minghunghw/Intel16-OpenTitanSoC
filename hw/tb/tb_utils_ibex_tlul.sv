@@ -34,7 +34,7 @@ module tb;
         .irq_external_i (1'b0),
         .irq_nm_i       (1'b0),
         .debug_req_i    (1'b0),
-        .fetch_enable_i (4'hf),
+        .fetch_enable_i (ibex_pkg::FetchEnableOn),
         .scan_rst_ni    (1'b0),
         .scanmode_i     (prim_mubi_pkg::mubi4_t'(4'h9)),
         .*
@@ -47,6 +47,7 @@ module tb;
     initial begin
         
         tl_i_i = tlul_pkg::TL_D2H_DEFAULT;
+        tl_i_i.d_opcode = tlul_pkg::tl_d_op_e'(1);
         tl_d_i = tlul_pkg::TL_D2H_DEFAULT;
         
         @(negedge clk_i)
@@ -59,7 +60,7 @@ module tb;
             $display("%c[0m",27);
         end
 
-        @(negedge clk_i)
+        @(posedge clk_i)
         data = 0;
         invoke_ibex_tlul(1, data, tl_i_i);
 
