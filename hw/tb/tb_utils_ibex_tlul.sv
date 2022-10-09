@@ -26,16 +26,6 @@ module tb;
     logic [31:0]    data;
 
     ibex_tlul u_ibex_tlul (
-<<<<<<< HEAD
-        .hart_id_i(32'b0),
-        .boot_addr_i(32'b0),
-        .irq_software_i(1'b0),
-        .irq_timer_i(1'b0),
-        .irq_external_i(1'b0),
-        .irq_nm_i(1'b0),
-        .debug_req_i(1'b0),
-        .fetch_enable_i(ibex_pkg::FetchEnableOn),
-=======
         .hart_id_i      (32'b0),
         .boot_addr_i    (32'b0),
         .irq_software_i (1'b0),
@@ -44,7 +34,6 @@ module tb;
         .irq_nm_i       (1'b0),
         .debug_req_i    (1'b0),
         .fetch_enable_i (ibex_pkg::FetchEnableOn),
->>>>>>> 62dbf8f2075843d22f903d6215e77cdac9eec290
         .*
     );
 

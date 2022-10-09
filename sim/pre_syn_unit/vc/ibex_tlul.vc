@@ -18,8 +18,8 @@ $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
 
 // prim
 ////////////////////////////////////////////////////////////////////////////////
--y $OPENTITAN/prim/rtl
 -y $IBEX/dv/uvm/core_ibex/common/prim
+-y $OPENTITAN/prim/rtl
 +incdir+$OPENTITAN/prim/rtl
 
 // prim_generic
@@ -33,9 +33,8 @@ $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
 // ibex
 ////////////////////////////////////////////////////////////////////////////////
 -y $IBEX/rtl
--y $IBEX/syn/rtl
-+incdir+$IBEX/rtl
 -y $HW/ibex
++incdir+$IBEX/rtl
 
 // testbench
 ////////////////////////////////////////////////////////////////////////////////

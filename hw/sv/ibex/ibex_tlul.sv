@@ -1,28 +1,28 @@
-module ibex_tlul #(
-    parameter bit                   PMPEnable        = 1'b0,
-    parameter int unsigned          PMPGranularity   = 0,
-    parameter int unsigned          PMPNumRegions    = 4,
-    parameter int unsigned          MHPMCounterNum   = 0,
-    parameter int unsigned          MHPMCounterWidth = 40,
-    parameter bit                   RV32E            = 1'b0,
-    parameter ibex_pkg::rv32m_e     RV32M            = ibex_pkg::RV32MFast,
-    parameter ibex_pkg::rv32b_e     RV32B            = ibex_pkg::RV32BNone,
-    parameter ibex_pkg::regfile_e   RegFile          = ibex_pkg::RegFileFF,
-    parameter bit                   BranchTargetALU  = 1'b0,
-    parameter bit                   WritebackStage   = 1'b0,
-    parameter bit                   ICache           = 1'b0,
-    parameter bit                   ICacheECC        = 1'b0,
-    parameter bit                   BranchPredictor  = 1'b0,
-    parameter bit                   DbgTriggerEn     = 1'b0,
-    parameter int unsigned          DbgHwBreakNum    = 1,
-    parameter bit                   SecureIbex       = 1'b0,
-    parameter bit                   ICacheScramble   = 1'b0,
-    parameter ibex_pkg::lfsr_seed_t RndCnstLfsrSeed  = ibex_pkg::RndCnstLfsrSeedDefault,
-    parameter ibex_pkg::lfsr_perm_t RndCnstLfsrPerm  = ibex_pkg::RndCnstLfsrPermDefault,
-    parameter int unsigned          DmHaltAddr       = 32'h1A110800,
-    parameter int unsigned          DmExceptionAddr  = 32'h1A110808,
-    parameter logic [ibex_pkg::SCRAMBLE_KEY_W-1:0]   RndCnstIbexKey   = ibex_pkg::RndCnstIbexKeyDefault,
-    parameter logic [ibex_pkg::SCRAMBLE_NONCE_W-1:0] RndCnstIbexNonce = ibex_pkg::RndCnstIbexNonceDefault
+module ibex_tlul import ibex_pkg::*; #(
+    parameter bit           PMPEnable        = 1'b0,
+    parameter int unsigned  PMPGranularity   = 0,
+    parameter int unsigned  PMPNumRegions    = 4,
+    parameter int unsigned  MHPMCounterNum   = 0,
+    parameter int unsigned  MHPMCounterWidth = 40,
+    parameter bit           RV32E            = 1'b0,
+    parameter rv32m_e       RV32M            = RV32MFast,
+    parameter rv32b_e       RV32B            = RV32BNone,
+    parameter regfile_e     RegFile          = RegFileFF,
+    parameter bit           BranchTargetALU  = 1'b0,
+    parameter bit           WritebackStage   = 1'b0,
+    parameter bit           ICache           = 1'b0,
+    parameter bit           ICacheECC        = 1'b0,
+    parameter bit           BranchPredictor  = 1'b0,
+    parameter bit           DbgTriggerEn     = 1'b0,
+    parameter int unsigned  DbgHwBreakNum    = 1,
+    parameter bit           SecureIbex       = 1'b0,
+    parameter bit           ICacheScramble   = 1'b0,
+    parameter lfsr_seed_t   RndCnstLfsrSeed  = RndCnstLfsrSeedDefault,
+    parameter lfsr_perm_t   RndCnstLfsrPerm  = RndCnstLfsrPermDefault,
+    parameter int unsigned  DmHaltAddr       = 32'h1A110800,
+    parameter int unsigned  DmExceptionAddr  = 32'h1A110808,
+    parameter logic [SCRAMBLE_KEY_W-1:0]   RndCnstIbexKey   = RndCnstIbexKeyDefault,
+    parameter logic [SCRAMBLE_NONCE_W-1:0] RndCnstIbexNonce = RndCnstIbexNonceDefault
     ) (
     input                       clk_i,
     input                       rst_ni,
@@ -44,16 +44,16 @@ module ibex_tlul #(
     input   logic               irq_nm_i,
 
     // Debug interface
-    input   logic                  debug_req_i,
-    output  ibex_pkg::crash_dump_t crash_dump_o,
-    output  logic                  debug_fault_seen_o,
+    input   logic               debug_req_i,
+    output  crash_dump_t        crash_dump_o,
+    output  logic               debug_fault_seen_o,
 
     // CPU Control Signals
-    input   ibex_pkg::fetch_enable_t fetch_enable_i,
-    output  logic                    alert_minor_o,
-    output  logic                    alert_major_internal_o,
-    output  logic                    alert_major_bus_o, 
-    output  logic                    core_sleep_o
+    input   fetch_enable_t      fetch_enable_i,
+    output  logic               alert_minor_o,
+    output  logic               alert_major_internal_o,
+    output  logic               alert_major_bus_o, 
+    output  logic               core_sleep_o
 );
 
 // Instruction interface
