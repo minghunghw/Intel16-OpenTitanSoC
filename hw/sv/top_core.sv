@@ -60,30 +60,38 @@ ibex_tlul ibex_tlul(
     .clk_i,
     .rst_ni,
 
-    .tl_i_i(xbar2wrapper),
-    .tl_i_o(wrapper2xbar),
+    .tl_i_i(xbar2c_inst),
+    .tl_i_o(c_inst2xbar),
 
     // FIXME:
     // Breakdown core host into Instr fetch and Load-Store
     // Regenerate xbar_main
 
     // Currently not fully used
+    .ram_cfg_i              (),
     .hart_id_i              (32'b0),
     .boot_addr_i            (32'h20000000),
-    .tl_d_i                 (),
-    .tl_d_o                 (),
+
+    .tl_d_i                 (xbar2c_data),
+    .tl_d_o                 (c_data2xbar),
+
     .irq_software_i         (1'b0),
     .irq_timer_i            (),
     .irq_external_i         (),
     .irq_nm_i               (1'b0),
+
     .debug_req_i            (),
     .crash_dump_o           (),
     .debug_fault_seen_o     (),
+
     .fetch_enable_i         (ibex_pkg::FetchEnableOn),
     .alert_minor_o          (),
     .alert_major_internal_o (),
     .alert_major_bus_o      (),
-    .core_sleep_o           ()
+    .core_sleep_o           (),
+
+    .scan_rst_ni            (),
+    .scanmode_i             ()
 );
 
 xbar_top xbar_top(

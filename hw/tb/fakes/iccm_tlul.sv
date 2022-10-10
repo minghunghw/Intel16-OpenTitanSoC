@@ -75,7 +75,7 @@ fake_dram iccm (
 );
 
 tlul_adapter_sram #(
-    .SramAw (10)
+    .SramAw (11)
 ) iccm_adapter (
     .clk_i,
     .rst_ni,

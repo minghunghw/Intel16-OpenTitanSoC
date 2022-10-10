@@ -32,7 +32,7 @@ module tb ();
         tb2iccm_we    = 1'b0;
         tb2mem_wdata  = {top_pkg::TL_DW{1'b0}};
         tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
-        tb2mem_waddr  = {10{1'b0}};
+        tb2mem_waddr  = {11{1'b0}};
         tb2mem_finish = 1'b0;
 
         // TODO: Determine rd instruction address space
