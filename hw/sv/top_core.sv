@@ -51,6 +51,10 @@ tlul_pkg::tl_h2d_t xbar2periph;
 
 prim_mubi_pkg::mubi4_t scanmode_i;
 
+ibex_pkg::fetch_enable_t core_en;
+
+assign core_en = tb2mem_finish ? ibex_pkg::FetchEnableOn : ibex_pkg::FetchEnableOff;
+
 // Instantiate targets:
 // - Ibex wrapper
 // - Fake iccm
@@ -70,7 +74,7 @@ ibex_tlul ibex_tlul(
     // Currently not fully used
     .ram_cfg_i              (),
     .hart_id_i              (32'b0),
-    .boot_addr_i            (32'h20000000),
+    .boot_addr_i            (32'h00000000),
 
     .tl_d_i                 (xbar2c_data),
     .tl_d_o                 (c_data2xbar),
@@ -84,7 +88,7 @@ ibex_tlul ibex_tlul(
     .crash_dump_o           (),
     .debug_fault_seen_o     (),
 
-    .fetch_enable_i         (ibex_pkg::FetchEnableOn),
+    .fetch_enable_i         (core_en),
     .alert_minor_o          (),
     .alert_major_internal_o (),
     .alert_major_bus_o      (),
@@ -94,7 +98,32 @@ ibex_tlul ibex_tlul(
     .scanmode_i             ()
 );
 
-xbar_top xbar_top(
+// xbar_top xbar_top(
+//     .clk_i,
+//     .rst_ni,
+
+//     .tl_core_inst_i  (c_inst2xbar),
+//     .tl_core_inst_o  (xbar2c_inst),
+//     .tl_core_data_i  (c_data2xbar),
+//     .tl_core_data_o  (xbar2c_data),
+//     .tl_instr_i      (iccm2xbar),
+//     .tl_instr_o      (xbar2iccm),
+
+//     // Currently not used
+//     .tl_spi_i         (spi2xbar),
+//     .tl_spi_o         (xbar2spi),
+//     .tl_jtag_i        (jtag2xbar),
+//     .tl_jtag_o        (xbar2jtag),
+
+//     .tl_data_i        (dccm2xbar),
+//     .tl_data_o        (xbar2dccm),
+//     .tl_peri_device_i (periph2xbar),
+//     .tl_peri_device_o (xbar2periph),
+
+//     .scanmode_i       (scanmode_i)
+// );
+
+xbar_only_instr xbar_only_instr(
     .clk_i,
     .rst_ni,
 
@@ -106,15 +135,8 @@ xbar_top xbar_top(
     .tl_instr_o      (xbar2iccm),
 
     // Currently not used
-    .tl_spi_i         (spi2xbar),
-    .tl_spi_o         (xbar2spi),
-    .tl_jtag_i        (jtag2xbar),
-    .tl_jtag_o        (xbar2jtag),
-
     .tl_data_i        (dccm2xbar),
     .tl_data_o        (xbar2dccm),
-    .tl_peri_device_i (periph2xbar),
-    .tl_peri_device_o (xbar2periph),
 
     .scanmode_i       (scanmode_i)
 );
@@ -133,6 +155,15 @@ iccm_tlul iccm_tlul(
 
     .tl_i_i(xbar2iccm),
     .tl_i_o(iccm2xbar)
+
+);
+
+dccm_tlul dccm_tlul(
+    .clk_i,
+    .rst_ni,
+
+    .tl_d_i(xbar2dccm),
+    .tl_d_o(dccm2xbar)
 
 );
 

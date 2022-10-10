@@ -15,7 +15,7 @@ $OPENTITAN/prim/rtl/prim_ram_1p_pkg.sv
 $OPENTITAN/tlul/rtl/tlul_pkg.sv
 $IBEX/rtl/ibex_pkg.sv
 $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
-$IP/xbar/rtl/tl_top_pkg.sv
+$IP/xbar/rtl/tl_only_instr_pkg.sv
 
 // dv
 ////////////////////////////////////////////////////////////////////////////////

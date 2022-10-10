@@ -8,22 +8,12 @@
     - Simply undefine NO_COMM_PROTOCOL once SPI is set up
 */
 
-module iccm_tlul (
+module dccm_tlul (
     input clk_i,
     input rst_ni,
 
-    input  tlul_pkg::tl_h2d_t tl_i_i,
-    output tlul_pkg::tl_d2h_t tl_i_o
-
-    `ifdef NO_COMM_PROTOCOL
-        ,input  logic                      tb2iccm_we
-        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wdata
-        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wmask
-        ,input  logic [10:0]               tb2mem_waddr
-        ,input  logic                      tb2mem_finish
-    `endif
-
-
+    input  tlul_pkg::tl_h2d_t tl_d_i,
+    output tlul_pkg::tl_d2h_t tl_d_o
 );
 
 prim_mubi_pkg::mubi4_t     adapter_ctrl;
@@ -41,37 +31,16 @@ logic                      adapter2mem_we;
 logic [top_pkg::TL_DW-1:0] adapter2mem_wdata;
 logic [top_pkg::TL_DW-1:0] adapter2mem_wmask;
 
-
-
-`ifdef NO_COMM_PROTOCOL
-    // Steered signal; Controled by steering input tb2mem_finish
-    logic [10:0] adapter_address;
-    
-    // Once the testbench finished programming the iccm
-    // we allow the core to send instruction addresses coming out
-    // of the iccm_adapter
-    assign adapter_address = tb2mem_finish ? adapter2mem_addr : tb2mem_waddr;
-    assign adapter_ctrl    = tb2mem_finish ? prim_mubi_pkg::MuBi4True : prim_mubi_pkg::MuBi4False;
-`endif
-
 // Assuming dram returns data after 1-cycle
 // Assuming dram is always on
-fake_dram iccm (
+fake_dram dccm (
     .CLK   (clk_i),
-    .EN    (1'b0),              // chip enable
-    .Q     (mem2adapter_rdata)  // read data
-    
-    `ifdef NO_COMM_PROTOCOL
-        ,.WEN   (tb2iccm_we)       // write enable
-        ,.WMASK (tb2mem_wmask)     // write mask
-        ,.D     (tb2mem_wdata)     // write data
-        ,.A     (adapter_address)  // address
-    `else
-        ,.WEN   (adapter2mem_we)      // write enable
-        ,.WMASK (adapter2mem_wdata)   // write mask
-        ,.D     (adapter2mem_wmask)   // write data
-        ,.A     (adapter2mem_addr)    // address
-    `endif
+    .EN    (1'b0),               // chip enable
+    .Q     (mem2adapter_rdata),  // read data
+    .WEN   (adapter2mem_we),     // write enable
+    .WMASK (adapter2mem_wdata),  // write mask
+    .D     (adapter2mem_wmask),  // write data
+    .A     (adapter2mem_addr)    // address
 );
 
 tlul_adapter_sram #(
@@ -82,11 +51,11 @@ tlul_adapter_sram #(
     .rst_ni,
 
     // TL-UL interface
-    .tl_i         (tl_i_i),
-    .tl_o         (tl_i_o),
+    .tl_i         (tl_d_i),
+    .tl_o         (tl_d_o),
 
     // control interface
-    .en_ifetch_i  (adapter_ctrl),
+    .en_ifetch_i  (prim_mubi_pkg::MuBi4False),
 
     // SRAM interface
     .req_o        (adapter2mem_req),
@@ -108,11 +77,7 @@ always_ff @(posedge clk_i) begin
     end
     // Read data should be invalidated
     // when write enable is still active
-    `ifdef NO_COMM_PROTOCOL
-    else if (tb2iccm_we) begin
-    `else
     else if (adapter2mem_we) begin
-    `endif
         mem2adapter_rvalid <= 1'b0;
     end
     else begin

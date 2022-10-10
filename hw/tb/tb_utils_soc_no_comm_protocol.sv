@@ -1,6 +1,6 @@
 module tb ();
 
-    localparam CLK_PERIOD = 1000;
+    localparam CLK_PERIOD = 10;
 
     logic clk_i;
     logic rst_ni;
@@ -29,17 +29,47 @@ module tb ();
     always #(CLK_PERIOD/2.0) clk_i = ~clk_i;
 
     initial begin
-        tb2iccm_we    = 1'b0;
+        @(negedge clk_i)
+        rst_ni        = 1;              
+        tb2iccm_we    = 1'b1;
         tb2mem_wdata  = {top_pkg::TL_DW{1'b0}};
-        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
-        tb2mem_waddr  = {11{1'b0}};
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b0}};
+        tb2mem_waddr  = 11'h0;
         tb2mem_finish = 1'b0;
 
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h40080437;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h0;
+
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h00a00613;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h1;
+
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h01400693;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h2;
+        
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h00d60733;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h3;
+
+        #100;
+
+        @(negedge clk_i)
+        tb2mem_finish = 1'b1;
         // TODO: Determine rd instruction address space
         //       Use present sent of hex programs with loads/stores
         //       And inspect ports of DCCM on tilelink
 
-        #200
+        #100;
 
         $finish;
     end
