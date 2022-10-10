@@ -1,9 +1,17 @@
+XBAR_TOP  = xbar_top
 XBAR_PERI = xbar_periph
 XBAR_MAIN = xbar_main
 XBAR_2to1 = xbar_2to1
 XBAR_1to2 = xbar_1to2
 
 all: peri
+
+top:
+	rm -rf tmp
+	mkdir tmp
+	../opentitan/util/tlgen.py -t hjson/$(XBAR_TOP).hjson -o tmp
+	cp tmp/rtl/autogen/* rtl
+	rm -rf tmp
 
 peri:
 	rm -rf tmp

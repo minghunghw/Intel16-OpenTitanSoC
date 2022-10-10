@@ -12,17 +12,17 @@ module iccm_tlul (
     input clk_i,
     input rst_ni,
 
+    input  tlul_pkg::tl_h2d_t tl_i_i,
+    output tlul_pkg::tl_d2h_t tl_i_o
+
     `ifdef NO_COMM_PROTOCOL
-        input  logic                      tb2iccm_we,
-        input  logic [top_pkg::TL_DW-1:0] tb2mem_wdata,
-        input  logic [top_pkg::TL_DW-1:0] tb2mem_wmask,
-        input  logic [10:0]               tb2mem_waddr,
-        input  logic                      tb2mem_finish
+        ,input  logic                      tb2iccm_we
+        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wdata
+        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wmask
+        ,input  logic [10:0]               tb2mem_waddr
+        ,input  logic                      tb2mem_finish
     `endif
 
-    input  tlul_pkg::tl_h2d_t tl_i_i,
-
-    output tlul_pkg::tl_d2h_t tl_i_o
 
 );
 
@@ -42,7 +42,7 @@ logic [top_pkg::TL_DW-1:0] adapter2mem_wdata;
 logic [top_pkg::TL_DW-1:0] adapter2mem_wmask;
 
 
-assign adapter_ctrl = prim_mubi_pkg::mubi4_t.MuBi4False;
+assign adapter_ctrl = prim_mubi_pkg::MuBi4False;
 
 `ifdef NO_COMM_PROTOCOL
     // Steered signal; Controled by steering input tb2mem_finish
@@ -59,32 +59,33 @@ assign adapter_ctrl = prim_mubi_pkg::mubi4_t.MuBi4False;
 fake_dram iccm (
     .CLK   (clk_i),
     .EN    (1'b1),              // chip enable
+    .Q     (mem2adapter_rdata)  // read data
+    
     `ifdef NO_COMM_PROTOCOL
-        .WEN   (tb2iccm_we),      // write enable
-        .WMASK (tb2mem_wmask),    // write mask
-        .D     (tb2mem_wdata),    // write data
-        .A     (adapter_address)  // address
+        ,.WEN   (tb2iccm_we)       // write enable
+        ,.WMASK (tb2mem_wmask)     // write mask
+        ,.D     (tb2mem_wdata)     // write data
+        ,.A     (adapter_address)  // address
     `else
-        .WEN   (adapter2mem_we),     // write enable
-        .WMASK (adapter2mem_wdata),  // write mask
-        .D     (adapter2mem_wmask),  // write data
-        .A     (adapter2mem_addr)    // address
+        ,.WEN   (adapter2mem_we)      // write enable
+        ,.WMASK (adapter2mem_wdata)   // write mask
+        ,.D     (adapter2mem_wmask)   // write data
+        ,.A     (adapter2mem_addr)    // address
     `endif
-    .Q     (mem2adapter_rdata), // read data
 );
 
 tlul_adapter_sram #(
     .SramAw (10)
 ) iccm_adapter (
-    .clk_i
-    .rst_ni
+    .clk_i,
+    .rst_ni,
 
     // TL-UL interface
-    .tl_h2d_t(tl_d_i),
-    .tl_d2h_t(tl_d_o),
+    .tl_i         (tl_i_i),
+    .tl_o         (tl_i_o),
 
     // control interface
-    .mubi4_t(adapter_ctrl),
+    .en_ifetch_i  (adapter_ctrl),
 
     // SRAM interface
     .req_o        (adapter2mem_req),

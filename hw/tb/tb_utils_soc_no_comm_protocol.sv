@@ -1,5 +1,3 @@
-`define NO_COMM_PROTOCOL
-
 module tb ();
 
     localparam CLK_PERIOD = 1000;
@@ -13,16 +11,16 @@ module tb ();
     logic [10:0]               tb2mem_waddr;
     logic                      tb2mem_finish;
 
-    opentitan_soc opentitan_soc(
+    top_core top_core(
         .clk_i,
-        .rst_ni,
+        .rst_ni
 
         `ifdef NO_COMM_PROTOCOL
-            .tb2iccm_we,
-            .tb2mem_wdata,
-            .tb2mem_wmask,
-            .tb2mem_waddr,
-            .tb2mem_finish
+            ,.tb2iccm_we
+            ,.tb2mem_wdata
+            ,.tb2mem_wmask
+            ,.tb2mem_waddr
+            ,.tb2mem_finish
         `endif
     );
 
@@ -34,12 +32,14 @@ module tb ();
         tb2iccm_we    = 1'b0;
         tb2mem_wdata  = {top_pkg::TL_DW{1'b0}};
         tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
-        tb2mem_waddr  = {10{1'b0}}
+        tb2mem_waddr  = {10{1'b0}};
         tb2mem_finish = 1'b0;
 
         // TODO: Determine rd instruction address space
         //       Use present sent of hex programs with loads/stores
         //       And inspect ports of DCCM on tilelink
+
+        #200
 
         $finish;
     end

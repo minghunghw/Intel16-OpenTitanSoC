@@ -1,13 +1,13 @@
-module opentitan_soc (
+module top_core (
     input clk_i,
-    input rst_ni,
+    input rst_ni
 
     `ifdef NO_COMM_PROTOCOL
-        input  logic                      tb2iccm_we,
-        input  logic [top_pkg::TL_DW-1:0] tb2mem_wdata,
-        input  logic [top_pkg::TL_DW-1:0] tb2mem_wmask,
-        input  logic [10:0]               tb2mem_waddr,
-        input  logic                      tb2mem_finish
+        ,input  logic                      tb2iccm_we
+        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wdata
+        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wmask
+        ,input  logic [10:0]               tb2mem_waddr
+        ,input  logic                      tb2mem_finish
     `endif
 );
 
@@ -27,10 +27,12 @@ module opentitan_soc (
     - jtag
     - spi
 */
-tlul_pkg::tl_h2d_t wrapper2xbar;
+tlul_pkg::tl_h2d_t c_inst2xbar;
+tlul_pkg::tl_h2d_t c_data2xbar;
 tlul_pkg::tl_h2d_t spi2xbar;
 tlul_pkg::tl_h2d_t jtag2xbar;
-tlul_pkg::tl_d2h_t xbar2wrapper;
+tlul_pkg::tl_d2h_t xbar2c_inst;
+tlul_pkg::tl_d2h_t xbar2c_data;
 tlul_pkg::tl_d2h_t xbar2spi;
 tlul_pkg::tl_d2h_t xbar2jtag;
 
@@ -84,14 +86,16 @@ ibex_tlul ibex_tlul(
     .core_sleep_o           ()
 );
 
-xbar_main xbar_main(
-    .clk,
+xbar_top xbar_top(
+    .clk_i,
     .rst_ni,
 
-    .tl_core_i  (wrapper2xbar),
-    .tl_core_o  (xbar2wrapper),
-    .tl_instr_i (iccm2xbar),
-    .tl_instr_o (xbar2iccm),
+    .tl_core_inst_i  (c_inst2xbar),
+    .tl_core_inst_o  (xbar2c_inst),
+    .tl_core_data_i  (c_data2xbar),
+    .tl_core_data_o  (xbar2c_data),
+    .tl_instr_i      (iccm2xbar),
+    .tl_instr_o      (xbar2iccm),
 
     // Currently not used
     .tl_spi_i         (spi2xbar),
@@ -108,7 +112,7 @@ xbar_main xbar_main(
 );
 
 iccm_tlul iccm_tlul(
-    .clk,
+    .clk_i,
     .rst_ni,
 
     `ifdef NO_COMM_PROTOCOL
