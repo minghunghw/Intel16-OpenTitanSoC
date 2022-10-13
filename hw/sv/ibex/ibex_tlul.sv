@@ -179,7 +179,7 @@ tlul_adapter_host #(
     .addr_i         (instr_addr),
     .we_i           (1'b0),
     .wdata_i        (32'b0),
-    .wdata_intg_i   (instr_wdata_intg),
+    .wdata_intg_i   ({tlul_pkg::DataIntgWidth{1'b0}}),
     .be_i           (4'hf),
     .instr_type_i   (prim_mubi_pkg::MuBi4True),
     .valid_o        (instr_rvalid),

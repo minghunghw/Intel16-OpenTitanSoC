@@ -39,38 +39,75 @@ module tb ();
 
         @(negedge clk_i)
         tb2iccm_we    = 1'b0;
-        tb2mem_wdata  = 32'h40080437;
+        tb2mem_wdata  = 32'h40000437;
         tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
         tb2mem_waddr  = 11'h0;
 
         @(negedge clk_i)
         tb2iccm_we    = 1'b0;
-        tb2mem_wdata  = 32'h00a00613;
+        tb2mem_wdata  = 32'h00a00e13;
         tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
         tb2mem_waddr  = 11'h1;
 
         @(negedge clk_i)
         tb2iccm_we    = 1'b0;
-        tb2mem_wdata  = 32'h01400693;
+        tb2mem_wdata  = 32'h01400e93;
         tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
         tb2mem_waddr  = 11'h2;
         
         @(negedge clk_i)
         tb2iccm_we    = 1'b0;
-        tb2mem_wdata  = 32'h00d60733;
+        tb2mem_wdata  = 32'h01de0f33;
         tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
         tb2mem_waddr  = 11'h3;
 
-        #100;
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h01e42423;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h4;
 
         @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h00f00e13;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h5;
+
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h01900e93;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h6;
+
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h01de0f33;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h7;
+
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h01e42823;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h8;
+
+        @(negedge clk_i)
+        tb2iccm_we    = 1'b0;
+        tb2mem_wdata  = 32'h00000fff;
+        tb2mem_wmask  = {top_pkg::TL_DW{1'b1}};
+        tb2mem_waddr  = 11'h9;
+
+        #100;
+
+        @(posedge clk_i)
         tb2mem_finish = 1'b1;
         // TODO: Determine rd instruction address space
         //       Use present sent of hex programs with loads/stores
         //       And inspect ports of DCCM on tilelink
 
-        #100;
+        #300;
 
+        $vcdpluson();
         $finish;
     end
 
