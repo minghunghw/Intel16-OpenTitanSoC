@@ -7,7 +7,7 @@
 package tl_only_instr_pkg;
 
   localparam logic [31:0] ADDR_SPACE_INSTR = 32'h 00000000;
-  localparam logic [31:0] ADDR_SPACE_DATA  = 32'h 20000000;
+  localparam logic [31:0] ADDR_SPACE_DATA  = 32'h 40000000;
 
   localparam logic [31:0] ADDR_MASK_INSTR = 32'h 0fffffff;
   localparam logic [31:0] ADDR_MASK_DATA  = 32'h 0fffffff;

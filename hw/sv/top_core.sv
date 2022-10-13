@@ -49,11 +49,12 @@ tlul_pkg::tl_h2d_t xbar2iccm;
 tlul_pkg::tl_h2d_t xbar2dccm;
 tlul_pkg::tl_h2d_t xbar2periph;
 
-prim_mubi_pkg::mubi4_t scanmode_i;
-
-ibex_pkg::fetch_enable_t core_en;
+prim_mubi_pkg::mubi4_t        scanmode_i;
+prim_ram_1p_pkg::ram_1p_cfg_t ram_cfg;
+ibex_pkg::fetch_enable_t      core_en;
 
 assign core_en = tb2mem_finish ? ibex_pkg::FetchEnableOn : ibex_pkg::FetchEnableOff;
+assign ram_cfg = prim_ram_1p_pkg::RAM_1P_CFG_DEFAULT;
 
 // Instantiate targets:
 // - Ibex wrapper
@@ -72,7 +73,7 @@ ibex_tlul ibex_tlul(
     // Regenerate xbar_main
 
     // Currently not fully used
-    .ram_cfg_i              (),
+    .ram_cfg_i              (ram_cfg),
     .hart_id_i              (32'b0),
     .boot_addr_i            (32'h00000000),
 
@@ -80,11 +81,11 @@ ibex_tlul ibex_tlul(
     .tl_d_o                 (c_data2xbar),
 
     .irq_software_i         (1'b0),
-    .irq_timer_i            (),
-    .irq_external_i         (),
+    .irq_timer_i            (1'b0),
+    .irq_external_i         (1'b0),
     .irq_nm_i               (1'b0),
 
-    .debug_req_i            (),
+    .debug_req_i            (1'b0),
     .crash_dump_o           (),
     .debug_fault_seen_o     (),
 
@@ -94,8 +95,8 @@ ibex_tlul ibex_tlul(
     .alert_major_bus_o      (),
     .core_sleep_o           (),
 
-    .scan_rst_ni            (),
-    .scanmode_i             ()
+    .scan_rst_ni            (1'b1),
+    .scanmode_i             (prim_mubi_pkg::MuBi4False)
 );
 
 // xbar_top xbar_top(
@@ -138,7 +139,7 @@ xbar_only_instr xbar_only_instr(
     .tl_data_i        (dccm2xbar),
     .tl_data_o        (xbar2dccm),
 
-    .scanmode_i       (scanmode_i)
+    .scanmode_i       (prim_mubi_pkg::MuBi4False)
 );
 
 iccm_tlul iccm_tlul(

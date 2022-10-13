@@ -1,22 +1,21 @@
 # Begin_DVE_Session_Save_Info
 # DVE full session
-# Saved on Mon Oct 10 07:27:07 2022
+# Saved on Thu Oct 13 04:44:34 2022
 # Designs open: 1
 #   Sim: simv
 # Toplevel windows open: 2
 # 	TopLevel.1
 # 	TopLevel.2
-#   Source.1: tb.top_core.xbar_top
-#   Wave.1: 91 signals
-#   Group count = 9
-#   Group Group1 signal count = 24
-#   Group Group2 signal count = 0
-#   Group Group3 signal count = 4
-#   Group Group4 signal count = 2
-#   Group Group5 signal count = 37
-#   Group Group6 signal count = 1
-#   Group Group7 signal count = 3
-#   Group Group8 signal count = 4
+#   Source.1: top_pkg
+#   Wave.1: 46 signals
+#   Group count = 7
+#   Group Group2 signal count = 19
+#   Group Group3 signal count = 11
+#   Group Group4 signal count = 4
+#   Group Group5 signal count = 2
+#   Group Group6 signal count = 4
+#   Group Group7 signal count = 4
+#   Group Group8 signal count = 3
 # End_DVE_Session_Save_Info
 
 # DVE version: N-2017.12-SP2-1_Full64
@@ -75,7 +74,7 @@ if {![gui_exist_window -window TopLevel.1]} {
 } else { 
     set TopLevel.1 TopLevel.1
 }
-gui_show_window -window ${TopLevel.1} -show_state maximized -rect {{3 65} {3842 1041}}
+gui_show_window -window ${TopLevel.1} -show_state normal -rect {{0 66} {1918 1041}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -122,28 +121,28 @@ gui_show_toolbar -toolbar {Testbench}
 # End ToolBar settings
 
 # Docked window settings
-set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 449]
+set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 442]
 catch { set Hier.1 [gui_share_window -id ${HSPane.1} -type Hier] }
-gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 449
+gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 442
 gui_set_window_pref_key -window ${HSPane.1} -key dock_height -value_type integer -value -1
 gui_set_window_pref_key -window ${HSPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 448} {height 541} {dock_state left} {dock_on_new_line true} {child_hier_colhier 370} {child_hier_coltype 69} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
-set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 603]
+gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 441} {height 523} {dock_state left} {dock_on_new_line true} {child_hier_colhier 370} {child_hier_coltype 69} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
+set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 287]
 catch { set Data.1 [gui_share_window -id ${DLPane.1} -type Data] }
-gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 603
-gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 617
+gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 287
+gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 523
 gui_set_window_pref_key -window ${DLPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 602} {height 541} {dock_state left} {dock_on_new_line true} {child_data_colvariable 254} {child_data_colvalue 195} {child_data_coltype 163} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
-set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 361]
-gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 1447
-gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 361
+gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 286} {height 523} {dock_state left} {dock_on_new_line true} {child_data_colvariable 145} {child_data_colvalue 85} {child_data_coltype 53} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
+set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 354]
+gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 1037
+gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 354
 gui_set_window_pref_key -window ${Console.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1446} {height 360} {dock_state bottom} {dock_on_new_line true}}
+gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1036} {height 353} {dock_state bottom} {dock_on_new_line true}}
 set DriverLoad.1 [gui_create_window -type DriverLoad -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line false -dock_extent 180]
-gui_set_window_pref_key -window ${DriverLoad.1} -key dock_width -value_type integer -value 2393
+gui_set_window_pref_key -window ${DriverLoad.1} -key dock_width -value_type integer -value 882
 gui_set_window_pref_key -window ${DriverLoad.1} -key dock_height -value_type integer -value 180
 gui_set_window_pref_key -window ${DriverLoad.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DriverLoad.1} {{left 0} {top 0} {width 2392} {height 360} {dock_state bottom} {dock_on_new_line false}}
+gui_update_layout -id ${DriverLoad.1} {{left 0} {top 0} {width 881} {height 353} {dock_state bottom} {dock_on_new_line false}}
 #### Start - Readjusting docked view's offset / size
 set dockAreaList { top left right bottom }
 foreach dockArea $dockAreaList {
@@ -180,7 +179,7 @@ if {![gui_exist_window -window TopLevel.2]} {
 } else { 
     set TopLevel.2 TopLevel.2
 }
-gui_show_window -window ${TopLevel.2} -show_state maximized -rect {{34 65} {3873 1041}}
+gui_show_window -window ${TopLevel.2} -show_state normal -rect {{1921 66} {3839 1041}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -232,7 +231,7 @@ gui_sync_global -id ${TopLevel.2} -option true
 # MDI window settings
 set Wave.1 [gui_create_window -type {Wave}  -parent ${TopLevel.2}]
 gui_show_window -window ${Wave.1} -show_state maximized
-gui_update_layout -id ${Wave.1} {{show_state maximized} {dock_state undocked} {dock_on_new_line false} {child_wave_left 954} {child_wave_right 2880} {child_wave_colname 672} {child_wave_colvalue 278} {child_wave_col1 0} {child_wave_col2 1}}
+gui_update_layout -id ${Wave.1} {{show_state maximized} {dock_state undocked} {dock_on_new_line false} {child_wave_left 656} {child_wave_right 1257} {child_wave_colname 496} {child_wave_colvalue 156} {child_wave_col1 0} {child_wave_col2 1}}
 
 # End MDI window settings
 
@@ -280,100 +279,58 @@ gui_set_time_units 1ps
 
 # Global: Signal Groups
 gui_load_child_values {tb.top_core}
-gui_load_child_values {tlul_pkg}
-gui_load_child_values {tb.top_core.iccm_tlul.iccm}
-gui_load_child_values {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk}
-gui_load_child_values {tl_top_pkg}
-gui_load_child_values {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i}
+gui_load_child_values {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i}
+gui_load_child_values {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i}
+gui_load_child_values {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i}
 gui_load_child_values {tb.top_core.ibex_tlul.u_tlul_adapter_instr}
+gui_load_child_values {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i}
 
 
-set _session_group_198 Group1
-gui_sg_create "$_session_group_198"
-set Group1 "$_session_group_198"
+set _session_group_81 Group2
+gui_sg_create "$_session_group_81"
+set Group2 "$_session_group_81"
 
-gui_sg_addsignal -group "$_session_group_198" { tb.top_core.clk_i tb.top_core.rst_ni tb.top_core.tb2iccm_we tb.top_core.tb2mem_wdata tb.top_core.tb2mem_wmask tb.top_core.tb2mem_waddr tb.top_core.tb2mem_finish tb.top_core.ibex_tlul.fetch_enable_i tb.top_core.iccm_tlul.iccm.mem tb.top_core.iccm_tlul.iccm.EN tb.top_core.iccm_tlul.iccm.WEN tb.top_core.iccm_tlul.iccm.WMASK tb.top_core.iccm_tlul.iccm.D tb.top_core.iccm_tlul.iccm.A tb.top_core.iccm_tlul.iccm.Q tb.top_core.c_inst2xbar tb.top_core.xbar2c_inst tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_req_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_d tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_new_req tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_req_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.rdata_outstanding_s }
+gui_sg_addsignal -group "$_session_group_81" { tb.top_core.clk_i tb.top_core.rst_ni tb.top_core.tb2iccm_we tb.top_core.tb2mem_wdata tb.top_core.tb2mem_wmask tb.top_core.tb2mem_waddr tb.top_core.tb2mem_finish tb.top_core.c_inst2xbar tb.top_core.xbar2c_inst tb.top_core.c_data2xbar tb.top_core.xbar2c_data tb.top_core.iccm2xbar tb.top_core.xbar2iccm tb.top_core.dccm2xbar tb.top_core.xbar2dccm tb.top_core.xbar_only_instr.tl_s1n_4_us_h2d.a_address tb.top_core.xbar_only_instr.tl_s1n_7_us_h2d.a_address tb.top_core.xbar_only_instr.dev_sel_s1n_7 tb.top_core.xbar_only_instr.dev_sel_s1n_4 }
 
-set _session_group_199 Group2
-gui_sg_create "$_session_group_199"
-set Group2 "$_session_group_199"
+set _session_group_82 Group3
+gui_sg_create "$_session_group_82"
+set Group3 "$_session_group_82"
 
+gui_sg_addsignal -group "$_session_group_82" { tb.top_core.xbar_only_instr.tl_sm1_5_ds_h2d tb.top_core.xbar_only_instr.tl_core_inst_i tb.top_core.ibex_tlul.u_tlul_adapter_instr.addr_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr_w_aligned tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr }
+gui_sg_addsignal -group "$_session_group_82" { Divider } -divider
+gui_sg_addsignal -group "$_session_group_82" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_req_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.addr_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.stored_addr_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_q }
 
-set _session_group_200 Group3
-gui_sg_create "$_session_group_200"
-set Group3 "$_session_group_200"
+set _session_group_83 Group4
+gui_sg_create "$_session_group_83"
+set Group4 "$_session_group_83"
 
-gui_sg_addsignal -group "$_session_group_200" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.prefetch_branch tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.nt_branch_mispredict_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.addr_i }
+gui_sg_addsignal -group "$_session_group_83" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.predict_branch_taken tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ctrl_fsm_cs }
 
-set _session_group_201 Group4
-gui_sg_create "$_session_group_201"
-set Group4 "$_session_group_201"
+set _session_group_84 Group5
+gui_sg_create "$_session_group_84"
+set Group5 "$_session_group_84"
 
-gui_sg_addsignal -group "$_session_group_201" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.predict_branch_taken tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i }
+gui_sg_addsignal -group "$_session_group_84" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ready_wb_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.wb_exception_o }
 
-set _session_group_202 Group5
-gui_sg_create "$_session_group_202"
-set Group5 "$_session_group_202"
+set _session_group_85 Group6
+gui_sg_create "$_session_group_85"
+set Group6 "$_session_group_85"
 
-gui_sg_addsignal -group "$_session_group_202" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ctrl_fsm_cs tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ready_wb_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.wb_exception_o tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.special_req tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.special_req_flush_only tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.special_req_pc_change tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.mret_insn tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.dret_insn tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.exc_req_d tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.exc_req_lsu tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ecall_insn tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ebrk_insn tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.illegal_insn_d tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.instr_fetch_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.instr_fetch_err_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.instr_valid_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.instr_err_out tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.if_instr_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.if_instr_bus_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.if_instr_pmp_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.fetch_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_unaligned tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.valid_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.unaligned_is_compressed tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.valid_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.in_err_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.instr_intg_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.instr_bus_err_i tb.top_core.ibex_tlul.u_tlul_adapter_instr.tl_i.d_error tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.tl_i.d_valid tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_data_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.intg_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.u_chk.syndrome_o tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.u_chk.data_i }
+gui_sg_addsignal -group "$_session_group_85" { tb.top_core.ibex_tlul.u_tlul_adapter_instr.intg_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.tl_i.d_user.rsp_intg tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp }
 
-set _session_group_203 $_session_group_202|
-append _session_group_203 tlul_pkg
-gui_sg_create "$_session_group_203"
-set Group5|tlul_pkg "$_session_group_203"
+set _session_group_86 Group7
+gui_sg_create "$_session_group_86"
+set Group7 "$_session_group_86"
 
-gui_sg_addsignal -group "$_session_group_203" { tlul_pkg.ArbiterImpl tlul_pkg.H2DCmdMaxWidth tlul_pkg.H2DCmdIntgWidth tlul_pkg.H2DCmdFullWidth tlul_pkg.D2HRspMaxWidth tlul_pkg.D2HRspIntgWidth tlul_pkg.D2HRspFullWidth tlul_pkg.DataMaxWidth tlul_pkg.DataIntgWidth tlul_pkg.DataFullWidth tlul_pkg.DataWhenInstrError tlul_pkg.DataWhenError tlul_pkg.TL_A_USER_DEFAULT tlul_pkg.BlankedAData tlul_pkg.TL_H2D_DEFAULT tlul_pkg.TL_D_USER_DEFAULT tlul_pkg.TL_D2H_DEFAULT }
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.H2DCmdMaxWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.H2DCmdMaxWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.H2DCmdIntgWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.H2DCmdIntgWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.H2DCmdFullWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.H2DCmdFullWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.D2HRspMaxWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.D2HRspMaxWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.D2HRspIntgWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.D2HRspIntgWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.D2HRspFullWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.D2HRspFullWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.DataMaxWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.DataMaxWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.DataIntgWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.DataIntgWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.DataFullWidth}
-gui_set_radix -radix {twosComplement} -signals {Sim:tlul_pkg.DataFullWidth}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.DataWhenInstrError}
-gui_set_radix -radix {unsigned} -signals {Sim:tlul_pkg.DataWhenInstrError}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.DataWhenError}
-gui_set_radix -radix {unsigned} -signals {Sim:tlul_pkg.DataWhenError}
-gui_set_radix -radix {decimal} -signals {Sim:tlul_pkg.BlankedAData}
-gui_set_radix -radix {unsigned} -signals {Sim:tlul_pkg.BlankedAData}
+gui_sg_addsignal -group "$_session_group_86" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.load_err_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.store_err_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.load_err_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.store_err_i }
 
-gui_sg_move "$_session_group_203" -after "$_session_group_202" -pos 33 
+set _session_group_87 Group8
+gui_sg_create "$_session_group_87"
+set Group8 "$_session_group_87"
 
-set _session_group_204 Group6
-gui_sg_create "$_session_group_204"
-set Group6 "$_session_group_204"
-
-gui_sg_addsignal -group "$_session_group_204" { tb.top_core.ibex_tlul.u_tlul_adapter_instr.tl_i }
-
-set _session_group_205 Group7
-gui_sg_create "$_session_group_205"
-set Group7 "$_session_group_205"
-
-gui_sg_addsignal -group "$_session_group_205" { tb.top_core.ibex_tlul.u_tlul_adapter_instr.intg_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.tl_i.d_user.rsp_intg }
-
-set _session_group_206 Group8
-gui_sg_create "$_session_group_206"
-set Group8 "$_session_group_206"
-
-gui_sg_addsignal -group "$_session_group_206" { tb.top_core.xbar_top.dev_sel_s1n_13 tb.top_core.xbar_top.tl_s1n_7_us_h2d.a_address tl_top_pkg.ADDR_MASK_INSTR tl_top_pkg.ADDR_SPACE_INSTR }
-gui_set_radix -radix {decimal} -signals {Sim:tl_top_pkg.ADDR_MASK_INSTR}
-gui_set_radix -radix {unsigned} -signals {Sim:tl_top_pkg.ADDR_MASK_INSTR}
-gui_set_radix -radix {decimal} -signals {Sim:tl_top_pkg.ADDR_SPACE_INSTR}
-gui_set_radix -radix {unsigned} -signals {Sim:tl_top_pkg.ADDR_SPACE_INSTR}
+gui_sg_addsignal -group "$_session_group_87" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.lsu_resp_valid_o tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.data_or_pmp_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.data_we_q }
 
 # Global: Highlighting
-gui_highlight_signals -color #00ff00 {{tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.u_chk.err_o[1:0]} {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.u_chk.err_o[0]}}
 
 # Global: Stack
 gui_change_stack_mode -mode list
@@ -381,7 +338,7 @@ gui_change_stack_mode -mode list
 # Post database loading setting...
 
 # Restore C1 time
-gui_set_time -C1_only 155000
+gui_set_time -C1_only 305000
 
 
 
@@ -408,14 +365,14 @@ gui_hier_list_init -id ${Hier.1}
 gui_change_design -id ${Hier.1} -design Sim
 catch {gui_list_expand -id ${Hier.1} tb}
 catch {gui_list_expand -id ${Hier.1} tb.top_core}
-catch {gui_list_select -id ${Hier.1} {tb.top_core.xbar_top}}
+catch {gui_list_select -id ${Hier.1} {tb.top_core.xbar_only_instr}}
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
 
 # Data 'Data.1'
 gui_list_set_filter -id ${Data.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {LowPower 1} {Parameter 1} {All 1} {Aggregate 1} {LibBaseMember 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {BaseMembers 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
 gui_list_set_filter -id ${Data.1} -text {*}
-gui_list_show_data -id ${Data.1} {tb.top_core.xbar_top}
+gui_list_show_data -id ${Data.1} {tb.top_core.xbar_only_instr}
 gui_view_scroll -id ${Data.1} -vertical -set 0
 gui_view_scroll -id ${Data.1} -horizontal -set 0
 gui_view_scroll -id ${Hier.1} -vertical -set 0
@@ -424,8 +381,10 @@ gui_view_scroll -id ${Hier.1} -horizontal -set 0
 # Source 'Source.1'
 gui_src_value_annotate -id ${Source.1} -switch false
 gui_set_env TOGGLE::VALUEANNOTATE 0
-gui_open_source -id ${Source.1}  -replace -active tb.top_core.xbar_top /afs/eecs.umich.edu/vlsida/projects/restricted/google/khtaur/Intel16-OpenTitanSoC/ip/xbar/rtl/xbar_top.sv
-gui_view_scroll -id ${Source.1} -vertical -set 3120
+gui_open_source -id ${Source.1}  -replace -active top_pkg /afs/eecs.umich.edu/vlsida/projects/restricted/google/khtaur/Intel16-OpenTitanSoC/hw/sv/top_pkg.sv
+gui_src_value_annotate -id ${Source.1} -switch true
+gui_set_env TOGGLE::VALUEANNOTATE 1
+gui_view_scroll -id ${Source.1} -vertical -set 0
 gui_src_set_reusable -id ${Source.1}
 
 # View 'Wave.1'
@@ -436,20 +395,21 @@ set origWaveHeight [gui_get_pref_value -category Wave -key waveRowHeight]
 gui_list_set_height -id Wave -height 25
 set origGroupCreationState [gui_list_create_group_when_add -wave]
 gui_list_create_group_when_add -wave -disable
+gui_marker_create -id ${Wave.1} C2 315000
 gui_marker_set_ref -id ${Wave.1}  C1
-gui_wv_zoom_timerange -id ${Wave.1} 0 250000
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group1}
+gui_wv_zoom_timerange -id ${Wave.1} 184449 409684
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group2}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group3}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group4}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group5}
-gui_list_add_group -id ${Wave.1}  -after tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_data_err {Group5|tlul_pkg}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group6}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group7}
 gui_list_add_group -id ${Wave.1} -after {New Group} {Group8}
-gui_list_expand -id ${Wave.1} tb.top_core.c_inst2xbar
-gui_list_expand -id ${Wave.1} tb.top_core.xbar2c_inst
-gui_list_select -id ${Wave.1} {tb.top_core.xbar_top.dev_sel_s1n_13 }
+gui_list_expand -id ${Wave.1} tb.top_core.c_data2xbar
+gui_list_expand -id ${Wave.1} tb.top_core.xbar2dccm
+gui_list_select -id ${Wave.1} {tb.top_core.xbar2dccm.a_data }
+gui_set_radix -radix unsigned -signal tb.top_core.xbar2dccm.a_data
+gui_set_radix -radix decimal -signal tb.top_core.xbar2dccm.a_data
 gui_seek_criteria -id ${Wave.1} {Any Edge}
 
 
@@ -465,83 +425,42 @@ if { $groupExD } {
 }
 gui_list_set_filter -id ${Wave.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {Parameter 1} {All 1} {Aggregate 1} {LibBaseMember 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {BaseMembers 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
 gui_list_set_filter -id ${Wave.1} -text {*}
-gui_list_set_insertion_bar  -id ${Wave.1} -group Group8  -item {tb.top_core.xbar_top.tl_s1n_7_us_h2d.a_address[31:0]} -position below
+gui_list_set_insertion_bar  -id ${Wave.1} -group Group2  -item {tb.top_core.xbar_only_instr.tl_s1n_7_us_h2d.a_address[31:0]} -position below
 
-gui_marker_move -id ${Wave.1} {C1} 155000
-gui_view_scroll -id ${Wave.1} -vertical -set 2233
+gui_marker_move -id ${Wave.1} {C1} 305000
+gui_view_scroll -id ${Wave.1} -vertical -set 75
 gui_show_grid -id ${Wave.1} -enable false
 
 # DriverLoad 'DriverLoad.1'
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.iccm_tlul.iccm.mem[2047:0][31:0]} -time 2000000 -starttime 2000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.c_inst2xbar.a_address[31:0]} -time 4500000 -starttime 4500000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_cmd_intg_gen.tl_i -time 4500000 -starttime 4500000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.c_inst2xbar.a_address[31:0]} -time 0 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_cmd_intg_gen.tl_i -time 4000000 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.addr_i[31:0]} -time 4000000 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr_w_aligned[31:0]} -time 4000000 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr[31:0]} -time 4000000 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_q[31:0]} -time 5000000 -starttime 5000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_d[31:0]} -time 4500000 -starttime 5000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_new_req -time 4000000 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.rdata_outstanding_q[1:0]} -time 4000000 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.rdata_outstanding_s[1:0]} -time 4000000 -starttime 4000000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i -time 0 -starttime 500000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i -time 2500000 -starttime 2500000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.addr_i[31:0]} -time 2500000 -starttime 2500000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.fetch_addr_n[31:0]} -time 0 -starttime 2500000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_d[31:0]} -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_d[31:0]} -time 0 -starttime 25000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i -time 25000 -starttime 25000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req -time 25000 -starttime 25000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i -time 25000 -starttime 25000
-gui_get_loads -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.pc_set_o
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.prefetch_branch -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.prefetch_branch -time 175000 -starttime 175000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req -time 175000 -starttime 175000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i -time 175000 -starttime 175000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ctrl_fsm_cs[3:0]} -time 245000 -starttime 250000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ctrl_fsm_cs[3:0]} -time 185000 -starttime 185000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ready_wb_i -time 0 -starttime 250000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i -time 205000 -starttime 205000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req -time 205000 -starttime 205000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i -time 205000 -starttime 205000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.special_req -time 195000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.special_req_pc_change -time 195000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.exc_req_d -time 195000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.instr_fetch_err -time 195000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.instr_fetch_err_i -time 165000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.instr_err_out -time 155000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.if_instr_err -time 155000 -starttime 250000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.if_instr_bus_err -time 155000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.fetch_err -time 155000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_unaligned -time 155000 -starttime 195000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.err_unaligned -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fifo_i.in_err_i -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.instr_bus_err_i -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_tlul_adapter_instr.intg_err -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_err[1:0]} -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.u_chk.syndrome_o[6:0]} -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.u_chk.data_i[63:0]} -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_data.u_rsp_chk.u_chk.data_i[63:0]} -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.instr_wdata_intg[6:0]} -time 0 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.xbar_top.tl_s1n_7_us_d2h -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.tl_i.d_user.rsp_intg[6:0]} -time 0 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp -time 155000 -starttime 155000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.xbar_top.tl_s1n_12_us_h2d.a_address[31:0]} -time 0 -starttime 250000
-gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.xbar_top.dev_sel_s1n_13[1:0]} -time 0 -starttime 155000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_req_q -time 0 -starttime 275000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ready_wb_i -time 0 -starttime 275000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_err[1:0]} -time 275000 -starttime 275000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_tlul_adapter_instr.intg_err -time 185000 -starttime 275000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.tl_i.d_user.rsp_intg[6:0]} -time 185000 -starttime 185000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_err[1:0]} -time 185000 -starttime 185000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.xbar2c_data.d_error -time 295000 -starttime 295000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ctrl_fsm_cs[3:0]} -time 305000 -starttime 305000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.wb_exception_o -time 295000 -starttime 305000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.store_err_i -time 295000 -starttime 295000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.lsu_resp_valid_o -time 295000 -starttime 295000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.wb_exception_o -time 295000 -starttime 295000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.lsu_resp_valid_o -time 305000 -starttime 305000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.xbar_only_instr.dev_sel_s1n_7[1:0]} -time 0 -starttime 235000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.xbar_only_instr.tl_s1n_7_us_h2d.a_address[31:0]} -time 0 -starttime 235000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.c_data2xbar -time 285000 -starttime 285000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_data.u_cmd_intg_gen.data_final[31:0]} -time 285000 -starttime 285000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.c_data2xbar.a_source[7:0]} -time 0 -starttime 285000
+gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_tlul_adapter_data.u_cmd_intg_gen.tl_i -time 285000 -starttime 285000
+gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_data.tl_source[7:0]} -time 285000 -starttime 285000
 # Restore toplevel window zorder
 # The toplevel window could be closed if it has no view/pane
-if {[gui_exist_window -window ${TopLevel.2}]} {
-	gui_set_active_window -window ${TopLevel.2}
-	gui_set_active_window -window ${Wave.1}
-}
 if {[gui_exist_window -window ${TopLevel.1}]} {
 	gui_set_active_window -window ${TopLevel.1}
 	gui_set_active_window -window ${Source.1}
-	gui_set_active_window -window ${DriverLoad.1}
+}
+if {[gui_exist_window -window ${TopLevel.2}]} {
+	gui_set_active_window -window ${TopLevel.2}
+	gui_set_active_window -window ${Wave.1}
 }
 #</Session>
 
