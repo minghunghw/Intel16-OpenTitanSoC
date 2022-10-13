@@ -23,7 +23,7 @@ module ibex_tlul import ibex_pkg::*; #(
     parameter int unsigned  DmExceptionAddr  = 32'h1A110808,
     parameter logic [SCRAMBLE_KEY_W-1:0]   RndCnstIbexKey   = RndCnstIbexKeyDefault,
     parameter logic [SCRAMBLE_NONCE_W-1:0] RndCnstIbexNonce = RndCnstIbexNonceDefault
-    ) (
+) (
     input                       clk_i,
     input                       rst_ni,
 
@@ -181,7 +181,7 @@ tlul_adapter_host #(
     .wdata_i        (32'b0),
     .wdata_intg_i   (instr_wdata_intg),
     .be_i           (4'hf),
-    .instr_type_i   (prim_mubi_pkg::mubi4_t'(4'h6)),
+    .instr_type_i   (prim_mubi_pkg::MuBi4True),
     .valid_o        (instr_rvalid),
     .rdata_o        (instr_rdata),
     .rdata_intg_o   (instr_rdata_intg),
@@ -203,7 +203,7 @@ tlul_adapter_host #(
     .wdata_i        (data_wdata),
     .wdata_intg_i   (data_wdata_intg),
     .be_i           (data_be),
-    .instr_type_i   (prim_mubi_pkg::mubi4_t'(4'h9)),
+    .instr_type_i   (prim_mubi_pkg::MuBi4False),
     .valid_o        (data_rvalid),
     .rdata_o        (data_rdata),
     .rdata_intg_o   (data_rdata_intg),

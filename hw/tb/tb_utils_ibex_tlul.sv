@@ -36,7 +36,7 @@ module tb;
         .debug_req_i    (1'b0),
         .fetch_enable_i (ibex_pkg::FetchEnableOn),
         .scan_rst_ni    (1'b0),
-        .scanmode_i     (prim_mubi_pkg::mubi4_t'(4'h9)),
+        .scanmode_i     (prim_mubi_pkg::MuBi4False),
         .*
     );
 
@@ -47,7 +47,7 @@ module tb;
     initial begin
         
         tl_i_i = tlul_pkg::TL_D2H_DEFAULT;
-        tl_i_i.d_opcode = tlul_pkg::tl_d_op_e'(1);
+        tl_i_i.d_opcode = tlul_pkg::AccessAckData;
         tl_d_i = tlul_pkg::TL_D2H_DEFAULT;
         
         @(negedge clk_i)
@@ -89,7 +89,7 @@ begin
     tl_i_i.d_param    = 0;
     tl_i_i.d_size     = 2;
     tl_i_i.d_source   = 0;
-    tl_i_i.d_sink     = 4'hf;
+    tl_i_i.d_sink     = 0;
     tl_i_i.d_data     = data;
     tl_i_i.d_user     = tlul_pkg::TL_D_USER_DEFAULT;
     tl_i_i.a_ready    = 1;
