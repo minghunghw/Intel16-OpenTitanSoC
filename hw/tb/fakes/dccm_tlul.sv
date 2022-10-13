@@ -37,9 +37,9 @@ fake_dram dccm (
     .CLK   (clk_i),
     .EN    (1'b0),               // chip enable
     .Q     (mem2adapter_rdata),  // read data
-    .WEN   (adapter2mem_we),     // write enable
-    .WMASK (adapter2mem_wdata),  // write mask
-    .D     (adapter2mem_wmask),  // write data
+    .WEN   (~adapter2mem_we),     // write enable
+    .WMASK (adapter2mem_wmask),  // write mask
+    .D     (adapter2mem_wdata),  // write data
     .A     (adapter2mem_addr)    // address
 );
 

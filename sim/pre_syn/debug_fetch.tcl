@@ -1,14 +1,14 @@
 # Begin_DVE_Session_Save_Info
 # DVE full session
-# Saved on Thu Oct 13 04:44:34 2022
+# Saved on Thu Oct 13 05:13:23 2022
 # Designs open: 1
 #   Sim: simv
 # Toplevel windows open: 2
 # 	TopLevel.1
 # 	TopLevel.2
 #   Source.1: top_pkg
-#   Wave.1: 46 signals
-#   Group count = 7
+#   Wave.1: 48 signals
+#   Group count = 8
 #   Group Group2 signal count = 19
 #   Group Group3 signal count = 11
 #   Group Group4 signal count = 4
@@ -16,6 +16,7 @@
 #   Group Group6 signal count = 4
 #   Group Group7 signal count = 4
 #   Group Group8 signal count = 3
+#   Group Group9 signal count = 2
 # End_DVE_Session_Save_Info
 
 # DVE version: N-2017.12-SP2-1_Full64
@@ -74,7 +75,7 @@ if {![gui_exist_window -window TopLevel.1]} {
 } else { 
     set TopLevel.1 TopLevel.1
 }
-gui_show_window -window ${TopLevel.1} -show_state normal -rect {{0 66} {1918 1041}}
+gui_show_window -window ${TopLevel.1} -show_state normal -rect {{0 67} {1917 1041}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -121,28 +122,28 @@ gui_show_toolbar -toolbar {Testbench}
 # End ToolBar settings
 
 # Docked window settings
-set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 442]
+set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 441]
 catch { set Hier.1 [gui_share_window -id ${HSPane.1} -type Hier] }
-gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 442
+gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 441
 gui_set_window_pref_key -window ${HSPane.1} -key dock_height -value_type integer -value -1
 gui_set_window_pref_key -window ${HSPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 441} {height 523} {dock_state left} {dock_on_new_line true} {child_hier_colhier 370} {child_hier_coltype 69} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
-set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 287]
+gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 440} {height 523} {dock_state left} {dock_on_new_line true} {child_hier_colhier 370} {child_hier_coltype 69} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
+set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 286]
 catch { set Data.1 [gui_share_window -id ${DLPane.1} -type Data] }
-gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 287
+gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 286
 gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 523
 gui_set_window_pref_key -window ${DLPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 286} {height 523} {dock_state left} {dock_on_new_line true} {child_data_colvariable 145} {child_data_colvalue 85} {child_data_coltype 53} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
-set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 354]
+gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 285} {height 523} {dock_state left} {dock_on_new_line true} {child_data_colvariable 145} {child_data_colvalue 85} {child_data_coltype 53} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
+set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 353]
 gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 1037
-gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 354
+gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 353
 gui_set_window_pref_key -window ${Console.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1036} {height 353} {dock_state bottom} {dock_on_new_line true}}
-set DriverLoad.1 [gui_create_window -type DriverLoad -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line false -dock_extent 180]
+gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1036} {height 352} {dock_state bottom} {dock_on_new_line true}}
+set DriverLoad.1 [gui_create_window -type DriverLoad -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line false -dock_extent 353]
 gui_set_window_pref_key -window ${DriverLoad.1} -key dock_width -value_type integer -value 882
-gui_set_window_pref_key -window ${DriverLoad.1} -key dock_height -value_type integer -value 180
+gui_set_window_pref_key -window ${DriverLoad.1} -key dock_height -value_type integer -value 353
 gui_set_window_pref_key -window ${DriverLoad.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DriverLoad.1} {{left 0} {top 0} {width 881} {height 353} {dock_state bottom} {dock_on_new_line false}}
+gui_update_layout -id ${DriverLoad.1} {{left 0} {top 0} {width 880} {height 352} {dock_state bottom} {dock_on_new_line false}}
 #### Start - Readjusting docked view's offset / size
 set dockAreaList { top left right bottom }
 foreach dockArea $dockAreaList {
@@ -179,7 +180,7 @@ if {![gui_exist_window -window TopLevel.2]} {
 } else { 
     set TopLevel.2 TopLevel.2
 }
-gui_show_window -window ${TopLevel.2} -show_state normal -rect {{1921 66} {3839 1041}}
+gui_show_window -window ${TopLevel.2} -show_state maximized -rect {{2698 222} {4617 1198}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -231,7 +232,7 @@ gui_sync_global -id ${TopLevel.2} -option true
 # MDI window settings
 set Wave.1 [gui_create_window -type {Wave}  -parent ${TopLevel.2}]
 gui_show_window -window ${Wave.1} -show_state maximized
-gui_update_layout -id ${Wave.1} {{show_state maximized} {dock_state undocked} {dock_on_new_line false} {child_wave_left 656} {child_wave_right 1257} {child_wave_colname 496} {child_wave_colvalue 156} {child_wave_col1 0} {child_wave_col2 1}}
+gui_update_layout -id ${Wave.1} {{show_state maximized} {dock_state undocked} {dock_on_new_line false} {child_wave_left 656} {child_wave_right 1258} {child_wave_colname 496} {child_wave_colvalue 156} {child_wave_col1 0} {child_wave_col2 1}}
 
 # End MDI window settings
 
@@ -286,49 +287,57 @@ gui_load_child_values {tb.top_core.ibex_tlul.u_tlul_adapter_instr}
 gui_load_child_values {tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i}
 
 
-set _session_group_81 Group2
-gui_sg_create "$_session_group_81"
-set Group2 "$_session_group_81"
+set _session_group_17 Group2
+gui_sg_create "$_session_group_17"
+set Group2 "$_session_group_17"
 
-gui_sg_addsignal -group "$_session_group_81" { tb.top_core.clk_i tb.top_core.rst_ni tb.top_core.tb2iccm_we tb.top_core.tb2mem_wdata tb.top_core.tb2mem_wmask tb.top_core.tb2mem_waddr tb.top_core.tb2mem_finish tb.top_core.c_inst2xbar tb.top_core.xbar2c_inst tb.top_core.c_data2xbar tb.top_core.xbar2c_data tb.top_core.iccm2xbar tb.top_core.xbar2iccm tb.top_core.dccm2xbar tb.top_core.xbar2dccm tb.top_core.xbar_only_instr.tl_s1n_4_us_h2d.a_address tb.top_core.xbar_only_instr.tl_s1n_7_us_h2d.a_address tb.top_core.xbar_only_instr.dev_sel_s1n_7 tb.top_core.xbar_only_instr.dev_sel_s1n_4 }
+gui_sg_addsignal -group "$_session_group_17" { tb.top_core.clk_i tb.top_core.rst_ni tb.top_core.tb2iccm_we tb.top_core.tb2mem_wdata tb.top_core.tb2mem_wmask tb.top_core.tb2mem_waddr tb.top_core.tb2mem_finish tb.top_core.c_inst2xbar tb.top_core.xbar2c_inst tb.top_core.c_data2xbar tb.top_core.xbar2c_data tb.top_core.iccm2xbar tb.top_core.xbar2iccm tb.top_core.dccm2xbar tb.top_core.xbar2dccm tb.top_core.xbar_only_instr.tl_s1n_4_us_h2d.a_address tb.top_core.xbar_only_instr.tl_s1n_7_us_h2d.a_address tb.top_core.xbar_only_instr.dev_sel_s1n_7 tb.top_core.xbar_only_instr.dev_sel_s1n_4 }
 
-set _session_group_82 Group3
-gui_sg_create "$_session_group_82"
-set Group3 "$_session_group_82"
+set _session_group_18 Group3
+gui_sg_create "$_session_group_18"
+set Group3 "$_session_group_18"
 
-gui_sg_addsignal -group "$_session_group_82" { tb.top_core.xbar_only_instr.tl_sm1_5_ds_h2d tb.top_core.xbar_only_instr.tl_core_inst_i tb.top_core.ibex_tlul.u_tlul_adapter_instr.addr_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr_w_aligned tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr }
-gui_sg_addsignal -group "$_session_group_82" { Divider } -divider
-gui_sg_addsignal -group "$_session_group_82" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_req_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.addr_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.stored_addr_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_q }
+gui_sg_addsignal -group "$_session_group_18" { tb.top_core.xbar_only_instr.tl_sm1_5_ds_h2d tb.top_core.xbar_only_instr.tl_core_inst_i tb.top_core.ibex_tlul.u_tlul_adapter_instr.addr_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr_w_aligned tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.instr_addr }
+gui_sg_addsignal -group "$_session_group_18" { Divider } -divider
+gui_sg_addsignal -group "$_session_group_18" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_req_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.branch_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.addr_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.stored_addr_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.fetch_addr_q }
 
-set _session_group_83 Group4
-gui_sg_create "$_session_group_83"
-set Group4 "$_session_group_83"
+set _session_group_19 Group4
+gui_sg_create "$_session_group_19"
+set Group4 "$_session_group_19"
 
-gui_sg_addsignal -group "$_session_group_83" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.predict_branch_taken tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ctrl_fsm_cs }
+gui_sg_addsignal -group "$_session_group_19" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.branch_req tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.pc_set_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.predict_branch_taken tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ctrl_fsm_cs }
 
-set _session_group_84 Group5
-gui_sg_create "$_session_group_84"
-set Group5 "$_session_group_84"
+set _session_group_20 Group5
+gui_sg_create "$_session_group_20"
+set Group5 "$_session_group_20"
 
-gui_sg_addsignal -group "$_session_group_84" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ready_wb_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.wb_exception_o }
+gui_sg_addsignal -group "$_session_group_20" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.ready_wb_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.wb_exception_o }
 
-set _session_group_85 Group6
-gui_sg_create "$_session_group_85"
-set Group6 "$_session_group_85"
+set _session_group_21 Group6
+gui_sg_create "$_session_group_21"
+set Group6 "$_session_group_21"
 
-gui_sg_addsignal -group "$_session_group_85" { tb.top_core.ibex_tlul.u_tlul_adapter_instr.intg_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.tl_i.d_user.rsp_intg tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp }
+gui_sg_addsignal -group "$_session_group_21" { tb.top_core.ibex_tlul.u_tlul_adapter_instr.intg_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp_err tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.tl_i.d_user.rsp_intg tb.top_core.ibex_tlul.u_tlul_adapter_instr.u_rsp_chk.rsp }
 
-set _session_group_86 Group7
-gui_sg_create "$_session_group_86"
-set Group7 "$_session_group_86"
+set _session_group_22 Group7
+gui_sg_create "$_session_group_22"
+set Group7 "$_session_group_22"
 
-gui_sg_addsignal -group "$_session_group_86" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.load_err_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.store_err_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.load_err_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.store_err_i }
+gui_sg_addsignal -group "$_session_group_22" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.load_err_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.store_err_q tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.load_err_i tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.id_stage_i.controller_i.store_err_i }
 
-set _session_group_87 Group8
-gui_sg_create "$_session_group_87"
-set Group8 "$_session_group_87"
+set _session_group_23 Group8
+gui_sg_create "$_session_group_23"
+set Group8 "$_session_group_23"
 
-gui_sg_addsignal -group "$_session_group_87" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.lsu_resp_valid_o tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.data_or_pmp_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.data_we_q }
+gui_sg_addsignal -group "$_session_group_23" { tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.lsu_resp_valid_o tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.data_or_pmp_err tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.load_store_unit_i.data_we_q }
+
+set _session_group_24 Group9
+gui_sg_create "$_session_group_24"
+set Group9 "$_session_group_24"
+
+gui_sg_addsignal -group "$_session_group_24" { tb.top_core.dccm_tlul.dccm.A tb.top_core.dccm_tlul.dccm.mem }
+gui_set_radix -radix {decimal} -signals {Sim:tb.top_core.dccm_tlul.dccm.A}
+gui_set_radix -radix {unsigned} -signals {Sim:tb.top_core.dccm_tlul.dccm.A}
 
 # Global: Highlighting
 
@@ -365,71 +374,21 @@ gui_hier_list_init -id ${Hier.1}
 gui_change_design -id ${Hier.1} -design Sim
 catch {gui_list_expand -id ${Hier.1} tb}
 catch {gui_list_expand -id ${Hier.1} tb.top_core}
-catch {gui_list_select -id ${Hier.1} {tb.top_core.xbar_only_instr}}
+catch {gui_list_expand -id ${Hier.1} tb.top_core.dccm_tlul}
+catch {gui_list_select -id ${Hier.1} {tb.top_core.dccm_tlul.dccm}}
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
 
 # Data 'Data.1'
 gui_list_set_filter -id ${Data.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {LowPower 1} {Parameter 1} {All 1} {Aggregate 1} {LibBaseMember 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {BaseMembers 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
 gui_list_set_filter -id ${Data.1} -text {*}
-gui_list_show_data -id ${Data.1} {tb.top_core.xbar_only_instr}
+gui_list_show_data -id ${Data.1} {tb.top_core.dccm_tlul.dccm}
+gui_show_window -window ${Data.1}
+catch { gui_list_select -id ${Data.1} {tb.top_core.dccm_tlul.dccm.A }}
 gui_view_scroll -id ${Data.1} -vertical -set 0
 gui_view_scroll -id ${Data.1} -horizontal -set 0
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
-
-# Source 'Source.1'
-gui_src_value_annotate -id ${Source.1} -switch false
-gui_set_env TOGGLE::VALUEANNOTATE 0
-gui_open_source -id ${Source.1}  -replace -active top_pkg /afs/eecs.umich.edu/vlsida/projects/restricted/google/khtaur/Intel16-OpenTitanSoC/hw/sv/top_pkg.sv
-gui_src_value_annotate -id ${Source.1} -switch true
-gui_set_env TOGGLE::VALUEANNOTATE 1
-gui_view_scroll -id ${Source.1} -vertical -set 0
-gui_src_set_reusable -id ${Source.1}
-
-# View 'Wave.1'
-gui_wv_sync -id ${Wave.1} -switch false
-set groupExD [gui_get_pref_value -category Wave -key exclusiveSG]
-gui_set_pref_value -category Wave -key exclusiveSG -value {false}
-set origWaveHeight [gui_get_pref_value -category Wave -key waveRowHeight]
-gui_list_set_height -id Wave -height 25
-set origGroupCreationState [gui_list_create_group_when_add -wave]
-gui_list_create_group_when_add -wave -disable
-gui_marker_create -id ${Wave.1} C2 315000
-gui_marker_set_ref -id ${Wave.1}  C1
-gui_wv_zoom_timerange -id ${Wave.1} 184449 409684
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group2}
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group3}
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group4}
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group5}
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group6}
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group7}
-gui_list_add_group -id ${Wave.1} -after {New Group} {Group8}
-gui_list_expand -id ${Wave.1} tb.top_core.c_data2xbar
-gui_list_expand -id ${Wave.1} tb.top_core.xbar2dccm
-gui_list_select -id ${Wave.1} {tb.top_core.xbar2dccm.a_data }
-gui_set_radix -radix unsigned -signal tb.top_core.xbar2dccm.a_data
-gui_set_radix -radix decimal -signal tb.top_core.xbar2dccm.a_data
-gui_seek_criteria -id ${Wave.1} {Any Edge}
-
-
-
-gui_set_env TOGGLE::DEFAULT_WAVE_WINDOW ${Wave.1}
-gui_set_pref_value -category Wave -key exclusiveSG -value $groupExD
-gui_list_set_height -id Wave -height $origWaveHeight
-if {$origGroupCreationState} {
-	gui_list_create_group_when_add -wave -enable
-}
-if { $groupExD } {
- gui_msg_report -code DVWW028
-}
-gui_list_set_filter -id ${Wave.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {Parameter 1} {All 1} {Aggregate 1} {LibBaseMember 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {BaseMembers 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
-gui_list_set_filter -id ${Wave.1} -text {*}
-gui_list_set_insertion_bar  -id ${Wave.1} -group Group2  -item {tb.top_core.xbar_only_instr.tl_s1n_7_us_h2d.a_address[31:0]} -position below
-
-gui_marker_move -id ${Wave.1} {C1} 305000
-gui_view_scroll -id ${Wave.1} -vertical -set 75
-gui_show_grid -id ${Wave.1} -enable false
 
 # DriverLoad 'DriverLoad.1'
 gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_ibex_top.u_ibex_core.if_stage_i.gen_prefetch_buffer.prefetch_buffer_i.valid_req_q -time 0 -starttime 275000
@@ -452,11 +411,67 @@ gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tl
 gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.c_data2xbar.a_source[7:0]} -time 0 -starttime 285000
 gui_get_drivers -session -id ${DriverLoad.1} -signal tb.top_core.ibex_tlul.u_tlul_adapter_data.u_cmd_intg_gen.tl_i -time 285000 -starttime 285000
 gui_get_drivers -session -id ${DriverLoad.1} -signal {tb.top_core.ibex_tlul.u_tlul_adapter_data.tl_source[7:0]} -time 285000 -starttime 285000
+
+# Source 'Source.1'
+gui_src_value_annotate -id ${Source.1} -switch false
+gui_set_env TOGGLE::VALUEANNOTATE 0
+gui_open_source -id ${Source.1}  -replace -active top_pkg /afs/eecs.umich.edu/vlsida/projects/restricted/google/khtaur/Intel16-OpenTitanSoC/hw/sv/top_pkg.sv
+gui_src_value_annotate -id ${Source.1} -switch true
+gui_set_env TOGGLE::VALUEANNOTATE 1
+gui_view_scroll -id ${Source.1} -vertical -set 0
+gui_src_set_reusable -id ${Source.1}
+
+# View 'Wave.1'
+gui_wv_sync -id ${Wave.1} -switch false
+set groupExD [gui_get_pref_value -category Wave -key exclusiveSG]
+gui_set_pref_value -category Wave -key exclusiveSG -value {false}
+set origWaveHeight [gui_get_pref_value -category Wave -key waveRowHeight]
+gui_list_set_height -id Wave -height 25
+set origGroupCreationState [gui_list_create_group_when_add -wave]
+gui_list_create_group_when_add -wave -disable
+gui_marker_create -id ${Wave.1} C2 315000
+gui_marker_set_ref -id ${Wave.1}  C1
+gui_wv_zoom_timerange -id ${Wave.1} 282877 376891
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group2}
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group3}
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group4}
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group5}
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group6}
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group7}
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group8}
+gui_list_add_group -id ${Wave.1} -after {New Group} {Group9}
+gui_list_expand -id ${Wave.1} tb.top_core.c_data2xbar
+gui_list_expand -id ${Wave.1} tb.top_core.xbar2dccm
+gui_list_select -id ${Wave.1} {tb.top_core.dccm_tlul.dccm.A }
+gui_set_radix -radix unsigned -signal tb.top_core.xbar2dccm.a_data
+gui_set_radix -radix decimal -signal tb.top_core.xbar2dccm.a_data
+gui_set_radix -radix unsigned -signal tb.top_core.xbar2dccm.a_data
+gui_seek_criteria -id ${Wave.1} {Any Edge}
+
+
+
+gui_set_env TOGGLE::DEFAULT_WAVE_WINDOW ${Wave.1}
+gui_set_pref_value -category Wave -key exclusiveSG -value $groupExD
+gui_list_set_height -id Wave -height $origWaveHeight
+if {$origGroupCreationState} {
+	gui_list_create_group_when_add -wave -enable
+}
+if { $groupExD } {
+ gui_msg_report -code DVWW028
+}
+gui_list_set_filter -id ${Wave.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {Parameter 1} {All 1} {Aggregate 1} {LibBaseMember 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {BaseMembers 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
+gui_list_set_filter -id ${Wave.1} -text {*}
+gui_list_set_insertion_bar  -id ${Wave.1} -group Group9  -item {tb.top_core.dccm_tlul.dccm.A[10:0]} -position below
+
+gui_marker_move -id ${Wave.1} {C1} 305000
+gui_view_scroll -id ${Wave.1} -vertical -set 1182
+gui_show_grid -id ${Wave.1} -enable false
 # Restore toplevel window zorder
 # The toplevel window could be closed if it has no view/pane
 if {[gui_exist_window -window ${TopLevel.1}]} {
 	gui_set_active_window -window ${TopLevel.1}
 	gui_set_active_window -window ${Source.1}
+	gui_set_active_window -window ${DLPane.1}
 }
 if {[gui_exist_window -window ${TopLevel.2}]} {
 	gui_set_active_window -window ${TopLevel.2}
