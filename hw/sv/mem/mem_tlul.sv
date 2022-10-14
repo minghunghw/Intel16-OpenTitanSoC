@@ -3,8 +3,8 @@ module mem_tlul (
   input rst_ni,
 
   // TL-UL interface
-  input  tlul_pkg::tl_h2d_t tl_d_i,
-  output tlul_pkg::tl_d2h_t tl_d_o
+  input  tlul_pkg::tl_h2d_t tl_i,
+  output tlul_pkg::tl_d2h_t tl_o
 );
 
 logic                       we;
@@ -75,8 +75,8 @@ tlul_adapter_sram #(
 ) u_tlul_adapter_sram (
     .clk_i          (clk_i          ),
     .rst_ni         (rst_ni         ),
-    .tl_i           (tl_d_i         ),
-    .tl_o           (tl_d_o         ), 
+    .tl_i           (tl_i           ),
+    .tl_o           (tl_o           ), 
     .en_ifetch_i    (en_ifetch      ),
     .req_o          (req            ),
     .req_type_o     (req_type       ),

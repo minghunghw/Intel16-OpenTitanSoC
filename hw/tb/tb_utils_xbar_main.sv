@@ -39,6 +39,7 @@ module tb;
         tl_instr_i          = tlul_pkg::TL_D2H_DEFAULT;
         tl_data_i           = tlul_pkg::TL_D2H_DEFAULT;
         tl_peri_device_i    = tlul_pkg::TL_D2H_DEFAULT;
+        scanmode_i          = prim_mubi_pkg::MuBi4False;
         
         @(negedge clk_i)
         rst_ni      = 1;

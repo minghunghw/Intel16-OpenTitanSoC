@@ -5,8 +5,8 @@ module tb;
     logic clk_i;
     logic rst_ni;
 
-    tlul_pkg::tl_h2d_t tl_d_i;
-    tlul_pkg::tl_d2h_t tl_d_o;
+    tlul_pkg::tl_h2d_t tl_i;
+    tlul_pkg::tl_d2h_t tl_o;
 
     logic [31:0]    addr;
     logic [31:0]    data;
@@ -21,7 +21,7 @@ module tb;
 
     initial begin
         
-        tl_d_i = tlul_pkg::TL_H2D_DEFAULT;
+        tl_i = tlul_pkg::TL_H2D_DEFAULT;
         
         @(negedge clk_i)
         rst_ni      = 1;
@@ -37,17 +37,17 @@ module tb;
             @(negedge clk_i) @(negedge clk_i)
             addr = i*4;
             data = i;
-            invoke_mem_tlul(0, addr, data, tl_d_i); //write to memory
+            invoke_mem_tlul(0, addr, data, tl_i); //write to memory
         end
 
         @(negedge clk_i) @(negedge clk_i)
         addr = 12*4;
         data = 0;
-        invoke_mem_tlul(4, addr, data, tl_d_i); // read from memory
+        invoke_mem_tlul(4, addr, data, tl_i); // read from memory
 
         @(negedge clk_i)
-        wait (tl_d_o.d_valid == 1);
-        if (tl_d_o.d_data == 12) begin
+        wait (tl_o.d_valid == 1);
+        if (tl_o.d_data == 12) begin
             $display("%c[1;32m",27);
             $display("SUCCESS\n");
             $display("%c[0m",27);
@@ -65,17 +65,17 @@ task automatic invoke_mem_tlul;
     input [ 2:0]    opcode;
     input [31:0]    addr;
     input [31:0]    data;
-    output tlul_pkg::tl_h2d_t tl_d_i;
+    output tlul_pkg::tl_h2d_t tl_i;
 begin
-    tl_d_i.a_valid    = 1;
-    tl_d_i.a_opcode   = tlul_pkg::tl_a_op_e'(opcode);
-    tl_d_i.a_param    = 0;
-    tl_d_i.a_size     = 2;
-    tl_d_i.a_source   = 0;
-    tl_d_i.a_address  = addr;
-    tl_d_i.a_mask     = 4'hf;
-    tl_d_i.a_data     = data;
-    tl_d_i.a_user     = tlul_pkg::TL_A_USER_DEFAULT;
-    tl_d_i.d_ready    = 1;
+    tl_i.a_valid    = 1;
+    tl_i.a_opcode   = tlul_pkg::tl_a_op_e'(opcode);
+    tl_i.a_param    = 0;
+    tl_i.a_size     = 2;
+    tl_i.a_source   = 0;
+    tl_i.a_address  = addr;
+    tl_i.a_mask     = 4'hf;
+    tl_i.a_data     = data;
+    tl_i.a_user     = tlul_pkg::TL_A_USER_DEFAULT;
+    tl_i.d_ready    = 1;
 end
 endtask

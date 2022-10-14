@@ -40,7 +40,6 @@ module xbar_2to1 (
   tl_h2d_t tl_sm1_3_us_h2d [2];
   tl_d2h_t tl_sm1_3_us_d2h [2];
 
-
   tl_h2d_t tl_sm1_3_ds_h2d ;
   tl_d2h_t tl_sm1_3_ds_d2h ;
 
@@ -51,7 +50,7 @@ module xbar_2to1 (
   assign tl_core_o = tl_sm1_3_us_d2h[0];
 
   assign tl_sm1_3_us_h2d[1] = tl_main_i;
-  assign tl_core_o = tl_sm1_3_us_d2h[1];
+  assign tl_main_o = tl_sm1_3_us_d2h[1];
 
   // Instantiation phase
   tlul_socket_m1 #(
@@ -66,7 +65,7 @@ module xbar_2to1 (
     .tl_h_i       (tl_sm1_3_us_h2d),
     .tl_h_o       (tl_sm1_3_us_d2h),
     .tl_d_o       (tl_sm1_3_ds_h2d),
-    .tl_d_i       (tl_sm1_3_ds_d2h),
+    .tl_d_i       (tl_sm1_3_ds_d2h)
   );
 
 endmodule

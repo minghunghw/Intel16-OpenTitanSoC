@@ -26,17 +26,18 @@ module tb;
     logic [31:0]    data;
 
     ibex_tlul u_ibex_tlul (
-        .ram_cfg_i      (prim_ram_1p_pkg::RAM_1P_CFG_DEFAULT),  
-        .hart_id_i      (32'b0),
-        .boot_addr_i    (32'b0),
-        .irq_software_i (1'b0),
-        .irq_timer_i    (1'b0),
-        .irq_external_i (1'b0),
-        .irq_nm_i       (1'b0),
-        .debug_req_i    (1'b0),
-        .fetch_enable_i (ibex_pkg::FetchEnableOn),
-        .scan_rst_ni    (1'b0),
-        .scanmode_i     (prim_mubi_pkg::MuBi4False),
+        .test_en_i      (1'b1                                ),
+        .ram_cfg_i      (prim_ram_1p_pkg::RAM_1P_CFG_DEFAULT ),  
+        .hart_id_i      (32'b0                               ),
+        .boot_addr_i    (32'b0                               ),
+        .irq_software_i (1'b0                                ),
+        .irq_timer_i    (1'b0                                ),
+        .irq_external_i (1'b0                                ),
+        .irq_nm_i       (1'b0                                ),
+        .debug_req_i    (1'b0                                ),
+        .fetch_enable_i (ibex_pkg::FetchEnableOn             ),
+        .scan_rst_ni    (1'b1                                ),
+        .scanmode_i     (prim_mubi_pkg::MuBi4False           ),
         .*
     );
 
@@ -47,7 +48,6 @@ module tb;
     initial begin
         
         tl_i_i = tlul_pkg::TL_D2H_DEFAULT;
-        tl_i_i.d_opcode = tlul_pkg::AccessAckData;
         tl_d_i = tlul_pkg::TL_D2H_DEFAULT;
         
         @(negedge clk_i)
@@ -61,8 +61,7 @@ module tb;
         end
 
         @(posedge clk_i)
-        data = 0;
-        invoke_ibex_tlul(1, data, tl_i_i);
+        invoke_ibex_tlul(tl_i_i);
 
         @(negedge clk_i)
         wait (tl_i_o.a_valid == 1);
@@ -80,17 +79,15 @@ module tb;
 endmodule
 
 task automatic invoke_ibex_tlul;
-    input [ 2:0]    opcode;
-    input [31:0]    data;
     output tlul_pkg::tl_d2h_t tl_i_i;
 begin
     tl_i_i.d_valid    = 1;
-    tl_i_i.d_opcode   = tlul_pkg::tl_d_op_e'(opcode);
+    tl_i_i.d_opcode   = tlul_pkg::AccessAckData;
     tl_i_i.d_param    = 0;
     tl_i_i.d_size     = 2;
     tl_i_i.d_source   = 0;
     tl_i_i.d_sink     = 0;
-    tl_i_i.d_data     = data;
+    tl_i_i.d_data     = 0;
     tl_i_i.d_user     = tlul_pkg::TL_D_USER_DEFAULT;
     tl_i_i.a_ready    = 1;
 end

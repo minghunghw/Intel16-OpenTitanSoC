@@ -6,6 +6,7 @@ TESTS="             \
     mem_tlul        \
     spi_device_tlul \
     xbar_main       \
+    xbar_2to1       \
 "
 
 source $COMMON
