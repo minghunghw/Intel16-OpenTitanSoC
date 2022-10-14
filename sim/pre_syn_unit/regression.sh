@@ -2,6 +2,7 @@ LOG_DIR=logs
 LOG_FILE=$LOG_DIR/$0.log
 COMMON=../common/regression_common.sh
 TESTS="             \
+    cpu_cluster     \
     ibex_tlul       \
     mem_tlul        \
     spi_device_tlul \

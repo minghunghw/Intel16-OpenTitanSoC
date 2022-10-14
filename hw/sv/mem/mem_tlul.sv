@@ -1,27 +1,23 @@
 module mem_tlul (
-  input clk_i,
-  input rst_ni,
+    input  clk_i,
+    input  rst_ni,
 
-  // TL-UL interface
-  input  tlul_pkg::tl_h2d_t tl_i,
-  output tlul_pkg::tl_d2h_t tl_o
+    input  prim_mubi_pkg::mubi4_t   en_ifetch_i,
+
+    // TL-UL interface
+    input  tlul_pkg::tl_h2d_t       tl_i,
+    output tlul_pkg::tl_d2h_t       tl_o
 );
 
-logic                       we;
 logic                       req;
 logic   [10:0]              addr;
 logic   [31:0]              wdata;
 logic                       wen;
 logic   [31:0]              wmask;
-logic   [31:0]              rdata;
-logic                       rvalid_buffer;  
+logic   [31:0]              rdata; 
 logic                       rvalid;
-logic   [31:0]              rdata_buffer;
-prim_mubi_pkg::mubi4_t      en_ifetch;
 prim_mubi_pkg::mubi4_t      req_type;
 logic                       intg_error;
-
-assign en_ifetch = prim_mubi_pkg::MuBi4False;
 
 always_ff @(posedge clk_i or negedge rst_ni) begin
     if (~rst_ni) begin
@@ -77,7 +73,7 @@ tlul_adapter_sram #(
     .rst_ni         (rst_ni         ),
     .tl_i           (tl_i           ),
     .tl_o           (tl_o           ), 
-    .en_ifetch_i    (en_ifetch      ),
+    .en_ifetch_i    (en_ifetch_i    ),
     .req_o          (req            ),
     .req_type_o     (req_type       ),
     .gnt_i          (1'b1           ),

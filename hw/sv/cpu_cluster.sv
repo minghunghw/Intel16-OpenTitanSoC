@@ -1,8 +1,9 @@
-module host_cluster (
+module cpu_cluster (
     input  clk_i,
     input  rst_ni,
 
     input  ibex_pkg::fetch_enable_t fetch_enable_i,
+    input  prim_mubi_pkg::mubi4_t   en_ifetch_i,
 
     // Host interface
     input  tlul_pkg::tl_d2h_t tl_core_i,
@@ -69,17 +70,19 @@ module host_cluster (
     );
 
     mem_tlul u_imem_tlul (
-        .clk_i      (clk_i             ),
-        .rst_ni     (rst_ni            ),
-        .tl_i       (xbar_2to1_2_instr ),
-        .tl_o       (instr_2_xbar_2to1 )
+        .clk_i       (clk_i             ),
+        .rst_ni      (rst_ni            ),
+        .en_ifetch_i (en_ifetch_i       ),
+        .tl_i        (xbar_2to1_2_instr ),
+        .tl_o        (instr_2_xbar_2to1 )
     );
 
     mem_tlul u_dmem_tlul (
-        .clk_i      (clk_i            ),
-        .rst_ni     (rst_ni           ),
-        .tl_i       (xbar_2to1_2_data ),
-        .tl_o       (data_2_xbar_2to1 )
+        .clk_i       (clk_i            ),
+        .rst_ni      (rst_ni           ),
+        .en_ifetch_i (en_ifetch_i      ),
+        .tl_i        (xbar_2to1_2_data ),
+        .tl_o        (data_2_xbar_2to1 )
     );
 
     xbar_2to1 u_ixbar_2to1 (

@@ -54,10 +54,10 @@ module xbar_2to1 (
 
   // Instantiation phase
   tlul_socket_m1 #(
-    .HReqDepth (4'h0),
-    .HRspDepth (4'h0),
-    .DReqDepth (8'h0),
-    .DRspDepth (8'h0),
+    .HReqDepth (8'h0),
+    .HRspDepth (8'h0),
+    .DReqDepth (4'h0),
+    .DRspDepth (4'h0),
     .M         (2)
   ) u_sm1_3 (
     .clk_i        (clk_i),

@@ -132,7 +132,7 @@ ibex_top #(
     .instr_addr_o           (instr_addr             ),
     .instr_rdata_i          (instr_rdata            ),
     .instr_rdata_intg_i     (instr_rdata_intg       ),
-    .instr_err_i            (instr_err              ),
+    .instr_err_i            (tl_i_i.d_error         ),
     // Data memory interface
     .data_req_o             (data_req               ),
     .data_gnt_i             (data_gnt               ),
@@ -144,7 +144,7 @@ ibex_top #(
     .data_wdata_intg_o      (data_wdata_intg        ),
     .data_rdata_i           (data_rdata             ),
     .data_rdata_intg_i      (data_rdata_intg        ),
-    .data_err_i             (data_err               ),
+    .data_err_i             (tl_d_i.d_error         ),
     // Interrupt inputs
     .irq_software_i         (irq_software_i         ),
     .irq_timer_i            (irq_timer_i            ),

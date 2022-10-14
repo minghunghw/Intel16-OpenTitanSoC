@@ -6,6 +6,7 @@ module tb;
     logic               rst_ni;
 
     ibex_pkg::fetch_enable_t fetch_enable_i;
+    prim_mubi_pkg::mubi4_t   en_ifetch_i;
 
     tlul_pkg::tl_d2h_t tl_core_i;
     tlul_pkg::tl_h2d_t tl_core_o;
@@ -19,7 +20,7 @@ module tb;
     logic [31:0] addr;
     logic [31:0] data;
 
-    host_cluster u_host_cluster (
+    cpu_cluster u_cpu_cluster (
         .*
     );
 
@@ -30,6 +31,7 @@ module tb;
     initial begin
         
         fetch_enable_i  = ibex_pkg::FetchEnableOff;
+        en_ifetch_i     = prim_mubi_pkg::MuBi4False;
         tl_core_i       = tlul_pkg::TL_D2H_DEFAULT;
         tl_instr_i      = tlul_pkg::TL_H2D_DEFAULT;
         tl_data_i       = tlul_pkg::TL_H2D_DEFAULT;
@@ -38,7 +40,7 @@ module tb;
         rst_ni      = 1;
 
         @(negedge clk_i)
-        // $readmemh("../../sw/hex/gpio.hex", u_host_cluster.u_imem_tlul.u_sram.ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_bmod.ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_array.DATA_ARRAY);
+        // $readmemh("../../sw/hex/gpio.hex", u_cpu_cluster.u_imem_tlul.u_sram.ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_bmod.ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_array.DATA_ARRAY);
         $readmemh("../../sw/hex/gpio.hex", pattern);
 
         for (int i=0; i<32; i++) begin
@@ -53,24 +55,26 @@ module tb;
         end
 
         @(negedge clk_i)
-        tl_instr_i.a_valid = 1'b0;
+        tl_instr_i = tlul_pkg::TL_H2D_DEFAULT;
+        fetch_enable_i = ibex_pkg::FetchEnableOn;
+        en_ifetch_i = prim_mubi_pkg::MuBi4True;
+
+        #100
 
         @(negedge clk_i)
-        fetch_enable_i = ibex_pkg::FetchEnableOn;
+        fetch_enable_i = ibex_pkg::FetchEnableOff;
+        en_ifetch_i = prim_mubi_pkg::MuBi4False;
 
-        #500
-
-        // wait (tl_i_o.a_valid == 1);
-        // if (tl_i_o.a_address != 132) begin
-        //     $display("%c[1;32m",27);
-        //     $display("SUCCESS\n");
-        //     $display("%c[0m",27);
-        // end else begin
-        //     $display("%c[1;31m",27);
-        //     $display("FAILED\n");
-        //     $display("%c[0m",27);
-        // end
-
+        wait (tl_core_o.a_valid == 1);
+        if (tl_core_o.a_address == 32'h3001_0010) begin
+            $display("%c[1;32m",27);
+            $display("SUCCESS\n");
+            $display("%c[0m",27);
+        end else begin
+            $display("%c[1;31m",27);
+            $display("FAILED\n");
+            $display("%c[0m",27);
+        end
 	    $finish;
     end
 

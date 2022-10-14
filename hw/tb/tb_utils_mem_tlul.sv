@@ -5,6 +5,8 @@ module tb;
     logic clk_i;
     logic rst_ni;
 
+    prim_mubi_pkg::mubi4_t en_ifetch_i;
+
     tlul_pkg::tl_h2d_t tl_i;
     tlul_pkg::tl_d2h_t tl_o;
 
@@ -21,6 +23,7 @@ module tb;
 
     initial begin
         
+        en_ifetch_i = prim_mubi_pkg::MuBi4True;
         tl_i = tlul_pkg::TL_H2D_DEFAULT;
         
         @(negedge clk_i)

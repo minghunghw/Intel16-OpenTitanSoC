@@ -3,6 +3,7 @@ module top_core (
     input  logic   rst_ni,
 
     input  ibex_pkg::fetch_enable_t fetch_enable_i,
+    input  prim_mubi_pkg::mubi4_t   en_ifetch_i,
 
     // SPI device interface
     input  logic                    spi_sclk,
@@ -80,6 +81,7 @@ module top_core (
         .rst_ni             (rst_ni            ),
 
         .fetch_enable_i     (fetch_enable_i    ),
+        .en_ifetch_i        (en_ifetch_i       ),
         .tl_core_i          (xbar_main_2_core  ),
         .tl_core_o          (core_2_xbar_main  ),
 
