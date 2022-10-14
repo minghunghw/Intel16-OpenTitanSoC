@@ -1,171 +1,92 @@
 module top_core (
-    input clk_i,
-    input rst_ni
+    input  logic   clk_i,
+    input  logic   rst_ni,
 
-    `ifdef NO_COMM_PROTOCOL
-        ,input  logic                      tb2iccm_we
-        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wdata
-        ,input  logic [top_pkg::TL_DW-1:0] tb2mem_wmask
-        ,input  logic [10:0]               tb2mem_waddr
-        ,input  logic                      tb2mem_finish
-    `endif
+    input  ibex_pkg::fetch_enable_t fetch_enable_i,
+
+    // SPI device interface
+    input  logic                    spi_sclk,
+    input  logic                    spi_cs,
+    input  logic                    spi_sdi0,
+    input  logic                    spi_sdi1,
+    input  logic                    spi_sdi2,
+    input  logic                    spi_sdi3,
+    output logic                    spi_sdo0,
+    output logic                    spi_sdo1,
+    output logic                    spi_sdo2,
+    output logic                    spi_sdo3
 );
 
-/*
-    Signal name synopsis for xbar modules:
-    - xbar.{tl.*_i}: .*2xbar
-    - xbar.{tl.*_o}: xbar2.*
+    logic  [1:0] spi_mode;
 
-    Signal name synopsis for non-xbar modules:
-    - instance.{tl.*_i}: xbar2.*
-    - instance.{tl.*_o}: .*2xbar
-*/
+    tlul_pkg::tl_d2h_t core_2_xbar_main;
+    tlul_pkg::tl_h2d_t xbar_main_2_core;
+    tlul_pkg::tl_d2h_t spi_2_xbar_main;
+    tlul_pkg::tl_h2d_t xbar_main_2_spi;
+    tlul_pkg::tl_d2h_t jtag_2_xbar_main;
+    tlul_pkg::tl_h2d_t xbar_main_2_jtag;
 
-/*
-    Hosts:
-    - wrapper
-    - jtag
-    - spi
-*/
-tlul_pkg::tl_h2d_t c_inst2xbar;
-tlul_pkg::tl_h2d_t c_data2xbar;
-tlul_pkg::tl_h2d_t spi2xbar;
-tlul_pkg::tl_h2d_t jtag2xbar;
-tlul_pkg::tl_d2h_t xbar2c_inst;
-tlul_pkg::tl_d2h_t xbar2c_data;
-tlul_pkg::tl_d2h_t xbar2spi;
-tlul_pkg::tl_d2h_t xbar2jtag;
+    tlul_pkg::tl_h2d_t xbar_main_2_instr;
+    tlul_pkg::tl_d2h_t instr_2_xbar_main;
+    tlul_pkg::tl_h2d_t xbar_main_2_data;
+    tlul_pkg::tl_d2h_t data_2_xbar_main;
+    tlul_pkg::tl_h2d_t xbar_main_2_peri_device;
+    tlul_pkg::tl_d2h_t peri_device_2_xbar_main;
 
-/*
-    Devices:
-    - iccm
-    - dccm
-    - periph
-*/
-tlul_pkg::tl_d2h_t iccm2xbar;
-tlul_pkg::tl_d2h_t dccm2xbar;
-tlul_pkg::tl_d2h_t periph2xbar;
-tlul_pkg::tl_h2d_t xbar2iccm;
-tlul_pkg::tl_h2d_t xbar2dccm;
-tlul_pkg::tl_h2d_t xbar2periph;
+    xbar_main u_xbar_main 
+    (
+        .clk_i              (clk_i                    ),
+        .rst_ni             (rst_ni                   ),
 
-prim_mubi_pkg::mubi4_t        scanmode_i;
-prim_ram_1p_pkg::ram_1p_cfg_t ram_cfg;
-ibex_pkg::fetch_enable_t      core_en;
+        .tl_core_i          (core_2_xbar_main         ),
+        .tl_core_o          (xbar_main_2_core         ),
+        .tl_spi_i           (spi_2_xbar_main          ),
+        .tl_spi_o           (xbar_main_2_spi          ),
+        .tl_jtag_i          (jtag_2_xbar_main         ),
+        .tl_jtag_o          (xbar_main_2_jtag         ),
 
-assign core_en = tb2mem_finish ? ibex_pkg::FetchEnableOn : ibex_pkg::FetchEnableOff;
-assign ram_cfg = prim_ram_1p_pkg::RAM_1P_CFG_DEFAULT;
+        .tl_instr_o         (xbar_main_2_instr        ),
+        .tl_instr_i         (instr_2_xbar_main        ),
+        .tl_data_o          (xbar_main_2_data         ),
+        .tl_data_i          (data_2_xbar_main         ),
+        .tl_peri_device_o   (xbar_main_2_peri_device  ),
+        .tl_peri_device_i   (peri_device_2_xbar_main  ),
+        
+        .scanmode_i         (prim_mubi_pkg::MuBi4False),
+    );
 
-// Instantiate targets:
-// - Ibex wrapper
-// - Fake iccm
-// - Tilelink main
+    spi_device_tlul u_spi_device_tlul 
+    (
+        .clk_i      (clk_i           ),
+        .rst_ni     (rst_ni          ),
+        .test_mode  (1'b1            ),
+        .spi_sclk   (spi_sclk        ),
+        .spi_cs     (spi_cs          ),
+        .spi_mode   (spi_mode        ),
+        .spi_sdi0   (spi_sdi0        ),
+        .spi_sdi1   (spi_sdi1        ),
+        .spi_sdi2   (spi_sdi2        ),
+        .spi_sdi3   (spi_sdi3        ),
+        .spi_sdo0   (spi_sdo0        ),
+        .spi_sdo1   (spi_sdi1        ),
+        .spi_sdo2   (spi_sdi2        ),
+        .spi_sdo3   (spi_sdo3        ),
+        .tl_i       (xbar_main_2_spi ),
+        .tl_o       (spi_2_xbar_main )
+    );
 
-ibex_tlul ibex_tlul(
-    .clk_i,
-    .rst_ni,
+    host_cluster u_host_cluster (
+        .clk_i              (clk_i             ),
+        .rst_ni             (rst_ni            ),
 
-    .tl_i_i(xbar2c_inst),
-    .tl_i_o(c_inst2xbar),
+        .fetch_enable_i     (fetch_enable_i    ),
+        .tl_core_i          (xbar_main_2_core  ),
+        .tl_core_o          (core_2_xbar_main  ),
 
-    // FIXME:
-    // Breakdown core host into Instr fetch and Load-Store
-    // Regenerate xbar_main
-
-    // Currently not fully used
-    .ram_cfg_i              (ram_cfg),
-    .hart_id_i              (32'b0),
-    .boot_addr_i            (32'h00000000),
-
-    .tl_d_i                 (xbar2c_data),
-    .tl_d_o                 (c_data2xbar),
-
-    .irq_software_i         (1'b0),
-    .irq_timer_i            (1'b0),
-    .irq_external_i         (1'b0),
-    .irq_nm_i               (1'b0),
-
-    .debug_req_i            (1'b0),
-    .crash_dump_o           (),
-    .debug_fault_seen_o     (),
-
-    .fetch_enable_i         (core_en),
-    .alert_minor_o          (),
-    .alert_major_internal_o (),
-    .alert_major_bus_o      (),
-    .core_sleep_o           (),
-
-    .scan_rst_ni            (1'b1),
-    .scanmode_i             (prim_mubi_pkg::MuBi4False)
-);
-
-// xbar_top xbar_top(
-//     .clk_i,
-//     .rst_ni,
-
-//     .tl_core_inst_i  (c_inst2xbar),
-//     .tl_core_inst_o  (xbar2c_inst),
-//     .tl_core_data_i  (c_data2xbar),
-//     .tl_core_data_o  (xbar2c_data),
-//     .tl_instr_i      (iccm2xbar),
-//     .tl_instr_o      (xbar2iccm),
-
-//     // Currently not used
-//     .tl_spi_i         (spi2xbar),
-//     .tl_spi_o         (xbar2spi),
-//     .tl_jtag_i        (jtag2xbar),
-//     .tl_jtag_o        (xbar2jtag),
-
-//     .tl_data_i        (dccm2xbar),
-//     .tl_data_o        (xbar2dccm),
-//     .tl_peri_device_i (periph2xbar),
-//     .tl_peri_device_o (xbar2periph),
-
-//     .scanmode_i       (scanmode_i)
-// );
-
-xbar_only_instr xbar_only_instr(
-    .clk_i,
-    .rst_ni,
-
-    .tl_core_inst_i  (c_inst2xbar),
-    .tl_core_inst_o  (xbar2c_inst),
-    .tl_core_data_i  (c_data2xbar),
-    .tl_core_data_o  (xbar2c_data),
-    .tl_instr_i      (iccm2xbar),
-    .tl_instr_o      (xbar2iccm),
-
-    // Currently not used
-    .tl_data_i        (dccm2xbar),
-    .tl_data_o        (xbar2dccm),
-
-    .scanmode_i       (prim_mubi_pkg::MuBi4False)
-);
-
-iccm_tlul iccm_tlul(
-    .clk_i,
-    .rst_ni,
-
-    `ifdef NO_COMM_PROTOCOL
-        .tb2iccm_we,
-        .tb2mem_wdata,
-        .tb2mem_wmask,
-        .tb2mem_waddr,
-        .tb2mem_finish,
-    `endif
-
-    .tl_i_i(xbar2iccm),
-    .tl_i_o(iccm2xbar)
-
-);
-
-dccm_tlul dccm_tlul(
-    .clk_i,
-    .rst_ni,
-
-    .tl_d_i(xbar2dccm),
-    .tl_d_o(dccm2xbar)
-
-);
+        .tl_instr_i         (xbar_main_2_instr ),
+        .tl_instr_o         (instr_2_xbar_main ),
+        .tl_data_i          (xbar_main_2_data  ),
+        .tl_data_o          (data_2_xbar_main  ),
+    );
 
 endmodule
