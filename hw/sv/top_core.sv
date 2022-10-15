@@ -1,21 +1,26 @@
 module top_core (
-    input  logic   clk_i,
-    input  logic   rst_ni,
+    input  logic        clk_i,
+    input  logic        rst_ni,
 
-    input  ibex_pkg::fetch_enable_t fetch_enable_i,
-    input  prim_mubi_pkg::mubi4_t   en_ifetch_i,
+    input  logic        fetch_enable_i,
+    input  logic        en_ifetch_i,
 
     // SPI device interface
-    input  logic                    spi_sclk,
-    input  logic                    spi_cs,
-    input  logic                    spi_sdi0,
-    input  logic                    spi_sdi1,
-    input  logic                    spi_sdi2,
-    input  logic                    spi_sdi3,
-    output logic                    spi_sdo0,
-    output logic                    spi_sdo1,
-    output logic                    spi_sdo2,
-    output logic                    spi_sdo3
+    input  logic        spi_sclk,
+    input  logic        spi_cs,
+    input  logic        spi_sdi0,
+    input  logic        spi_sdi1,
+    input  logic        spi_sdi2,
+    input  logic        spi_sdi3,
+    output logic        spi_sdo0,
+    output logic        spi_sdo1,
+    output logic        spi_sdo2,
+    output logic        spi_sdo3,
+
+    // GPIO interface
+    input        [31:0] gpio_i,
+    output logic [31:0] gpio_o,
+    output logic [31:0] gpio_en_o
 );
 
     logic  [1:0] spi_mode;
@@ -34,6 +39,13 @@ module top_core (
     tlul_pkg::tl_h2d_t xbar_main_2_peri_device;
     tlul_pkg::tl_d2h_t peri_device_2_xbar_main;
 
+    ibex_pkg::fetch_enable_t fetch_enable;
+    prim_mubi_pkg::mubi4_t   en_ifetch;
+
+    assign fetch_enable = (fetch_enable_i) ? ibex_pkg::FetchEnableOn : ibex_pkg::FetchEnableOff;
+    assign en_ifetch    = (en_ifetch_i)    ? prim_mubi_pkg::MuBi4True : prim_mubi_pkg::MuBi4False;
+
+    // 3 master, 3 slave
     xbar_main u_xbar_main 
     (
         .clk_i              (clk_i                    ),
@@ -56,6 +68,7 @@ module top_core (
         .scanmode_i         (prim_mubi_pkg::MuBi4False),
     );
 
+    // 1 master
     spi_device_tlul u_spi_device_tlul 
     (
         .clk_i      (clk_i           ),
@@ -76,12 +89,14 @@ module top_core (
         .tl_o       (spi_2_xbar_main )
     );
 
-    host_cluster u_host_cluster (
+    // 1 master, 2 slave
+    cpu_cluster u_cpu_cluster (
         .clk_i              (clk_i             ),
         .rst_ni             (rst_ni            ),
 
-        .fetch_enable_i     (fetch_enable_i    ),
-        .en_ifetch_i        (en_ifetch_i       ),
+        .fetch_enable_i     (fetch_enable      ),
+        .en_ifetch_i        (en_ifetch         ),
+
         .tl_core_i          (xbar_main_2_core  ),
         .tl_core_o          (core_2_xbar_main  ),
 
@@ -90,5 +105,7 @@ module top_core (
         .tl_data_i          (xbar_main_2_data  ),
         .tl_data_o          (data_2_xbar_main  ),
     );
+
+    // 1 slave
 
 endmodule
