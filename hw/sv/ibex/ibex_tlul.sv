@@ -73,6 +73,7 @@ logic [ 6:0] instr_rdata_intg;
 logic        instr_err;
 logic [6:0]  instr_wdata_intg;
 logic [31:0] unused_data;
+tlul_pkg::tl_d2h_t  tl_i_i_enc;
 
 assign {instr_wdata_intg, unused_data} = prim_secded_pkg::prim_secded_inv_39_32_enc('0);
 
@@ -88,6 +89,7 @@ logic [ 6:0] data_wdata_intg;
 logic [31:0] data_rdata;
 logic [ 6:0] data_rdata_intg;
 logic        data_err;
+tlul_pkg::tl_d2h_t  tl_d_i_enc;
 
 // Unused signals
 logic        scramble_req;
@@ -132,7 +134,7 @@ ibex_top #(
     .instr_addr_o           (instr_addr             ),
     .instr_rdata_i          (instr_rdata            ),
     .instr_rdata_intg_i     (instr_rdata_intg       ),
-    .instr_err_i            (tl_i_i.d_error         ),
+    .instr_err_i            (instr_err              ),
     // Data memory interface
     .data_req_o             (data_req               ),
     .data_gnt_i             (data_gnt               ),
@@ -144,7 +146,7 @@ ibex_top #(
     .data_wdata_intg_o      (data_wdata_intg        ),
     .data_rdata_i           (data_rdata             ),
     .data_rdata_intg_i      (data_rdata_intg        ),
-    .data_err_i             (tl_d_i.d_error         ),
+    .data_err_i             (data_err               ),
     // Interrupt inputs
     .irq_software_i         (irq_software_i         ),
     .irq_timer_i            (irq_timer_i            ),
@@ -170,6 +172,16 @@ ibex_top #(
     .scan_rst_ni            (scan_rst_ni            )
 );
 
+tlul_rsp_intg_gen u_tlul_gen_instr (
+    .tl_i   (tl_i_i),
+    .tl_o   (tl_i_i_enc)
+);
+
+tlul_rsp_intg_gen u_tlul_gen_data (
+    .tl_i   (tl_d_i),
+    .tl_o   (tl_d_i_enc)
+);
+
 tlul_adapter_host #(
     .MAX_REQS(2)
 ) u_tlul_adapter_instr(
@@ -180,7 +192,7 @@ tlul_adapter_host #(
     .addr_i         (instr_addr               ),
     .we_i           (1'b0                     ),
     .wdata_i        (32'b0                    ),
-    .wdata_intg_i   (7'b0                     ),
+    .wdata_intg_i   (instr_wdata_intg         ),
     .be_i           (4'hf                     ),
     .instr_type_i   (prim_mubi_pkg::MuBi4True ),
     .valid_o        (instr_rvalid             ),
@@ -189,7 +201,7 @@ tlul_adapter_host #(
     .err_o          (instr_err                ),
     .intg_err_o     (instr_intg_err           ),
     .tl_o           (tl_i_o                   ),
-    .tl_i           (tl_i_i                   )
+    .tl_i           (tl_i_i_enc               )
 );
 
 tlul_adapter_host #(
@@ -211,7 +223,7 @@ tlul_adapter_host #(
     .err_o          (data_err                  ),
     .intg_err_o     (data_intg_err             ),
     .tl_o           (tl_d_o                    ),
-    .tl_i           (tl_d_i                    )
+    .tl_i           (tl_d_i_enc                )
 );
 
 endmodule

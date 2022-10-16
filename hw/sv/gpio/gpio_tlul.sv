@@ -19,17 +19,17 @@ module gpio_tlul (
     output logic [31:0] cio_gpio_en_o
 );
 
-    tlul_pkg::tl_h2d_t tl_i_encode;
+    tlul_pkg::tl_h2d_t tl_i_enc;
 
     tlul_cmd_intg_gen u_tlul_cmd_intg_gen (
-        .tl_i   (tl_i        ),
-        .tl_o   (tl_i_encode )
+        .tl_i   (tl_i     ),
+        .tl_o   (tl_i_enc )
     );
 
     gpio u_gpio (
         .clk_i          (clk_i         ),
         .rst_ni         (rst_ni        ),
-        .tl_i           (tl_i_encode   ),
+        .tl_i           (tl_i_enc      ),
         .tl_o           (tl_o          ),
         .intr_gpio_o    (intr_gpio_o   ),
         .alert_rx_i     (alert_rx_i    ),
