@@ -7,10 +7,7 @@ For running the dc flow for a certain block, run
 make DESIGN_NAME=<some_design>
 ```
 
-After the synthesis is completed, copy the netlist for `post_syn` and `post_syn_unit`.
-```
-make netlist
-```
+After the synthesis is completed, it will copy the netlist for `post_syn` and `post_syn_unit`.
 
 ### How to add customized design
 

@@ -22,3 +22,8 @@ The regression test will run all the files in the variable `TEST` in `regression
 -----------------------------------------------------------
 
 This VCS uses fielist structure for simulation. First, create a testbench called `tb_utils_<test_name>.sv` in the folder. Then create `<test_name>.vc` in the `pre_syn_unit/vc` folder defining source and include path.
+
+### How to add customized top level testbench 
+-----------------------------------------------------------
+
+Current top level test structure supports SPI program loading. Since Ibex core will start fetching instruction from `0x0000_0080`, we should first load the instructions from this address with SPI device. After all instrctions are transmitted, turn on `fetch_enable_i` and `en_ifetch_i`. After ibex core loads the instrutcion data correctly, turn off those two signals again. For each 32 bit RISC-V transaction, you need to provide `cmd`, `addr`, and `data` like [this](https://github.com/minghungumich/Intel16-OpenTitanSoC/blob/main/hw/tb/pkg/tb_spi_pkg.sv#L35-L37).

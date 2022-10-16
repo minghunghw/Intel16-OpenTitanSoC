@@ -15,7 +15,7 @@ export DESIGN_NAME 		:= mem_tlul
 
 # Synthesis-reltaed targets
 # --------------------------------
-all: dc 
+all: dc netlist
 
 dc:
 	cd $(DESIGN_NAME) && \
@@ -43,3 +43,5 @@ clean:
 	rm -rf $(DESIGN_NAME)/*.svf 
 	rm -rf $(DESIGN_NAME)/.*tcl
 	rm -rf $(DESIGN_NAME)/*.log
+
+nuke: clean

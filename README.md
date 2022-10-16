@@ -46,9 +46,29 @@ Source `modules.sh` before doing any development or tool work. This will clear a
 source modules.sh
 ```
 
+# SoC Overview
+
+### SoC block diagram
+-----------------------------------------------------------
+
+![SoC block diagram](docs/soc_block_diagram.png)
+
+### Memory mapping
+-----------------------------------------------------------
+
+|             | Start Address | End Address |
+| ----------- | ------------- | ----------- |
+| Inst SRAM   | 0x0000_0000   | 0x0fff_ffff |
+| Data SRAM   | 0x2000_0000   | 0x2fff_ffff |
+| UART        | 0x3000_0000   | 0x3000_ffff |
+| GPIO        | 0x3001_0000   | 0x3001_ffff |
+| SPI         | 0x3002_0000   | 0x3002_ffff |
+| I2C         | 0x3003_0000   | 0x3003_ffff |
+| PLIC        | 0x3005_0000   | 0x3004_ffff |
+
 # Running simulations
 
-(Not available yet)
+Current top level test structure supports SPI program loading and GPIO output. To run the top core simulation, type
 ```
 cd sim/pre-syn
 make

@@ -2,23 +2,55 @@
 #------------------
 set HW          "../../hw/sv"
 set OPENTITAN   "../../ip/opentitan/hw/ip"
+set IBEX 	   	"../../ip/opentitan/hw/vendor/lowrisc_ibex"
+set DV          "../../ip/opentitan/hw/dv"
 
 set rtl_includes [ concat \
     $OPENTITAN/prim/rtl \
+    $DV/sv/dv_utils \
 ]
 
 set rtl_packages [ concat \
     $HW/top_pkg.sv \
+    $OPENTITAN/prim/rtl/prim_alert_pkg.sv \
+    $OPENTITAN/prim/rtl/prim_cipher_pkg.sv \
     $OPENTITAN/prim/rtl/prim_util_pkg.sv \
     $OPENTITAN/prim/rtl/prim_secded_pkg.sv \
+    $OPENTITAN/prim/rtl/prim_subreg_pkg.sv \
     $OPENTITAN/prim/rtl/prim_mubi_pkg.sv \
+    $OPENTITAN/prim/rtl/prim_ram_1p_pkg.sv \
     $OPENTITAN/tlul/rtl/tlul_pkg.sv \
+    $OPENTITAN/gpio/rtl/gpio_reg_pkg.sv \
+    $IBEX/rtl/ibex_pkg.sv \
+    $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv \
 ]
 
 set rtl_prim [ concat \
+    $IBEX/dv/uvm/core_ibex/common/prim/prim_clock_gating.sv \
+    $IBEX/dv/uvm/core_ibex/common/prim/prim_buf.sv \
+    $IBEX/dv/uvm/core_ibex/common/prim/prim_flop.sv \
     $OPENTITAN/prim/rtl/prim_fifo_sync_cnt.sv \
     $OPENTITAN/prim/rtl/prim_fifo_sync.sv \
     $OPENTITAN/prim/rtl/prim_secded_inv_39_32_enc.sv \
+    $OPENTITAN/prim/rtl/prim_secded_inv_39_32_dec.sv \
+    $OPENTITAN/prim/rtl/prim_secded_inv_64_57_enc.sv \
+    $OPENTITAN/prim/rtl/prim_secded_inv_64_57_dec.sv \
+    $OPENTITAN/prim/rtl/prim_alert_sender.sv \
+    $OPENTITAN/prim/rtl/prim_diff_decode.sv \
+    $OPENTITAN/prim/rtl/prim_flop_2sync.sv \
+    $OPENTITAN/prim/rtl/prim_cdc_rand_delay.sv \
+    $OPENTITAN/prim/rtl/prim_sec_anchor_buf.sv \
+    $OPENTITAN/prim/rtl/prim_sec_anchor_flop.sv \
+    $OPENTITAN/prim/rtl/prim_filter_ctr.sv \
+    $OPENTITAN/prim/rtl/prim_intr_hw.sv \
+    $OPENTITAN/prim/rtl/prim_subreg_ex.sv \
+    $OPENTITAN/prim/rtl/prim_subreg.sv \
+]
+
+set rtl_prim_generic [ concat \
+    $OPENTITAN/prim_generic/rtl/prim_generic_clock_gating.sv \
+    $OPENTITAN/prim_generic/rtl/prim_generic_buf.sv \
+    $OPENTITAN/prim_generic/rtl/prim_generic_flop.sv \
 ]
 
 set rtl_tlul [ concat \
@@ -27,6 +59,40 @@ set rtl_tlul [ concat \
     $OPENTITAN/tlul/rtl/tlul_data_integ_enc.sv \
     $OPENTITAN/tlul/rtl/tlul_sram_byte.sv \
     $OPENTITAN/tlul/rtl/tlul_adapter_sram.sv \
+    $OPENTITAN/tlul/rtl/tlul_adapter_host.sv \
+    $OPENTITAN/tlul/rtl/tlul_cmd_intg_chk.sv \
+    $OPENTITAN/tlul/rtl/tlul_cmd_intg_gen.sv \
+    $OPENTITAN/tlul/rtl/tlul_rsp_intg_chk.sv \
+    $OPENTITAN/tlul/rtl/tlul_rsp_intg_gen.sv \
+    $OPENTITAN/tlul/rtl/tlul_data_integ_enc.sv \
+    $OPENTITAN/tlul/rtl/tlul_data_integ_dec.sv \
+]
+
+set rtl_ibex [ concat \
+    $HW/ibex/ibex_tlul.sv \
+    $IBEX/rtl/ibex_top.sv \
+    $IBEX/rtl/ibex_core.sv \
+    $IBEX/rtl/ibex_if_stage.sv \
+    $IBEX/rtl/ibex_id_stage.sv \
+    $IBEX/rtl/ibex_ex_block.sv \
+    $IBEX/rtl/ibex_wb_stage.sv \
+    $IBEX/rtl/ibex_controller.sv \
+    $IBEX/rtl/ibex_decoder.sv \
+    $IBEX/rtl/ibex_compressed_decoder.sv \
+    $IBEX/rtl/ibex_cs_registers.sv \
+    $IBEX/rtl/ibex_load_store_unit.sv \
+    $IBEX/rtl/ibex_counter.sv \
+    $IBEX/rtl/ibex_csr.sv \
+    $IBEX/rtl/ibex_multdiv_fast.sv \
+    $IBEX/rtl/ibex_alu.sv \
+    $IBEX/rtl/ibex_prefetch_buffer.sv \
+    $IBEX/rtl/ibex_fetch_fifo.sv \
+    $IBEX/rtl/ibex_register_file_ff.sv \
+]
+
+set rtl_gpio [ concat \
+    $OPENTITAN/gpio/rtl/gpio.sv \
+    $OPENTITAN/gpio/rtl/gpio_reg_top.sv \
 ]
 
 set rtl_mem [ concat \
