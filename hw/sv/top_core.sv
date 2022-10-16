@@ -8,6 +8,7 @@ module top_core (
     // SPI device interface
     input  logic        spi_sclk,
     input  logic        spi_cs,
+    output logic [1:0]  spi_mode,
     input  logic        spi_sdi0,
     input  logic        spi_sdi1,
     input  logic        spi_sdi2,
@@ -23,14 +24,12 @@ module top_core (
     output logic [31:0] gpio_en_o
 );
 
-    logic  [1:0] spi_mode;
-
-    tlul_pkg::tl_d2h_t core_2_xbar_main;
-    tlul_pkg::tl_h2d_t xbar_main_2_core;
-    tlul_pkg::tl_d2h_t spi_2_xbar_main;
-    tlul_pkg::tl_h2d_t xbar_main_2_spi;
-    tlul_pkg::tl_d2h_t jtag_2_xbar_main;
-    tlul_pkg::tl_h2d_t xbar_main_2_jtag;
+    tlul_pkg::tl_h2d_t core_2_xbar_main;
+    tlul_pkg::tl_d2h_t xbar_main_2_core;
+    tlul_pkg::tl_h2d_t spi_2_xbar_main;
+    tlul_pkg::tl_d2h_t xbar_main_2_spi;
+    tlul_pkg::tl_h2d_t jtag_2_xbar_main;
+    tlul_pkg::tl_d2h_t xbar_main_2_jtag;
 
     tlul_pkg::tl_h2d_t xbar_main_2_instr;
     tlul_pkg::tl_d2h_t instr_2_xbar_main;
@@ -38,6 +37,9 @@ module top_core (
     tlul_pkg::tl_d2h_t data_2_xbar_main;
     tlul_pkg::tl_h2d_t xbar_main_2_peri_device;
     tlul_pkg::tl_d2h_t peri_device_2_xbar_main;
+
+    // remove assignment when connecting new module
+    assign jtag_2_xbar_main = tlul_pkg::TL_H2D_DEFAULT;
 
     ibex_pkg::fetch_enable_t fetch_enable;
     prim_mubi_pkg::mubi4_t   en_ifetch;
@@ -65,7 +67,7 @@ module top_core (
         .tl_peri_device_o   (xbar_main_2_peri_device  ),
         .tl_peri_device_i   (peri_device_2_xbar_main  ),
         
-        .scanmode_i         (prim_mubi_pkg::MuBi4False),
+        .scanmode_i         (prim_mubi_pkg::MuBi4False)
     );
 
     // 1 master
@@ -82,8 +84,8 @@ module top_core (
         .spi_sdi2   (spi_sdi2        ),
         .spi_sdi3   (spi_sdi3        ),
         .spi_sdo0   (spi_sdo0        ),
-        .spi_sdo1   (spi_sdi1        ),
-        .spi_sdo2   (spi_sdi2        ),
+        .spi_sdo1   (spi_sdo1        ),
+        .spi_sdo2   (spi_sdo2        ),
         .spi_sdo3   (spi_sdo3        ),
         .tl_i       (xbar_main_2_spi ),
         .tl_o       (spi_2_xbar_main )
@@ -103,9 +105,20 @@ module top_core (
         .tl_instr_i         (xbar_main_2_instr ),
         .tl_instr_o         (instr_2_xbar_main ),
         .tl_data_i          (xbar_main_2_data  ),
-        .tl_data_o          (data_2_xbar_main  ),
+        .tl_data_o          (data_2_xbar_main  )
     );
 
     // 1 slave
+    peri_device u_peri_device (
+        .clk_i              (clk_i                    ),
+        .rst_ni             (rst_ni                   ),
+
+        .tl_peri_device_i   (xbar_main_2_peri_device  ),
+        .tl_peri_device_o   (peri_device_2_xbar_main  ),
+
+        .gpio_i             (gpio_i                   ),
+        .gpio_o             (gpio_o                   ),
+        .gpio_en_o          (gpio_en_o                )
+    );
 
 endmodule

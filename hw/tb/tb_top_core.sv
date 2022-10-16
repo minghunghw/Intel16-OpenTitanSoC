@@ -6,11 +6,13 @@ module tb;
     logic                       clk_i;
     logic                       rst_ni;
 
+    logic                       fetch_enable_i;
+    logic                       en_ifetch_i;    
+
     // SPI device interface
-    logic                       test_mode;
     logic                       spi_sclk;
     logic                       spi_cs;
-    logic  [1:0]                spi_mode;
+    logic  [ 1:0]               spi_mode;
     logic                       spi_sdi0;
     logic                       spi_sdi1;
     logic                       spi_sdi2;
@@ -20,24 +22,17 @@ module tb;
     logic                       spi_sdo2;
     logic                       spi_sdo3;
 
-    // TL-UL interface
-    tlul_pkg::tl_d2h_t          tl_i;
-    tlul_pkg::tl_h2d_t          tl_o;
+    // GPIO interface
+    logic  [31:0]               gpio_i;
+    logic  [31:0]               gpio_o;
+    logic  [31:0]               gpio_en_o;
+ 
+    logic  [31:0]               pattern[31:0];
+    logic  [ 7:0]               cmd;
+    logic  [31:0]               addr;
+    logic  [31:0]               data;
 
-    int             correct;   
-    logic [ 7:0]    cmd;
-    logic [31:0]    addr;
-    logic [31:0]    tlul_addr;
-    logic [31:0]    wr_data;
-    logic [31:0]    rd_data;
-    logic [31:0]    data;
-    logic           rd_data_valid;
-
-    spi_device_tlul u_spi_device_tlul (
-        .*
-    );
-
-    tb_d2h_stimuli u_tb_d2h_stimuli(
+    top_core u_top_core (
         .*
     );
 
@@ -47,36 +42,45 @@ module tb;
 
     initial begin
         
-        correct = 0;
-        tlul_addr = 200;
-        data = 0;
-        rd_data = 0;
-        test_mode = 1;
-        spi_sclk = 0;
-        spi_cs = 1;
-        spi_sdi0 = 0;
-        spi_sdi1 = 0;
-        spi_sdi2 = 0;
-        spi_sdi3 = 0;
+        fetch_enable_i  = 0;
+        en_ifetch_i     = 0;
+        spi_sclk        = 0;
+        spi_cs          = 1;
+        spi_sdi0        = 0;
+        spi_sdi1        = 0;
+        spi_sdi2        = 0;
+        spi_sdi3        = 0;
+        gpio_i          = 0;
         
         @(negedge clk_i)
         rst_ni      = 1;
 
-        cmd     = 2;   // write mem
-        addr    = 100;
-        wr_data = 100;
-        `SPI_OUTPUT(cmd, addr, wr_data)
+        @(negedge clk_i)
+        $readmemh("../../sw/hex/gpio.hex", pattern);
 
-        #1000;
+        for (int i=0; i<32; i++) begin
+            cmd  = 2;
+            addr = 32'h80 + 4*i;
+            data = pattern[i];
+            `SPI_OUTPUT(cmd, addr, data)
+            #1000
 
-        cmd     = 11;  // read mem
-        addr    = 200;
-        data    = 200;
-        `SPI_INPUT(cmd, addr, rd_data)
+            if (pattern[i] == 32'h00000fff)
+                break;
+        end
 
-        #1000;
+        @(negedge clk_i)
+        fetch_enable_i  = 1;
+        en_ifetch_i     = 1;
 
-        if (correct == 3) begin
+        #100
+
+        @(negedge clk_i)
+        fetch_enable_i  = 0;
+        en_ifetch_i     = 0;
+
+        #100
+        if (gpio_o == 30) begin
             $display("%c[1;32m",27);
             $display("SUCCESS\n");
             $display("%c[0m",27);
@@ -87,20 +91,6 @@ module tb;
         end
     
 	    $finish;
-    end
-
-    always @(posedge tl_o.a_valid) begin
-        if (tl_o.a_address == 100 && tl_o.a_data == 100) begin
-            correct += 1;
-        end else if (tl_o.a_address == 200) begin
-            correct += 1;
-        end
-    end
-
-    always @(posedge rd_data_valid) begin
-        if (rd_data == 200) begin
-            correct += 1;
-        end
     end
 
 endmodule

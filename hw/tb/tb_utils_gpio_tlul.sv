@@ -17,7 +17,7 @@ module tb;
     logic [31:0] cio_gpio_o;
     logic [31:0] cio_gpio_en_o;
 
-    gpio u_gpio (
+    gpio_tlul u_gpio_tlul (
         .*
     );
 
@@ -37,9 +37,11 @@ module tb;
         @(negedge clk_i)
         invoke_gpio(tl_i);
 
-        #200;
+        @(negedge clk_i)
+        tl_i = tlul_pkg::TL_H2D_DEFAULT;
+
         wait (tl_o.d_valid == 1);
-        if (tl_o.d_data == 32'hffff_ffff) begin
+        if (cio_gpio_o == 32'hffff_ffff) begin
             $display("%c[1;32m",27);
             $display("SUCCESS\n");
             $display("%c[0m",27);
