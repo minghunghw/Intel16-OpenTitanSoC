@@ -7,10 +7,10 @@ module peri_device (
     output tlul_pkg::tl_d2h_t tl_peri_device_o,
 
     // GPIO interface
-    input        [31:0] gpio_i,
-    output logic [31:0] gpio_o,
-    output logic [31:0] gpio_en_o
+    output logic [31:0] gpio_o
 );
+
+    tlul_pkg::tl_h2d_t  tl_peri_device_i_enc;
 
     tlul_pkg::tl_h2d_t  xbar_2_uart;
     tlul_pkg::tl_d2h_t  uart_2_xbar;
@@ -30,16 +30,24 @@ module peri_device (
     assign plic_2_xbar = tlul_pkg::TL_D2H_DEFAULT;
 
     logic [31:0] intr_gpio;
+    logic [31:0] gpio_i;
+    logic [31:0] gpio_en_o;
+
     prim_alert_pkg::alert_rx_t [gpio_reg_pkg::NumAlerts-1:0] alert_rx;
     prim_alert_pkg::alert_tx_t [gpio_reg_pkg::NumAlerts-1:0] alert_tx;
 
     assign alert_rx = prim_alert_pkg::ALERT_RX_DEFAULT;
 
+    tlul_cmd_intg_gen u_tlul_cmd_intg_gen (
+        .tl_i   (tl_peri_device_i     ),
+        .tl_o   (tl_peri_device_i_enc )
+    );
+
     xbar_periph u_xbar_periph (
         .clk_i          (clk_i                     ),
         .rst_ni         (rst_ni                    ),
         
-        .tl_peri_host_i (tl_peri_device_i          ),
+        .tl_peri_host_i (tl_peri_device_i_enc      ),
         .tl_peri_host_o (tl_peri_device_o          ),
 
         .tl_uart_o      (xbar_2_uart               ),
@@ -56,7 +64,7 @@ module peri_device (
         .scanmode_i     (prim_mubi_pkg::MuBi4False )
     );
 
-    gpio_tlul u_gpio_tlul (
+    gpio u_gpio (
         .clk_i          (clk_i            ),
         .rst_ni         (rst_ni           ),
         .tl_i           (xbar_2_gpio      ),

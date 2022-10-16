@@ -66,7 +66,6 @@ $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
 
 // gpio
 ////////////////////////////////////////////////////////////////////////////////
--y $HW/gpio
 -y $OPENTITAN/gpio/rtl
 
 // top_core

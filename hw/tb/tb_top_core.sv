@@ -23,9 +23,7 @@ module tb;
     logic                       spi_sdo3;
 
     // GPIO interface
-    logic  [31:0]               gpio_i;
     logic  [31:0]               gpio_o;
-    logic  [31:0]               gpio_en_o;
  
     logic  [31:0]               pattern[31:0];
     logic  [ 7:0]               cmd;
@@ -50,7 +48,6 @@ module tb;
         spi_sdi1        = 0;
         spi_sdi2        = 0;
         spi_sdi3        = 0;
-        gpio_i          = 0;
         
         @(negedge clk_i)
         rst_ni      = 1;

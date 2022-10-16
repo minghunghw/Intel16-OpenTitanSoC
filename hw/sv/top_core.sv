@@ -19,9 +19,7 @@ module top_core (
     output logic        spi_sdo3,
 
     // GPIO interface
-    input        [31:0] gpio_i,
-    output logic [31:0] gpio_o,
-    output logic [31:0] gpio_en_o
+    output logic [31:0] gpio_o
 );
 
     tlul_pkg::tl_h2d_t core_2_xbar_main;
@@ -116,9 +114,7 @@ module top_core (
         .tl_peri_device_i   (xbar_main_2_peri_device  ),
         .tl_peri_device_o   (peri_device_2_xbar_main  ),
 
-        .gpio_i             (gpio_i                   ),
-        .gpio_o             (gpio_o                   ),
-        .gpio_en_o          (gpio_en_o                )
+        .gpio_o             (gpio_o                   )
     );
 
 endmodule
