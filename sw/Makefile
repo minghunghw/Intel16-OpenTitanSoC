@@ -2,7 +2,7 @@ COMMON = common
 ASM = src_asm
 C = src_c
 HEX = hex
-TESTDATA = ../sim/test_data
+TESTDATA = test_data
 SRC_C =
 SRC_S = gpio
 

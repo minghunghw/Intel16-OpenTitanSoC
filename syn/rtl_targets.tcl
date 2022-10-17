@@ -1,6 +1,7 @@
 # RTL filelists
 #------------------
 set HW          "../../hw/sv"
+set IP          "../../ip"
 set OPENTITAN   "../../ip/opentitan/hw/ip"
 set IBEX 	   	"../../ip/opentitan/hw/vendor/lowrisc_ibex"
 set DV          "../../ip/opentitan/hw/dv"
@@ -43,8 +44,11 @@ set rtl_prim [ concat \
     $OPENTITAN/prim/rtl/prim_sec_anchor_flop.sv \
     $OPENTITAN/prim/rtl/prim_filter_ctr.sv \
     $OPENTITAN/prim/rtl/prim_intr_hw.sv \
-    $OPENTITAN/prim/rtl/prim_subreg_ex.sv \
+    $OPENTITAN/prim/rtl/prim_subreg_ext.sv \
     $OPENTITAN/prim/rtl/prim_subreg.sv \
+    $OPENTITAN/prim/rtl/prim_subreg_arb.sv \
+    $OPENTITAN/prim/rtl/prim_reg_we_check.sv \
+    $OPENTITAN/prim/rtl/prim_onehot_check.sv \
 ]
 
 set rtl_prim_generic [ concat \
@@ -60,6 +64,7 @@ set rtl_tlul [ concat \
     $OPENTITAN/tlul/rtl/tlul_sram_byte.sv \
     $OPENTITAN/tlul/rtl/tlul_adapter_sram.sv \
     $OPENTITAN/tlul/rtl/tlul_adapter_host.sv \
+    $OPENTITAN/tlul/rtl/tlul_adapter_reg.sv \
     $OPENTITAN/tlul/rtl/tlul_cmd_intg_chk.sv \
     $OPENTITAN/tlul/rtl/tlul_cmd_intg_gen.sv \
     $OPENTITAN/tlul/rtl/tlul_rsp_intg_chk.sv \
@@ -97,4 +102,26 @@ set rtl_gpio [ concat \
 
 set rtl_mem [ concat \
     $HW/mem/mem_tlul.sv \
+]
+
+set rtl_spi_device [ concat \
+    $HW/spi/spi_device_cmd_parser.sv \
+    $HW/spi/spi_device_controller.sv \
+    $HW/spi/spi_device_dc_fifo.sv \
+    $HW/spi/spi_device_regs.sv \
+    $HW/spi/spi_device_rx.sv \
+    $HW/spi/spi_device_tx.sv \
+    $HW/spi/spi_device_syncro.sv \
+    $HW/spi/spi_device_tlul_plug.sv \
+    $HW/spi/spi_device_tlul.sv \
+]
+
+set rtl_dc_fifo [ concat \
+    $IP/dc_fifo/dc_data_buffer.sv \
+    $IP/dc_fifo/dc_full_detector.sv \
+    $IP/dc_fifo/dc_synchronizer.sv \
+    $IP/dc_fifo/dc_token_ring_fifo_din.sv \
+    $IP/dc_fifo/dc_token_ring_fifo_dout.sv \
+    $IP/dc_fifo/dc_token_ring.sv \
+    $IP/dc_fifo/onehot_to_bin.sv \
 ]

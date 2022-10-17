@@ -64,7 +64,7 @@ source modules.sh
 | GPIO        | 0x3001_0000   | 0x3001_ffff |
 | SPI         | 0x3002_0000   | 0x3002_ffff |
 | I2C         | 0x3003_0000   | 0x3003_ffff |
-| PLIC        | 0x3005_0000   | 0x3004_ffff |
+| PLIC        | 0x3005_0000   | 0x3005_ffff |
 
 # Running simulations
 
