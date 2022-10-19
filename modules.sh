@@ -7,7 +7,7 @@ module use /afs/eecs.umich.edu/cadre/software/modules
 module use /afs/eecs.umich.edu/cadre/software/openroad/modules
 
 # Load modules
-# module load riscv/9.2
+module load riscv/9.2
 module load devtoolset-el7/8
 module load cmake/3.14.0
 module load boost
@@ -27,7 +27,7 @@ module load anaconda3/2018.12
 module load klayout-el7/0.27.3
 
 # Load commercial tools
-# module load calibre/2022.2_15.10_aoi
+module load calibre/2022.2_15.10_aoi
 
 # Load OpenROAD-flow-srcipts tool
 if [ -d "ip/OpenROAD-flow-scripts/tools/install" ]; then

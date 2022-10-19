@@ -19,7 +19,6 @@ ${NICE} make install -C tools/yosys -j "${PROC}" ${YOSYS_ARGS} TCL_VERSION=tcl8.
 \
 Now you can build all the tools.
 ```
-./build_openroad.sh --clean-force
 ./build_openroad.sh --local --latest --nice
 ```
 
