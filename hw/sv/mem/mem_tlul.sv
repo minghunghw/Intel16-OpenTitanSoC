@@ -27,6 +27,7 @@ always_ff @(posedge clk_i or negedge rst_ni) begin
     end
 end 
     
+// 8K bytes of memory
 `ifdef SYN
 ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h u_sram (
     .clk            (clk_i  ), //Input Clock
