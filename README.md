@@ -35,7 +35,7 @@ Clone the repo and init all submodules
 ```
 git clone git@github.com:minghungumich/Intel16-OpenTitanSoC.git
 cd Intel16-OpenTitanSoC
-./gitmodules_init.sh
+./tools.sh init
 ```
 
 ### Initialize vlsipool environment (K machine only)
