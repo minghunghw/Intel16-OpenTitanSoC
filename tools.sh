@@ -6,6 +6,7 @@ if [ $1 == "init" ]; then
 elif [ $1 == "update" ]; then
     # update all submodules
     git submodule update --remote --merge --recursive
+elif [ $1 == "commit" ]; then
     git add --all :/
     git commit -m "update submodule"
     git push
@@ -17,5 +18,5 @@ elif [ $1 == "orfs" ]; then
     git submodule foreach --recursive git clean -x -d --force
     ./build_openroad.sh --local --latest --nice
 else
-    echo "Usage: ./tools.sh [init|update|orfs]"
+    echo "Usage: ./tools.sh [init|update|commit|orfs]"
 fi
