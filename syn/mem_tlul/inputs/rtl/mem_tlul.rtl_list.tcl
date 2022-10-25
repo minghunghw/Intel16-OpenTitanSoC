@@ -1,6 +1,4 @@
 source ../rtl_targets.tcl
 
-analyze -f sverilog -define SYN -vcs $rtl_packages
-analyze -f sverilog -define SYN -vcs $rtl_prim
-analyze -f sverilog -define SYN -vcs $rtl_tlul
-analyze -f sverilog -define SYN -vcs $rtl_mem
+analyze -f sverilog -define SYN $rtl_packages
+analyze -f sverilog -define SYN $rtl_mem

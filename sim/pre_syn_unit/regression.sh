@@ -6,6 +6,7 @@ TESTS="             \
     gpio            \
     ibex_tlul       \
     mem_tlul        \
+    peri_device     \
     spi_device_tlul \
     xbar_main       \
     xbar_2to1       \

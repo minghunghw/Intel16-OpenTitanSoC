@@ -3,10 +3,13 @@
 # ==============================================================================
 
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
-DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
-# DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
+# DESIGN_CONFIG=./designs/intel16/cpu_cluster/config.mk
 # DESIGN_CONFIG=./designs/intel16/gpio/config.mk
+# DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
+# DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
+DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
+# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk

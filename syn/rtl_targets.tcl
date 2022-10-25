@@ -1,5 +1,3 @@
-# RTL filelists
-#------------------
 set HW          "../../hw/sv"
 set IP          "../../ip"
 set OPENTITAN   "../../ip/opentitan/hw/ip"
@@ -24,6 +22,9 @@ set rtl_packages [ concat \
     $OPENTITAN/gpio/rtl/gpio_reg_pkg.sv \
     $IBEX/rtl/ibex_pkg.sv \
     $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv \
+    $IP/xbar/rtl/tl_main_pkg.sv \
+    $IP/xbar/rtl/tl_periph_pkg.sv \
+    $IP/xbar/rtl/tl_1to2_pkg.sv \
 ]
 
 set rtl_prim [ concat \
@@ -49,6 +50,7 @@ set rtl_prim [ concat \
     $OPENTITAN/prim/rtl/prim_subreg_arb.sv \
     $OPENTITAN/prim/rtl/prim_reg_we_check.sv \
     $OPENTITAN/prim/rtl/prim_onehot_check.sv \
+    $OPENTITAN/prim/rtl/prim_arbiter_ppc.sv \
 ]
 
 set rtl_prim_generic [ concat \
@@ -59,8 +61,7 @@ set rtl_prim_generic [ concat \
 
 set rtl_tlul [ concat \
     $OPENTITAN/tlul/rtl/tlul_err.sv \
-    $OPENTITAN/tlul/rtl/tlul_rsp_intg_gen.sv \
-    $OPENTITAN/tlul/rtl/tlul_data_integ_enc.sv \
+    $OPENTITAN/tlul/rtl/tlul_err_resp.sv \
     $OPENTITAN/tlul/rtl/tlul_sram_byte.sv \
     $OPENTITAN/tlul/rtl/tlul_adapter_sram.sv \
     $OPENTITAN/tlul/rtl/tlul_adapter_host.sv \
@@ -71,6 +72,9 @@ set rtl_tlul [ concat \
     $OPENTITAN/tlul/rtl/tlul_rsp_intg_gen.sv \
     $OPENTITAN/tlul/rtl/tlul_data_integ_enc.sv \
     $OPENTITAN/tlul/rtl/tlul_data_integ_dec.sv \
+    $OPENTITAN/tlul/rtl/tlul_socket_m1.sv \
+    $OPENTITAN/tlul/rtl/tlul_socket_1n.sv \
+    $OPENTITAN/tlul/rtl/tlul_fifo_sync.sv \
 ]
 
 set rtl_ibex [ concat \
@@ -93,15 +97,33 @@ set rtl_ibex [ concat \
     $IBEX/rtl/ibex_prefetch_buffer.sv \
     $IBEX/rtl/ibex_fetch_fifo.sv \
     $IBEX/rtl/ibex_register_file_ff.sv \
+    $rtl_prim \
+    $rtl_prim_generic \
+    $rtl_tlul \
 ]
 
 set rtl_gpio [ concat \
     $OPENTITAN/gpio/rtl/gpio.sv \
     $OPENTITAN/gpio/rtl/gpio_reg_top.sv \
+    $rtl_prim \
+    $rtl_prim_generic \
+    $rtl_tlul \
 ]
 
 set rtl_mem [ concat \
     $HW/mem/mem_tlul.sv \
+    $rtl_prim \
+    $rtl_tlul \
+]
+
+set rtl_dc_fifo [ concat \
+    $IP/dc_fifo/dc_data_buffer.sv \
+    $IP/dc_fifo/dc_full_detector.sv \
+    $IP/dc_fifo/dc_synchronizer.sv \
+    $IP/dc_fifo/dc_token_ring_fifo_din.sv \
+    $IP/dc_fifo/dc_token_ring_fifo_dout.sv \
+    $IP/dc_fifo/dc_token_ring.sv \
+    $IP/dc_fifo/onehot_to_bin.sv \
 ]
 
 set rtl_spi_device [ concat \
@@ -114,14 +136,38 @@ set rtl_spi_device [ concat \
     $HW/spi/spi_device_syncro.sv \
     $HW/spi/spi_device_tlul_plug.sv \
     $HW/spi/spi_device_tlul.sv \
+    $rtl_prim \
+    $rtl_tlul \
+    $rtl_dc_fifo \
 ]
 
-set rtl_dc_fifo [ concat \
-    $IP/dc_fifo/dc_data_buffer.sv \
-    $IP/dc_fifo/dc_full_detector.sv \
-    $IP/dc_fifo/dc_synchronizer.sv \
-    $IP/dc_fifo/dc_token_ring_fifo_din.sv \
-    $IP/dc_fifo/dc_token_ring_fifo_dout.sv \
-    $IP/dc_fifo/dc_token_ring.sv \
-    $IP/dc_fifo/onehot_to_bin.sv \
+set rtl_xbar [ concat \
+    $IP/xbar/rtl/xbar_1to2.sv \
+    $IP/xbar/rtl/xbar_2to1.sv \
+    $IP/xbar/rtl/xbar_main.sv \
+    $IP/xbar/rtl/xbar_periph.sv \
 ]
+
+set rtl_peri_device [ concat \
+    $HW/peri_device.sv \
+    $rtl_xbar \
+    $rtl_gpio \
+]
+set rtl_peri_device [lsort -unique $rtl_peri_device]
+
+set rtl_cpu_cluster [ concat \
+    $HW/cpu_cluster.sv \
+    $rtl_xbar \
+    $rtl_ibex \
+    $rtl_mem \
+]
+set rtl_cpu_cluster [lsort -unique $rtl_cpu_cluster]
+
+set rtl_top_core [ concat \
+    $HW/top_core.sv \
+    $rtl_xbar \
+    $rtl_spi_device \
+    $rtl_peri_device \
+    $rtl_cpu_cluster \
+]
+set rtl_top_core [lsort -unique $rtl_top_core]
