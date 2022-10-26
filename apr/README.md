@@ -34,3 +34,28 @@ If you want to make sure you install successfully, run the design flow.
 cd flow
 make
 ```
+
+### Tool update
+-----------------------------------------------------------
+
+If you want to update the version of OpenROAD and Yosys, run on top of the repository
+```
+./tool.sh --update --orfs
+```
+
+### How to add customized design
+-----------------------------------------------------------
+
+- Add the design config into `Makefile`.
+- Create a folder with your design name at least with the following structure.
+```
+└── designs
+    └── intel16
+    |   └── <design_name>
+    |       ├── config.mk
+    |       └── constraint.sdc   
+    └── src
+        └── <design_name>
+```
+- `config.mk`: design configuration
+- `constraint.sdc`: design constraints
