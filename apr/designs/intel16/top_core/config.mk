@@ -11,3 +11,4 @@ export DIE_AREA    = 0 0 500 500
 export CORE_AREA   = 1.26 1.89 498 498
 
 export PLACE_DENSITY = uniform
+export ABC_CLOCK_PERIOD_IN_PS = 1000

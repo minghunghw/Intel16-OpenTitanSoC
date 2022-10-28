@@ -8,3 +8,4 @@ export ADDITIONAL_LEFS 	+= ../ip/memory/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d
 export ADDITIONAL_GDS	+= ../ip/memory/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h/gds/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h.gds
 
 export PLACE_DENSITY = uniform
+export ABC_CLOCK_PERIOD_IN_PS = 1000
