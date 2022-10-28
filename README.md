@@ -9,11 +9,13 @@ Major directories are listed below, the diagram is generated with `tree`:
 - `apr` : build directory for place & route
 ```
 ├── sim
-│   ├── pre_syn_unit
-│   ├── pre_syn
-│   ├── post_syn
+│   ├── common
 │   ├── post_apr
-│   └── test_data
+│   ├── post_apr_unit
+│   ├── post_syn
+│   ├── post_syn_unit
+│   ├── pre_syn
+│   └── pre_syn_unit
 ├── src_hw
 │   ├── tb
 │   └── v
@@ -21,7 +23,8 @@ Major directories are listed below, the diagram is generated with `tree`:
 │   ├── common
 │   ├── hex
 │   ├── src_asm
-│   └── src_c
+│   ├── src_c
+│   └── test_data
 ├── syn
 └── apr
 ```

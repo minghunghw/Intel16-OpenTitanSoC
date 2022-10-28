@@ -171,3 +171,10 @@ set rtl_top_core [ concat \
     $rtl_cpu_cluster \
 ]
 set rtl_top_core [lsort -unique $rtl_top_core]
+
+set rtl_top_chip [ concat \
+    $HW/top_chip.sv \
+    $HW/padring.sv \
+    $rtl_top_core \
+]
+set rtl_top_chip [lsort -unique $rtl_top_chip]

@@ -7,13 +7,15 @@ export IP           = ../../ip
 export MEM		  	= $(IP)/memory/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h/rtl
 export OPENTITAN    = $(IP)/opentitan/hw/ip
 export IBEX 	   	= $(IP)/opentitan/hw/vendor/lowrisc_ibex
+export PAD		  	= ../../apr/platforms/intel16/pad/rtl
 export NETLIST      = ../../syn/$(TEST)/netlist
 export LIB          = /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/lib224_b15_7t_108pp_pdk090_r1v0p0_fv
 
 VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
 	+vc +v2k -Mupdate -line -full64 -assert svaext \
 	-override_timescale=1ns/1ps +nospecify +notimingcheck\
-	+define+INTC_NO_PWR_PINS +define+INTCNOPWR
+	+define+INTC_NO_PWR_PINS +define+INTCNOPWR\
+	+define+INTEL_NO_PWR_PINS +define+INTEL_EMULATION
 
 all:    simv
 	./simv | tee vcs.log
