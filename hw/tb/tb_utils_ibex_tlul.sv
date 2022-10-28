@@ -35,7 +35,7 @@ module tb;
         .irq_external_i (1'b0                                ),
         .irq_nm_i       (1'b0                                ),
         .debug_req_i    (1'b0                                ),
-        .fetch_enable_i (ibex_pkg::FetchEnableOn             ),
+        .fetch_enable_i (ibex_pkg::IbexMuBiOn                ),
         .scan_rst_ni    (1'b1                                ),
         .scanmode_i     (prim_mubi_pkg::MuBi4False           ),
         .*

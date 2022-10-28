@@ -5,8 +5,8 @@ module tb;
     logic               clk_i;
     logic               rst_ni;
 
-    ibex_pkg::fetch_enable_t fetch_enable_i;
-    prim_mubi_pkg::mubi4_t   en_ifetch_i;
+    ibex_pkg::ibex_mubi_t   fetch_enable_i;
+    prim_mubi_pkg::mubi4_t  en_ifetch_i;
 
     tlul_pkg::tl_d2h_t tl_core_i;
     tlul_pkg::tl_h2d_t tl_core_o;
@@ -30,7 +30,7 @@ module tb;
 
     initial begin
         
-        fetch_enable_i  = ibex_pkg::FetchEnableOff;
+        fetch_enable_i  = ibex_pkg::IbexMuBiOff;
         en_ifetch_i     = prim_mubi_pkg::MuBi4False;
         tl_core_i       = tlul_pkg::TL_D2H_DEFAULT;
         tl_instr_i      = tlul_pkg::TL_H2D_DEFAULT;
@@ -55,13 +55,13 @@ module tb;
 
         @(negedge clk_i)
         tl_instr_i = tlul_pkg::TL_H2D_DEFAULT;
-        fetch_enable_i = ibex_pkg::FetchEnableOn;
+        fetch_enable_i = ibex_pkg::IbexMuBiOn;
         en_ifetch_i = prim_mubi_pkg::MuBi4True;
 
         #100
 
         @(negedge clk_i)
-        fetch_enable_i = ibex_pkg::FetchEnableOff;
+        fetch_enable_i = ibex_pkg::IbexMuBiOff;
         en_ifetch_i = prim_mubi_pkg::MuBi4False;
 
         wait (tl_core_o.a_valid == 1);

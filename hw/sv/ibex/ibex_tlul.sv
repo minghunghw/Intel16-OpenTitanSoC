@@ -52,7 +52,7 @@ module ibex_tlul import ibex_pkg::*; #(
     output  logic               debug_fault_seen_o,
 
     // CPU Control Signals
-    input   fetch_enable_t      fetch_enable_i,
+    input   ibex_mubi_t         fetch_enable_i,
     output  logic               alert_minor_o,
     output  logic               alert_major_internal_o,
     output  logic               alert_major_bus_o, 

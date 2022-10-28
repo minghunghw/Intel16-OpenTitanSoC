@@ -39,10 +39,10 @@ module top_core (
     // remove assignment when connecting new module
     assign jtag_2_xbar_main = tlul_pkg::TL_H2D_DEFAULT;
 
-    ibex_pkg::fetch_enable_t fetch_enable;
-    prim_mubi_pkg::mubi4_t   en_ifetch;
+    ibex_pkg::ibex_mubi_t   fetch_enable;
+    prim_mubi_pkg::mubi4_t  en_ifetch;
 
-    assign fetch_enable = (fetch_enable_i) ? ibex_pkg::FetchEnableOn : ibex_pkg::FetchEnableOff;
+    assign fetch_enable = (fetch_enable_i) ? ibex_pkg::IbexMuBiOn : ibex_pkg::IbexMuBiOff;
     assign en_ifetch    = (en_ifetch_i)    ? prim_mubi_pkg::MuBi4True : prim_mubi_pkg::MuBi4False;
 
     // 3 master, 3 slave

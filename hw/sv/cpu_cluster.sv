@@ -2,7 +2,7 @@ module cpu_cluster (
     input  clk_i,
     input  rst_ni,
 
-    input  ibex_pkg::fetch_enable_t fetch_enable_i,
+    input  ibex_pkg::ibex_mubi_t    fetch_enable_i,
     input  prim_mubi_pkg::mubi4_t   en_ifetch_i,
 
     // Host interface
