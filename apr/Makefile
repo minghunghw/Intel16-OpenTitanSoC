@@ -5,12 +5,12 @@
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
 # DESIGN_CONFIG=./designs/intel16/cpu_cluster/config.mk
 # DESIGN_CONFIG=./designs/intel16/gpio/config.mk
-# DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
+DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
-DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
@@ -607,7 +607,8 @@ $(GDS_MERGED_FILE): $(RESULTS_DIR)/6_final.def $(OBJECTS_DIR)/klayout.lyt $(GDSO
 	        -r $(UTILS_DIR)/def2stream.py) 2>&1 | tee $(LOG_DIR)/6_1_merge.log
 
 $(RESULTS_DIR)/6_final.v: $(LOG_DIR)/6_report.log
-	rm -rf netlist/$(DESIGN_NAME) && mkdir netlist/$(DESIGN_NAME)
+	rm -rf netlist/$(DESIGN_NAME)
+	mkdir netlist/$(DESIGN_NAME)
 	cp $@ netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sv
 
 $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
