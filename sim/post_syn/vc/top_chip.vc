@@ -48,8 +48,6 @@ $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
 -v $LIB/seq_lvt/verilog/lib224_b15_7t_108pp_seq_lvt.v
 -v $LIB/seq_ulvt/verilog/lib224_b15_7t_108pp_seq_ulvt.v
 -v $LIB/seq_lplvt/verilog/lib224_b15_7t_108pp_seq_lplvt.v
--v $LIB/spcl_nom/verilog/lib224_b15_7t_108pp_spcl_nom.v
--v ../common/dummy.v
 
 // netlist
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-localparam SPI_CLK_PERIOD = 100;
+localparam SPI_CLK_PERIOD = 40;
 
 `define SPI_TX(cycle, pattern)              \
     for (int i=cycle-1; i>=0; i--) begin    \

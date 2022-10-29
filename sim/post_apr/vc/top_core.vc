@@ -1,0 +1,64 @@
++libext+.sv+.svh
+
+// package
+////////////////////////////////////////////////////////////////////////////////
+$HW/top_pkg.sv
+$OPENTITAN/prim/rtl/prim_alert_pkg.sv
+$OPENTITAN/prim/rtl/prim_cipher_pkg.sv
+$OPENTITAN/prim/rtl/prim_util_pkg.sv
+$OPENTITAN/prim/rtl/prim_secded_pkg.sv
+$OPENTITAN/prim/rtl/prim_subreg_pkg.sv
+$OPENTITAN/prim/rtl/prim_mubi_pkg.sv
+$OPENTITAN/prim/rtl/prim_ram_1p_pkg.sv
+$OPENTITAN/tlul/rtl/tlul_pkg.sv
+$OPENTITAN/gpio/rtl/gpio_reg_pkg.sv
+$IP/xbar/rtl/tl_1to2_pkg.sv
+$IP/xbar/rtl/tl_main_pkg.sv
+$IP/xbar/rtl/tl_periph_pkg.sv
+$IBEX/rtl/ibex_pkg.sv
+$IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
++incdir+$TB/pkg
+
+// prim
+////////////////////////////////////////////////////////////////////////////////
+-y $IBEX/dv/uvm/core_ibex/common/prim
+-y $OPENTITAN/prim/rtl
++incdir+$OPENTITAN/prim/rtl
+
+// prim_generic
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/prim_generic/rtl
+
+// tlul
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/tlul/rtl
+
+// stdcell
+////////////////////////////////////////////////////////////////////////////////
+-v $LIB/base_lp/verilog/lib224_b15_7t_108pp_base_lp.v
+-v $LIB/base_lvt/verilog/lib224_b15_7t_108pp_base_lvt.v
+-v $LIB/base_hp/verilog/lib224_b15_7t_108pp_base_hp.v
+-v $LIB/base_ulp/verilog/lib224_b15_7t_108pp_base_ulp.v
+-v $LIB/base_nom/verilog/lib224_b15_7t_108pp_base_nom.v
+-v $LIB/base_ulvt/verilog/lib224_b15_7t_108pp_base_ulvt.v
+-v $LIB/base_lplvt/verilog/lib224_b15_7t_108pp_base_lplvt.v
+-v $LIB/seq_ulp/verilog/lib224_b15_7t_108pp_seq_ulp.v
+-v $LIB/seq_lp/verilog/lib224_b15_7t_108pp_seq_lp.v
+-v $LIB/seq_hp/verilog/lib224_b15_7t_108pp_seq_hp.v
+-v $LIB/seq_lvt/verilog/lib224_b15_7t_108pp_seq_lvt.v
+-v $LIB/seq_ulvt/verilog/lib224_b15_7t_108pp_seq_ulvt.v
+-v $LIB/seq_lplvt/verilog/lib224_b15_7t_108pp_seq_lplvt.v
+-v $LIB/spcl_nom/verilog/lib224_b15_7t_108pp_spcl_nom.v
+-v ../common/dummy.v
+
+// netlist
+////////////////////////////////////////////////////////////////////////////////
+-y $NETLIST
+
+// mem
+////////////////////////////////////////////////////////////////////////////////
+-v $MEM/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h.sv
+
+// testbench
+////////////////////////////////////////////////////////////////////////////////
+$TB/tb_top_core.sv
