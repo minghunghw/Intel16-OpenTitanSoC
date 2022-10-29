@@ -60,7 +60,7 @@ module tb;
             addr = 32'h80 + 4*i;
             data = pattern[i];
             `SPI_OUTPUT(cmd, addr, data)
-            #1000
+            #(SPI_CLK_PERIOD*10);
 
             if (pattern[i] == 32'h00000fff)
                 break;
@@ -70,13 +70,13 @@ module tb;
         fetch_enable_i_PAD  = 1;
         en_ifetch_i_PAD     = 1;
 
-        #100
+        #(CLK_PERIOD*10);
 
         @(negedge clk_i_PAD)
         fetch_enable_i_PAD  = 0;
         en_ifetch_i_PAD     = 0;
 
-        #100
+        #(CLK_PERIOD*10);
         if (gpio_o_PAD == 30) begin
             $display("%c[1;32m",27);
             $display("SUCCESS\n");
