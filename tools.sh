@@ -8,7 +8,9 @@ Usage: $0 [-h|--help] [-i|--init] [-u|--update] [-c|--commit] [-o|--orfs]
 Options:
     -h, --help              Print this help message.
 
-    -i, --init              Initialize all submodules.
+    -i, --init              Initialize all submodules except for private third party.
+
+    -a, --all               Initialize all submodules.
 
     -u, --update            Update all submodules.
 
@@ -26,6 +28,9 @@ while (( "$#" )); do
             ;;
         -i|--init)
             INIT=1
+            ;;
+        -a|--all)
+            ALL=1
             ;;
         -u|--update)
             UPDATE=1
@@ -46,6 +51,11 @@ while (( "$#" )); do
 done
 
 if [ ! -z "${INIT+x}" ]; then
+    # init all submodules
+    git -c submodule."apr/private_tool_scripts".update=none submodule update --init --recursive
+fi
+
+if [ ! -z "${ALL+x}" ]; then
     # init all submodules
     git submodule update --init --recursive
 fi
