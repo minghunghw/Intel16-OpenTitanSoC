@@ -3,7 +3,7 @@
 function usage() {
 cat << EOF
 
-Usage: $0 [-h|--help] [-i|--init] [-u|--update] [-c|--commit] [-o|--orfs]
+Usage: $0 [-h|--help] [-i|--init] [-a|--all] [-u|--update] [-c|--commit] [-o|--orfs]
 
 Options:
     -h, --help              Print this help message.
@@ -51,7 +51,7 @@ while (( "$#" )); do
 done
 
 if [ ! -z "${INIT+x}" ]; then
-    # init all submodules
+    # init all submodules except for private third party
     git -c submodule."apr/private_tool_scripts".update=none submodule update --init --recursive
 fi
 
