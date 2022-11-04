@@ -4,9 +4,8 @@ Footprint definition {
   Type Flipchip
 
   die_area {0 0 1962.36 2042.46}
-  core_area {180.012 180.096 3819.964 3819.712}
+  core_area {16.2 17.64 1899.72 1979.46}
 
-  SIZE 1883.52 BY 1961.82 ;
   power_nets  "VDD vccio vcc"
   ground_nets "VSS vssp vssb"
 

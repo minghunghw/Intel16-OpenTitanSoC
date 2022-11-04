@@ -9,8 +9,8 @@
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
-DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
-# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+# DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
+DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
@@ -281,13 +281,6 @@ $(WRAPPED_LEFS):
 $(WRAPPED_LIBS):
 	mkdir -p $(OBJECTS_DIR)/lib
 	sed 's/library(\(.*\))/library(\1_mod)/g' $(filter %$(notdir $(@:_mod.lib=.lib)),$(WRAP_LIBS)) | sed 's/cell(\(.*\))/cell(\1_mod)/g' > $@
-
-# Create duplicate netlist for incremental synthesis
-# ==============================================================================
-copy_20ns:
-	@mkdir -p $(OBJECTS_DIR)/netlist
-	cp ../syn/$(DESIGN_NAME)/netlist/$(DESIGN_NAME).sv designs/intel16/$(DESIGN_NAME)/20ns/$(DESIGN_NAME).sv
-	cp ../syn/$(DESIGN_NAME)/netlist/$(DESIGN_NAME).sdc designs/intel16/$(DESIGN_NAME)/20ns/$(DESIGN_NAME).sdc
 
 # ==============================================================================
 #  ______   ___   _ _____ _   _ _____ ____ ___ ____
