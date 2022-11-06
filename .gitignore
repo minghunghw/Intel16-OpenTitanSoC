@@ -33,13 +33,22 @@ alib*
 # OpenROAD-flow-script
 objects
 results
+
+# Submit
 submit
 *.tar.gz
+
+# DRC
 drc
-lvs
 antenna
 density
 hveos
 layer
 iopad
 template
+
+#LVS
+lvs
+
+#StarRC
+extraction

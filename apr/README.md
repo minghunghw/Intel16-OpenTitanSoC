@@ -83,6 +83,14 @@ If you just want run one of them, type
 make icv_<drc/antenna/density/layer/iopad/template/lvs>
 ```
 
+### How to run RC extraction
+-----------------------------------------------------------
+
+We use Synopsys StarRC to generate spef files for STA flow. If you want to run extraction, type
+```
+make extraction
+```
+
 ### How to generate submission oasis
 -----------------------------------------------------------
 

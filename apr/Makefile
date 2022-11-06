@@ -621,6 +621,7 @@ clean_finish:
 
 include calibre/calibre.mk
 include icv/icv.mk
+include starrc/starrc.mk
 
 # ==============================================================================
 #  __  __ ___ ____   ____
@@ -649,6 +650,7 @@ nuke: clean_test clean_issues
 	rm -rf ./results ./logs ./reports ./objects ./submit 
 	rm -rf ./calibre/drc ./calibre/lvs ./calibre/antenna ./calibre/density ./calibre/hveos 
 	rm -rf ./icv/drc ./icv/lvs ./icv/antenna ./icv/density ./icv/layer ./icv/iopad ./icv/template
+	rm -rf ./starrc/extraction
 	rm -rf layer_*.mps macrocell.list *best.plt *_pdn.def dummy.guide
 	rm -rf *.rpt *.rpt.old *.def.v pin_dumper.log
 	rm -rf versions.txt *.tar.gz
