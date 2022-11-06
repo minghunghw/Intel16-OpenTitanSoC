@@ -10,7 +10,7 @@
 # DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
-DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
@@ -614,44 +614,13 @@ $(RESULTS_DIR)/6_final.v: $(LOG_DIR)/6_report.log
 $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
 	cp $^ $@
 
-drc: $(REPORTS_DIR)/6_drc.lyrdb
-
-$(REPORTS_DIR)/6_drc.lyrdb: $(GDS_FINAL_FILE) $(KLAYOUT_DRC_FILE)
-ifneq ($(KLAYOUT_DRC_FILE),)
-	$(call KLAYOUT_FOUND)
-	($(TIME_CMD) $(KLAYOUT_CMD) -zz -rd in_gds="$<" \
-	        -rd report_file=$(abspath $@) \
-	        -r $(KLAYOUT_DRC_FILE)) 2>&1 | tee $(LOG_DIR)/6_drc.log
-	# Hacky way of getting DRV count (don't error on no matches)
-	grep -c "<value>" $@ > $(REPORTS_DIR)/6_drc_count.rpt || [[ $$? == 1 ]]
-else
-	echo "DRC not supported on this platform" > $@
-endif
-
-$(RESULTS_DIR)/6_final.cdl: $(RESULTS_DIR)/6_final.v
-	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/cdl.tcl) 2>&1 | tee $(LOG_DIR)/6_cdl.log
-
-$(OBJECTS_DIR)/6_final_concat.cdl: $(RESULTS_DIR)/6_final.cdl $(CDL_FILE)
-	cat $^ > $@
-
-lvs: $(RESULTS_DIR)/6_lvs.lvsdb
-
-$(RESULTS_DIR)/6_lvs.lvsdb: $(GDS_FINAL_FILE) $(KLAYOUT_LVS_FILE) $(OBJECTS_DIR)/6_final_concat.cdl
-ifneq ($(KLAYOUT_LVS_FILE),)
-	$(call KLAYOUT_FOUND)
-	($(TIME_CMD) $(KLAYOUT_CMD) -b -rd in_gds="$<" \
-	        -rd cdl_file=$(abspath $(OBJECTS_DIR)/6_final_concat.cdl) \
-	        -rd report_file=$(abspath $@) \
-	        -r $(KLAYOUT_LVS_FILE)) 2>&1 | tee $(LOG_DIR)/6_lvs.log
-else
-	echo "LVS not supported on this platform" > $@
-endif
-
 clean_finish:
 	rm -rf $(RESULTS_DIR)/6_*.gds $(RESULTS_DIR)/6_*.oas $(RESULTS_DIR)/6_*.odb $(RESULTS_DIR)/6_*.v $(RESULTS_DIR)/6_*.sdc $(RESULTS_DIR)/6_*.spef
 	rm -rf $(REPORTS_DIR)/6_*.rpt
 	rm -f  $(LOG_DIR)/6_*
 
+include calibre/calibre.mk
+include icv/icv.mk
 
 # ==============================================================================
 #  __  __ ___ ____   ____
@@ -677,10 +646,12 @@ clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_f
 	rm -rf $(OBJECTS_DIR)
 
 nuke: clean_test clean_issues
-	rm -rf ./results ./logs ./reports ./objects
+	rm -rf ./results ./logs ./reports ./objects ./submit 
+	rm -rf ./calibre/drc ./calibre/lvs ./calibre/antenna ./calibre/density ./calibre/hveos 
+	rm -rf ./icv/drc ./icv/lvs ./icv/antenna ./icv/density ./icv/layer ./icv/iopad ./icv/template
 	rm -rf layer_*.mps macrocell.list *best.plt *_pdn.def dummy.guide
 	rm -rf *.rpt *.rpt.old *.def.v pin_dumper.log
-	rm -rf versions.txt
+	rm -rf versions.txt *.tar.gz
 
 
 # DEF/GDS/OAS viewer shortcuts
@@ -715,5 +686,5 @@ print-%  : ; @echo $* = $($*)
 # Utilities
 #-------------------------------------------------------------------------------
 include $(UTILS_DIR)/utils.mk
-export PRIVATE_DIR ?= private_tool_scripts
+export PRIVATE_DIR ?= ../../private_tool_scripts
 -include $(PRIVATE_DIR)/private.mk

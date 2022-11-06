@@ -33,3 +33,13 @@ alib*
 # OpenROAD-flow-script
 objects
 results
+submit
+*.tar.gz
+drc
+lvs
+antenna
+density
+hveos
+layer
+iopad
+template

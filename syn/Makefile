@@ -1,6 +1,6 @@
 # Workspace and environment seup
 # --------------------------------
-export INTEL_KITS_DIR 	:= /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/
+export INTEL_KITS_DIR 	:= /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08
 export INTEL_ASIC		:= $(INTEL_KITS_DIR)/adf224_r0.9HP1_s
 export LAYERSTACK 		:= m11_1x_3xa_1xb_1xc_2yb_2ga_mim2_1gb__bumpp
 export INTEL_PDK  		:= $(INTEL_KITS_DIR)/pdk224_r0.9HP3

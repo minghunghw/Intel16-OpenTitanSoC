@@ -59,3 +59,34 @@ If you want to update the version of OpenROAD and Yosys, run on top of the repos
 ```
 - `config.mk`: design configuration
 - `constraint.sdc`: design constraints
+
+### How to run DRC/LVS
+-----------------------------------------------------------
+
+Intel provides DRC/LVS runsets for Calibre and IC-Validator.
+
+- Calibre provides drc, antenna, density, hveos, and lvs check. If you want to run them all together, type 
+```
+make calibre
+```
+If you just want run one of them, type
+```
+make calibre_<drc/antenna/density/hveos/lvs>
+```
+
+- ICV provides drc, antenna, density, layer, iopad, template, and lvs check. If you want to run them all together, type 
+```
+make icv
+```
+If you just want run one of them, type
+```
+make icv_<drc/antenna/density/layer/iopad/template/lvs>
+```
+
+### How to generate submission oasis
+-----------------------------------------------------------
+
+Intel requires two databases for 2mm x 2mm quadrant. You need to submit database with design w/o and w/ frame. If you want to compress two oasis in a tar file, type
+```
+make submit
+```
