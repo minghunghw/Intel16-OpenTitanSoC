@@ -47,8 +47,11 @@ layer
 iopad
 template
 
-#LVS
+# LVS
 lvs
 
-#StarRC
+# StarRC
 extraction
+
+# PrimeTime
+sta/*/
