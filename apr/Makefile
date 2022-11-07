@@ -78,6 +78,10 @@ endif
 $(info [INFO][FLOW] Using platform directory $(PLATFORM_DIR))
 include $(PLATFORM_DIR)/config.mk
 
+$(info [INFO][FLOW] Using commercial tool)
+include calibre/calibre.mk
+include icv/icv.mk
+
 export GALLERY_REPORT ?= 0
 # Enables hierarchical yosys
 export SYNTH_HIERARCHICAL ?= 0
@@ -552,6 +556,7 @@ GDS_FINAL_FILE = $(RESULTS_DIR)/6_final.$(STREAM_SYSTEM_EXT)
 finish: $(LOG_DIR)/6_report.log \
         $(RESULTS_DIR)/6_final.v \
         $(RESULTS_DIR)/6_final.sdc \
+		$(RESULTS_DIR)/6_final.spef \
         $(GDS_FINAL_FILE)
 # ==============================================================================
 
@@ -573,6 +578,16 @@ $(LOG_DIR)/6_report.log: $(RESULTS_DIR)/6_1_fill.odb $(RESULTS_DIR)/6_1_fill.sdc
 	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/final_report.tcl -metrics $(LOG_DIR)/6_report.json) 2>&1 | tee $(LOG_DIR)/6_report.log
 
 $(RESULTS_DIR)/6_final.def: $(LOG_DIR)/6_report.log
+
+$(RESULTS_DIR)/6_final.spef: $(RESULTS_DIR)/6_final.def
+	rm -rf starrc/extraction && mkdir -p starrc/extraction && cd starrc/extraction && \
+	envsubst < ../star_rcxt.asic.cmd > run.cmd && \
+	StarXtract -clean run.cmd && \
+	cp $(STARRC_SPEF) $(STARRC_SPEF_FILES)
+	rm -rf netlist/$(DESIGN_NAME) && mkdir netlist/$(DESIGN_NAME) && \
+	cp $(RESULTS_DIR)/6_final.v netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sv && \
+	cp $(RESULTS_DIR)/6_final.sdc netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sdc && \
+	cp $(RESULTS_DIR)/6_final.spef netlist/$(DESIGN_NAME)/$(DESIGN_NAME).spef
 
 generate_abstract: $(RESULTS_DIR)/6_final.gds $(RESULTS_DIR)/6_final.def  $(RESULTS_DIR)/6_final.v
 	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/generate_abstract.tcl -metrics $(LOG_DIR)/generate_abstract.json) 2>&1 | tee $(LOG_DIR)/generate_abstract.log
@@ -607,9 +622,6 @@ $(GDS_MERGED_FILE): $(RESULTS_DIR)/6_final.def $(OBJECTS_DIR)/klayout.lyt $(GDSO
 	        -r $(UTILS_DIR)/def2stream.py) 2>&1 | tee $(LOG_DIR)/6_1_merge.log
 
 $(RESULTS_DIR)/6_final.v: $(LOG_DIR)/6_report.log
-	rm -rf netlist/$(DESIGN_NAME)
-	mkdir netlist/$(DESIGN_NAME)
-	cp $@ netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sv
 
 $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
 	cp $^ $@
@@ -618,10 +630,6 @@ clean_finish:
 	rm -rf $(RESULTS_DIR)/6_*.gds $(RESULTS_DIR)/6_*.oas $(RESULTS_DIR)/6_*.odb $(RESULTS_DIR)/6_*.v $(RESULTS_DIR)/6_*.sdc $(RESULTS_DIR)/6_*.spef
 	rm -rf $(REPORTS_DIR)/6_*.rpt
 	rm -f  $(LOG_DIR)/6_*
-
-include calibre/calibre.mk
-include icv/icv.mk
-include starrc/starrc.mk
 
 # ==============================================================================
 #  __  __ ___ ____   ____
