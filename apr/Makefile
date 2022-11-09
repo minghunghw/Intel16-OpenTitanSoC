@@ -556,8 +556,10 @@ GDS_FINAL_FILE = $(RESULTS_DIR)/6_final.$(STREAM_SYSTEM_EXT)
 finish: $(LOG_DIR)/6_report.log \
         $(RESULTS_DIR)/6_final.v \
         $(RESULTS_DIR)/6_final.sdc \
-		$(RESULTS_DIR)/6_final.spef \
-        $(GDS_FINAL_FILE)
+        $(GDS_FINAL_FILE) \
+		$(RESULTS_DIR)/7_fill.gds \
+		$(RESULTS_DIR)/7_fill.def \
+		$(RESULTS_DIR)/7_fill.spef
 # ==============================================================================
 
 ifneq ($(USE_FILL),)
@@ -579,7 +581,18 @@ $(LOG_DIR)/6_report.log: $(RESULTS_DIR)/6_1_fill.odb $(RESULTS_DIR)/6_1_fill.sdc
 
 $(RESULTS_DIR)/6_final.def: $(LOG_DIR)/6_report.log
 
-$(RESULTS_DIR)/6_final.spef: $(RESULTS_DIR)/6_final.def
+$(RESULTS_DIR)/7_fill.gds:
+	rm -rf fill && mkdir fill && cd fill && \
+	calibre -drc -hier -turbo -hyper $(Fill_RUNSET)/p1222_fill.svrf | tee fill.log
+	rm -rf virtuoso && cp -r $(PLATFORM_DIR)/virtuoso . && cd virtuoso && \
+	envsubst < run.cmd > run.log && \
+	virtuoso -nograph -replay run.log
+	cp fill/$(DESIGN_NAME)_fill.gds $(RESULTS_DIR)/7_fill.gds
+	cp virtuoso/$(DESIGN_NAME)_fill.def $(RESULTS_DIR)/7_fill.def
+
+$(RESULTS_DIR)/7_fill.def: $(RESULTS_DIR)/7_fill.gds
+
+$(RESULTS_DIR)/7_fill.spef: $(RESULTS_DIR)/7_fill.def
 	rm -rf starrc/extraction && mkdir -p starrc/extraction && cd starrc/extraction && \
 	envsubst < ../star_rcxt.asic.cmd > run.cmd && \
 	StarXtract -clean run.cmd && \
@@ -587,7 +600,7 @@ $(RESULTS_DIR)/6_final.spef: $(RESULTS_DIR)/6_final.def
 	rm -rf netlist/$(DESIGN_NAME) && mkdir netlist/$(DESIGN_NAME) && \
 	cp $(RESULTS_DIR)/6_final.v netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sv && \
 	cp $(RESULTS_DIR)/6_final.sdc netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sdc && \
-	cp $(RESULTS_DIR)/6_final.spef netlist/$(DESIGN_NAME)/$(DESIGN_NAME).spef
+	cp $(RESULTS_DIR)/7_fill.spef netlist/$(DESIGN_NAME)/$(DESIGN_NAME).spef
 
 generate_abstract: $(RESULTS_DIR)/6_final.gds $(RESULTS_DIR)/6_final.def  $(RESULTS_DIR)/6_final.v
 	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/generate_abstract.tcl -metrics $(LOG_DIR)/generate_abstract.json) 2>&1 | tee $(LOG_DIR)/generate_abstract.log
@@ -631,6 +644,10 @@ clean_finish:
 	rm -rf $(REPORTS_DIR)/6_*.rpt
 	rm -f  $(LOG_DIR)/6_*
 
+clean_fill:
+	rm -rf $(RESULTS_DIR)/7_*.gds $(RESULTS_DIR)/7_*.def $(RESULTS_DIR)/7_*.spef
+	rm -f  $(LOG_DIR)/7_*
+
 # ==============================================================================
 #  __  __ ___ ____   ____
 # |  \/  |_ _/ ___| / ___|
@@ -658,7 +675,7 @@ nuke: clean_test clean_issues
 	rm -rf ./results ./logs ./reports ./objects ./submit 
 	rm -rf ./calibre/drc ./calibre/lvs ./calibre/antenna ./calibre/density ./calibre/hveos 
 	rm -rf ./icv/drc ./icv/lvs ./icv/antenna ./icv/density ./icv/layer ./icv/iopad ./icv/template
-	rm -rf ./starrc/extraction
+	rm -rf ./starrc/extraction ./fill ./virtuoso
 	rm -rf layer_*.mps macrocell.list *best.plt *_pdn.def dummy.guide
 	rm -rf *.rpt *.rpt.old *.def.v pin_dumper.log
 	rm -rf versions.txt *.tar.gz
