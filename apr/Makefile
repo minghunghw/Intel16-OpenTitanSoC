@@ -668,7 +668,7 @@ clean:
 	@echo "  clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish"
 	@echo
 
-clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_metadata
+clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill clean_metadata
 	rm -rf $(OBJECTS_DIR)
 
 nuke: clean_test clean_issues

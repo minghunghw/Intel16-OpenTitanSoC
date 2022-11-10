@@ -36,3 +36,18 @@ calibre_lvs: finish
 	-noflatten -mprop -sp-slashSpace -logFile ./icv_nettran.log && \
 	\
 	calibre -lvs -hier -turbo -hyper $(Calibre_RUNSET)/p1222_lvs.svrf | tee lvs.log
+
+view_calibre_drc:
+	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc calibre/drc/$(DR_RVE_FILE)
+
+view_calibre_antenna:
+	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc calibre/antenna/$(DR_RVE_FILE)
+
+view_calibre_density:
+	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc calibre/density/$(DR_RVE_FILE)
+
+view_calibre_hveos:
+	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc calibre/hveos/$(DR_RVE_FILE)
+
+view_calibre_lvs:
+	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -lvs calibre/lvs/svdb

@@ -33,6 +33,7 @@ alib*
 # OpenROAD-flow-script
 objects
 results
+apr/netlist
 
 # Submit
 submit
