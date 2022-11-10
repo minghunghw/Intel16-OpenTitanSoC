@@ -597,7 +597,7 @@ $(RESULTS_DIR)/7_fill.spef: $(RESULTS_DIR)/7_fill.def
 	envsubst < ../star_rcxt.asic.cmd > run.cmd && \
 	StarXtract -clean run.cmd && \
 	cp $(STARRC_SPEF) $(STARRC_SPEF_FILES)
-	rm -rf netlist/$(DESIGN_NAME) && mkdir netlist/$(DESIGN_NAME) && \
+	mkdir -p netlist && rm -rf netlist/$(DESIGN_NAME) && mkdir netlist/$(DESIGN_NAME) && \
 	cp $(RESULTS_DIR)/6_final.v netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sv && \
 	cp $(RESULTS_DIR)/6_final.sdc netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sdc && \
 	cp $(RESULTS_DIR)/7_fill.spef netlist/$(DESIGN_NAME)/$(DESIGN_NAME).spef
@@ -640,7 +640,7 @@ $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
 	cp $^ $@
 
 clean_finish:
-	rm -rf $(RESULTS_DIR)/6_*.gds $(RESULTS_DIR)/6_*.oas $(RESULTS_DIR)/6_*.odb $(RESULTS_DIR)/6_*.v $(RESULTS_DIR)/6_*.sdc $(RESULTS_DIR)/6_*.spef
+	rm -rf $(RESULTS_DIR)/6_*.gds $(RESULTS_DIR)/6_*.oas $(RESULTS_DIR)/6_*.odb $(RESULTS_DIR)/6_*.v $(RESULTS_DIR)/6_*.sdc $(RESULTS_DIR)/6_*.spef $(RESULTS_DIR)/6_*.def
 	rm -rf $(REPORTS_DIR)/6_*.rpt
 	rm -f  $(LOG_DIR)/6_*
 
@@ -665,14 +665,14 @@ clean:
 	@echo
 	@echo "Make clean disabled."
 	@echo "Use make clean_all or clean individual steps:"
-	@echo "  clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish"
+	@echo "  clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill"
 	@echo
 
 clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill clean_metadata
 	rm -rf $(OBJECTS_DIR)
 
 nuke: clean_test clean_issues
-	rm -rf ./results ./logs ./reports ./objects ./submit 
+	rm -rf ./results ./logs ./reports ./objects ./submit ./netlist
 	rm -rf ./calibre/drc ./calibre/lvs ./calibre/antenna ./calibre/density ./calibre/hveos 
 	rm -rf ./icv/drc ./icv/lvs ./icv/antenna ./icv/density ./icv/layer ./icv/iopad ./icv/template
 	rm -rf ./starrc/extraction ./fill ./virtuoso
