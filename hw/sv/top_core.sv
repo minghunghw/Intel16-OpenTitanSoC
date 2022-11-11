@@ -22,6 +22,8 @@ module top_core (
     output logic [31:0] gpio_o
 );
 
+    logic rst_no;
+
     tlul_pkg::tl_h2d_t core_2_xbar_main;
     tlul_pkg::tl_d2h_t xbar_main_2_core;
     tlul_pkg::tl_h2d_t spi_2_xbar_main;
@@ -45,11 +47,18 @@ module top_core (
     assign fetch_enable = (fetch_enable_i) ? ibex_pkg::IbexMuBiOn : ibex_pkg::IbexMuBiOff;
     assign en_ifetch    = (en_ifetch_i)    ? prim_mubi_pkg::MuBi4True : prim_mubi_pkg::MuBi4False;
 
+    // reset synchronizer
+    rst_gen u_rst_gen (
+        .clk_i  (clk_i  ),
+        .rst_ni (rst_ni ),
+        .rst_no (rst_no )
+    );
+
     // 3 master, 3 slave
     xbar_main u_xbar_main 
     (
         .clk_i              (clk_i                    ),
-        .rst_ni             (rst_ni                   ),
+        .rst_ni             (rst_no                   ),
 
         .tl_core_i          (core_2_xbar_main         ),
         .tl_core_o          (xbar_main_2_core         ),
@@ -72,7 +81,7 @@ module top_core (
     spi_device_tlul u_spi_device_tlul 
     (
         .clk_i      (clk_i           ),
-        .rst_ni     (rst_ni          ),
+        .rst_ni     (rst_no          ),
         .test_mode  (1'b1            ),
         .spi_sclk   (spi_sclk        ),
         .spi_cs     (spi_cs          ),
@@ -92,7 +101,7 @@ module top_core (
     // 1 master, 2 slave
     cpu_cluster u_cpu_cluster (
         .clk_i              (clk_i             ),
-        .rst_ni             (rst_ni            ),
+        .rst_ni             (rst_no            ),
 
         .fetch_enable_i     (fetch_enable      ),
         .en_ifetch_i        (en_ifetch         ),
@@ -109,7 +118,7 @@ module top_core (
     // 1 slave
     peri_device u_peri_device (
         .clk_i              (clk_i                    ),
-        .rst_ni             (rst_ni                   ),
+        .rst_ni             (rst_no                   ),
 
         .tl_peri_device_i   (xbar_main_2_peri_device  ),
         .tl_peri_device_o   (peri_device_2_xbar_main  ),

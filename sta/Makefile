@@ -9,10 +9,11 @@ export INTEL_TIC 		:= $(INTEL_KITS_DIR)/pdk224_r0.9HP3
 export STA_TCL_DIR 		:= $(INTEL_ASIC)/asicflows/synopsys/sta
 export STD_TCL_DIR 		:= $(INTEL_ASIC)/asicflows/synopsys/tech.dot4.7t108.tp0
 export APR_NETLIST		:= ../../apr/netlist
+export SYNOPSYS_LC_ROOT := /usr/caen/synopsys-lib-compiler-2022.03-SP3/linux64/lc/bin/lc2_shell_exec
 
 # Design parameters
 # --------------------------------
-export DESIGN_NAME 		:= gpio
+export DESIGN_NAME 		:= gcd
 
 # Synthesis-reltaed targets
 # --------------------------------

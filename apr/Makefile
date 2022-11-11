@@ -584,11 +584,11 @@ $(RESULTS_DIR)/6_final.def: $(LOG_DIR)/6_report.log
 $(RESULTS_DIR)/7_fill.gds:
 	rm -rf fill && mkdir fill && cd fill && \
 	calibre -drc -hier -turbo -hyper $(Fill_RUNSET)/p1222_fill.svrf | tee fill.log
-	rm -rf virtuoso && cp -r $(PLATFORM_DIR)/virtuoso . && cd virtuoso && \
-	envsubst < run.cmd > run.log && \
-	virtuoso -nograph -replay run.log
+	# rm -rf virtuoso && cp -r $(PLATFORM_DIR)/virtuoso . && cd virtuoso && \
+	# envsubst < run.cmd > run.log && \
+	# virtuoso -nograph -replay run.log
 	cp fill/$(DESIGN_NAME)_fill.gds $(RESULTS_DIR)/7_fill.gds
-	cp virtuoso/$(DESIGN_NAME)_fill.def $(RESULTS_DIR)/7_fill.def
+	# cp virtuoso/$(DESIGN_NAME)_fill.def $(RESULTS_DIR)/7_fill.def
 
 $(RESULTS_DIR)/7_fill.def: $(RESULTS_DIR)/7_fill.gds
 

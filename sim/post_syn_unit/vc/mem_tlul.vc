@@ -28,6 +28,7 @@ $OPENTITAN/tlul/rtl/tlul_pkg.sv
 -v $LIB/seq_lvt/verilog/lib224_b15_7t_108pp_seq_lvt.v
 -v $LIB/seq_ulvt/verilog/lib224_b15_7t_108pp_seq_ulvt.v
 -v $LIB/seq_lplvt/verilog/lib224_b15_7t_108pp_seq_lplvt.v
+-v $LIB/seq_nom/verilog/lib224_b15_7t_108pp_seq_nom.v
 
 // netlist
 ////////////////////////////////////////////////////////////////////////////////

@@ -165,6 +165,7 @@ set rtl_cpu_cluster [lsort -unique $rtl_cpu_cluster]
 
 set rtl_top_core [ concat \
     $HW/top_core.sv \
+    $HW/rst_gen.sv \
     $rtl_xbar \
     $rtl_spi_device \
     $rtl_peri_device \

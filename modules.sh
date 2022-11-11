@@ -32,6 +32,7 @@ module load synopsys-icv/2022.03-SP2
 module load synopsys-icc2/2022.03-SP3
 module load starrc/2022.03-SP3
 module load primetime/2021.06-SP1
+module load synopsys-lib-compiler/2022.03-SP3
 
 # Load OpenROAD-flow-srcipts tool
 if [ -d "ip/OpenROAD-flow-scripts/tools/install" ]; then

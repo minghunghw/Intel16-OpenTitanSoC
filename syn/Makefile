@@ -11,7 +11,7 @@ export STD_TCL_DIR 		:= $(INTEL_ASIC)/asicflows/synopsys/tech.dot4.7t108.tp0
 
 # Design parameters
 # --------------------------------
-export DESIGN_NAME 		:= gpio
+export DESIGN_NAME 		:= top_core
 
 # Synthesis-reltaed targets
 # --------------------------------
@@ -43,5 +43,6 @@ clean:
 	rm -rf $(DESIGN_NAME)/*.svf 
 	rm -rf $(DESIGN_NAME)/.*tcl
 	rm -rf $(DESIGN_NAME)/*.log
+	rm -rf $(DESIGN_NAME)/udul_default_fin*
 
 nuke: clean
