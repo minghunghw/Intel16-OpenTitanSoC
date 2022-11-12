@@ -52,13 +52,13 @@ icv_template: finish
 icv_lvs: finish
 	rm -rf icv/lvs && mkdir -p icv/lvs && cd icv/lvs && \
 	icv_nettran -verilog $(DR_INPUT_NETLIST) -sp $(INTEL_STDCELLS)/*/spice/*.sp \
-	-cell $(DR_DESIGN_NAME) -outName $(DR_DESIGN_NAME).icv \
+	-cell $(DR_DESIGN_NAME) -outType SPICE -outName $(DR_SCH_FILE) \
 	-noflatten -mprop -sp-slashSpace -logFile ./icv_nettran.log && \
 	\
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
 	-c $(DR_DESIGN_NAME) -i $(DR_INPUT_FILE) -f $(DR_INPUT_FILE_FORMAT) -vue \
-	-norscache -sf icv -s $(DR_DESIGN_NAME).icv \
+	-norscache -sf spice -s $(DR_SCH_FILE) \
 	-I $(INTEL_PDK)/libraries/icv/libcells -I . -I $(INTEL_RUNSETS) \
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/trclvs.rs
 

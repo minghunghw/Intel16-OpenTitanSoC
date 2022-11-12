@@ -32,7 +32,7 @@ calibre_lvs: finish
 	sh $(Calibre_RUNSET)/p1222.sh && \
 	\
 	icv_nettran -verilog $(DR_INPUT_NETLIST) -sp $(INTEL_STDCELLS)/*/spice/*.sp \
-	-cell $(DR_DESIGN_NAME) -outType SPICE -outName $(DR_DESIGN_NAME).sp \
+	-cell $(DR_DESIGN_NAME) -outType SPICE -outName $(DR_SCH_FILE) \
 	-noflatten -mprop -sp-slashSpace -logFile ./icv_nettran.log && \
 	\
 	calibre -lvs -hier -turbo -hyper $(Calibre_RUNSET)/p1222_lvs.svrf | tee lvs.log

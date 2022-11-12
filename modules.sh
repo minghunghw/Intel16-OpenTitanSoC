@@ -27,11 +27,13 @@ module load anaconda3/2018.12
 module load klayout-el7/0.27.3
 
 # Load commercial tools
+module load vcs/2022.06
 module load calibre/2022.2_15.10_aoi
 module load synopsys-icv/2022.03-SP2
 module load synopsys-icc2/2022.03-SP3
+module load synopsys-synth/2021.06-SP4
 module load starrc/2022.03-SP3
-module load primetime/2021.06-SP1
+module load primetime/2021.06-SP4
 module load synopsys-lib-compiler/2022.03-SP3
 
 # Load OpenROAD-flow-srcipts tool

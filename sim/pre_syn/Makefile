@@ -10,10 +10,10 @@ TEST 	= top_core
 VCFILE	= vc/$(TEST).vc
 
 
-VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
+VCS = vcs -sverilog \
 	+vc +v2k -Mupdate -line -full64 -assert svaext \
-	-override_timescale=1ns/1ps +nospecify +notimingcheck\
-	+define+INTC_NO_PWR_PINS +define+INTCNOPWR\
+	-override_timescale=1ns/1ps +nospecify +notimingcheck \
+	+define+INTC_NO_PWR_PINS +define+INTCNOPWR \
 	+define+INTEL_NO_PWR_PINS +define+INTEL_EMULATION
 
 all:    simv

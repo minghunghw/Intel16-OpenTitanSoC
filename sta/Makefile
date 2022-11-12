@@ -13,7 +13,7 @@ export SYNOPSYS_LC_ROOT := /usr/caen/synopsys-lib-compiler-2022.03-SP3/linux64/l
 
 # Design parameters
 # --------------------------------
-export DESIGN_NAME 		:= gcd
+export DESIGN_NAME 		:= top_core
 
 # Synthesis-reltaed targets
 # --------------------------------

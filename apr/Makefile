@@ -591,6 +591,7 @@ $(RESULTS_DIR)/7_fill.gds:
 	# cp virtuoso/$(DESIGN_NAME)_fill.def $(RESULTS_DIR)/7_fill.def
 
 $(RESULTS_DIR)/7_fill.def: $(RESULTS_DIR)/7_fill.gds
+	cp $(RESULTS_DIR)/6_final.def $(RESULTS_DIR)/7_fill.def
 
 $(RESULTS_DIR)/7_fill.spef: $(RESULTS_DIR)/7_fill.def
 	rm -rf starrc/extraction && mkdir -p starrc/extraction && cd starrc/extraction && \
@@ -638,6 +639,12 @@ $(RESULTS_DIR)/6_final.v: $(LOG_DIR)/6_report.log
 
 $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
 	cp $^ $@
+
+$(RESULTS_DIR)/6_final.cdl: $(RESULTS_DIR)/6_final.v
+	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/cdl.tcl) 2>&1 | tee $(LOG_DIR)/6_cdl.log
+
+$(OBJECTS_DIR)/6_final_concat.cdl: $(RESULTS_DIR)/6_final.cdl $(CDL_FILE)
+	cat $^ > $@
 
 clean_finish:
 	rm -rf $(RESULTS_DIR)/6_*.gds $(RESULTS_DIR)/6_*.oas $(RESULTS_DIR)/6_*.odb $(RESULTS_DIR)/6_*.v $(RESULTS_DIR)/6_*.sdc $(RESULTS_DIR)/6_*.spef $(RESULTS_DIR)/6_*.def

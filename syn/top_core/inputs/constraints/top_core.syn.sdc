@@ -1,12 +1,12 @@
 set sdc_version 2.0
 set clock_name clk_i
 set spi_name spi_sclk
-set clock_period 3000
-set spi_period 6000
-set input_clock_delay [expr $clock_period * 0.6]
-set output_clock_delay [expr $clock_period * 0.6]
-set input_spi_delay [expr $spi_period * 0.6]
-set output_spi_delay [expr $spi_period * 0.6]
+set clock_period 25000
+set spi_period 50000
+set input_clock_delay [expr $clock_period * 0.1]
+set output_clock_delay [expr $clock_period * 0.1]
+set input_spi_delay [expr $spi_period * 0.1]
+set output_spi_delay [expr $spi_period * 0.1]
 set clock_uncertainty 150
 set clock_latency 500
 set clock_transition 200

@@ -9,9 +9,9 @@ TEST 	=
 VCFILE	= vc/$(TEST).vc
 
 
-VCS = SW_VCS=2017.12-SP2-1 vcs -sverilog -debug_pp\
+VCS = vcs -sverilog \
 	+vc +v2k -Mupdate -line -full64 -assert svaext \
-	-override_timescale=1ns/1ps +nospecify +notimingcheck\
+	-override_timescale=1ns/1ps +nospecify +notimingcheck \
 	+define+INTC_NO_PWR_PINS +define+INTCNOPWR
 
 all:    simv
