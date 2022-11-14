@@ -7,6 +7,10 @@ submit: finish
 
 calibre: calibre_drc calibre_antenna calibre_density calibre_hveos calibre_lvs
 
+clean_calibre: 
+	rm -rf calibre/drc && rm -rf calibre/antenna && \
+	rm -rf calibre/density && rm -rf calibre/hveos && rm -rf calibre/lvs
+
 calibre_drc: finish
 	rm -rf calibre/drc && mkdir -p calibre/drc && cd calibre/drc && \
 	sh $(Calibre_RUNSET)/p1222.sh && \
@@ -31,7 +35,8 @@ calibre_lvs: finish
 	rm -rf calibre/lvs && mkdir -p calibre/lvs && cd calibre/lvs && \
 	sh $(Calibre_RUNSET)/p1222.sh && \
 	\
-	icv_nettran -verilog $(DR_INPUT_NETLIST) -sp $(INTEL_STDCELLS)/*/spice/*.sp \
+	icv_nettran -verilog $(DR_INPUT_NETLIST) \
+	-sp $(INTEL_STDCELLS)/*/spice/*.sp -sp ../../../ip/memory/*/spice/*.sp \
 	-cell $(DR_DESIGN_NAME) -outType SPICE -outName $(DR_SCH_FILE) \
 	-noflatten -mprop -sp-slashSpace -logFile ./icv_nettran.log && \
 	\

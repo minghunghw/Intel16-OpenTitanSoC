@@ -1,6 +1,10 @@
 
 icv: icv_drc icv_antenna icv_density icv_layer icv_iopad icv_template icv_lvs
 
+clean_icv: 
+	rm -rf icv/drc && rm -rf icv/antenna && rm -rf icv/density && \
+	rm -rf icv/layer && rm -rf icv/iopad && rm -rf icv/template && rm -rf icv/lvs
+
 icv_drc: finish
 	rm -rf icv/drc && mkdir -p icv/drc && cd icv/drc && \
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
@@ -51,7 +55,8 @@ icv_template: finish
 
 icv_lvs: finish
 	rm -rf icv/lvs && mkdir -p icv/lvs && cd icv/lvs && \
-	icv_nettran -verilog $(DR_INPUT_NETLIST) -sp $(INTEL_STDCELLS)/*/spice/*.sp \
+	icv_nettran -verilog $(DR_INPUT_NETLIST) \
+	-sp $(INTEL_STDCELLS)/*/spice/*.sp -sp ../../../ip/memory/*/spice/*.sp \
 	-cell $(DR_DESIGN_NAME) -outType SPICE -outName $(DR_SCH_FILE) \
 	-noflatten -mprop -sp-slashSpace -logFile ./icv_nettran.log && \
 	\

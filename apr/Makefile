@@ -10,7 +10,7 @@
 # DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
-# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
@@ -577,11 +577,11 @@ $(RESULTS_DIR)/6_final.sdc: $(RESULTS_DIR)/5_route.sdc
 	cp $< $@
 
 $(LOG_DIR)/6_report.log: $(RESULTS_DIR)/6_1_fill.odb $(RESULTS_DIR)/6_1_fill.sdc
-	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/final_report.tcl -metrics $(LOG_DIR)/6_report.json) 2>&1 | tee $(LOG_DIR)/6_report.log
+	($(TIME_CMD) $(OPENROAD_CMD) scripts/final_report.tcl -metrics $(LOG_DIR)/6_report.json) 2>&1 | tee $(LOG_DIR)/6_report.log
 
 $(RESULTS_DIR)/6_final.def: $(LOG_DIR)/6_report.log
 
-$(RESULTS_DIR)/7_fill.gds:
+$(RESULTS_DIR)/7_fill.gds: $(GDS_FINAL_FILE)
 	rm -rf fill && mkdir fill && cd fill && \
 	calibre -drc -hier -turbo -hyper $(Fill_RUNSET)/p1222_fill.svrf | tee fill.log
 	# rm -rf virtuoso && cp -r $(PLATFORM_DIR)/virtuoso . && cd virtuoso && \
@@ -598,10 +598,10 @@ $(RESULTS_DIR)/7_fill.spef: $(RESULTS_DIR)/7_fill.def
 	envsubst < ../star_rcxt.asic.cmd > run.cmd && \
 	StarXtract -clean run.cmd && \
 	cp $(STARRC_SPEF) $(STARRC_SPEF_FILES)
-	mkdir -p netlist && rm -rf netlist/$(DESIGN_NAME) && mkdir netlist/$(DESIGN_NAME) && \
-	cp $(RESULTS_DIR)/6_final.v netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sv && \
-	cp $(RESULTS_DIR)/6_final.sdc netlist/$(DESIGN_NAME)/$(DESIGN_NAME).sdc && \
-	cp $(RESULTS_DIR)/7_fill.spef netlist/$(DESIGN_NAME)/$(DESIGN_NAME).spef
+	mkdir -p netlist && rm -rf netlist/$(DESIGN_NICKNAME) && mkdir netlist/$(DESIGN_NICKNAME) && \
+	cp $(RESULTS_DIR)/6_final.v netlist/$(DESIGN_NICKNAME)/$(DESIGN_NAME).sv && \
+	cp $(RESULTS_DIR)/6_final.sdc netlist/$(DESIGN_NICKNAME)/$(DESIGN_NAME).sdc && \
+	cp $(RESULTS_DIR)/7_fill.spef netlist/$(DESIGN_NICKNAME)/$(DESIGN_NAME).spef
 
 generate_abstract: $(RESULTS_DIR)/6_final.gds $(RESULTS_DIR)/6_final.def  $(RESULTS_DIR)/6_final.v
 	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/generate_abstract.tcl -metrics $(LOG_DIR)/generate_abstract.json) 2>&1 | tee $(LOG_DIR)/generate_abstract.log
