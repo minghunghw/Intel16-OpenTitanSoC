@@ -68,22 +68,22 @@ icv_lvs: finish
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/trclvs.rs
 
 view_icv_drc:
-	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc icv/drc/$(DR_RVE_FILE)
+	icvwb $(DR_INPUT_FILE) -vue icv/drc/$(DR_DESIGN_NAME).vue
 
 view_icv_antenna:
-	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc icv/antenna/$(DR_RVE_FILE)
+	icvwb $(DR_INPUT_FILE) -vue icv/antenna/$(DR_DESIGN_NAME).vue
 
 view_icv_density:
-	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc icv/density/$(DR_RVE_FILE)
+	icvwb $(DR_INPUT_FILE) -vue icv/density/$(DR_DESIGN_NAME).vue
 
 view_icv_layer:
-	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc icv/layer/$(DR_RVE_FILE)
+	icvwb $(DR_INPUT_FILE) -vue icv/layer/$(DR_DESIGN_NAME).vue
 
 view_icv_iopad:
-	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc icv/iopad/$(DR_RVE_FILE)
+	icvwb $(DR_INPUT_FILE) -vue icv/iopad/$(DR_DESIGN_NAME).vue
 
 view_icv_template:
-	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -drc icv/template/$(DR_RVE_FILE)
+	icvwb $(DR_INPUT_FILE) -vue icv/template/$(DR_DESIGN_NAME).vue
 
 view_icv_lvs:
-	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY) -rve -lvs icv/lvs/svdb
+	icvwb $(DR_INPUT_FILE) -vue icv/lvs/$(DR_DESIGN_NAME).vue
