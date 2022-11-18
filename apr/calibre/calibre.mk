@@ -1,10 +1,4 @@
 
-submit: finish
-	rm -rf ./submit && mkdir -p ./submit
-	calibredrv -64 $(CALIBRE_MERGE) convert $(RESULTS_DIR)/6_final.gds submit/$(TOP_LEVEL) oas
-	calibredrv -64 $(CALIBRE_MERGE) fill_merge $(PLATFORM_DIR)/die_frame/$(DIE_FRAME) submit/$(DIE_FRAME) oas $(RESULTS_DIR)/6_final.gds
-	tar -zvcf $(SUBMISSION) submit
-
 calibre: calibre_drc calibre_antenna calibre_density calibre_hveos calibre_lvs
 
 clean_calibre: 

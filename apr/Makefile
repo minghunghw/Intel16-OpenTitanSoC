@@ -655,6 +655,15 @@ clean_fill:
 	rm -rf $(RESULTS_DIR)/7_*.gds $(RESULTS_DIR)/7_*.def $(RESULTS_DIR)/7_*.spef
 	rm -f  $(LOG_DIR)/7_*
 
+view_layout:
+	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY)
+
+submit: finish
+	rm -rf ./submit && mkdir -p ./submit
+	calibredrv -64 $(CALIBRE_MERGE) convert $(RESULTS_DIR)/6_final.gds submit/$(TOP_LEVEL) oas
+	calibredrv -64 $(CALIBRE_MERGE) fill_merge $(PLATFORM_DIR)/die_frame/$(DIE_FRAME) submit/$(DIE_FRAME) oas $(RESULTS_DIR)/6_final.gds
+	tar -zvcf $(SUBMISSION) submit
+
 # ==============================================================================
 #  __  __ ___ ____   ____
 # |  \/  |_ _/ ___| / ___|

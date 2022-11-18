@@ -9,7 +9,7 @@ module use /afs/eecs.umich.edu/cadre/software/openroad/modules
 # Load modules
 module load riscv/9.2
 module load devtoolset-el7/8
-module load cmake/3.14.0
+module load cmake/3.24.0
 module load boost
 module load swig-rhel7/4.0.1
 module load tcl-devel
