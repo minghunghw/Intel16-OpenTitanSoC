@@ -5,7 +5,7 @@ clean_icv:
 	rm -rf icv/drc && rm -rf icv/antenna && rm -rf icv/density && \
 	rm -rf icv/layer && rm -rf icv/iopad && rm -rf icv/template && rm -rf icv/lvs
 
-icv_drc: finish
+icv_drc:
 	rm -rf icv/drc && mkdir -p icv/drc && cd icv/drc && \
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
@@ -13,7 +13,7 @@ icv_drc: finish
 	-I $(INTEL_PDK)/libraries/icv/libcells -I $(INTEL_RUNSETS) \
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/drcd.rs
 
-icv_antenna: finish
+icv_antenna:
 	rm -rf icv/antenna && mkdir -p icv/antenna && cd icv/antenna && \
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
@@ -21,7 +21,7 @@ icv_antenna: finish
 	-I $(INTEL_PDK)/libraries/icv/libcells -I $(INTEL_RUNSETS) \
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/drc_IPall.rs
 
-icv_density: finish
+icv_density:
 	rm -rf icv/density && mkdir -p icv/density && cd icv/density && \
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
@@ -29,7 +29,7 @@ icv_density: finish
 	-I $(INTEL_PDK)/libraries/icv/libcells -I $(INTEL_RUNSETS) \
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/denall.rs
 
-icv_layer: finish
+icv_layer:
 	rm -rf icv/layer && mkdir -p icv/layer && cd icv/layer && \
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
@@ -37,7 +37,7 @@ icv_layer: finish
 	-I $(INTEL_PDK)/libraries/icv/libcells -I $(INTEL_RUNSETS) \
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/drc_IL.rs
 
-icv_iopad: finish
+icv_iopad:
 	rm -rf icv/iopad && mkdir -p icv/iopad && cd icv/iopad && \
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
@@ -45,7 +45,7 @@ icv_iopad: finish
 	-I $(INTEL_PDK)/libraries/icv/libcells -I $(INTEL_RUNSETS) \
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/drc_LU.rs
 
-icv_template: finish
+icv_template:
 	rm -rf icv/template && mkdir -p icv/template && cd icv/template && \
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
@@ -53,13 +53,8 @@ icv_template: finish
 	-I $(INTEL_PDK)/libraries/icv/libcells -I $(INTEL_RUNSETS) \
 	-I $(INTEL_RUNSETS)/PXL $(INTEL_RUNSETS)/PXL/StandAlone/drc_TUC.rs
 
-icv_lvs: finish
+icv_lvs:
 	rm -rf icv/lvs && mkdir -p icv/lvs && cd icv/lvs && \
-	icv_nettran -verilog $(DR_INPUT_NETLIST) \
-	-sp $(INTEL_STDCELLS)/*/spice/*.sp -sp ../../../ip/memory/*/spice/*.sp \
-	-cell $(DR_DESIGN_NAME) -outType SPICE -outName $(DR_SCH_FILE) \
-	-noflatten -mprop -sp-slashSpace -logFile ./icv_nettran.log && \
-	\
 	icv -host_init 16 -D _drPROCESS=_drdotFour \
 	-D _drSECTION_LEVEL=_drYES -D _drLAYERSTACK=$(LAYERSTACK) \
 	-c $(DR_DESIGN_NAME) -i $(DR_INPUT_FILE) -f $(DR_INPUT_FILE_FORMAT) -vue \

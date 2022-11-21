@@ -15,6 +15,9 @@ DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
 
+# Running on 6 tracks or 7 tracks
+export TRACKS ?= 7
+
 # If we are running headless use offscreen rendering for save_image
 ifndef DISPLAY
 export QT_QPA_PLATFORM ?= offscreen
@@ -76,7 +79,14 @@ else
 endif
 
 $(info [INFO][FLOW] Using platform directory $(PLATFORM_DIR))
-include $(PLATFORM_DIR)/config.mk
+
+ifeq ($(TRACKS), 6)
+    $(info [INFO][FLOW] Using 6 tracks)
+	include $(PLATFORM_DIR)/config6T.mk
+else
+    $(info [INFO][FLOW] Using 7 tracks)
+	include $(PLATFORM_DIR)/config7T.mk
+endif 
 
 $(info [INFO][FLOW] Using commercial tool)
 include calibre/calibre.mk
@@ -556,6 +566,7 @@ GDS_FINAL_FILE = $(RESULTS_DIR)/6_final.$(STREAM_SYSTEM_EXT)
 finish: $(LOG_DIR)/6_report.log \
         $(RESULTS_DIR)/6_final.v \
         $(RESULTS_DIR)/6_final.sdc \
+		$(RESULTS_DIR)/6_final_concat.cdl \
         $(GDS_FINAL_FILE) \
 		$(RESULTS_DIR)/7_fill.gds \
 		$(RESULTS_DIR)/7_fill.def \
@@ -577,7 +588,7 @@ $(RESULTS_DIR)/6_final.sdc: $(RESULTS_DIR)/5_route.sdc
 	cp $< $@
 
 $(LOG_DIR)/6_report.log: $(RESULTS_DIR)/6_1_fill.odb $(RESULTS_DIR)/6_1_fill.sdc
-	($(TIME_CMD) $(OPENROAD_CMD) scripts/final_report.tcl -metrics $(LOG_DIR)/6_report.json) 2>&1 | tee $(LOG_DIR)/6_report.log
+	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/final_report.tcl -metrics $(LOG_DIR)/6_report.json) 2>&1 | tee $(LOG_DIR)/6_report.log
 
 $(RESULTS_DIR)/6_final.def: $(LOG_DIR)/6_report.log
 
@@ -641,13 +652,13 @@ $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
 	cp $^ $@
 
 $(RESULTS_DIR)/6_final.cdl: $(RESULTS_DIR)/6_final.v
-	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/cdl.tcl) 2>&1 | tee $(LOG_DIR)/6_cdl.log
+	($(TIME_CMD) $(OPENROAD_CMD) scripts/cdl.tcl) 2>&1 | tee $(LOG_DIR)/6_cdl.log
 
-$(OBJECTS_DIR)/6_final_concat.cdl: $(RESULTS_DIR)/6_final.cdl $(CDL_FILE)
+$(RESULTS_DIR)/6_final_concat.cdl: $(RESULTS_DIR)/6_final.cdl $(CDL_FILE)
 	cat $^ > $@
 
 clean_finish:
-	rm -rf $(RESULTS_DIR)/6_*.gds $(RESULTS_DIR)/6_*.oas $(RESULTS_DIR)/6_*.odb $(RESULTS_DIR)/6_*.v $(RESULTS_DIR)/6_*.sdc $(RESULTS_DIR)/6_*.spef $(RESULTS_DIR)/6_*.def
+	rm -rf $(RESULTS_DIR)/6_*.gds $(RESULTS_DIR)/6_*.oas $(RESULTS_DIR)/6_*.odb $(RESULTS_DIR)/6_*.v $(RESULTS_DIR)/6_*.sdc $(RESULTS_DIR)/6_*.spef $(RESULTS_DIR)/6_*.def $(RESULTS_DIR)/6_*.cdl
 	rm -rf $(REPORTS_DIR)/6_*.rpt
 	rm -f  $(LOG_DIR)/6_*
 

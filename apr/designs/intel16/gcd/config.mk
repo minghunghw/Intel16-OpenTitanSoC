@@ -8,7 +8,7 @@ export ABC_AREA      = 1
 # Adders degrade GCD
 export ADDER_MAP_FILE :=
 
-export CORE_UTILIZATION    = 32
+export CORE_UTILIZATION    = 30
 export CORE_ASPECT_RATIO   = 1
 export CORE_MARGIN         = 1
 

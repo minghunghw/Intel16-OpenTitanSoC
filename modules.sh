@@ -5,6 +5,7 @@ module purge
 # Load cadre software
 module use /afs/eecs.umich.edu/cadre/software/modules
 module use /afs/eecs.umich.edu/cadre/software/openroad/modules
+module use /afs/eecs.umich.edu/vlsida/projects/restricted/intel/modules
 
 # Load modules
 module load riscv/9.2
@@ -25,6 +26,7 @@ module load qt5-qtbase-devel/5.9.7
 module load python/3.8.11
 module load anaconda3/2018.12
 module load klayout-el7/0.27.3
+module load or-tools/9.4.1874
 
 # Load commercial tools
 module load vcs/2022.06
