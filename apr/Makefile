@@ -524,7 +524,7 @@ $(RESULTS_DIR)/5_2_route.odb: $(RESULTS_DIR)/5_1_grt.odb
 else
 $(RESULTS_DIR)/5_2_route.odb: $(RESULTS_DIR)/4_cts.odb
 endif
-	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/detail_route.tcl -metrics $(LOG_DIR)/5_2_TritonRoute.json) 2>&1 | tee $(LOG_DIR)/5_2_TritonRoute.log
+	($(TIME_CMD) $(OPENROAD_CMD) scripts/detail_route.tcl -metrics $(LOG_DIR)/5_2_TritonRoute.json) 2>&1 | tee $(LOG_DIR)/5_2_TritonRoute.log
 
 $(RESULTS_DIR)/5_route.odb: $(RESULTS_DIR)/5_2_route.odb
 	cp $< $@

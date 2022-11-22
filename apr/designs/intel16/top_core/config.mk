@@ -14,6 +14,9 @@ export CORE_UTILIZATION    = 30
 export CORE_ASPECT_RATIO   = 1
 export CORE_MARGIN         = 1
 
+export MACRO_PLACE_CHANNEL = 40 40 
+export MACRO_PLACE_HALO    = 20 20
+
 export PLACE_DENSITY = uniform
 export ABC_CLOCK_PERIOD_IN_PS = 1000
 
