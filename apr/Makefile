@@ -653,8 +653,9 @@ $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
 
 $(RESULTS_DIR)/6_final.cdl: $(RESULTS_DIR)/6_final.v
 	($(TIME_CMD) $(OPENROAD_CMD) scripts/cdl.tcl) 2>&1 | tee $(LOG_DIR)/6_cdl.log
+	sed 's/\//_/g' $(RESULTS_DIR)/6_final.cdl > $(RESULTS_DIR)/6_final_fixed.cdl
 
-$(RESULTS_DIR)/6_final_concat.cdl: $(RESULTS_DIR)/6_final.cdl $(CDL_FILE)
+$(RESULTS_DIR)/6_final_concat.cdl: $(RESULTS_DIR)/6_final_fixed.cdl $(CDL_FILE)
 	cat $^ > $@
 
 clean_finish:
