@@ -12,7 +12,7 @@ export NETLIST      = ../../syn/$(TEST)/netlist
 export LIB          = /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/lib224_b15_7t_108pp_pdk090_r1v0p0_fv
 
 VCS = vcs -sverilog \
-	+vc +v2k -Mupdate -line -full64 -assert svaext \
+	+vc +v2k -Mupdate -line -full64 -assert svaext -debug_access+r \
 	-override_timescale=1ns/1ps +nospecify +notimingcheck \
 	+define+INTC_NO_PWR_PINS +define+INTCNOPWR \
 	+define+INTEL_NO_PWR_PINS +define+INTEL_EMULATION

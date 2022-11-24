@@ -10,7 +10,8 @@
 # DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
-DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
@@ -393,7 +394,6 @@ $(RESULTS_DIR)/2_4_floorplan_macro.odb: $(RESULTS_DIR)/2_3_floorplan_tdms.odb $(
 $(RESULTS_DIR)/2_5_floorplan_tapcell.odb: $(RESULTS_DIR)/2_4_floorplan_macro.odb $(TAPCELL_TCL)
 	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/tapcell.tcl -metrics $(LOG_DIR)/2_5_tapcell.json) 2>&1 | tee $(LOG_DIR)/2_5_tapcell.log
 
-
 # STEP 6: PDN generation
 #-------------------------------------------------------------------------------
 $(RESULTS_DIR)/2_6_floorplan_pdn.odb: $(RESULTS_DIR)/2_5_floorplan_tapcell.odb $(PDN_CFG) $(PDN_TCL)
@@ -614,7 +614,7 @@ $(RESULTS_DIR)/7_fill.spef: $(RESULTS_DIR)/7_fill.def
 	cp $(RESULTS_DIR)/6_final.sdc netlist/$(DESIGN_NICKNAME)/$(DESIGN_NAME).sdc && \
 	cp $(RESULTS_DIR)/7_fill.spef netlist/$(DESIGN_NICKNAME)/$(DESIGN_NAME).spef
 
-generate_abstract: $(RESULTS_DIR)/6_final.gds $(RESULTS_DIR)/6_final.def  $(RESULTS_DIR)/6_final.v
+generate_abstract: 
 	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/generate_abstract.tcl -metrics $(LOG_DIR)/generate_abstract.json) 2>&1 | tee $(LOG_DIR)/generate_abstract.log
 
 # Merge wrapped macros using Klayout
@@ -669,6 +669,10 @@ clean_fill:
 	rm -rf $(RESULTS_DIR)/7_*.gds $(RESULTS_DIR)/7_*.def $(RESULTS_DIR)/7_*.spef
 	rm -f  $(LOG_DIR)/7_*
 
+clean_lef:
+	rm -rf $(RESULTS_DIR)/*.lef
+	rm -f  $(LOG_DIR)/generate_abstract*
+
 view_layout:
 	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY)
 
@@ -698,7 +702,7 @@ clean:
 	@echo "  clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill"
 	@echo
 
-clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill clean_metadata
+clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill clean_lef clean_metadata
 	rm -rf $(OBJECTS_DIR)
 
 nuke: clean_test clean_issues

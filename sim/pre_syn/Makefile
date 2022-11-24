@@ -11,7 +11,7 @@ VCFILE	= vc/$(TEST).vc
 
 
 VCS = vcs -sverilog \
-	+vc +v2k -Mupdate -line -full64 -assert svaext \
+	+vc +v2k -Mupdate -line -full64 -assert svaext -debug_access+r \
 	-override_timescale=1ns/1ps +nospecify +notimingcheck \
 	+define+INTC_NO_PWR_PINS +define+INTCNOPWR \
 	+define+INTEL_NO_PWR_PINS +define+INTEL_EMULATION

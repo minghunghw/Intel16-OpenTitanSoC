@@ -29,7 +29,7 @@ module load klayout-el7/0.27.3
 module load or-tools/9.4.1874
 
 # Load commercial tools
-module load vcs/2022.06
+module load vcs/2017.12-SP2-1
 module load calibre/2022.2_15.10_aoi
 module load synopsys-icv/2022.03-SP2
 module load synopsys-icvwb/2021.06
