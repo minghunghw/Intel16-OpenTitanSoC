@@ -4,6 +4,7 @@ export PLATFORM    = intel16
 export VERILOG_FILES = $(sort $(wildcard ./designs/src/$(DESIGN_NAME)/$(DESIGN_NAME).sv))
 export SDC_FILE      = ./designs/$(PLATFORM)/$(DESIGN_NAME)/constraint.sdc
 
+export PDN_TCL          = ./designs/$(PLATFORM)/$(DESIGN_NAME)/pdn.tcl
 export IO_PLACEMENT_TCL = ./designs/$(PLATFORM)/$(DESIGN_NAME)/io_placement.tcl
 export TAPCELL_TCL 	  	= ./designs/$(PLATFORM)/$(DESIGN_NAME)/tapCell7T.tcl
 
