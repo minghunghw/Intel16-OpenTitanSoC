@@ -18,7 +18,7 @@ define_pdn_grid -name {grid} -voltage_domains {CORE}
 add_pdn_stripe -grid {grid} -layer {m1} -width {0.044} -followpins 
 add_pdn_stripe -grid {grid} -layer {m2} -width {0.044} -followpins
 
-add_pdn_ring -grid {grid} -layer {m3 m4} -widths {0.108 0.108} -spacings {1 1} -core_offsets {1 1}
+add_pdn_ring -grid {grid} -layer {m7 m8} -widths {0.9 0.9} -spacings {1 1} -core_offsets {1 1}
 add_pdn_ring -grid {grid} -layer {gmz gm0} -widths {6 6} -spacings {1 1} -core_offsets {1 1}
 
 add_pdn_stripe -grid {grid} -layer {m3} -width {0.044} -pitch {1.080} -offset {2.304} -extend_to_core_ring
