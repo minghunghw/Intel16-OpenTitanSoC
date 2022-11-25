@@ -10,8 +10,8 @@
 # DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
-# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
-DESIGN_CONFIG=./designs/intel16/xbar/config.mk
+DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+# DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
@@ -429,7 +429,7 @@ $(RESULTS_DIR)/3_1_place_gp_skip_io.odb: $(RESULTS_DIR)/2_floorplan.odb $(RESULT
 #-------------------------------------------------------------------------------
 $(RESULTS_DIR)/3_2_place_iop.odb: $(RESULTS_DIR)/3_1_place_gp_skip_io.odb $(IO_CONSTRAINTS)
 ifndef IS_CHIP
-	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/io_placement.tcl -metrics $(LOG_DIR)/3_2_place_iop.json) 2>&1 | tee $(LOG_DIR)/3_2_place_iop.log
+	($(TIME_CMD) $(OPENROAD_CMD) scripts/io_placement.tcl -metrics $(LOG_DIR)/3_2_place_iop.json) 2>&1 | tee $(LOG_DIR)/3_2_place_iop.log
 else
 	cp $< $@
 endif

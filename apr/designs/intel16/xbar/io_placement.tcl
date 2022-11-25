@@ -164,51 +164,51 @@ place_pin -pin_name {drv2[5]}           -layer {m7} -location {620.856   0} -pin
 place_pin -pin_name {drv1[5]}           -layer {m7} -location {621.936   0} -pin_size {0.18 2.2} -force_to_die_boundary
 place_pin -pin_name {drv0[5]}           -layer {m7} -location {623.016   0} -pin_size {0.18 2.2} -force_to_die_boundary
 # top_core
-place_pin -pin_name {clk_i}             -layer {m7} -location { 12.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {en_ifetch_i}       -layer {m7} -location { 25.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {fetch_enable_i}    -layer {m7} -location { 37.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {rst_ni}            -layer {m7} -location { 50.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_cs}            -layer {m7} -location { 62.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sclk}          -layer {m7} -location { 75.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdi0}          -layer {m7} -location { 87.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdi1}          -layer {m7} -location {100.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdi2}          -layer {m7} -location {112.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdi3}          -layer {m7} -location {125.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdo0}          -layer {m7} -location {137.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdo1}          -layer {m7} -location {150.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdo2}          -layer {m7} -location {162.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_sdo3}          -layer {m7} -location {175.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[31]}        -layer {m7} -location {187.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[30]}        -layer {m7} -location {200.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[29]}        -layer {m7} -location {212.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[28]}        -layer {m7} -location {225.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[27]}        -layer {m7} -location {237.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[26]}        -layer {m7} -location {250.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[25]}        -layer {m7} -location {262.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[24]}        -layer {m7} -location {275.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[23]}        -layer {m7} -location {287.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[22]}        -layer {m7} -location {300.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[21]}        -layer {m7} -location {312.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[20]}        -layer {m7} -location {325.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[19]}        -layer {m7} -location {337.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[18]}        -layer {m7} -location {350.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[17]}        -layer {m7} -location {362.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[16]}        -layer {m7} -location {375.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[15]}        -layer {m7} -location {387.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[14]}        -layer {m7} -location {400.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[13]}        -layer {m7} -location {412.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[12]}        -layer {m7} -location {425.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[11]}        -layer {m7} -location {437.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[10]}        -layer {m7} -location {450.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[9]}         -layer {m7} -location {462.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[8]}         -layer {m7} -location {475.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[7]}         -layer {m7} -location {487.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[6]}         -layer {m7} -location {500.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[5]}         -layer {m7} -location {512.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[4]}         -layer {m7} -location {525.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[3]}         -layer {m7} -location {537.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[2]}         -layer {m7} -location {550.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[1]}         -layer {m7} -location {562.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {gpio_o[0]}         -layer {m7} -location {575.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_mode[1]}       -layer {m7} -location {587.5   100} -pin_size {0.18 2.2} -force_to_die_boundary
-place_pin -pin_name {spi_mode[0]}       -layer {m7} -location {600.0   100} -pin_size {0.18 2.2} -force_to_die_boundary
+place_pin -pin_name {clk_i}             -layer {m3} -location {  4.388 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {en_ifetch_i}       -layer {m3} -location {248.288 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {fetch_enable_i}    -layer {m3} -location {309.668 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {rst_ni}            -layer {m3} -location {  4.568 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_cs}            -layer {m3} -location { 12.128 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sclk}          -layer {m3} -location {  4.748 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdi0}          -layer {m3} -location { 34.448 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdi1}          -layer {m3} -location { 32.828 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdi2}          -layer {m3} -location { 37.328 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdi3}          -layer {m3} -location { 44.168 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdo0}          -layer {m3} -location { 79.808 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdo1}          -layer {m3} -location { 81.788 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdo2}          -layer {m3} -location { 72.968 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_sdo3}          -layer {m3} -location { 80.348 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[31]}        -layer {m3} -location {330.188 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[30]}        -layer {m3} -location {326.408 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[29]}        -layer {m3} -location {327.668 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[28]}        -layer {m3} -location {325.328 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[27]}        -layer {m3} -location {299.768 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[26]}        -layer {m3} -location {293.468 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[25]}        -layer {m3} -location {315.068 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[24]}        -layer {m3} -location {308.228 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[23]}        -layer {m3} -location {311.468 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[22]}        -layer {m3} -location {305.708 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[21]}        -layer {m3} -location {299.228 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[20]}        -layer {m3} -location {294.008 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[19]}        -layer {m3} -location {325.148 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[18]}        -layer {m3} -location {324.968 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[17]}        -layer {m3} -location {302.468 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[16]}        -layer {m3} -location {295.628 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[15]}        -layer {m3} -location {321.728 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[14]}        -layer {m3} -location {316.688 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[13]}        -layer {m3} -location {316.868 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[12]}        -layer {m3} -location {312.188 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[11]}        -layer {m3} -location {290.768 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[10]}        -layer {m3} -location {281.588 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[9]}         -layer {m3} -location {309.128 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[8]}         -layer {m3} -location {302.648 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[7]}         -layer {m3} -location {306.428 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[6]}         -layer {m3} -location {288.968 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[5]}         -layer {m3} -location {282.488 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[4]}         -layer {m3} -location {284.648 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[3]}         -layer {m3} -location {313.988 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[2]}         -layer {m3} -location {308.048 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[1]}         -layer {m3} -location {289.868 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {gpio_o[0]}         -layer {m3} -location {284.108 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_mode[1]}       -layer {m3} -location { 25.088 100} -pin_size {0.044 0.16} -force_to_die_boundary
+place_pin -pin_name {spi_mode[0]}       -layer {m3} -location { 32.648 100} -pin_size {0.044 0.16} -force_to_die_boundary

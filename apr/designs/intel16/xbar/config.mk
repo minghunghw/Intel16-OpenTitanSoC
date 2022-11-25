@@ -4,8 +4,8 @@ export PLATFORM    = intel16
 export VERILOG_FILES = $(sort $(wildcard ./designs/src/$(DESIGN_NAME)/$(DESIGN_NAME).sv))
 export SDC_FILE      = ./designs/$(PLATFORM)/$(DESIGN_NAME)/constraint.sdc
 
-export IO_CONSTRAINTS = ./designs/$(PLATFORM)/$(DESIGN_NAME)/io_placement.tcl
-export TAPCELL_TCL 	  = ./designs/$(PLATFORM)/$(DESIGN_NAME)/tapCell7T.tcl
+export IO_PLACEMENT_TCL = ./designs/$(PLATFORM)/$(DESIGN_NAME)/io_placement.tcl
+export TAPCELL_TCL 	  	= ./designs/$(PLATFORM)/$(DESIGN_NAME)/tapCell7T.tcl
 
 export DIE_AREA    = 0 0 625 100
 export CORE_AREA   = 20 20 600 80
