@@ -4,6 +4,7 @@ export PLATFORM    = intel16
 export CACHED_NETLIST 	= ../syn/$(DESIGN_NAME)/netlist/$(DESIGN_NAME).sv
 export SDC_FILE      	= ../syn/$(DESIGN_NAME)/netlist/$(DESIGN_NAME).sdc
 
+export PDN_TCL          = ./designs/$(PLATFORM)/$(DESIGN_NAME)/pdn.tcl
 export IO_PLACEMENT_TCL = ./designs/$(PLATFORM)/$(DESIGN_NAME)/io_placement.tcl
 export TAPCELL_TCL 		= ./designs/$(PLATFORM)/$(DESIGN_NAME)/tapCell7T.tcl
 
