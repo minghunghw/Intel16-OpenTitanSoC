@@ -67,5 +67,5 @@ if [ ! -z "${ORFS+x}" ]; then
     cd ip/OpenROAD-flow-scripts
     git clean -x -d --force tools
     git submodule foreach --recursive git clean -x -d --force
-    ./build_openroad.sh --local --latest --nice
+    ./build_openroad.sh --local --latest --nice --yosys-args TCL_VERSION=tcl8.5
 fi
