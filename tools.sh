@@ -65,7 +65,5 @@ if [ ! -z "${ORFS+x}" ]; then
     source modules.sh
     # update Yosys and OpenROAD
     cd ip/OpenROAD-flow-scripts
-    git clean -x -d --force tools
-    git submodule foreach --recursive git clean -x -d --force
-    ./build_openroad.sh --local --latest --nice --yosys-args TCL_VERSION=tcl8.5
+    ./build_openroad.sh --clean-force --no_init --local --latest --nice --yosys-args TCL_VERSION=tcl8.5
 fi
