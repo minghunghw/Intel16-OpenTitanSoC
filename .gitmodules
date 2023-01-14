@@ -12,3 +12,6 @@
 	path = apr/platforms/intel16
 	url = git@github.com:minghungumich/Intel16-Platform.git
 	branch = main
+[submodule "ip/shodan"]
+	path = ip/shodan
+	url = git@github.com:minghungumich/Intel16-ML.git
