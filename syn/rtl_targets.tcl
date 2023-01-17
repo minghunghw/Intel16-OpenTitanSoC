@@ -25,6 +25,8 @@ set rtl_packages [ concat \
     $IP/xbar/rtl/tl_main_pkg.sv \
     $IP/xbar/rtl/tl_periph_pkg.sv \
     $IP/xbar/rtl/tl_1to2_pkg.sv \
+    $IP/shodan/ml_top/rtl/ml_pkg.sv \
+    $IP/shodan/ml_top/rtl/ml_top_reg_pkg.sv \
 ]
 
 set rtl_prim [ concat \
@@ -146,6 +148,19 @@ set rtl_xbar [ concat \
     $IP/xbar/rtl/xbar_2to1.sv \
     $IP/xbar/rtl/xbar_main.sv \
     $IP/xbar/rtl/xbar_periph.sv \
+]
+
+set rtl_ml_top [ concat \
+    $IP/shodan/ml_top/rtl/kelvin.sv \
+    $IP/shodan/ml_top/rtl/ClockGate.sv \
+    $IP/shodan/ml_top/rtl/ml_dmem.sv \
+    $IP/shodan/ml_top/rtl/ml_top_core_reg_top.sv \
+    $IP/shodan/ml_top/rtl/ml_top_dmem_reg_top.sv \
+    $IP/shodan/ml_top/rtl/ml_top.sv \
+    $IP/shodan/ml_top/rtl/Sram_1rw_256x256.sv \
+    $IP/shodan/ml_top/rtl/Sram_1rwm_256x288.sv \
+    $IP/shodan/ml_top/rtl/xbar_sram.sv \
+    $rtl_prim \
 ]
 
 set rtl_peri_device [ concat \
