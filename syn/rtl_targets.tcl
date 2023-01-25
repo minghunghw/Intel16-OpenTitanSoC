@@ -155,12 +155,13 @@ set rtl_ml_top [ concat \
     $IP/shodan/ml_top/rtl/ClockGate.sv \
     $IP/shodan/ml_top/rtl/ml_dmem.sv \
     $IP/shodan/ml_top/rtl/ml_top_core_reg_top.sv \
-    $IP/shodan/ml_top/rtl/ml_top_dmem_reg_top.sv \
     $IP/shodan/ml_top/rtl/ml_top.sv \
     $IP/shodan/ml_top/rtl/Sram_1rw_256x256.sv \
     $IP/shodan/ml_top/rtl/Sram_1rwm_256x288.sv \
     $IP/shodan/ml_top/rtl/xbar_sram.sv \
     $rtl_prim \
+    $rtl_prim_generic \
+    $rtl_tlul \
 ]
 
 set rtl_peri_device [ concat \

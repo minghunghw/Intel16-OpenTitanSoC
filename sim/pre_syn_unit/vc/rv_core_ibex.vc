@@ -1,0 +1,62 @@
++libext+.sv+.svh
+
+// package
+////////////////////////////////////////////////////////////////////////////////
+$HW/top_pkg.sv
+$OPENTITAN/prim/rtl/prim_cipher_pkg.sv
+$OPENTITAN/prim/rtl/prim_util_pkg.sv
+$OPENTITAN/prim/rtl/prim_secded_pkg.sv
+$OPENTITAN/prim/rtl/prim_mubi_pkg.sv
+$OPENTITAN/prim/rtl/prim_ram_1p_pkg.sv
+$OPENTITAN/prim/rtl/prim_esc_pkg.sv
+$OPENTITAN/prim/rtl/prim_alert_pkg.sv
+$OPENTITAN/prim/rtl/prim_subreg_pkg.sv
+$OPENTITAN/tlul/rtl/tlul_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_reg_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_state_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_pkg.sv
+$OPENTITAN/otp_ctrl/rtl/otp_ctrl_reg_pkg.sv
+$OPENTITAN/otp_ctrl/rtl/otp_ctrl_pkg.sv
+$OPENTITAN/pwrmgr/rtl/pwrmgr_reg_pkg.sv
+$OPENTITAN/pwrmgr/rtl/pwrmgr_pkg.sv
+$OPENTITAN/entropy_src/rtl/entropy_src_reg_pkg.sv
+$OPENTITAN/entropy_src/rtl/entropy_src_pkg.sv
+$OPENTITAN/edn/rtl/edn_reg_pkg.sv
+$OPENTITAN/edn/rtl/edn_pkg.sv
+$IP/opentitan/hw/top_earlgrey/ip_autogen/alert_handler/rtl/alert_handler_reg_pkg.sv
+$IBEX/rtl/ibex_pkg.sv
+$IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
+$OPENTITAN/rv_core_ibex/rtl/rv_core_ibex_reg_pkg.sv
+$OPENTITAN/rv_core_ibex/rtl/rv_core_ibex_pkg.sv
+
+// dv
+////////////////////////////////////////////////////////////////////////////////
++incdir+$IP/opentitan/hw/dv/sv/dv_utils
+
+// prim
+////////////////////////////////////////////////////////////////////////////////
+-y $IBEX/dv/uvm/core_ibex/common/prim
+-y $OPENTITAN/prim/rtl
++incdir+$OPENTITAN/prim/rtl
+
+// prim_generic
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/prim_generic/rtl
+
+// tlul
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/tlul/rtl
+
+// ibex
+////////////////////////////////////////////////////////////////////////////////
+-y $IBEX/rtl
++incdir+$IBEX/rtl
+
+// rv_core_ibex
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/rv_core_ibex/rtl
++incdir+$OPENTITAN/rv_core_ibex/rtl
+
+// testbench
+////////////////////////////////////////////////////////////////////////////////
+$TB/tb_utils_rv_core_ibex.sv
