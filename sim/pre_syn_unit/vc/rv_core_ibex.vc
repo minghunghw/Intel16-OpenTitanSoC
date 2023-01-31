@@ -17,7 +17,7 @@ $OPENTITAN/lc_ctrl/rtl/lc_ctrl_state_pkg.sv
 $OPENTITAN/lc_ctrl/rtl/lc_ctrl_pkg.sv
 $OPENTITAN/otp_ctrl/rtl/otp_ctrl_reg_pkg.sv
 $OPENTITAN/otp_ctrl/rtl/otp_ctrl_pkg.sv
-$OPENTITAN/pwrmgr/rtl/pwrmgr_reg_pkg.sv
+$IP/opentitan/hw/top_earlgrey/ip/pwrmgr/rtl/autogen/pwrmgr_reg_pkg.sv
 $OPENTITAN/pwrmgr/rtl/pwrmgr_pkg.sv
 $OPENTITAN/entropy_src/rtl/entropy_src_reg_pkg.sv
 $OPENTITAN/entropy_src/rtl/entropy_src_pkg.sv
