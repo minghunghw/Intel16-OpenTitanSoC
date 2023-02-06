@@ -104,6 +104,31 @@ set rtl_ibex [ concat \
     $rtl_tlul \
 ]
 
+set rtl_rv_core_ibex [ concat \
+    $OPENTITAN/rv_core_ibex/rtl/rv_core_ibex.sv \
+    $IBEX/rtl/ibex_top.sv \
+    $IBEX/rtl/ibex_core.sv \
+    $IBEX/rtl/ibex_if_stage.sv \
+    $IBEX/rtl/ibex_id_stage.sv \
+    $IBEX/rtl/ibex_ex_block.sv \
+    $IBEX/rtl/ibex_wb_stage.sv \
+    $IBEX/rtl/ibex_controller.sv \
+    $IBEX/rtl/ibex_decoder.sv \
+    $IBEX/rtl/ibex_compressed_decoder.sv \
+    $IBEX/rtl/ibex_cs_registers.sv \
+    $IBEX/rtl/ibex_load_store_unit.sv \
+    $IBEX/rtl/ibex_counter.sv \
+    $IBEX/rtl/ibex_csr.sv \
+    $IBEX/rtl/ibex_multdiv_fast.sv \
+    $IBEX/rtl/ibex_alu.sv \
+    $IBEX/rtl/ibex_prefetch_buffer.sv \
+    $IBEX/rtl/ibex_fetch_fifo.sv \
+    $IBEX/rtl/ibex_register_file_ff.sv \
+    $rtl_prim \
+    $rtl_prim_generic \
+    $rtl_tlul \
+]
+
 set rtl_gpio [ concat \
     $OPENTITAN/gpio/rtl/gpio.sv \
     $OPENTITAN/gpio/rtl/gpio_reg_top.sv \
