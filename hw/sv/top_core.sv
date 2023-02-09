@@ -38,6 +38,35 @@ module top_core (
     tlul_pkg::tl_h2d_t xbar_main_2_peri_device;
     tlul_pkg::tl_d2h_t peri_device_2_xbar_main;
 
+    // rv_ibex_core clk/rst
+    logic                   clk_edn_i;
+    logic                   rst_edn_ni;
+    logic                   clk_esc_i;
+    logic                   rst_esc_ni;
+    logic                   clk_otp_i;
+    logic                   rst_otp_ni;
+    // Escalation input for NMI
+    prim_esc_pkg::esc_tx_t  esc_tx_i;
+    prim_esc_pkg::esc_rx_t  esc_rx_o;
+    // Crash dump information
+    rv_core_ibex_pkg::cpu_crash_dump_t crash_dump_o;
+    // CPU Control Signals
+    lc_ctrl_pkg::lc_tx_t    lc_cpu_en_i;
+    lc_ctrl_pkg::lc_tx_t    pwrmgr_cpu_en_i;
+    pwrmgr_pkg::pwr_cpu_t   pwrmgr_o;
+    // peripheral interface access
+    tlul_pkg::tl_h2d_t      cfg_tl_d_i;
+    tlul_pkg::tl_d2h_t      cfg_tl_d_o;
+    // connection to edn
+    edn_pkg::edn_req_t      edn_o;
+    edn_pkg::edn_rsp_t      edn_i;
+    // connection to otp scramble interface
+    otp_ctrl_pkg::sram_otp_key_req_t icache_otp_key_o;
+    otp_ctrl_pkg::sram_otp_key_rsp_t icache_otp_key_i;
+    // interrupts and alerts
+    prim_alert_pkg::alert_rx_t [rv_core_ibex_reg_pkg::NumAlerts-1:0] alert_rx_i;
+    prim_alert_pkg::alert_tx_t [rv_core_ibex_reg_pkg::NumAlerts-1:0] alert_tx_o;
+
     // remove assignment when connecting new module
     assign jtag_2_xbar_main = tlul_pkg::TL_H2D_DEFAULT;
 
@@ -46,6 +75,21 @@ module top_core (
 
     assign fetch_enable = (fetch_enable_i) ? ibex_pkg::IbexMuBiOn : ibex_pkg::IbexMuBiOff;
     assign en_ifetch    = (en_ifetch_i)    ? prim_mubi_pkg::MuBi4True : prim_mubi_pkg::MuBi4False;
+
+    //rv_core_ibex
+    assign lc_cpu_en_i = (fetch_enable_i) ? lc_ctrl_pkg::lc_tx_t'(lc_ctrl_pkg::On) : lc_ctrl_pkg::lc_tx_t'(lc_ctrl_pkg::Off);
+    assign pwrmgr_cpu_en_i = (fetch_enable_i) ? lc_ctrl_pkg::lc_tx_t'(lc_ctrl_pkg::On) : lc_ctrl_pkg::lc_tx_t'(lc_ctrl_pkg::Off);
+    assign clk_edn_i   = 0;
+    assign rst_edn_ni   = 0;
+    assign clk_esc_i   = 0;
+    assign rst_esc_ni  = 0;
+    assign clk_otp_i   = 0;
+    assign rst_otp_ni  = 0;
+    assign esc_tx_i            = prim_esc_pkg::ESC_TX_DEFAULT;
+    assign cfg_tl_d_i          = tlul_pkg::TL_H2D_DEFAULT;
+    assign edn_i               = edn_pkg::EDN_RSP_DEFAULT;
+    assign icache_otp_key_i    = otp_ctrl_pkg::SRAM_OTP_KEY_RSP_DEFAULT;
+    assign alert_rx_i          = prim_alert_pkg::ALERT_RX_DEFAULT;
 
     // reset synchronizer
     rst_gen u_rst_gen (
@@ -103,7 +147,7 @@ module top_core (
         .clk_i              (clk_i             ),
         .rst_ni             (rst_no            ),
 
-        .fetch_enable_i     (fetch_enable      ),
+        // .fetch_enable_i     (fetch_enable      ),
         .en_ifetch_i        (en_ifetch         ),
 
         .tl_core_i          (xbar_main_2_core  ),
@@ -112,7 +156,20 @@ module top_core (
         .tl_instr_i         (xbar_main_2_instr ),
         .tl_instr_o         (instr_2_xbar_main ),
         .tl_data_i          (xbar_main_2_data  ),
-        .tl_data_o          (data_2_xbar_main  )
+        .tl_data_o          (data_2_xbar_main  ),
+        .clk_edn_i(clk_edn_i),
+        .rst_edn_ni(rst_edn_ni),
+        .clk_esc_i(clk_esc_i),
+        .rst_esc_ni(rst_esc_ni),
+        .clk_otp_i(clk_otp_i),
+        .rst_otp_ni(rst_otp_ni),
+        .lc_cpu_en_i(lc_cpu_en_i),
+        .pwrmgr_cpu_en_i(pwrmgr_cpu_en_i),
+        .esc_tx_i(esc_tx_i),
+        .cfg_tl_d_i(cfg_tl_d_i),
+        .edn_i(edn_i),
+        .icache_otp_key_i(icache_otp_key_i),
+        .alert_rx_i(alert_rx_i)
     );
 
     // 1 slave
