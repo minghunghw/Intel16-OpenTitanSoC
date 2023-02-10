@@ -1,6 +1,6 @@
 set sdc_version 2.0
 set clock_name clk_i
-set clock_period 8000
+set clock_period 11000
 set input_clock_delay [expr $clock_period * 0.6]
 set output_clock_delay [expr $clock_period * 0.6]
 set clock_uncertainty 150

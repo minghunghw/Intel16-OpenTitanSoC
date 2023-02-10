@@ -73,13 +73,27 @@ set rtl_prim [ concat \
     $OPENTITAN/prim/rtl/prim_lc_sender.sv \
     $OPENTITAN/prim/rtl/prim_edn_req.sv \
     $OPENTITAN/prim/rtl/prim_ram_1p_scr.sv \
-    $OPENTITAN/prim/rtl/prim_assert.sv \ 
+    $OPENTITAN/prim/rtl/prim_esc_receiver.sv \
+    $OPENTITAN/prim/rtl/prim_sync_reqack.sv \
+    $OPENTITAN/prim/rtl/prim_arbiter_fixed.sv \
+    $OPENTITAN/prim/rtl/prim_packer_fifo.sv \
+    $IBEX/dv/uvm/core_ibex/common/prim/prim_clock_mux2.sv \
+    $OPENTITAN/prim/rtl/prim_subst_perm.sv \
+    $OPENTITAN/prim/rtl/prim_prince.sv \
+    $OPENTITAN/prim/rtl/prim_ram_1p_adv.sv \
+    $OPENTITAN/prim/rtl/prim_lfsr.sv \
+    $OPENTITAN/prim/rtl/prim_secded_inv_28_22_enc.sv \
+    $OPENTITAN/prim/rtl/prim_secded_inv_28_22_dec.sv \
+    $OPENTITAN/prim/rtl/prim_count.sv \
+    $IBEX/dv/uvm/core_ibex/common/prim/prim_ram_1p.sv \
 ]
 
 set rtl_prim_generic [ concat \
     $OPENTITAN/prim_generic/rtl/prim_generic_clock_gating.sv \
     $OPENTITAN/prim_generic/rtl/prim_generic_buf.sv \
     $OPENTITAN/prim_generic/rtl/prim_generic_flop.sv \
+    $OPENTITAN/prim_generic/rtl/prim_generic_clock_mux2.sv \
+    $OPENTITAN/prim_generic/rtl/prim_generic_ram_1p.sv \
 ]
 
 set rtl_tlul [ concat \
@@ -126,13 +140,12 @@ set rtl_ibex [ concat \
 ]
 
 set rtl_rv_core_ibex [ concat \
-    $OPENTITAN/prim/rtl/prim_assert_standard_macros.svh \  
-    $OPENTITAN/rv_core_ibex/rtl/rv_core_addr_trans \
-    $OPENTITAN/rv_core_ibex/rtl/rv_core_ibex_cfg_reg_top \
-    $IBEX/rtl/ibex_lockstep \
-    $IBEX/rtl/ibex_pmp \
-    $IBEX/rtl/ibex_icache \
-    $IBEX/rtl/ibex_dummy_instr \
+    $OPENTITAN/rv_core_ibex/rtl/rv_core_addr_trans.sv \
+    $OPENTITAN/rv_core_ibex/rtl/rv_core_ibex_cfg_reg_top.sv \
+    $IBEX/rtl/ibex_lockstep.sv \
+    $IBEX/rtl/ibex_pmp.sv \
+    $IBEX/rtl/ibex_icache.sv \
+    $IBEX/rtl/ibex_dummy_instr.sv \
     $IBEX/rtl/ibex_top.sv \
     $IBEX/rtl/ibex_core.sv \
     $IBEX/rtl/ibex_if_stage.sv \
@@ -154,7 +167,9 @@ set rtl_rv_core_ibex [ concat \
     $rtl_prim \
     $rtl_prim_generic \
     $rtl_tlul \
-    $OPENTITAN/rv_core_ibex/rtl/rv_core_ibex.sv \   
+    $OPENTITAN/prim/rtl/prim_assert_standard_macros.svh \
+    $OPENTITAN/prim/rtl/prim_assert.sv \
+    $OPENTITAN/rv_core_ibex/rtl/rv_core_ibex.sv \
 ]
 
 set rtl_gpio [ concat \
