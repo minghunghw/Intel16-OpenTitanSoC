@@ -10,7 +10,8 @@ TESTS="             \
     spi_device_tlul \
     xbar_main       \
     xbar_2to1       \
-    rv_core_ibex       \
+    rv_core_ibex    \
+    ibex_cluster    \
 "
 
 source $COMMON
