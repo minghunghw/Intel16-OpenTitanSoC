@@ -5,13 +5,13 @@ module purge
 # Load cadre software
 module use /afs/eecs.umich.edu/cadre/software/modules
 module use /afs/eecs.umich.edu/cadre/software/openroad/modules
-module use /afs/eecs.umich.edu/vlsida/projects/restricted/intel/modules
+module use /afs/eecs.umich.edu/vlsida/projects/restricted/intel/software/modules
 
 # Load modules
 module load riscv/9.2
 module load devtoolset-el7/8
 module load cmake/3.24.0
-module load boost/1.81.0
+module load boost/1.78.0
 module load swig-rhel7/4.0.1
 module load tcl-devel
 module load spdlog
