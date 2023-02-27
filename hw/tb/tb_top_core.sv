@@ -66,8 +66,10 @@ module tb;
                 break;
         end
 
+        // fit the 1 cycle delay 
         @(negedge clk_i)
         fetch_enable_i  = 1;
+        @(negedge clk_i)
         en_ifetch_i     = 1;
 
         #(CLK_PERIOD*10);

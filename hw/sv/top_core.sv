@@ -38,13 +38,14 @@ module top_core (
     tlul_pkg::tl_h2d_t xbar_main_2_peri_device;
     tlul_pkg::tl_d2h_t peri_device_2_xbar_main;
 
+
     // remove assignment when connecting new module
     assign jtag_2_xbar_main = tlul_pkg::TL_H2D_DEFAULT;
 
-    ibex_pkg::ibex_mubi_t   fetch_enable;
+    // ibex_pkg::ibex_mubi_t   fetch_enable;
     prim_mubi_pkg::mubi4_t  en_ifetch;
 
-    assign fetch_enable = (fetch_enable_i) ? ibex_pkg::IbexMuBiOn : ibex_pkg::IbexMuBiOff;
+    // assign fetch_enable = (fetch_enable_i) ? ibex_pkg::IbexMuBiOn : ibex_pkg::IbexMuBiOff;
     assign en_ifetch    = (en_ifetch_i)    ? prim_mubi_pkg::MuBi4True : prim_mubi_pkg::MuBi4False;
 
     // reset synchronizer
@@ -103,7 +104,7 @@ module top_core (
         .clk_i              (clk_i             ),
         .rst_ni             (rst_no            ),
 
-        .fetch_enable_i     (fetch_enable      ),
+        .fetch_enable_i     (fetch_enable_i      ),
         .en_ifetch_i        (en_ifetch         ),
 
         .tl_core_i          (xbar_main_2_core  ),
