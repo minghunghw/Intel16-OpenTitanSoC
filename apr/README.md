@@ -5,7 +5,7 @@ You need to build the [OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Pr
 
 To build the ORFS tool, run on top of the repository
 ```
-./tool.sh --orfs
+./tools.sh --orfs
 ```
 
 ### Tool update
@@ -13,7 +13,7 @@ To build the ORFS tool, run on top of the repository
 
 If you want to update the version of OpenROAD and Yosys, run on top of the repository
 ```
-./tool.sh --update --orfs
+./tools.sh --update --orfs
 ```
 
 ### How to add customized design

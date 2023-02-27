@@ -36,7 +36,7 @@ module tb;
     initial begin
         
         tl_i           = tlul_pkg::TL_H2D_DEFAULT;
-        alert_rx_i     = prim_alert_pkg::ALERT_RX_DEFAULT;
+        alert_rx_i     = {gpio_reg_pkg::NumAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}};
         cio_gpio_i     = 0;
         
         @(negedge clk_i)

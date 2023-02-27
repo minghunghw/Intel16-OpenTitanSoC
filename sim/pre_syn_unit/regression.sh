@@ -7,6 +7,7 @@ TESTS="             \
     ibex_tlul       \
     mem_tlul        \
     peri_device     \
+    rv_core_ibex    \
     spi_device_tlul \
     xbar_main       \
     xbar_2to1       \

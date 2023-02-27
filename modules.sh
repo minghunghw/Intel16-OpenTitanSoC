@@ -11,7 +11,7 @@ module use /afs/eecs.umich.edu/vlsida/projects/restricted/intel/modules
 module load riscv/9.2
 module load devtoolset-el7/8
 module load cmake/3.24.0
-module load boost
+module load boost/1.81.0
 module load swig-rhel7/4.0.1
 module load tcl-devel
 module load spdlog
@@ -37,6 +37,13 @@ module load synopsys-synth/2021.06-SP4
 module load starrc/2022.03-SP3
 module load primetime/2021.06-SP4
 module load synopsys-lib-compiler/2022.03-SP3
+
+rhel_version=$(cat /etc/redhat-release)
+is_rhel7=$(echo $rhel_version | grep "7" | wc -l)
+if [[ $is_rhel7 -ne 1 ]]; then
+    echo -e "\e[31m[ERROR]\e[0m Please use RHEL7 machine stead (K in VLSIPOOL)"
+    return
+fi
 
 # Load OpenROAD-flow-srcipts tool
 if [ -d "ip/OpenROAD-flow-scripts/tools/install" ]; then

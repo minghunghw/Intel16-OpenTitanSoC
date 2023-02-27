@@ -10,6 +10,7 @@ module tb;
     tlul_pkg::tl_h2d_t tl_i;
     tlul_pkg::tl_d2h_t tl_o;
 
+    logic [ 2:0]    opcode;
     logic [31:0]    addr;
     logic [31:0]    data;
 
@@ -38,15 +39,17 @@ module tb;
 
         for (int i=0; i<16; i++) begin
             @(negedge clk_i) @(negedge clk_i)
-            addr = i*4;
-            data = i;
-            invoke_mem_tlul(0, addr, data, tl_i); //write to memory
+            opcode  = tlul_pkg::PutFullData;
+            addr    = i*4;
+            data    = i;
+            invoke_mem_tlul(opcode, addr, data, tl_i); //write to memory
         end
 
         @(negedge clk_i) @(negedge clk_i)
-        addr = 12*4;
-        data = 0;
-        invoke_mem_tlul(4, addr, data, tl_i); // read from memory
+        opcode  = tlul_pkg::Get;
+        addr    = 12*4;
+        data    = 0;
+        invoke_mem_tlul(opcode, addr, data, tl_i); // read from memory
 
         @(negedge clk_i)
         wait (tl_o.d_valid == 1);
