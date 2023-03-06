@@ -8,14 +8,14 @@ set esc_period 100000
 set clock_otp clk_otp_i
 set otp_period 100000
 
-set input_clock_delay [expr $clock_period * 0.6]
-set output_clock_delay [expr $clock_period * 0.6]
-set input_edn_delay [expr $edn_period * 0.6]
-set output_edn_delay [expr $edn_period * 0.6]
-set input_esc_delay [expr $esc_period * 0.6]
-set output_esc_delay [expr $esc_period * 0.6]
-set input_otp_delay [expr $otp_period * 0.6]
-set output_otp_delay [expr $otp_period * 0.6]
+set input_clock_delay [expr $clock_period * 0.2]
+set output_clock_delay [expr $clock_period * 0.2]
+set input_edn_delay [expr $edn_period * 0.2]
+set output_edn_delay [expr $edn_period * 0.2]
+set input_esc_delay [expr $esc_period * 0.2]
+set output_esc_delay [expr $esc_period * 0.2]
+set input_otp_delay [expr $otp_period * 0.2]
+set output_otp_delay [expr $otp_period * 0.2]
 
 set clock_uncertainty 150
 set clock_latency 500
@@ -33,10 +33,10 @@ create_clock [get_ports $clock_name] -name $clock_name -period $clock_period -wa
 set_clock_uncertainty -setup $clock_uncertainty [get_clocks $clock_name]
 set_clock_uncertainty -hold $clock_uncertainty [get_clocks $clock_name]
 
-set_input_delay -clock $clock_name $input_clock_delay [get_ports {rst_ni nmi_wdog_i lc_cpu_en_i pwrmgr_cpu_en_i irq_timer_i icache_otp_key_i scanmode_i corei_tl_h_i hart_id_i cfg_tl_d_i alert_rx_i edn_i}]
-# set_input_delay -clock $clock_name -max $input_clock_delay [get_ports {rst_ni nmi_wdog_i lc_cpu_en_i pwrmgr_cpu_en_i irq_timer_i icache_otp_key_i scanmode_i corei_tl_h_i hart_id_i cfg_tl_d_i alert_rx_i edn_i}]
-set_output_delay -clock $clock_name $output_clock_delay [get_ports {icache_otp_key_o corei_tl_h_o cfg_tl_d_o alert_tx_o edn_o}]
-# set_output_delay -clock $clock_name -max $output_clock_delay [get_ports {icache_otp_key_o corei_tl_h_o cfg_tl_d_o alert_tx_o edn_o}]
+set_input_delay -clock $clock_name -min $input_clock_delay [get_ports {rst_ni nmi_wdog_i lc_cpu_en_i pwrmgr_cpu_en_i irq_timer_i icache_otp_key_i scanmode_i corei_tl_h_i hart_id_i cfg_tl_d_i alert_rx_i edn_i}]
+set_input_delay -clock $clock_name -max $input_clock_delay [get_ports {rst_ni nmi_wdog_i lc_cpu_en_i pwrmgr_cpu_en_i irq_timer_i icache_otp_key_i scanmode_i corei_tl_h_i hart_id_i cfg_tl_d_i alert_rx_i edn_i}]
+set_output_delay -clock $clock_name -min $output_clock_delay [get_ports {icache_otp_key_o corei_tl_h_o cfg_tl_d_o alert_tx_o edn_o}]
+set_output_delay -clock $clock_name -max $output_clock_delay [get_ports {icache_otp_key_o corei_tl_h_o cfg_tl_d_o alert_tx_o edn_o}]
 
 set_clock_latency $clock_latency [get_clocks $clock_name]
 set_clock_transition $clock_transition [get_clocks $clock_name]
@@ -49,8 +49,8 @@ set_clock_uncertainty -hold $clock_uncertainty [get_clocks $clock_edn]
 
 set_input_delay -clock $clock_edn -min $input_edn_delay [get_ports {rst_edn_ni edn_i}]
 set_input_delay -clock $clock_edn -max $input_edn_delay [get_ports {rst_edn_ni edn_i}]
-set_output_delay -clock $clock_edn -min $output_end_delay [get_ports {edn_o}]
-set_output_delay -clock $clock_edn -max $output_end_delay [get_ports {edn_o}]
+set_output_delay -clock $clock_edn -min $output_edn_delay [get_ports {edn_o}]
+set_output_delay -clock $clock_edn -max $output_edn_delay [get_ports {edn_o}]
 
 set_clock_latency $clock_latency [get_clocks $clock_edn]
 set_clock_transition $clock_transition [get_clocks $clock_edn]
