@@ -21,7 +21,6 @@ $IP/xbar/rtl/tl_main_pkg.sv
 $IP/xbar/rtl/tl_periph_pkg.sv
 $IBEX/rtl/ibex_pkg.sv
 $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
-+incdir+$TB/pkg
 
 // dv
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,4 +77,6 @@ $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
 
 // testbench
 ////////////////////////////////////////////////////////////////////////////////
+$TB/pkg/tb_pad_pkg.sv
+$TB/pkg/tb_spi_pkg.sv
 $TB/tb_top_chip.sv

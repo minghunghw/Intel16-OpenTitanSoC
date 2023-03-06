@@ -3,30 +3,34 @@
 // package
 ////////////////////////////////////////////////////////////////////////////////
 $HW/top_pkg.sv
+$IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
+$OPENTITAN/prim/rtl/prim_alert_pkg.sv
 $OPENTITAN/prim/rtl/prim_util_pkg.sv
 $OPENTITAN/prim/rtl/prim_secded_pkg.sv
+$OPENTITAN/prim/rtl/prim_subreg_pkg.sv
 $OPENTITAN/prim/rtl/prim_mubi_pkg.sv
 $OPENTITAN/tlul/rtl/tlul_pkg.sv
+$OPENTITAN/i2c/rtl/i2c_pkg.sv
+$OPENTITAN/i2c/rtl/i2c_reg_pkg.sv
 
-// prim
+// i2c
 ////////////////////////////////////////////////////////////////////////////////
--y $OPENTITAN/prim/rtl
-+incdir+$OPENTITAN/prim/rtl
+-y $OPENTITAN/i2c/rtl
 
 // tlul
 ////////////////////////////////////////////////////////////////////////////////
 -y $OPENTITAN/tlul/rtl
 
-// spi
+// prim
 ////////////////////////////////////////////////////////////////////////////////
--y $HW/spi
+-y $IBEX/dv/uvm/core_ibex/common/prim
+-y $OPENTITAN/prim/rtl
++incdir+$OPENTITAN/prim/rtl
 
-// dc_fifo
+// prim_generic
 ////////////////////////////////////////////////////////////////////////////////
--y $IP/dc_fifo
+-y $OPENTITAN/prim_generic/rtl
 
 // testbench
 ////////////////////////////////////////////////////////////////////////////////
-$TB/pkg/tb_tlul_pkg.sv
-$TB/pkg/tb_spi_pkg.sv
-$TB/tb_utils_spi_device_tlul.sv
+$TB/tb_utils_i2c.sv

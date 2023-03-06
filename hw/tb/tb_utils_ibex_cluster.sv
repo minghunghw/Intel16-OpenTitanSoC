@@ -1,5 +1,5 @@
-
 module tb;    
+
     localparam CLK_PERIOD   = 10;
 
     logic                   clk_i;
@@ -11,15 +11,15 @@ module tb;
     tlul_pkg::tl_h2d_t  ibex_d_o;
 
 
-ibex_cluster u_ibex_cluster(
-    .clk_i          (clk_i),
-    .rst_ni         (rst_ni),
-    .fetch_enable_i (fetch_enable_i),
-    .ibex_i_i       (ibex_i_i),
-    .ibex_d_i       (ibex_d_i),
-    .ibex_i_o       (ibex_i_o),
-    .ibex_d_o       (ibex_d_o)
-);
+    ibex_cluster u_ibex_cluster(
+        .clk_i          (clk_i),
+        .rst_ni         (rst_ni),
+        .fetch_enable_i (fetch_enable_i),
+        .ibex_i_i       (ibex_i_i),
+        .ibex_d_i       (ibex_d_i),
+        .ibex_i_o       (ibex_i_o),
+        .ibex_d_o       (ibex_d_o)
+    );
 
     initial begin 
         clk_i       = 0;

@@ -93,7 +93,7 @@ module tb;
 
         @(negedge clk_i)
         glen  = 13'h0;
-        clen  = 4'hc;
+        clen  = 4'ha;
         cmd   = csrng_pkg::INS;
         csrng_cmd(glen, clen, cmd, csrng_cmd_i[0]);
 
