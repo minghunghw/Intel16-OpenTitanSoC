@@ -31,41 +31,7 @@ $OPENTITAN/aes/rtl/aes_sbox_canright_pkg.sv
 // aes
 ////////////////////////////////////////////////////////////////////////////////
 -y $OPENTITAN/aes/rtl
-// $OPENTITAN/aes/rtl/aes.sv
-// $OPENTITAN/aes/rtl/aes_cipher_control.sv
-// $OPENTITAN/aes/rtl/aes_cipher_control_fsm.sv
-// $OPENTITAN/aes/rtl/aes_cipher_control_fsm_n.sv
-// $OPENTITAN/aes/rtl/aes_cipher_control_fsm_p.sv
-// $OPENTITAN/aes/rtl/aes_cipher_core.sv
-// $OPENTITAN/aes/rtl/aes_control.sv
-// $OPENTITAN/aes/rtl/aes_control_fsm.sv
-// $OPENTITAN/aes/rtl/aes_control_fsm_n.sv
-// $OPENTITAN/aes/rtl/aes_control_fsm_p.sv
-// $OPENTITAN/aes/rtl/aes_core.sv
-// $OPENTITAN/aes/rtl/aes_ctr.sv
-// $OPENTITAN/aes/rtl/aes_ctr_fsm.sv
-// $OPENTITAN/aes/rtl/aes_ctr_fsm_n.sv
-// $OPENTITAN/aes/rtl/aes_ctr_fsm_p.sv
-// $OPENTITAN/aes/rtl/aes_ctrl_reg_shadowed.sv
-// $OPENTITAN/aes/rtl/aes_key_expand.sv
-// $OPENTITAN/aes/rtl/aes_mix_columns.sv
-// $OPENTITAN/aes/rtl/aes_mix_single_column.sv
-// $OPENTITAN/aes/rtl/aes_prng_clearing.sv
-// $OPENTITAN/aes/rtl/aes_prng_masking.sv
-// $OPENTITAN/aes/rtl/aes_reduced_round.sv
-// $OPENTITAN/aes/rtl/aes_reg_status.sv
-// $OPENTITAN/aes/rtl/aes_reg_top.sv
-// $OPENTITAN/aes/rtl/aes_sbox.sv
-// $OPENTITAN/aes/rtl/aes_sbox_canright.sv
-// $OPENTITAN/aes/rtl/aes_sbox_canright_masked.sv
-// $OPENTITAN/aes/rtl/aes_sbox_canright_masked_noreuse.sv
 $OPENTITAN/aes/rtl/aes_sbox_dom.sv
-// $OPENTITAN/aes/rtl/aes_sbox_lut.sv
-// $OPENTITAN/aes/rtl/aes_sel_buf_chk.sv
-// $OPENTITAN/aes/rtl/aes_shift_rows.sv
-// $OPENTITAN/aes/rtl/aes_sub_bytes.sv
-// $OPENTITAN/aes/rtl/aes_wrap.sv
-
 
 // tlul
 ////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +41,7 @@ $OPENTITAN/aes/rtl/aes_sbox_dom.sv
 ////////////////////////////////////////////////////////////////////////////////
 -y $IBEX/dv/uvm/core_ibex/common/prim
 -y $OPENTITAN/prim/rtl
+-y $HW/prim
 +incdir+$OPENTITAN/prim/rtl
 
 // prim_generic
