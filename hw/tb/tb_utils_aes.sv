@@ -80,22 +80,24 @@ module tb;
     logic [ 2:0]    opcode;
     logic [31:0]    addr;
     logic [31:0]    data, aes_ctrl_val  ;
+    logic [31:0] aes_ctrl;
     initial aes_ctrl_val =
         (32'h1 & `AES_CTRL_SHADOWED_OPERATION_MASK) << `AES_CTRL_SHADOWED_OPERATION_OFFSET |
         (32'h2 & `AES_CTRL_SHADOWED_MODE_MASK) << `AES_CTRL_SHADOWED_MODE_OFFSET |
         (32'h1 & `AES_CTRL_SHADOWED_KEY_LEN_MASK) << `AES_CTRL_SHADOWED_KEY_LEN_OFFSET |
         32'h0 << `AES_CTRL_SHADOWED_MANUAL_OPERATION_OFFSET;
     initial clk_i = 0;
+    initial clk_edn_i=0;
     initial rst_ni = 0;
+    initial rst_shadowed_ni=0;
+    initial rst_edn_ni=0;
     always #(CLK_PERIOD/2.0) clk_i = ~clk_i;
+    always #(CLK_PERIOD/2.0) clk_edn_i = ~clk_edn_i;
 
     initial begin
-        //input variables
-        rst_shadowed_ni=0;
+        //input variables 
         lc_escalate_en_i=lc_ctrl_pkg::LC_TX_DEFAULT;
         tl_i = tlul_pkg::TL_H2D_DEFAULT;
-        clk_edn_i=0;
-        rst_edn_ni=0;
         edn_i=0;
         alert_rx_i= {aes_reg_pkg::NumAlerts{prim_alert_pkg::ALERT_RX_DEFAULT}};
 
@@ -114,16 +116,34 @@ module tb;
         input_data[1] = 32'h34cad614;
         input_data[2] = 32'hb9aea5bc;
         input_data[3] = 32'h2160cce5;
+        @(negedge clk_i) 
+        // rst_ni = 1;
+        // rst_shadowed_ni=1;
+        // @(negedge clk_i) 
+        // rst_ni = 0;
+        // rst_shadowed_ni=0;
+        #500
+        $finish;
 
-        // write key_share into aes
-        @(negedge clk_i)
-        rst_shadowed_ni=1;
-        rst_ni      = 1;
-        @(negedge clk_i) @(negedge clk_i)
+        // initialize control register
+        @(negedge clk_i)       
         opcode  = tlul_pkg::PutFullData;
         addr    = `AES_CTRL_SHADOWED_OFFSET;
-        data    = aes_ctrl_val;    
+        
+        aes_ctrl[1:0]  = aes_pkg::AES_ENC;   // 2'b01
+        aes_ctrl[7:2]  = aes_pkg::AES_ECB;   // 6'b00_0001
+        aes_ctrl[10:8] = aes_pkg::AES_128;   // 3'b001
+        data    = aes_ctrl;    
         invoke_aes(opcode, addr, data, tl_i); //write to memory
+
+        
+        // check status
+        // @(negedge clk_i) @(negedge clk_i)
+        // opcode  = tlul_pkg::Get;
+        // addr    = `AES_STATUS_OFFSET;
+        // data    = 0;    
+        // invoke_aes(opcode, addr, data, tl_i); //read from memory
+
         for (int i=0; i<8; i++) begin
             @(negedge clk_i) @(negedge clk_i)
             opcode  = tlul_pkg::PutFullData;
@@ -138,7 +158,6 @@ module tb;
             data    = key_share1[i];    
             invoke_aes(opcode, addr, data, tl_i); //write to memory
         end
-
         // Write IV
         for (int i=0; i<4; i++) begin
             @(negedge clk_i) @(negedge clk_i)
@@ -147,7 +166,13 @@ module tb;
             data    = iv[i];    
             invoke_aes(opcode, addr, data, tl_i); //write to memory
         end
-
+        $finish;
+        // set AES mode
+        @(negedge clk_i) @(negedge clk_i)
+        opcode  = tlul_pkg::PutFullData;
+        addr    = `AES_CTRL_SHADOWED_OFFSET;
+        data    = aes_ctrl_val;    
+        invoke_aes(opcode, addr, data, tl_i); //write to memory
         // Write Input Data Block 0
         // wait_input_ready(clk_i,tl_o,tl_i);
         // forever begin
