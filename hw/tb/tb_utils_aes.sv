@@ -47,20 +47,26 @@ module tb;
     logic                                      clk_i;
     logic                                      rst_ni;
     logic                                      rst_shadowed_ni;
+    
     // Idle indicator for clock manager
     prim_mubi_pkg::mubi4_t                     idle_o;
+    
     // Life cycle
     lc_ctrl_pkg::lc_tx_t                       lc_escalate_en_i;
+    
     // Entropy distribution network (EDN) interface
     logic                                      clk_edn_i;
     logic                                      rst_edn_ni;
     edn_pkg::edn_req_t                         edn_o;
     edn_pkg::edn_rsp_t                         edn_i;
+    
     // Key manager (keymgr) key sideload interface
     keymgr_pkg::hw_key_req_t                   keymgr_key_i;
+    
     // Bus interface
     tlul_pkg::tl_h2d_t                         tl_i,tl_i_enc;
     tlul_pkg::tl_d2h_t                         tl_o;
+    
     // Alerts
     prim_alert_pkg::alert_rx_t [aes_reg_pkg::NumAlerts-1:0] alert_rx_i;
     prim_alert_pkg::alert_tx_t [aes_reg_pkg::NumAlerts-1:0] alert_tx_o;

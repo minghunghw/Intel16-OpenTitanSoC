@@ -1,5 +1,4 @@
 module tb;
-    `include "tb_spi_pkg.sv"
 
     localparam CLK_PERIOD       = 10;
 

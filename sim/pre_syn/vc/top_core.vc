@@ -21,7 +21,6 @@ $IP/xbar/rtl/tl_main_pkg.sv
 $IP/xbar/rtl/tl_periph_pkg.sv
 $IBEX/rtl/ibex_pkg.sv
 $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
-+incdir+$TB/pkg
 
 $OPENTITAN/prim/rtl/prim_esc_pkg.sv
 $OPENTITAN/lc_ctrl/rtl/lc_ctrl_reg_pkg.sv
@@ -95,4 +94,5 @@ $OPENTITAN/rv_core_ibex/rtl/rv_core_ibex_pkg.sv
 
 // testbench
 ////////////////////////////////////////////////////////////////////////////////
+$TB/pkg/tb_spi_pkg.sv
 $TB/tb_top_core.sv
