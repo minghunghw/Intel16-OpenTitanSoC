@@ -42,17 +42,20 @@ module tb;
         .*
     );
 
+    int           correct;
     logic  [ 2:0] opcode;
     logic  [31:0] addr;
     logic  [31:0] data;
+    logic  [31:0] ev;
 
     logic  [12:0] glen;
+    logic  [ 3:0] flag0;
     logic  [ 3:0] clen;
-    logic  [ 2:0] cmd;
+    logic  [ 3:0] cmd;
 
-    logic  [11:0][31:0] seed = {32'h73bec010, 32'h9262474c, 32'h16a30f76, 32'h531b51de,
-                        32'h2ee494e5, 32'hdfec9db3, 32'hcb7a879d, 32'h5600419c,
-                        32'hca79b0b0, 32'hdda33b5c, 32'ha468649e, 32'hdf5d73fa};
+    logic  [11:0][31:0] seed = {32'h4dc4bae7, 32'ha04d51ac, 32'h96b0e0e2, 32'h3a3f0e1f, 
+                    32'h1621180d, 32'he82ccebb, 32'h81143f88, 32'hbcd7566e, 
+                    32'h8af96ec0, 32'h75820244, 32'hfdf65469, 32'heafa7426};
 
     initial clk_i = 0;
     initial rst_ni = 0;
@@ -60,8 +63,9 @@ module tb;
 
     initial begin
         
+        correct                         = 0;
         tl_i                            = tlul_pkg::TL_H2D_DEFAULT;
-        otp_en_csrng_sw_app_read_i      = prim_mubi_pkg::MuBi8False;
+        otp_en_csrng_sw_app_read_i      = prim_mubi_pkg::MuBi8True;
         lc_hw_debug_en_i                = lc_ctrl_pkg::LC_TX_DEFAULT;
         entropy_src_hw_if_i             = entropy_src_pkg::ENTROPY_SRC_HW_IF_REQ_DEFAULT;
         cs_aes_halt_i                   = entropy_src_pkg::CS_AES_HALT_REQ_DEFAULT;
@@ -71,94 +75,45 @@ module tb;
         @(negedge clk_i)
         rst_ni      = 1;
 
-        @(negedge clk_i)
-        opcode  = tlul_pkg::PutFullData;
-        addr    = csrng_reg_pkg::CSRNG_CTRL_OFFSET;
-        data    = {3{prim_mubi_pkg::MuBi4True}};
-        invoke_csrng(opcode, addr, data, tl_i);
+        // set write register enable
+        `WR_REG_ENABLE;
 
-        @(negedge clk_i)
-        tl_i = tlul_pkg::TL_H2D_DEFAULT;
+        // set control register enable
+        `CTRL_ENABLE;
 
-        @(negedge clk_i)
-        glen  = 13'h0;
-        clen  = 4'h0;
-        cmd   = csrng_pkg::UNI;
-        csrng_cmd(glen, clen, cmd, csrng_cmd_i[0]);
+        // wait application interface status until ready
+        `WAIT_SW_STS;
 
-        @(negedge clk_i)
-        csrng_cmd_i[0] = csrng_pkg::CSRNG_REQ_DEFAULT;
+        // do instantiate command request
+        `CMD_INSTANTIATE;
 
-        wait(csrng_cmd_o[0].csrng_rsp_ack);
+        // wait interrupt until ready
+        `WAIT_INT_STS;
 
-        @(negedge clk_i)
-        glen  = 13'h0;
-        clen  = 4'ha;
-        cmd   = csrng_pkg::INS;
-        csrng_cmd(glen, clen, cmd, csrng_cmd_i[0]);
+        // do generate command request
+        `CMD_GENERATE;
 
-        for (int i=0; i<12; i++) begin
-            @(negedge clk_i)
-            csrng_cmd_i[0].csrng_req_bus = seed[i];
+        // wait genbits valid until ready
+        `WAIT_GENBITS_VLD;
+
+        // check the output of generate
+        `CHECK_GENBITS(32'h464c231f);
+        `CHECK_GENBITS(32'h44837176);
+        `CHECK_GENBITS(32'h7dc83935);
+        `CHECK_GENBITS(32'h61b4b2f3);
+
+        // wait interrupt until ready
+        `WAIT_INT_STS;
+        
+        if (correct == 4) begin
+            $display("%c[1;32m",27);
+            $display("SUCCESS\n");
+            $display("%c[0m",27);
+        end else begin
+            $display("%c[1;31m",27);
+            $display("FAILED\n");
+            $display("%c[0m",27);
         end
-
-        @(negedge clk_i)
-        csrng_cmd_i[0] = csrng_pkg::CSRNG_REQ_DEFAULT;
-
-        // wait(csrng_cmd_o[0].csrng_rsp_ack);
-
-        // @(negedge clk_i)
-        // tl_i = tlul_pkg::TL_H2D_DEFAULT;
-
-        // @(negedge clk_i)
-        // opcode  = tlul_pkg::Get;
-        // addr    = csrng_reg_pkg::CSRNG_SW_CMD_STS_OFFSET;
-        // data    = 0;
-        // invoke_csrng(opcode, addr, data, tl_i);
-
-        // @(negedge clk_i)
-        // tl_i = tlul_pkg::TL_H2D_DEFAULT;
-
-        // while (tl_o.d_data == 0) begin
-        //     @(negedge clk_i)
-        //     opcode  = tlul_pkg::Get;
-        //     addr    = csrng_reg_pkg::CSRNG_SW_CMD_STS_OFFSET;
-        //     data    = 0;
-        //     invoke_csrng(opcode, addr, data, tl_i);
-
-        //     @(negedge clk_i)
-        //     tl_i = tlul_pkg::TL_H2D_DEFAULT;
-        // end
-
-        // @(negedge clk_i)
-        // opcode  = tlul_pkg::PutFullData;
-        // addr    = csrng_reg_pkg::CSRNG_CMD_REQ_OFFSET;
-        // data    = {7'h0, 13'h10, 9'h0, csrng_pkg::GEN};
-        // invoke_csrng(opcode, addr, data, tl_i);
-
-        // @(negedge clk_i)
-        // tl_i = tlul_pkg::TL_H2D_DEFAULT;
-
-        // @(negedge clk_i)
-        // opcode  = tlul_pkg::Get;
-        // addr    = csrng_reg_pkg::CSRNG_GENBITS_VLD_OFFSET;
-        // data    = 0;
-        // invoke_csrng(opcode, addr, data, tl_i);
-
-        // @(negedge clk_i)
-        // tl_i = tlul_pkg::TL_H2D_DEFAULT;
-
-        #1000;
-        // wait (tl_o.d_valid == 1);
-        // if (cio_gpio_o == 32'hffff_ffff) begin
-        //     $display("%c[1;32m",27);
-        //     $display("SUCCESS\n");
-        //     $display("%c[0m",27);
-        // end else begin
-        //     $display("%c[1;31m",27);
-        //     $display("FAILED\n");
-        //     $display("%c[0m",27);
-        // end
 	    $finish;
     end
 
@@ -179,14 +134,4 @@ task automatic invoke_csrng;
     tl_i.a_data     = data;
     tl_i.a_user     = tlul_pkg::TL_A_USER_DEFAULT;
     tl_i.d_ready    = 1;
-endtask
-
-task automatic csrng_cmd;
-    input [12:0] glen;
-    input [ 3:0] clen;
-    input [ 2:0] cmd;
-    output csrng_pkg::csrng_req_t csrng_cmd_i;
-    csrng_cmd_i.csrng_req_valid = 1;
-    csrng_cmd_i.csrng_req_bus   = {7'h0, glen, 4'h0, clen, 1'h0, csrng_pkg::acmd_e'(cmd)};
-    csrng_cmd_i.genbits_ready   = 1;
 endtask
