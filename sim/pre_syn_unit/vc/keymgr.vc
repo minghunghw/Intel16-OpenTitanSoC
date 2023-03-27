@@ -11,22 +11,31 @@ $OPENTITAN/prim/rtl/prim_subreg_pkg.sv
 $OPENTITAN/prim/rtl/prim_mubi_pkg.sv
 $OPENTITAN/prim/rtl/prim_cipher_pkg.sv
 $OPENTITAN/tlul/rtl/tlul_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_reg_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_state_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_pkg.sv
+$OPENTITAN/otp_ctrl/rtl/otp_ctrl_reg_pkg.sv
+$OPENTITAN/otp_ctrl/rtl/otp_ctrl_pkg.sv
+$OPENTITAN/kmac/rtl/sha3_pkg.sv
+$OPENTITAN/kmac/rtl/kmac_reg_pkg.sv
+$OPENTITAN/kmac/rtl/kmac_pkg.sv
+$OPENTITAN/rv_dm/rtl/jtag_pkg.sv
 $OPENTITAN/entropy_src/rtl/entropy_src_pkg.sv
 $OPENTITAN/entropy_src/rtl/entropy_src_reg_pkg.sv
 $OPENTITAN/entropy_src/rtl/entropy_src_ack_sm_pkg.sv
 $OPENTITAN/entropy_src/rtl/entropy_src_main_sm_pkg.sv
-$OPENTITAN/lc_ctrl/rtl/lc_ctrl_reg_pkg.sv
-$OPENTITAN/lc_ctrl/rtl/lc_ctrl_state_pkg.sv
-$OPENTITAN/lc_ctrl/rtl/lc_ctrl_pkg.sv
-$OPENTITAN/kmac/rtl/sha3_pkg.sv
+$OPENTITAN/edn/rtl/edn_reg_pkg.sv
+$OPENTITAN/edn/rtl/edn_pkg.sv
+$OPENTITAN/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+$OPENTITAN/flash_ctrl/rtl/flash_ctrl_pkg.sv
+$OPENTITAN/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv
+$OPENTITAN/rom_ctrl/rtl/rom_ctrl_pkg.sv
+$OPENTITAN/keymgr/rtl/keymgr_reg_pkg.sv
+$OPENTITAN/keymgr/rtl/keymgr_pkg.sv
 
-// kmac
+// keymgr
 ////////////////////////////////////////////////////////////////////////////////
--y $OPENTITAN/kmac/rtl
-
-// entropy_src
-////////////////////////////////////////////////////////////////////////////////
--y $OPENTITAN/entropy_src/rtl
+-y $OPENTITAN/keymgr/rtl
 
 // tlul
 ////////////////////////////////////////////////////////////////////////////////
@@ -44,5 +53,5 @@ $OPENTITAN/kmac/rtl/sha3_pkg.sv
 
 // testbench
 ////////////////////////////////////////////////////////////////////////////////
-// $TB/pkg/tb_entropy_src_pkg.sv
-$TB/tb_utils_entropy_src.sv
+// $TB/pkg/tb_keymgr_pkg.sv
+$TB/tb_utils_keymgr.sv
