@@ -243,7 +243,7 @@ module tb;
         automatic logic [31:0] rdata;
         automatic dm::dtm_op_status_e op;
         req_mbx.put(transaction);
-        riscv_dbg.read_dmi(.address(dm::dm_csr_e'(transaction.addr)), .data(rdata),.op(op));
+        riscv_dbg.read_dmi(.address(dm::dm_csr_e'(transaction.addr)), .data(rdata),.wait_cycles(20),.op(op));
         rsp_mbx.put(rdata);
       end
       // Randomly reset the dmi using either hard jtag trst_ni, JTAG
