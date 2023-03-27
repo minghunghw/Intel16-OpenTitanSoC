@@ -6,21 +6,24 @@
 //   Varies on the process
 
 module prim_clock_inv #(
-  parameter bit HasScanMode = 1'b1,
-  parameter bit NoFpgaBufG  = 1'b0 // only used in FPGA case
+  parameter bit HasScanMode = 1'b1
 ) (
   input        clk_i,
   input        scanmode_i,
   output logic clk_no      // Inverted
 );
 
-if (1) begin : gen_generic
-    prim_generic_clock_inv #(
-      .HasScanMode(HasScanMode),
-      .NoFpgaBufG(NoFpgaBufG)
-    ) u_impl_generic (
-      .*
+  if (HasScanMode) begin : gen_scan
+    prim_clock_mux2 i_dft_tck_mux (
+     .clk0_i ( ~clk_i     ),
+     .clk1_i ( clk_i      ), // bypass the inverted clock for testing
+     .sel_i  ( scanmode_i ),
+     .clk_o  ( clk_no     )
     );
-end
+  end else begin : gen_noscan
+    logic unused_scanmode;
+    assign unused_scanmode = scanmode_i;
+    assign clk_no = ~clk_i;
+  end
 
-endmodule : prim_clock_inv
+endmodule
