@@ -15,7 +15,7 @@ module load boost/1.78.0
 module load swig-rhel7/4.0.1
 module load tcl-devel
 module load spdlog
-module load zlib
+module load zlib/1.2.11
 module load lemon/1.3.1
 module load eigen/3.3.7
 module load tcl-tclreadline/2.1.0
@@ -24,7 +24,7 @@ module load libffi-devel
 module load readline-devel
 module load qt5-qtbase-devel/5.9.7
 module load python/3.8.11
-module load anaconda3/2018.12
+module load anaconda3/2021.05
 module load klayout-el7/0.27.3
 module load or-tools/9.4.1874
 
@@ -41,7 +41,7 @@ module load synopsys-lib-compiler/2022.03-SP3
 rhel_version=$(cat /etc/redhat-release)
 is_rhel7=$(echo $rhel_version | grep "7" | wc -l)
 if [[ $is_rhel7 -ne 1 ]]; then
-    echo -e "\e[31m[ERROR]\e[0m Please use RHEL7 machine stead (K in VLSIPOOL)"
+    echo -e "\e[31m[ERROR]\e[0m Please use RHEL7 instead (K machine in VLSIPOOL)"
     return
 fi
 
@@ -49,7 +49,7 @@ fi
 if [ -d "ip/OpenROAD-flow-scripts/tools/install" ]; then
     source ip/OpenROAD-flow-scripts/setup_env.sh
 else
-    echo -e "\e[31m[ERROR]\e[0m Please execute this command first: ./tool.sh --orfs"
+    echo -e "\e[31m[ERROR]\e[0m Please execute this command first: ./tools.sh --orfs"
     return
 fi
 
