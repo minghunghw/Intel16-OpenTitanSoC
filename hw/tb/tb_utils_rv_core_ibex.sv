@@ -97,7 +97,7 @@ module tb;
         clk_i       = 0;
         rst_ni      = 0;
         clk_edn_i   = 0;
-        rst_edn_ni   = 0;
+        rst_edn_ni  = 0;
         clk_esc_i   = 0;
         rst_esc_ni  = 0;
         clk_otp_i   = 0;
@@ -122,7 +122,6 @@ module tb;
         icache_otp_key_i    = otp_ctrl_pkg::SRAM_OTP_KEY_RSP_DEFAULT;
         alert_rx_i          = prim_alert_pkg::ALERT_RX_DEFAULT;
         
-
         @(negedge clk_i)
         rst_ni      = 1;
         // rst_edn_ni   = 1;

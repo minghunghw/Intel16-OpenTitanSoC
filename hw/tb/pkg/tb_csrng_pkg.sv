@@ -53,6 +53,13 @@
         `CSRNG_WR(opcode, addr, data);                  \
     end                                                 
 
+`define WAIT_INT_STS                                    \
+    opcode  = tlul_pkg::Get;                            \
+    addr    = csrng_reg_pkg::CSRNG_INTR_STATE_OFFSET;   \
+    data    = 0;                                        \
+    ev      = 1;                                        \
+    `CSRNG_RD(opcode, addr, data, ev);
+
 `define CMD_GENERATE                                    \
     opcode  = tlul_pkg::PutFullData;                    \
     addr    = csrng_reg_pkg::CSRNG_CMD_REQ_OFFSET;      \
@@ -62,13 +69,6 @@
     cmd     = csrng_pkg::GEN;                           \
     data    = `CMD(glen, flag0, clen, cmd);             \
     `CSRNG_WR(opcode, addr, data);                      
-
-`define WAIT_INT_STS                                    \
-    opcode  = tlul_pkg::Get;                            \
-    addr    = csrng_reg_pkg::CSRNG_INTR_STATE_OFFSET;   \
-    data    = 0;                                        \
-    ev      = 1;                                        \
-    `CSRNG_RD(opcode, addr, data, ev);
 
 `define WAIT_GENBITS_VLD                                \
     opcode  = tlul_pkg::Get;                            \
@@ -82,8 +82,8 @@
     addr    = csrng_reg_pkg::CSRNG_GENBITS_OFFSET;  \
     data    = 0;                                    \
     ev      = expected_value;                       \
-            @(negedge clk_i)                        \
-        invoke_csrng(opcode, addr, data, tl_i); \
-        @(negedge clk_i)                        \
-        tl_i = tlul_pkg::TL_H2D_DEFAULT;        \
+    @(negedge clk_i)                                \
+    invoke_csrng(opcode, addr, data, tl_i);         \
+    @(negedge clk_i)                                \
+    tl_i = tlul_pkg::TL_H2D_DEFAULT;                \
     correct += 1
