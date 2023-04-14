@@ -32,6 +32,7 @@ alib*
 run
 sdf
 rpt
+fast/netlist
 
 # OpenROAD-flow-script
 objects
