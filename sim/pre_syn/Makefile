@@ -3,6 +3,7 @@ export IP           = ../../ip
 export HW           = ../../hw/sv
 export MEM		  	= $(IP)/memory/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h/rtl
 export OPENTITAN    = $(IP)/opentitan/hw/ip
+export EARLGREY		= $(IP)/opentitan/hw/top_earlgrey
 export IBEX 	   	= $(IP)/opentitan/hw/vendor/lowrisc_ibex
 export PAD		  	= ../../apr/platforms/intel16/pad/rtl
 

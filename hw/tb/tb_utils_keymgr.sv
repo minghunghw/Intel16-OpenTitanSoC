@@ -51,6 +51,21 @@ module tb;
     logic  [ 2:0] opcode;
     logic  [31:0] addr;
     logic  [31:0] data;
+    logic  [31:0] ev;
+
+    kmac_pkg::app_rsp_t kmac_data;
+
+    assign kmac_data = '{
+        ready: 1'b1,
+        done:  1'b1,
+        digest_share0: ,
+        digest_share1: ,
+        error: 1'b1
+    };
+
+    assign clk_edn_i = clk_i;
+    assign rst_shadowed_ni = rst_ni;
+    assign rst_edn_ni = rst_ni;
 
     initial clk_i = 0;
     initial rst_ni = 0;
@@ -60,8 +75,8 @@ module tb;
         
         tl_i                            = tlul_pkg::TL_H2D_DEFAULT;
         kmac_data_i                     = kmac_pkg::APP_RSP_DEFAULT;
-        kmac_en_masking_i               = '0;
-        lc_keymgr_en_i                  = lc_ctrl_pkg::LC_TX_DEFAULT;
+        kmac_en_masking_i               = 1;
+        lc_keymgr_en_i                  = lc_ctrl_pkg::On;
         lc_keymgr_div_i                 = '0;
         otp_key_i                       = otp_ctrl_pkg::OTP_KEYMGR_KEY_DEFAULT;
         otp_device_id_i                 = '0;
@@ -72,6 +87,24 @@ module tb;
 
         @(negedge clk_i)
         rst_ni      = 1;
+
+        // set interrupt enable
+        `INTR_ENABLE;
+
+        // set operation sw gen, dest otbn
+        `OP_CTRL_SW;
+
+        // start operation
+        `KEYMGR_START;
+
+        // wait until operation is complete
+        // `WAIT_OP_STS;
+
+        // check fault status
+        // `CHECK_FAULT;
+
+        // check err status
+        // `CHECK_ERROR;
 
         // wait (tl_o.d_valid == 1);
         // if (cio_gpio_o == 32'hffff_ffff) begin

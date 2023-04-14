@@ -106,13 +106,13 @@ module tb;
         // wait interrupt until ready
         `WAIT_INT_STS;
 
-        // // do uninstantiate command request
+        // do uninstantiate command request
         `CMD_UNINSTANTIATE;
 
         // give response stimuli from csrng
         `CMD_UNINSTANTIATE_RSP;
 
-        // // wait interrupt until ready
+        // wait interrupt until ready
         `WAIT_INT_STS;
 
         if (correct == 4) begin

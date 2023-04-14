@@ -1,8 +1,9 @@
 set HW          "../../hw/sv"
 set IP          "../../ip"
 set OPENTITAN   "../../ip/opentitan/hw/ip"
-set IBEX 	   	"../../ip/opentitan/hw/vendor/lowrisc_ibex"
 set DV          "../../ip/opentitan/hw/dv"
+set EARLGREY    "../../ip/opentitan/hw/top_earlgrey"
+set IBEX 	   	"../../ip/opentitan/hw/vendor/lowrisc_ibex"
 
 set rtl_includes [ concat \
     $OPENTITAN/prim/rtl \

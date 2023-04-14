@@ -29,7 +29,9 @@ synopsys_cache
 WORK
 alib*
 .create_register_bank.tcl
-top_core_10
+run
+sdf
+rpt
 
 # OpenROAD-flow-script
 objects

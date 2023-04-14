@@ -1,0 +1,286 @@
++libext+.sv
+
+// package
+////////////////////////////////////////////////////////////////////////////////
+$EARLGREY/rtl/top_pkg.sv
+$HW/prim/prim_pkg.sv
+$OPENTITAN/prim/rtl/prim_alert_pkg.sv
+$OPENTITAN/prim/rtl/prim_cipher_pkg.sv
+$OPENTITAN/prim/rtl/prim_esc_pkg.sv
+$OPENTITAN/prim/rtl/prim_mubi_pkg.sv
+$OPENTITAN/prim/rtl/prim_secded_pkg.sv
+$OPENTITAN/prim/rtl/prim_otp_pkg.sv
+$OPENTITAN/prim/rtl/prim_pad_wrapper_pkg.sv
+$OPENTITAN/prim/rtl/prim_ram_1p_pkg.sv
+$OPENTITAN/prim/rtl/prim_ram_2p_pkg.sv
+$OPENTITAN/prim/rtl/prim_rom_pkg.sv
+$OPENTITAN/prim/rtl/prim_subreg_pkg.sv
+$OPENTITAN/prim/rtl/prim_util_pkg.sv
+$OPENTITAN/tlul/rtl/tlul_pkg.sv
+$OPENTITAN/rv_dm/rtl/jtag_pkg.sv
+$OPENTITAN/adc_ctrl/rtl/adc_ctrl_reg_pkg.sv
+$OPENTITAN/adc_ctrl/rtl/adc_ctrl_pkg.sv
+$OPENTITAN/aes/rtl/aes_reg_pkg.sv
+$OPENTITAN/aes/rtl/aes_pkg.sv
+$OPENTITAN/aes/rtl/aes_sbox_canright_pkg.sv
+$EARLGREY/ip/ast/rtl/ast_pkg.sv
+$EARLGREY/ip_autogen/alert_handler/rtl/alert_handler_reg_pkg.sv
+$EARLGREY/ip_autogen/alert_handler/rtl/alert_pkg.sv
+$OPENTITAN/aon_timer/rtl/aon_timer_reg_pkg.sv
+$EARLGREY/ip/clkmgr/rtl/autogen/clkmgr_reg_pkg.sv
+$EARLGREY/ip/clkmgr/rtl/autogen/clkmgr_pkg.sv
+$OPENTITAN/entropy_src/rtl/entropy_src_reg_pkg.sv
+$OPENTITAN/entropy_src/rtl/entropy_src_pkg.sv
+$OPENTITAN/entropy_src/rtl/entropy_src_ack_sm_pkg.sv
+$OPENTITAN/entropy_src/rtl/entropy_src_main_sm_pkg.sv
+$OPENTITAN/csrng/rtl/csrng_reg_pkg.sv
+$OPENTITAN/csrng/rtl/csrng_pkg.sv
+$OPENTITAN/edn/rtl/edn_reg_pkg.sv
+$OPENTITAN/edn/rtl/edn_pkg.sv
+$EARLGREY/ip/flash_ctrl/rtl/autogen/flash_ctrl_reg_pkg.sv
+$EARLGREY/ip/flash_ctrl/rtl/autogen/flash_ctrl_pkg.sv
+$OPENTITAN/flash_ctrl/rtl/flash_phy_pkg.sv
+$OPENTITAN/gpio/rtl/gpio_reg_pkg.sv
+$OPENTITAN/hmac/rtl/hmac_reg_pkg.sv
+$OPENTITAN/hmac/rtl/hmac_pkg.sv
+$OPENTITAN/i2c/rtl/i2c_reg_pkg.sv
+$OPENTITAN/i2c/rtl/i2c_pkg.sv
+$OPENTITAN/keymgr/rtl/keymgr_reg_pkg.sv
+$OPENTITAN/keymgr/rtl/keymgr_pkg.sv
+$OPENTITAN/kmac/rtl/sha3_pkg.sv
+$OPENTITAN/kmac/rtl/kmac_reg_pkg.sv
+$OPENTITAN/kmac/rtl/kmac_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_state_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_reg_pkg.sv
+$OPENTITAN/lc_ctrl/rtl/lc_ctrl_pkg.sv
+$OPENTITAN/otp_ctrl/rtl/otp_ctrl_reg_pkg.sv
+$OPENTITAN/otp_ctrl/rtl/otp_ctrl_pkg.sv
+$OPENTITAN/otp_ctrl/rtl/otp_ctrl_part_pkg.sv
+$OPENTITAN/otbn/rtl/otbn_reg_pkg.sv
+$OPENTITAN/otbn/rtl/otbn_pkg.sv
+$OPENTITAN/pattgen/rtl/pattgen_reg_pkg.sv
+$OPENTITAN/pattgen/rtl/pattgen_ctrl_pkg.sv
+$EARLGREY/ip/pinmux/rtl/autogen/pinmux_reg_pkg.sv
+$OPENTITAN/pinmux/rtl/pinmux_pkg.sv
+$OPENTITAN/pwm/rtl/pwm_reg_pkg.sv
+$EARLGREY/ip/rstmgr/rtl/autogen/rstmgr_reg_pkg.sv
+$EARLGREY/ip/rstmgr/rtl/autogen/rstmgr_pkg.sv
+$OPENTITAN/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv
+$OPENTITAN/rom_ctrl/rtl/rom_ctrl_pkg.sv
+$IP/opentitan/hw/vendor/lowrisc_ibex/rtl/ibex_pkg.sv
+$OPENTITAN/rv_core_ibex/rtl/rv_core_ibex_reg_pkg.sv
+$OPENTITAN/rv_core_ibex/rtl/rv_core_ibex_pkg.sv
+$OPENTITAN/rv_dm/rtl/rv_dm_reg_pkg.sv
+$EARLGREY/ip_autogen/rv_plic/rtl/rv_plic_reg_pkg.sv
+$OPENTITAN/rv_timer/rtl/rv_timer_reg_pkg.sv
+$OPENTITAN/spi_device/rtl/spi_device_reg_pkg.sv
+$OPENTITAN/spi_device/rtl/spi_device_pkg.sv
+$OPENTITAN/spi_host/rtl/spi_host_reg_pkg.sv
+$OPENTITAN/spi_host/rtl/spi_host_cmd_pkg.sv
+$EARLGREY/ip/sensor_ctrl/rtl/sensor_ctrl_reg_pkg.sv
+$EARLGREY/ip/sensor_ctrl/rtl/sensor_ctrl_pkg.sv
+$OPENTITAN/sram_ctrl/rtl/sram_ctrl_reg_pkg.sv
+$OPENTITAN/sram_ctrl/rtl/sram_ctrl_pkg.sv
+$OPENTITAN/sysrst_ctrl/rtl/sysrst_ctrl_reg_pkg.sv
+$OPENTITAN/sysrst_ctrl/rtl/sysrst_ctrl_pkg.sv
+$EARLGREY/ip/pwrmgr/rtl/autogen/pwrmgr_reg_pkg.sv
+$OPENTITAN/pwrmgr/rtl/pwrmgr_pkg.sv
+$OPENTITAN/uart/rtl/uart_reg_pkg.sv
+$OPENTITAN/usbdev/rtl/usbdev_reg_pkg.sv
+$OPENTITAN/usbdev/rtl/usbdev_pkg.sv
+$OPENTITAN/usbdev/rtl/usb_consts_pkg.sv
+$IP/opentitan/hw/vendor/pulp_riscv_dbg/src/dm_pkg.sv
+$EARLGREY/ip/xbar_main/rtl/autogen/tl_main_pkg.sv
+$EARLGREY/ip/xbar_peri/rtl/autogen/tl_peri_pkg.sv
+$EARLGREY/rtl/jtag_id_pkg.sv
+
+// adc_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/adc_ctrl/rtl
+
+// aes
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/aes/rtl
+$OPENTITAN/aes/rtl/aes_sbox_dom.sv
+
+// alert_handler
+////////////////////////////////////////////////////////////////////////////////
+-y $EARLGREY/ip_autogen/alert_handler/rtl
+
+// aon_timer
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/aon_timer/rtl
+
+// clkmgr
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/clkmgr/rtl
+$EARLGREY/ip/clkmgr/rtl/autogen/clkmgr.sv
+$EARLGREY/ip/clkmgr/rtl/autogen/clkmgr_reg_top.sv
+
+// csrng
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/csrng/rtl
+
+// dm
+////////////////////////////////////////////////////////////////////////////////
+-y $IP/opentitan/hw/vendor/pulp_riscv_dbg/src
+-y $IP/opentitan/hw/vendor/pulp_riscv_dbg/debug_rom
+
+// edn
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/edn/rtl
+
+// entropy_src
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/entropy_src/rtl
+
+// flash_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/flash_ctrl/rtl
+$EARLGREY/ip/flash_ctrl/rtl/autogen/flash_ctrl.sv
+$EARLGREY/ip/flash_ctrl/rtl/autogen/flash_ctrl_core_reg_top.sv
+//$EARLGREY/ip/flash_ctrl/rtl/autogen/flash_ctrl_mem_reg_top.sv
+$EARLGREY/ip/flash_ctrl/rtl/autogen/flash_ctrl_prim_reg_top.sv
+$EARLGREY/ip/flash_ctrl/rtl/autogen/flash_ctrl_region_cfg.sv
+
+// gpio
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/gpio/rtl
+
+// hmac
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/hmac/rtl
+
+// i2c
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/i2c/rtl
+
+// ibex
+////////////////////////////////////////////////////////////////////////////////
+-y $IP/opentitan/hw/vendor/lowrisc_ibex/rtl
++incdir+$IP/opentitan/hw/vendor/lowrisc_ibex/rtl
++incdir+$IP/opentitan/hw/dv/sv/dv_utils
+
+// keymgr
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/keymgr/rtl
+
+// kmac
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/kmac/rtl
+
+// lc_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/lc_ctrl/rtl
+
+// otbn
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/otbn/rtl
+
+// otp_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/otp_ctrl/rtl
+
+// pattgen
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/pattgen/rtl
+
+// pinmux
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/pinmux/rtl
+$EARLGREY/ip/pinmux/rtl/autogen/pinmux_reg_top.sv
+
+// prim
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/prim/rtl
+-y $HW/prim
++incdir+$OPENTITAN/prim/rtl
+
+// prim_generic
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/prim_generic/rtl
+
+// pwm
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/pwm/rtl
+
+// pwrmgr
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/pwrmgr/rtl
+$EARLGREY/ip/pwrmgr/rtl/autogen/pwrmgr_reg_top.sv
+
+// rom_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/rom_ctrl/rtl
+
+// rstmgr
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/rstmgr/rtl
+$EARLGREY/ip/rstmgr/rtl/autogen/rstmgr.sv
+$EARLGREY/ip/rstmgr/rtl/autogen/rstmgr_reg_top.sv
+
+// rv_core_ibex
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/rv_core_ibex/rtl
+
+// rv_dm
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/rv_dm/rtl
+
+// rv_plic
+////////////////////////////////////////////////////////////////////////////////
+-y $EARLGREY/ip_autogen/rv_plic/rtl
+
+// rv_timer
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/rv_timer/rtl
+
+// sensor_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $EARLGREY/ip/sensor_ctrl/rtl
+
+// spi_device
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/spi_device/rtl
+
+// spi_host
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/spi_host/rtl
+
+// sram_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/sram_ctrl/rtl
+
+// sysrst_ctrl
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/sysrst_ctrl/rtl
+
+// tlul
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/tlul/rtl
+
+// uart
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/uart/rtl
+
+// usbdev
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/usbdev/rtl
+
+// xbar_main
+////////////////////////////////////////////////////////////////////////////////
+-y $EARLGREY/ip/xbar_main/rtl/autogen
+
+// xbar_peri
+////////////////////////////////////////////////////////////////////////////////
+-y $EARLGREY/ip/xbar_peri/rtl/autogen
+
+// top_earlgrey
+////////////////////////////////////////////////////////////////////////////////
+$EARLGREY/rtl/autogen/top_earlgrey_pkg.sv
+$EARLGREY/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv
+-y $EARLGREY/rtl/autogen
+
+// testbench
+////////////////////////////////////////////////////////////////////////////////
+$TB/tb_top_earlgrey.sv
