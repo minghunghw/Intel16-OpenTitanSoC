@@ -47,6 +47,6 @@ $HW/jtag_tlul.sv
 
 // testbench
 ////////////////////////////////////////////////////////////////////////////////
-
-$JTAG/tb/jtag_dmi/jtag_test.sv
+$TB/pkg/tb_jtag_tlul_pkg.sv
+// $JTAG/tb/jtag_dmi/jtag_test.sv
 $TB/tb_utils_jtag_tlul.sv

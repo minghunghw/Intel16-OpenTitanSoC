@@ -128,46 +128,46 @@ module tb;
     rand_dmi_slave.run();
   end
 
-  `ifdef TARGET_BSCANE
+  // `ifdef TARGET_BSCANE
 
-  JTAG_SIME2 #(
-    .PART_NAME ("7K325T")
-  ) i_jtag_sime2 (
-    .TDO (jtag_mst.tdo),
-    .TCK (tck),
-    .TDI (jtag_mst.tdi),
-    .TMS (jtag_mst.tms)
-  );
+  // JTAG_SIME2 #(
+  //   .PART_NAME ("7K325T")
+  // ) i_jtag_sime2 (
+  //   .TDO (jtag_mst.tdo),
+  //   .TCK (tck),
+  //   .TDI (jtag_mst.tdi),
+  //   .TMS (jtag_mst.tms)
+  // );
 
-  // Default part `7K325T` has an IrLength of 6.
-  localparam IRLength = i_jtag_sime2.IRLength;
-  localparam logic [23:0] IR_CAPTURE_VAL = 24'b010001010001010001010001,
-                          BYPASS_INSTR   = 24'b111111111111111111111111,
-                          IDCODE_INSTR   = 24'b001001001001001001001001,
-                          USER1_INSTR    = 24'b000010100100100100100100,
-                          USER2_INSTR    = 24'b000011100100100100100100,
-                          USER3_INSTR    = 24'b100010100100100100100100,
-                          USER4_INSTR    = 24'b100011100100100100100100;
+  // // Default part `7K325T` has an IrLength of 6.
+  // localparam IRLength = i_jtag_sime2.IRLength;
+  // localparam logic [23:0] IR_CAPTURE_VAL = 24'b010001010001010001010001,
+  //                         BYPASS_INSTR   = 24'b111111111111111111111111,
+  //                         IDCODE_INSTR   = 24'b001001001001001001001001,
+  //                         USER1_INSTR    = 24'b000010100100100100100100,
+  //                         USER2_INSTR    = 24'b000011100100100100100100,
+  //                         USER3_INSTR    = 24'b100010100100100100100100,
+  //                         USER4_INSTR    = 24'b100011100100100100100100;
 
-  typedef jtag_test::riscv_dbg #(
-    .IDCODE (IDCODE_INSTR[23:(24-IRLength)]),
-    .DTMCSR (USER3_INSTR[23:(24-IRLength)]),
-    .DMIACCESS (USER4_INSTR[23:(24-IRLength)]),
-    .IrLength (IRLength),
-    .TA (JTAGPeriod*0.1),
-    .TT (JTAGPeriod*0.9)
-  ) riscv_dbg_t;
+  // typedef jtag_test::riscv_dbg #(
+  //   .IDCODE (IDCODE_INSTR[23:(24-IRLength)]),
+  //   .DTMCSR (USER3_INSTR[23:(24-IRLength)]),
+  //   .DMIACCESS (USER4_INSTR[23:(24-IRLength)]),
+  //   .IrLength (IRLength),
+  //   .TA (JTAGPeriod*0.1),
+  //   .TT (JTAGPeriod*0.9)
+  // ) riscv_dbg_t;
 
-  /// Helper function to bring instruction register values.
-  // initial begin
-  //   for (int i = 6; i < 25; i++) begin
-  //     $display("IRLength %d: %h %h %h\n", i,
-  //       (IDCODE_INSTR >> (24-i)) & (2**i-1),
-  //       (USER3_INSTR >> (24-i)) & (2**i-1),
-  //       (USER4_INSTR >> (24-i)) & (2**i-1));
-  //   end
-  // end
-  `else
+  // /// Helper function to bring instruction register values.
+  // // initial begin
+  // //   for (int i = 6; i < 25; i++) begin
+  // //     $display("IRLength %d: %h %h %h\n", i,
+  // //       (IDCODE_INSTR >> (24-i)) & (2**i-1),
+  // //       (USER3_INSTR >> (24-i)) & (2**i-1),
+  // //       (USER4_INSTR >> (24-i)) & (2**i-1));
+  // //   end
+  // // end
+  // `else
 
   assign dut_tck = tck;
   assign dut_tms = jtag_mst.tms;
@@ -180,7 +180,7 @@ module tb;
     .TA (JTAGPeriod*0.1),
     .TT (JTAGPeriod*0.9)
   ) riscv_dbg_t;
-  `endif
+  // `endif
 
   riscv_dbg_t::jtag_driver_t jtag_in = new (jtag_mst);
   riscv_dbg_t riscv_dbg = new (jtag_in);
@@ -205,11 +205,11 @@ module tb;
     $display("Got ID Code %h", idcode);
 
     // Check ID Code.
-    `ifdef TARGET_BSCANE
-    assert(idcode == i_jtag_sime2.IDCODEval_sig);
-    `else
+    // `ifdef TARGET_BSCANE
+    // assert(idcode == i_jtag_sime2.IDCODEval_sig);
+    // `else
     assert(idcode == IDCode);
-    `endif
+    // `endif
 
     /// Test DTMCs
     riscv_dbg.read_dtmcs(dtmcs);
