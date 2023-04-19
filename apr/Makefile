@@ -362,7 +362,7 @@ endif
 # STEP 1: Translate verilog to odb
 #-------------------------------------------------------------------------------
 $(RESULTS_DIR)/2_1_floorplan.odb: $(RESULTS_DIR)/1_synth.v $(RESULTS_DIR)/1_synth.sdc $(TECH_LEF) $(SC_LEF) $(ADDITIONAL_LEFS) $(FOOTPRINT) $(SIG_MAP_FILE) $(FOOTPRINT_TCL)
-	($(TIME_CMD) $(OPENROAD_CMD) scripts/floorplan.tcl -metrics $(LOG_DIR)/2_1_floorplan.json) 2>&1 | tee $(LOG_DIR)/2_1_floorplan.log
+	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/floorplan.tcl -metrics $(LOG_DIR)/2_1_floorplan.json) 2>&1 | tee $(LOG_DIR)/2_1_floorplan.log
 
 
 # STEP 2: IO Placement (random)
@@ -429,7 +429,7 @@ $(RESULTS_DIR)/3_1_place_gp_skip_io.odb: $(RESULTS_DIR)/2_floorplan.odb $(RESULT
 #-------------------------------------------------------------------------------
 $(RESULTS_DIR)/3_2_place_iop.odb: $(RESULTS_DIR)/3_1_place_gp_skip_io.odb $(IO_CONSTRAINTS)
 ifndef IS_CHIP
-	($(TIME_CMD) $(OPENROAD_CMD) scripts/io_placement.tcl -metrics $(LOG_DIR)/3_2_place_iop.json) 2>&1 | tee $(LOG_DIR)/3_2_place_iop.log
+	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/io_placement.tcl -metrics $(LOG_DIR)/3_2_place_iop.json) 2>&1 | tee $(LOG_DIR)/3_2_place_iop.log
 else
 	cp $< $@
 endif
@@ -524,7 +524,7 @@ $(RESULTS_DIR)/5_2_route.odb: $(RESULTS_DIR)/5_1_grt.odb
 else
 $(RESULTS_DIR)/5_2_route.odb: $(RESULTS_DIR)/4_cts.odb
 endif
-	($(TIME_CMD) $(OPENROAD_CMD) scripts/detail_route.tcl -metrics $(LOG_DIR)/5_2_TritonRoute.json) 2>&1 | tee $(LOG_DIR)/5_2_TritonRoute.log
+	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/detail_route.tcl -metrics $(LOG_DIR)/5_2_TritonRoute.json) 2>&1 | tee $(LOG_DIR)/5_2_TritonRoute.log
 
 $(RESULTS_DIR)/5_route.odb: $(RESULTS_DIR)/5_2_route.odb
 	cp $< $@
@@ -652,7 +652,7 @@ $(GDS_FINAL_FILE): $(GDS_MERGED_FILE)
 	cp $^ $@
 
 $(RESULTS_DIR)/6_final.cdl: $(RESULTS_DIR)/6_final.v
-	($(TIME_CMD) $(OPENROAD_CMD) scripts/cdl.tcl) 2>&1 | tee $(LOG_DIR)/6_cdl.log
+	($(TIME_CMD) $(OPENROAD_CMD) $(SCRIPTS_DIR)/cdl.tcl) 2>&1 | tee $(LOG_DIR)/6_cdl.log
 
 $(RESULTS_DIR)/6_final_fixed.cdl: $(RESULTS_DIR)/6_final.cdl
 	sed 's/\//_/g' $(RESULTS_DIR)/6_final.cdl > $(RESULTS_DIR)/6_final_fixed.cdl

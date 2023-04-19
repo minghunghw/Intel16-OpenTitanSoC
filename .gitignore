@@ -33,6 +33,7 @@ run
 sdf
 rpt
 fast/netlist
+top_earlgrey/netlist
 
 # OpenROAD-flow-script
 objects
