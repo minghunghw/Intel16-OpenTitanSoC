@@ -11,13 +11,13 @@
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_core/config.mk
-DESIGN_CONFIG=./designs/intel16/xbar/config.mk
+# DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design
 DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
 
 # Running on 6 tracks or 7 tracks
-export TRACKS ?= 7
+export TRACKS ?= 6
 
 # If we are running headless use offscreen rendering for save_image
 ifndef DISPLAY
@@ -595,11 +595,7 @@ $(RESULTS_DIR)/6_final.def: $(LOG_DIR)/6_report.log
 $(RESULTS_DIR)/7_fill.gds: $(GDS_FINAL_FILE)
 	rm -rf fill && mkdir fill && cd fill && \
 	calibre -drc -hier -turbo -hyper $(Fill_RUNSET)/p1222_fill.svrf | tee fill.log
-	# rm -rf virtuoso && cp -r $(PLATFORM_DIR)/virtuoso . && cd virtuoso && \
-	# envsubst < run.cmd > run.log && \
-	# virtuoso -nograph -replay run.log
 	cp fill/$(DESIGN_NAME)_fill.gds $(RESULTS_DIR)/7_fill.gds
-	# cp virtuoso/$(DESIGN_NAME)_fill.def $(RESULTS_DIR)/7_fill.def
 
 $(RESULTS_DIR)/7_fill.def: $(RESULTS_DIR)/7_fill.gds
 	cp $(RESULTS_DIR)/6_final.def $(RESULTS_DIR)/7_fill.def

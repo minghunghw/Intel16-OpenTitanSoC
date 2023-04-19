@@ -55,11 +55,3 @@ If you just want run one of them, type
 ```
 make icv_<drc/antenna/density/layer/iopad/template/lvs>
 ```
-
-### How to generate submission oasis
------------------------------------------------------------
-
-Intel requires two databases for 2mm x 2mm quadrant. You need to submit database with design w/o and w/ frame. If you want to compress two oasis in a tar file, type
-```
-make submit
-```
