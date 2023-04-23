@@ -43,7 +43,7 @@ import prim_ram_2p_pkg::*;
 
   input ram_2p_cfg_t       cfg_i
 );
-
+  
   if (1) begin : gen_generic
     prim_generic_ram_2p #(
       .DataBitsPerMask(DataBitsPerMask),

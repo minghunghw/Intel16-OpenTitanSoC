@@ -31,6 +31,8 @@ module prim_ram_1p import prim_ram_1p_pkg::*;
   output logic [Width-1:0] rdata_o // Read data. Data is returned one cycle after req_i is high.
 );
 
+  
+  
   if (1) begin : gen_generic
     prim_generic_ram_1p #(
       .Depth(Depth),
