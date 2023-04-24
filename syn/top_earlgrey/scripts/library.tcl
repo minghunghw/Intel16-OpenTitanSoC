@@ -124,7 +124,17 @@ set_app_var target_library $tmp_target_libraries
 P_msg_info "target_library is set to $target_library"
 
 # Set link libraries
-set memory_library "../../ip/memory/db/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_tttt_0.85v_25c.db"
+set memory_library [ concat \
+  ../../ip/memory/db/rf_1024x36_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/rf_512x32_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/sram_1024x22_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/sram_1024x39_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/sram_4096x76_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/sram_512x28_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/sram_512x78_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/sram_512x80_be_tttt_0.85v_25c.db \
+  ../../ip/memory/db/sram_8192x39_be_tttt_0.85v_25c.db \
+]
 set_app_var link_library [list *]
 set_app_var link_library [concat $link_library $target_library $tmp_macro_link_ldb]
 set_app_var link_library [concat $link_library $memory_library dw_foundation.sldb]

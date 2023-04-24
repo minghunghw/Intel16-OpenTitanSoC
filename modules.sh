@@ -47,7 +47,7 @@ fi
 
 # Load OpenROAD-flow-srcipts tool
 if [ -d "ip/OpenROAD-flow-scripts/tools/install" ]; then
-    source ip/OpenROAD-flow-scripts/setup_env.sh
+    source ip/OpenROAD-flow-scripts/env.sh
 else
     echo -e "\e[31m[ERROR]\e[0m Please execute this command first: ./tools.sh --orfs"
     return

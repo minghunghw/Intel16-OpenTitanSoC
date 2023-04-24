@@ -49,11 +49,22 @@ set search_path_598     "$eecs598_dir/SAED32_EDK/lib/stdcell_rvt/db_ccs"
 set search_path_dw      "/usr/caen/synopsys-synth-2018.06/libraries/syn"
 set target_library      "saed32rvt_tt0p85v25c.db"
 set synthetic_library   "dw_foundation.sldb"
+set memory_library [ concat \
+  ../../../ip/memory/db/rf_1024x36_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/rf_512x32_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/sram_1024x22_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/sram_1024x39_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/sram_4096x76_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/sram_512x28_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/sram_512x78_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/sram_512x80_be_tttt_0.85v_25c.db \
+  ../../../ip/memory/db/sram_8192x39_be_tttt_0.85v_25c.db \
+]
 
 set_app_var search_path       "$include_dirs $search_path_598 $search_path_dw"
 set_app_var target_library    $target_library
 set_app_var synthetic_library $synthetic_library
-set_app_var link_library      "* $target_library $synthetic_library"
+set_app_var link_library      "* $target_library $memory_library $synthetic_library"
 
 # Work with designs in memory
 analyze -f sverilog $rtl_packages
