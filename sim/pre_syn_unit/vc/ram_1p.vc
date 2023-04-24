@@ -1,0 +1,35 @@
++libext+.sv
+
+// package
+////////////////////////////////////////////////////////////////////////////////
+$HW/prim/prim_pkg.sv
+$OPENTITAN/prim/rtl/prim_ram_1p_pkg.sv
+$OPENTITAN/prim/rtl/prim_ram_2p_pkg.sv
+
+// memory
+////////////////////////////////////////////////////////////////////////////////
+-v $IP/memory/sram_1024x22_be/rtl/sram_1024x22_be.sv
+-v $IP/memory/sram_512x80_be/rtl/sram_512x80_be.sv
+-v $IP/memory/sram_512x28_be/rtl/sram_512x28_be.sv
+-v $IP/memory/sram_1024x39_be/rtl/sram_1024x39_be.sv
+-v $IP/memory/sram_4096x76_be/rtl/sram_4096x76_be.sv
+-v $IP/memory/sram_8192x39_be/rtl/sram_8192x39_be.sv
+-v $IP/memory/sram_512x78_be/rtl/sram_512x78_be.sv
+-v $IP/memory/rf_1024x36_be/rtl/rf_1024x36_be.sv 
+-v $IP/memory/rf_512x32_be/rtl/rf_512x32_be.sv
+
+
+// prim
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/prim/rtl
+-y $HW/prim
++incdir+$OPENTITAN/prim/rtl
+
+// prim_generic
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/prim_generic/rtl
+
+
+// testbench
+////////////////////////////////////////////////////////////////////////////////
+$TB/tb_utils_ram_1p.sv

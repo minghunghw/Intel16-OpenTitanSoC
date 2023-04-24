@@ -61,9 +61,9 @@ end else if (Depth==128 & Width==312) begin
   logic [3:0][79:0] rdata_sram;
   logic [3:0][79:0] wbeb_sram; 
   assign rdata_o={rdata_sram[3][71:0],rdata_sram[2],rdata_sram[1],rdata_sram[0]};;
-  assign ren_sram = {3{req_i & (~write_i)}};
-  assign wen_sram = {3{req_i & write_i}};
-  assign adr_sram = {3{2'b0,addr_i}};
+  assign ren_sram = {4{req_i & (~write_i)}};
+  assign wen_sram = {4{req_i & write_i}};
+  assign adr_sram = {4{2'b0,addr_i}};
   assign din_sram = {8'b0,wdata_i};
   assign wbeb_sram = {8'b1,~wmask_i};
 
