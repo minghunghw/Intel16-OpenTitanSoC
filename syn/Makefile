@@ -11,7 +11,7 @@ export STD_TCL_DIR 		:= $(INTEL_ASIC)/asicflows/synopsys/tech.dot4.7t108.tp0
 
 # Design parameters
 # --------------------------------
-export DESIGN_NAME 		:= top_core
+export DESIGN_NAME 		:= top_earlgrey
 
 # Synthesis-reltaed targets
 # --------------------------------

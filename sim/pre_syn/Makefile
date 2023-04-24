@@ -7,7 +7,7 @@ export EARLGREY		= $(IP)/opentitan/hw/top_earlgrey
 export IBEX 	   	= $(IP)/opentitan/hw/vendor/lowrisc_ibex
 export PAD		  	= ../../apr/platforms/intel16/pad/rtl
 
-TEST 	= top_core
+TEST 	= top_earlgrey
 VCFILE	= vc/$(TEST).vc
 
 
