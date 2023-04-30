@@ -1,7 +1,5 @@
 module tb;
 
-    localparam CLK_PERIOD       = 10;
-
     logic [46:0] mio_in_i;
     logic [46:0] mio_out_o;
     logic [46:0] mio_oe_o;

@@ -16,10 +16,10 @@ Major directories are listed below, the diagram is generated with `tree`:
 │   ├── post_syn_unit
 │   ├── pre_syn
 │   └── pre_syn_unit
-├── src_hw
-│   ├── tb
-│   └── v
-├── src_sw
+├── hw
+│   ├── sv
+│   └── tb
+├── sw
 │   ├── common
 │   ├── hex
 │   ├── src_asm

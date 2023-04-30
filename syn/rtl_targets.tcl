@@ -248,6 +248,13 @@ set rtl_cpu_cluster [ concat \
 ]
 set rtl_cpu_cluster [lsort -unique $rtl_cpu_cluster]
 
+set rtl_trng [ concat \
+    $HW/trng/counter.sv \
+    $HW/trng/ro.sv \
+    $HW/trng/stage.sv \
+    $HW/trng/trng.sv \
+]
+
 set rtl_top_core [ concat \
     $HW/top_core.sv \
     $HW/rst_gen.sv \

@@ -90,6 +90,10 @@ set rtl_packages [ concat \
     $EARLGREY/ip/xbar_main/rtl/autogen/tl_main_pkg.sv \
     $EARLGREY/ip/xbar_peri/rtl/autogen/tl_peri_pkg.sv \
     $EARLGREY/rtl/jtag_id_pkg.sv \
+    $EARLGREY/rtl/scan_role_pkg.sv \
+    $EARLGREY/ip/ast/rtl/ast_bhv_pkg.sv \
+    $EARLGREY/ip/ast/rtl/ast_reg_pkg.sv \
+    $EARLGREY/ip/ast/rtl/ast_pkg.sv \
     $EARLGREY/rtl/autogen/top_earlgrey_pkg.sv \
     $EARLGREY/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv \
 ]
@@ -154,6 +158,36 @@ set rtl_aon_timer [ concat \
     $OPENTITAN/aon_timer/rtl/aon_timer.sv \
     $OPENTITAN/aon_timer/rtl/aon_timer_core.sv \
     $OPENTITAN/aon_timer/rtl/aon_timer_reg_top.sv \
+]
+
+set rtl_ast [ concat \
+    $OPENTITAN/prim/rtl/prim_assert_standard_macros.svh \
+    $OPENTITAN/prim/rtl/prim_assert.sv \
+    $EARLGREY/ip/ast/rtl/adc.sv \
+    $EARLGREY/ip/ast/rtl/adc_ana.sv \
+    $EARLGREY/ip/ast/rtl/aon_clk.sv \
+    $EARLGREY/ip/ast/rtl/aon_osc.sv \
+    $EARLGREY/ip/ast/rtl/ast.sv \
+    $EARLGREY/ip/ast/rtl/ast_alert.sv \
+    $EARLGREY/ip/ast/rtl/ast_clks_byp.sv \
+    $EARLGREY/ip/ast/rtl/ast_dft.sv \
+    $EARLGREY/ip/ast/rtl/ast_entropy.sv \
+    $EARLGREY/ip/ast/rtl/ast_pulse_sync.sv \
+    $EARLGREY/ip/ast/rtl/ast_reg_top.sv \
+    $EARLGREY/ip/ast/rtl/dev_entropy.sv \
+    $EARLGREY/ip/ast/rtl/gfr_clk_mux2.sv \
+    $EARLGREY/ip/ast/rtl/io_clk.sv \
+    $EARLGREY/ip/ast/rtl/io_osc.sv \
+    $EARLGREY/ip/ast/rtl/rglts_pdm_3p3v.sv \
+    $EARLGREY/ip/ast/rtl/rng.sv \
+    $EARLGREY/ip/ast/rtl/sys_clk.sv \
+    $EARLGREY/ip/ast/rtl/sys_osc.sv \
+    $EARLGREY/ip/ast/rtl/usb_clk.sv \
+    $EARLGREY/ip/ast/rtl/usb_osc.sv \
+    $EARLGREY/ip/ast/rtl/vcaon_pgd.sv \
+    $EARLGREY/ip/ast/rtl/vcc_pgd.sv \
+    $EARLGREY/ip/ast/rtl/vcmain_pgd.sv \
+    $EARLGREY/ip/ast/rtl/vio_pgd.sv \
 ]
 
 set rtl_clkmgr [ concat \
@@ -394,9 +428,11 @@ set rtl_prim [ concat \
     $PRIM/prim_flop.sv \
     $PRIM/prim_otp.sv \
     $PRIM/prim_pad_attr.sv \
+    $PRIM/prim_pad_wrapper.sv \
     $PRIM/prim_ram_1p.sv \
     $PRIM/prim_ram_2p.sv \
     $PRIM/prim_rom.sv \
+    $PRIM/prim_usb_diff_rx.sv \
     $PRIM/prim_xor2.sv \
     $OPENTITAN/prim/rtl/prim_alert_receiver.sv \
     $OPENTITAN/prim/rtl/prim_alert_sender.sv \
@@ -536,13 +572,11 @@ set rtl_prim_generic [ concat \
     $OPENTITAN/prim_generic/rtl/prim_generic_flop.sv \
     $OPENTITAN/prim_generic/rtl/prim_generic_otp.sv \
     $OPENTITAN/prim_generic/rtl/prim_generic_pad_attr.sv \
-    $PRIM/prim_generic_ram_1p.sv \
-    $PRIM/prim_generic_ram_2p.sv \
+    $OPENTITAN/prim_generic/rtl/prim_generic_pad_wrapper.sv \
     $OPENTITAN/prim_generic/rtl/prim_generic_rom.sv \
+    $OPENTITAN/prim_generic/rtl/prim_generic_usb_diff_rx.sv \
     $OPENTITAN/prim_generic/rtl/prim_generic_xor2.sv \
 ]
-# $OPENTITAN/prim_generic/rtl/prim_generic_ram_1p.sv \
-# $OPENTITAN/prim_generic/rtl/prim_generic_ram_2p.sv \
 
 set rtl_pwm [ concat \
     $OPENTITAN/pwm/rtl/pwm.sv \
@@ -719,4 +753,12 @@ set rtl_top_earlgrey [ concat \
     $OPENTITAN/prim/rtl/prim_assert_standard_macros.svh \
     $OPENTITAN/prim/rtl/prim_assert.sv \
     $EARLGREY/rtl/autogen/top_earlgrey.sv \
+]
+
+set rtl_chip_earlgrey [ concat \
+    $EARLGREY/ip/ast/rtl/ast_pkg.sv \
+    $EARLGREY/rtl/autogen/top_earlgrey_pkg.sv \
+    $EARLGREY/rtl/padring.sv \
+    $EARLGREY/rtl/physical_pads.sv \
+    $EARLGREY/rtl/autogen/chip_earlgrey_asic.sv \
 ]

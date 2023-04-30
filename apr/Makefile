@@ -11,6 +11,7 @@
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_core/config.mk
+DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design

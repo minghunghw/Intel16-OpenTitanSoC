@@ -1,10 +1,10 @@
 # Configurations
 ## Set top design
-set top         top_earlgrey
+set top         chip_earlgrey_asic
 
 ## Set main clock and reset for the top design
-set clk_name    clk_main_i
-set rst_name    scan_rst_ni
+set clk_name    u_ast/clk_src_sys_o
+set rst_name    u_ast/scan_reset_no
 
 ## Set clock period
 set clk_period  100
@@ -72,6 +72,7 @@ analyze -f sverilog $rtl_adc_ctrl
 analyze -f sverilog $rtl_aes
 analyze -f sverilog $rtl_alert_handler
 analyze -f sverilog $rtl_aon_timer
+analyze -f sverilog $rtl_ast
 analyze -f sverilog $rtl_clkmgr
 analyze -f sverilog $rtl_csrng
 analyze -f sverilog $rtl_dm
@@ -109,6 +110,7 @@ analyze -f sverilog $rtl_uart
 analyze -f sverilog $rtl_usbdev
 analyze -f sverilog $rtl_xbar
 analyze -f sverilog $rtl_top_earlgrey
+analyze -f sverilog $rtl_chip_earlgrey
 
 elaborate $top
 current_design $top

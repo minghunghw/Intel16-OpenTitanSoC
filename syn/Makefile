@@ -25,6 +25,14 @@ dc:
 	runADF; \
 	exit"
 
+check:
+	cd $(DESIGN_NAME) && \
+	dc_shell -64 -topo -x	\
+	"source $(STD_TCL_DIR)/tech_config.tcl; \
+	source $(SYN_TCL_DIR)/run.tcl; \
+	runADF -stop read_design; \
+	exit"
+
 netlist:
 	cd $(DESIGN_NAME) && rm -rf netlist && mkdir netlist && \
 	cp outputs/$(DESIGN_NAME).syn.vg netlist/$(DESIGN_NAME).sv && \
