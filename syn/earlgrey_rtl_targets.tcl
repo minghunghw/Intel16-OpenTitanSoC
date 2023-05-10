@@ -741,7 +741,7 @@ set rtl_usbdev [ concat \
     $OPENTITAN/usbdev/rtl/usbdev_iomux.sv \
     $OPENTITAN/usbdev/rtl/usbdev_linkstate.sv \
     $OPENTITAN/usbdev/rtl/usbdev_reg_top.sv \
-     $OPENTITAN/usbdev/rtl/usbdev_usbif.sv \
+    $OPENTITAN/usbdev/rtl/usbdev_usbif.sv \
 ]
 
 set rtl_xbar [ concat \
@@ -755,10 +755,18 @@ set rtl_top_earlgrey [ concat \
     $EARLGREY/rtl/autogen/top_earlgrey.sv \
 ]
 
-set rtl_chip_earlgrey [ concat \
+set rtl_chip_earlgrey_asic [ concat \
     $EARLGREY/ip/ast/rtl/ast_pkg.sv \
     $EARLGREY/rtl/autogen/top_earlgrey_pkg.sv \
     $EARLGREY/rtl/padring.sv \
     $EARLGREY/rtl/physical_pads.sv \
+    $EARLGREY/rtl/autogen/chip_earlgrey_asic.sv \
+]
+
+set rtl_chip_earlgrey [ concat \
+    $EARLGREY/ip/ast/rtl/ast_pkg.sv \
+    $EARLGREY/rtl/autogen/top_earlgrey_pkg.sv \
+    $HW/padring.sv \
+    $HW/slice8_wrapper.sv \
     $EARLGREY/rtl/autogen/chip_earlgrey_asic.sv \
 ]

@@ -291,7 +291,7 @@ $EARLGREY/ip/rstmgr/rtl/autogen/rstmgr_reg_top.sv
 ////////////////////////////////////////////////////////////////////////////////
 $EARLGREY/rtl/autogen/top_earlgrey_pkg.sv
 $EARLGREY/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv
--y $EARLGREY/rtl
+-y $HW
 -y $EARLGREY/rtl/autogen
 
 // testbench

@@ -255,6 +255,15 @@ set rtl_trng [ concat \
     $HW/trng/trng.sv \
 ]
 
+set rtl_toy_design [ concat \
+    $HW/toy/toy_design.sv \
+    $HW/toy/ring_terminator_n1.sv \
+    $HW/toy/sup1v8_n1.sv \
+    $HW/mem/mem_tlul.sv \
+    $rtl_prim \
+    $rtl_tlul \
+]
+
 set rtl_top_core [ concat \
     $HW/top_core.sv \
     $HW/rst_gen.sv \

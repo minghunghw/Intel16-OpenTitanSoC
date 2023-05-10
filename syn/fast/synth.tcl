@@ -26,6 +26,7 @@ set sdf_file     "$sdf_dir/$top.sdf"
 set sdc_file     "$netlist_dir/$top.syn.sdc"
 
 # Set rtl path
+set HW          "../../../hw/sv"
 set PRIM        "../../../hw/sv/prim"
 set IP          "../../../ip"
 set OPENTITAN   "../../../ip/opentitan/hw/ip"
@@ -59,6 +60,10 @@ set memory_library [ concat \
   ../../../ip/memory/db/sram_512x78_be_tttt_0.85v_25c.db \
   ../../../ip/memory/db/sram_512x80_be_tttt_0.85v_25c.db \
   ../../../ip/memory/db/sram_8192x39_be_tttt_0.85v_25c.db \
+  ../../../apr/platforms/intel16/gpio/db/gpio_1v2_n1_tttt_0p850_1p200_min.TT_25.tttt.db \
+  ../../../apr/platforms/intel16/gpio/db/hl_4slice_west_io.min.etm.lib.db \
+  ../../../apr/platforms/intel16/gpio/db/hl_8slice_south_io.min.etm.lib.db \
+  ../../../apr/platforms/intel16/gpio/db/hl_corner_io.min.etm.lib.db \
 ]
 
 set_app_var search_path       "$include_dirs $search_path_598 $search_path_dw"

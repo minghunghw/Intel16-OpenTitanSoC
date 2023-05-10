@@ -1,166 +1,88 @@
-module padring (
-    // core interface
-    output wire        clk_i,
-    output wire        rst_ni,
-    output wire        fetch_enable_i,
-    output wire        en_ifetch_i,
-    output wire        spi_sclk,
-    output wire        spi_cs,
-    input  wire [1:0]  spi_mode,
-    output wire        spi_sdi0,
-    output wire        spi_sdi1,
-    output wire        spi_sdi2,
-    output wire        spi_sdi3,
-    input  wire        spi_sdo0,
-    input  wire        spi_sdo1,
-    input  wire        spi_sdo2,
-    input  wire        spi_sdo3,
-    input  wire [31:0] gpio_o,
+`include "prim_assert.sv"
 
-    // pad interface
-    input  wire        clk_i_PAD,
-    input  wire        rst_ni_PAD,
-    input  wire        fetch_enable_i_PAD,
-    input  wire        en_ifetch_i_PAD,
-    input  wire        spi_sclk_PAD,
-    input  wire        spi_cs_PAD,
-    output wire [1:0]  spi_mode_PAD,
-    input  wire        spi_sdi0_PAD,
-    input  wire        spi_sdi1_PAD,
-    input  wire        spi_sdi2_PAD,
-    input  wire        spi_sdi3_PAD,
-    output wire        spi_sdo0_PAD,
-    output wire        spi_sdo1_PAD,
-    output wire        spi_sdo2_PAD,
-    output wire        spi_sdo3_PAD,
-    output wire [31:0] gpio_o_PAD
+module padring
+  import prim_pad_wrapper_pkg::*;
+#(
+  parameter int NDioPads = 24,
+  parameter int NMioPads = 47,
+  parameter pad_type_e [NDioPads-1:0] DioPadType = {NDioPads{BidirStd}},
+  parameter pad_type_e [NMioPads-1:0] MioPadType = {NMioPads{BidirStd}},
+  // Only used for ASIC target
+  parameter bit PhysicalPads = 1,
+  parameter int NIoBanks = 4,
+  parameter logic [NDioPads-1:0][$clog2(NIoBanks):0] DioPadBank = '0,
+  parameter logic [NMioPads-1:0][$clog2(NIoBanks):0] MioPadBank = '0,
+  parameter scan_role_e [NDioPads-1:0] DioScanRole = {NDioPads{NoScan}},
+  parameter scan_role_e [NMioPads-1:0] MioScanRole = {NMioPads{NoScan}}
+) (
+  // This is only used for scan
+  input                           clk_scan_i,
+  prim_mubi_pkg::mubi4_t          scanmode_i,
+  // RAW outputs used for DFT and infrastructure
+  // purposes (e.g. external muxed clock)
+  output logic     [NDioPads-1:0] dio_in_raw_o,
+  output logic     [NMioPads-1:0] mio_in_raw_o,
+  // Pad wires
+  inout wire       [NDioPads-1:0] dio_pad_io,
+  inout wire       [NMioPads-1:0] mio_pad_io,
+  // Dedicated IO signals coming from peripherals
+  output logic     [NDioPads-1:0] dio_in_o,
+  input            [NDioPads-1:0] dio_out_i,
+  input            [NDioPads-1:0] dio_oe_i,
+  // Muxed IO signals coming from pinmux
+  output logic     [NMioPads-1:0] mio_in_o,
+  input            [NMioPads-1:0] mio_out_i,
+  input            [NMioPads-1:0] mio_oe_i,
+  // Pad attributes from top level instance
+  input pad_attr_t [NDioPads-1:0] dio_attr_i,
+  input pad_attr_t [NMioPads-1:0] mio_attr_i
 );
 
-// Digital IO helper macros
-// -----------------------------------------
-// - <orient> is either e1 or n1
-// - hybrid IO pin descriptions:
-//
-//  pad             :   data external in/out
-//  ana_io_1v8      :   analog in/out pin from/to core
-//  outi_1v8        :   data output to core
-//  outi            :   data output to core
-//  dq              :   data input pin from core
-//  drv0            :   drive strength configuration bit 0
-//  drv1            :   drive strength configuration bit 1
-//  drv2            :   drive strength configuration bit 2
-//  enq             :   disable output driver
-//  enabq           :   disbale receiver
-//  pd              :   enable weak pull down
-//  puq             :   disable weak pull up
-//  pwrupzhl        :   core power down status
-//  pwrup_pull_en   :   state definition in combination with pwrupzhl
-//  ppen            :   push pull/ open deain select pin
-//  prg_slew        :   slew programmability
+  logic unused_inout_io;
+  logic unused_in_o;
+  logic unused_in_raw_o;
 
-// Digital input
-`define DIGITAL_IN(from_ext, to_chip, orient)   \
-    sdio_1v8_``orient u_din_``from_ext (        \
-        .pad           (from_ext),              \
-        .ana_io_1v8    (        ),              \
-        .outi_1v8      (        ),              \
-        .outi          (to_chip ),              \
-        .dq            (1'b0    ),              \
-        .drv0          (1'b0    ),              \
-        .drv1          (1'b0    ),              \
-        .drv2          (1'b0    ),              \
-        .enq           (1'b1    ),              \
-        .enabq         (1'b0    ),              \
-        .pd            (1'b0    ),              \
-        .puq           (1'b1    ),              \
-        .pwrupzhl      (1'b0    ),              \
-        .pwrup_pull_en (1'b0    ),              \
-        .ppen          (1'b0    ),              \
-        .prg_slew      (1'b0    )               \
+  for (genvar k = 0; k < 3; k++) begin : gen_dio_pads
+    slice8_wrapper #(
+      .PadType  ( DioPadType[8*k+:8]  ),
+      .ScanRole ( DioScanRole[8*k+:8] )
+    ) u_dio_pad (
+      .inout_io   ( dio_pad_io[8*k+:8]       ),
+      .in_o       ( dio_in_o[8*k+:8]         ),
+      .in_raw_o   ( dio_in_raw_o[8*k+:8]     ),
+      .ie_i       ( 8'hff                    ),
+      .out_i      ( dio_out_i[8*k+:8]        ),
+      .oe_i       ( dio_oe_i[8*k+:8]         ),
+      .attr_i     ( dio_attr_i[8*k+:8]       )
+    );
+  end
+
+  for (genvar k = 0; k < 5; k++) begin : gen_mio_pads
+    slice8_wrapper #(
+      .PadType  ( MioPadType[8*k+:8]  ),
+      .ScanRole ( MioScanRole[8*k+:8] )
+    ) u_mio_pad (
+      .inout_io   ( mio_pad_io[8*k+:8]       ),
+      .in_o       ( mio_in_o[8*k+:8]         ),
+      .in_raw_o   ( mio_in_raw_o[8*k+:8]     ),
+      .ie_i       ( 8'hff                    ),
+      .out_i      ( mio_out_i[8*k+:8]        ),
+      .oe_i       ( mio_oe_i[8*k+:8]         ),
+      .attr_i     ( mio_attr_i[8*k+:8]       )
+    );
+  end
+
+    slice8_wrapper #(
+        .PadType  ( {BidirStd, MioPadType[46:40]}   ),
+        .ScanRole ( {NoScan, MioScanRole[46:40]}    )
+    ) u_mio_pad (
+        .inout_io   ( {unused_inout_io ,mio_pad_io[46:40]}  ),
+        .in_o       ( {unused_in_o ,mio_in_o[46:40]}        ),
+        .in_raw_o   ( {unused_in_raw_o ,mio_in_raw_o[46:40]}),
+        .ie_i       ( 8'hff                                 ),
+        .out_i      ( {1'b0 ,mio_out_i[46:40]}              ),
+        .oe_i       ( {1'b0 ,mio_oe_i[46:40]}               ),
+        .attr_i     ( {{AttrDw{1'b0}} ,mio_attr_i[46:40]}   )
     );
 
-// Digital output
-`define DIGITAL_OUT(to_ext, from_chip, orient)  \
-    sdio_1v8_``orient u_dout_``to_ext (         \
-        .pad           (to_ext     ),           \
-        .ana_io_1v8    (           ),           \
-        .outi_1v8      (           ),           \
-        .outi          (           ),           \
-        .dq            (~from_chip ),           \
-        .drv0          (1'b0       ),           \
-        .drv1          (1'b0       ),           \
-        .drv2          (1'b0       ),           \
-        .enq           (1'b0       ),           \
-        .enabq         (1'b1       ),           \
-        .pd            (1'b0       ),           \
-        .puq           (1'b1       ),           \
-        .pwrupzhl      (1'b0       ),           \
-        .pwrup_pull_en (1'b0       ),           \
-        .ppen          (1'b1       ),           \
-        .prg_slew      (1'b0       )            \
-    );
-
-// Digital output bus
-`define DIGITAL_OUT_BUS(to_ext, from_chip, orient, n)   \
-    sdio_1v8_``orient u_dout_``to_ext [n-1:0] (         \
-        .pad           (to_ext     ),                   \
-        .ana_io_1v8    (           ),                   \
-        .outi_1v8      (           ),                   \
-        .outi          (           ),                   \
-        .dq            (~from_chip ),                   \
-        .drv0          (1'b0       ),                   \
-        .drv1          (1'b0       ),                   \
-        .drv2          (1'b0       ),                   \
-        .enq           (1'b0       ),                   \
-        .enabq         (1'b1       ),                   \
-        .pd            (1'b0       ),                   \
-        .puq           (1'b1       ),                   \
-        .pwrupzhl      (1'b0       ),                   \
-        .pwrup_pull_en (1'b0       ),                   \
-        .ppen          (1'b1       ),                   \
-        .prg_slew      (1'b0       )                    \
-    );
-
-// IO VDD
-`define IO_VDD_ARRAY_INST(orient, n) \
-    sup1v8_``orient u_IOVDD [n-1:0] ();
-
-// Analog input
-`define ANALOG_IN(from_ext, to_chip, orient)    \
-    ana_io_``orient u_ain_``from_ext (          \
-        .pad    (from_ext ),                    \
-        .d      (to_chip  )                     \
-    );
-
-// Analog output
-`define ANALOG_OUT(to_ext, from_chip, orient)   \
-    ana_io_``orient u_aout_``to_ext (           \
-        .pad    (to_ext    ),                   \
-        .d      (from_chip )                    \
-    );
-    
-`IO_VDD_ARRAY_INST(n1, 10)
-
-`DIGITAL_IN(clk_i_PAD, clk_i, n1)
-`DIGITAL_IN(rst_ni_PAD, rst_ni, n1)
-
-`DIGITAL_IN(fetch_enable_i_PAD, fetch_enable_i, n1)
-`DIGITAL_IN(en_ifetch_i_PAD, en_ifetch_i, n1)
-
-`DIGITAL_IN(spi_sclk_PAD, spi_sclk, n1)
-`DIGITAL_IN(spi_cs_PAD, spi_cs, n1)
-`DIGITAL_OUT_BUS(spi_mode_PAD, spi_mode, n1, 2)
-
-`DIGITAL_IN(spi_sdi0_PAD, spi_sdi0, n1)
-`DIGITAL_IN(spi_sdi1_PAD, spi_sdi1, n1)
-`DIGITAL_IN(spi_sdi2_PAD, spi_sdi2, n1)
-`DIGITAL_IN(spi_sdi3_PAD, spi_sdi3, n1)
-
-`DIGITAL_OUT(spi_sdo0_PAD, spi_sdo0, n1)
-`DIGITAL_OUT(spi_sdo1_PAD, spi_sdo1, n1)
-`DIGITAL_OUT(spi_sdo2_PAD, spi_sdo2, n1)
-`DIGITAL_OUT(spi_sdo3_PAD, spi_sdo3, n1)
-
-`DIGITAL_OUT_BUS(gpio_o_PAD, gpio_o, n1, 32)
-
-endmodule
+endmodule : padring

@@ -1,0 +1,61 @@
++libext+.sv+.svh
+
+// define
+////////////////////////////////////////////////////////////////////////////////
++define+SYN
+
+// package
+////////////////////////////////////////////////////////////////////////////////
+$HW/top_pkg.sv
+$OPENTITAN/prim/rtl/prim_util_pkg.sv
+$OPENTITAN/prim/rtl/prim_secded_pkg.sv
+$OPENTITAN/prim/rtl/prim_mubi_pkg.sv
+$OPENTITAN/tlul/rtl/tlul_pkg.sv
+
+// prim
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/prim/rtl
++incdir+$OPENTITAN/prim/rtl
+
+// stdcell
+////////////////////////////////////////////////////////////////////////////////
+-v $LIB/base_lp/verilog/lib224_b0m_6t_108pp_base_lp.v
+-v $LIB/base_lvt/verilog/lib224_b0m_6t_108pp_base_lvt.v
+-v $LIB/base_hp/verilog/lib224_b0m_6t_108pp_base_hp.v
+-v $LIB/base_ulp/verilog/lib224_b0m_6t_108pp_base_ulp.v
+-v $LIB/base_nom/verilog/lib224_b0m_6t_108pp_base_nom.v
+-v $LIB/base_ulvt/verilog/lib224_b0m_6t_108pp_base_ulvt.v
+-v $LIB/base_lplvt/verilog/lib224_b0m_6t_108pp_base_lplvt.v
+-v $LIB/seq_ulp/verilog/lib224_b0m_6t_108pp_seq_ulp.v
+-v $LIB/seq_lp/verilog/lib224_b0m_6t_108pp_seq_lp.v
+-v $LIB/seq_hp/verilog/lib224_b0m_6t_108pp_seq_hp.v
+-v $LIB/seq_lvt/verilog/lib224_b0m_6t_108pp_seq_lvt.v
+-v $LIB/seq_ulvt/verilog/lib224_b0m_6t_108pp_seq_ulvt.v
+-v $LIB/seq_lplvt/verilog/lib224_b0m_6t_108pp_seq_lplvt.v
+-v $LIB/seq_nom/verilog/lib224_b0m_6t_108pp_seq_nom.v
+
+// tlul
+////////////////////////////////////////////////////////////////////////////////
+-y $OPENTITAN/tlul/rtl
+
+// mem
+////////////////////////////////////////////////////////////////////////////////
+-v $MEM/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h.sv
+-y $HW/mem
+
+// gpio
+////////////////////////////////////////////////////////////////////////////////
+-v $GPIO/hl_4slice_west_io/rtl/hl_4slice_west_io.v
+-v $GPIO/hl_8slice_south_io/rtl/hl_8slice_south_io.v
+-v $GPIO/hl_corner_io/rtl/hl_corner_io.v
+-v $GPIO/gpio_1v2/rtl/gpio_1v2_n1.sv
+-v $GPIO/sdio_1v8/rtl/sdio_1v8_n1.sv
+
+// netlist
+////////////////////////////////////////////////////////////////////////////////
+-y $NETLIST
+-v $HW/toy/dummy.sv
+
+// testbench
+////////////////////////////////////////////////////////////////////////////////
+$TB/tb_utils_toy_design.sv

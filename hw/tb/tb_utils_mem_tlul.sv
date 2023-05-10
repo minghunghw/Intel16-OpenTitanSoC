@@ -30,22 +30,15 @@ module tb;
         @(negedge clk_i)
         rst_ni      = 1;
 
-        `ifdef SYN
-        for (int i=0; i<2048; i++)
-            u_mem_tlul.u_sram.ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_bmod.ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h_array.DATA_ARRAY[i] = 0;
-        `else
-        u_mem_tlul.u_fake_dram.mem = 0;
-        `endif
-
         for (int i=0; i<16; i++) begin
-            @(negedge clk_i) @(negedge clk_i)
+            repeat (2) @(negedge clk_i)
             opcode  = tlul_pkg::PutFullData;
             addr    = i*4;
             data    = i;
             invoke_mem_tlul(opcode, addr, data, tl_i); //write to memory
         end
 
-        @(negedge clk_i) @(negedge clk_i)
+        repeat (2) @(negedge clk_i)
         opcode  = tlul_pkg::Get;
         addr    = 12*4;
         data    = 0;

@@ -78,5 +78,4 @@ $IBEX/dv/uvm/core_ibex/common/prim/prim_pkg.sv
 // testbench
 ////////////////////////////////////////////////////////////////////////////////
 $TB/pkg/tb_pad_pkg.sv
-$TB/pkg/tb_spi_pkg.sv
 $TB/tb_top_chip.sv

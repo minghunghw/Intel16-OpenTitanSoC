@@ -25,20 +25,20 @@ $IP/xbar/rtl/tl_periph_pkg.sv
 
 // stdcell
 ////////////////////////////////////////////////////////////////////////////////
--v $LIB/base_lp/verilog/lib224_b15_7t_108pp_base_lp.v
--v $LIB/base_lvt/verilog/lib224_b15_7t_108pp_base_lvt.v
--v $LIB/base_hp/verilog/lib224_b15_7t_108pp_base_hp.v
--v $LIB/base_ulp/verilog/lib224_b15_7t_108pp_base_ulp.v
--v $LIB/base_nom/verilog/lib224_b15_7t_108pp_base_nom.v
--v $LIB/base_ulvt/verilog/lib224_b15_7t_108pp_base_ulvt.v
--v $LIB/base_lplvt/verilog/lib224_b15_7t_108pp_base_lplvt.v
--v $LIB/seq_ulp/verilog/lib224_b15_7t_108pp_seq_ulp.v
--v $LIB/seq_lp/verilog/lib224_b15_7t_108pp_seq_lp.v
--v $LIB/seq_hp/verilog/lib224_b15_7t_108pp_seq_hp.v
--v $LIB/seq_lvt/verilog/lib224_b15_7t_108pp_seq_lvt.v
--v $LIB/seq_ulvt/verilog/lib224_b15_7t_108pp_seq_ulvt.v
--v $LIB/seq_lplvt/verilog/lib224_b15_7t_108pp_seq_lplvt.v
--v $LIB/seq_nom/verilog/lib224_b15_7t_108pp_seq_nom.v
+-v $LIB/base_lp/verilog/lib224_b0m_6t_108pp_base_lp.v
+-v $LIB/base_lvt/verilog/lib224_b0m_6t_108pp_base_lvt.v
+-v $LIB/base_hp/verilog/lib224_b0m_6t_108pp_base_hp.v
+-v $LIB/base_ulp/verilog/lib224_b0m_6t_108pp_base_ulp.v
+-v $LIB/base_nom/verilog/lib224_b0m_6t_108pp_base_nom.v
+-v $LIB/base_ulvt/verilog/lib224_b0m_6t_108pp_base_ulvt.v
+-v $LIB/base_lplvt/verilog/lib224_b0m_6t_108pp_base_lplvt.v
+-v $LIB/seq_ulp/verilog/lib224_b0m_6t_108pp_seq_ulp.v
+-v $LIB/seq_lp/verilog/lib224_b0m_6t_108pp_seq_lp.v
+-v $LIB/seq_hp/verilog/lib224_b0m_6t_108pp_seq_hp.v
+-v $LIB/seq_lvt/verilog/lib224_b0m_6t_108pp_seq_lvt.v
+-v $LIB/seq_ulvt/verilog/lib224_b0m_6t_108pp_seq_ulvt.v
+-v $LIB/seq_lplvt/verilog/lib224_b0m_6t_108pp_seq_lplvt.v
+-v $LIB/seq_nom/verilog/lib224_b0m_6t_108pp_seq_nom.v
 
 // netlist
 ////////////////////////////////////////////////////////////////////////////////

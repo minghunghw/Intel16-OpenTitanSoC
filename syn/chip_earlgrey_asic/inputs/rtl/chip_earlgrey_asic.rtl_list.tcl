@@ -51,4 +51,4 @@ analyze -f sverilog $rtl_uart
 analyze -f sverilog $rtl_usbdev
 analyze -f sverilog $rtl_xbar
 analyze -f sverilog $rtl_top_earlgrey
-analyze -f sverilog $rtl_chip_earlgrey
+analyze -f sverilog $rtl_chip_earlgrey_asic
