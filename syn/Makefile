@@ -30,7 +30,7 @@ check:
 	dc_shell -64 -topo -x	\
 	"source $(STD_TCL_DIR)/tech_config.tcl; \
 	source $(SYN_TCL_DIR)/run.tcl; \
-	runADF -stop read_design; \
+	runADF -stop read_constraints; \
 	exit"
 
 netlist:

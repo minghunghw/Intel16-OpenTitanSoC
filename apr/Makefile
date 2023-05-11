@@ -3,6 +3,7 @@
 # ==============================================================================
 
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
+DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/cpu_cluster/config.mk
 # DESIGN_CONFIG=./designs/intel16/gpio/config.mk
 # DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
@@ -11,7 +12,7 @@
 # DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_core/config.mk
-DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
+# DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design
@@ -19,6 +20,9 @@ DESIGN_CONFIG ?= ./designs/intel16/gcd/config.mk
 
 # Running on 6 tracks or 7 tracks
 export TRACKS ?= 6
+
+# Default TNS_END_PERCENT value
+export TNS_END_PERCENT ?= 100
 
 # If we are running headless use offscreen rendering for save_image
 ifndef DISPLAY

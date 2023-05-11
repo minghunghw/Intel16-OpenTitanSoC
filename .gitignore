@@ -32,8 +32,7 @@ alib*
 run
 sdf
 rpt
-syn/fast/netlist
-syn/top_earlgrey/netlist
+syn/*/netlist
 
 # OpenROAD-flow-script
 objects
