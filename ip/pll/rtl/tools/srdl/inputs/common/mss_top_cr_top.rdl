@@ -1,0 +1,26 @@
+`include "lib_udp.rdl"
+
+
+addrmap mss_top_cr_top {
+
+reg reg_example_type { 
+    name = "example_type";
+    desc = "This register is declared inside";
+    regwidth = 32;
+    field {
+          name = "testfield123";
+          desc = "";
+          AccessType = "RW";
+          hw = rw;
+          sw = rw;
+          fieldwidth = 32;
+    } testfield123 [31:0] = 32'h0;
+};
+
+reg_example_type example_type @0x0000;
+//other registers
+
+Space="MSG";
+Opcode="CR-SB";
+
+};

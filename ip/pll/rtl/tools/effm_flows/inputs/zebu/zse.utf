@@ -1,0 +1,1 @@
+synthesis -max_loop_iterations 33000

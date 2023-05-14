@@ -1,0 +1,45 @@
+#!/usr/intel/pkgs/perl/5.8.7/bin/perl -w
+
+use lib "$ENV{LINTRA}/lib";
+use lib "$ENV{LINTRA}/data"; 
+use lib "$ENV{LINTRARULES}";
+
+use perllintra;
+use perllira;
+use CodingStyleBasic;
+use ProjectRules;
+use MacroRules;
+use ConnectivityRules;
+use RegisterProject;
+use ChefLintRules;
+use VamsCodingStyle;
+use SVACodingStyle;
+use PartitionerRules;
+use DftRules;
+use SvtbOvmRules;
+use LRBRules;
+use DareRules;
+use SaApiPerlRules;
+use LPRules;
+use StubRules;
+use PuniRules;
+
+
+&RegisterProject::RegisterProjectUDRs();
+&CodingStyleBasic::LintraRegisterCodingStyleBasic();
+&DareRules::InitializeDareRules();
+&ConnectivityRules::LintraRegisterConnectivityRules();
+&VamsCodingStyle::LintraRegisterVamsCodingStyle();
+&SVACodingStyle::LintraRegisterRules();
+&PartitionerRules::LintraRegisterPartitionerRules();
+&DftRules::LintraRegisterDftRules();
+&SvtbOvmRules::LintraRegisterSvtbOvmRules();
+&LRBRules::RegisterLRBRules();
+&SaApiPerlRules::LintraRegisterSaApiPerlRules();
+&ChefLintRules::InitializeChefRules();
+&LPRules::LintraRegisterLPRules();
+&StubRules::LintraRegisterStubRules();
+&PuniRules::InitializePuniRules();
+
+
+

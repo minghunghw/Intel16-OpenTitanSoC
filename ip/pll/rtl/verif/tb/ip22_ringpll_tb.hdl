@@ -1,0 +1,57 @@
+#--------------------------------------------------------------------------------
+# Intel Confidential                                                        
+# Copyright 2021 Intel Corporation.                                         
+# The information contained herein is the proprietary and confidential      
+# information of Intel or its licensors, and is supplied subject to, and    
+# may be used only in accordance with, previously executed agreements with Intel,                                                                                                        
+# EXCEPT AS MAY OTHERWISE BE AGREED IN WRITING:                            
+# (1) ALL MATERIALS FURNISHED BY INTEL HEREUNDER ARE PROVIDED "AS IS"      
+#      WITHOUT WARRANTY OF ANY KIND;                            
+# (2) INTEL SPECIFICALLY DISCLAIMS ANY WARRANTY OF NONINFRINGEMENT, FITNESS 
+#      FOR A PARTICULAR PURPOSE OR MERCHANTABILITY; AND                     
+# (3) INTEL WILL NOT BE LIABLE FOR ANY COSTS OF PROCUREMENT OF SUBSTITUTES, 
+#      LOSS OF PROFITS, INTERRUPTION OF BUSINESS, OR                       
+#      FOR ANY OTHER SPECIAL, CONSEQUENTIAL OR INCIDENTAL DAMAGES,        
+#      HOWEVER CAUSED, WHETHER FOR BREACH OF WARRANTY, CONTRACT,            
+#      TORT, NEGLIGENCE, STRICT LIABILITY OR OTHERWISE.
+#--------------------------------------------------------------------------------
+
+#  This is a HDL spec file - it defines the unit and how to compile it.
+#
+#
+$hdl_spec = {
+    # List of VERILOG source files that belong in this library
+    -vlog_files => [
+        'ip22_ringpll_tb/ringpll_tb.sv'
+    ],
+
+    # List of verilog library source dirs ( corresponds with the VLOG(AN) '-y' parameter)
+    -vlog_lib_dirs => [
+    ],
+
+    # List of verilog library source files ( corresponds with the VLOG(AN) '-v' parameter)
+    -vlog_lib_files => [
+    ],
+
+    # List of include directories. Corresponds with the VLOG(AN) '+incdir+" parameter
+    -vlog_incdirs => [
+        'ip22_ringpll_tb',
+        'tests',
+        'ip22_ringpll/includes',
+    ],
+
+    # Arbitrary Verilog compilation options options
+    #-vlog_opts => '+define+ACE+VCSSIM+INST_ON+VAL4+SIM+SVA_LIB_SVA2005+SVA_ON',
+    -vlog_opts => '',
+
+    # List of specific VHDL source files
+    -vhdl_files => [
+    ],
+
+    # Arbitrary VHDL compilation options
+    -vcom_opts => '',
+    
+    # Other hdl spec files to include
+    -hdl_spec => [
+    ],
+};

@@ -1,0 +1,166 @@
+# -*-perl-*-
+
+my $PROJECT = $ENV{ACE_PROJECT};
+
+%audf = (
+    HDLSpec => {
+        -filter => {
+            -tag_definitions => {
+                cogin      => { default => 'noncogin',     }, ## Ace built-in tag for Code Generation Input content
+                #emul       => { default => 'emul',         }, ## OBSOLETE Ace built-in tag for Emulation content (emu & emul were interchangable)
+                emu        => { default => 'emu',          }, ## Ace built-in tag for Emulation content 
+                fpga       => { default => 'fpga',         }, ## Ace built-in tag for FPGA content
+                fv         => { default => 'fv',           }, ## Ace built-in tag for Formal Verification content
+                jemsw      => { default => 'nonjemsw',     }, ## Ace built-in tag for tlmgen/jemsw since 2.03.04
+                lint       => { default => 'lint',         }, ## Ace built-in tag for Lint content
+                sv         => { default => 'sv',           }, ## Ace built-in tag for (?) content
+                synth      => { default => 'synth',        }, ## Ace built-in tag for Synthesizable content
+                tlmgen     => { default => "nontlmgen",    }, ## Ace built-in tag for tlmgen/jemsw since 2.03.04
+                useliblist => { default => 'nonuseliblist',}, ## Ace built-in tag for Configuration (ie:V2K config?) content
+                
+                simulation => { default => 'simulation',   }, ## New tag for simulation collateral; not officially approved, but needed to avoid nonstatic code used to add non-simulation content (desired by mutliple WGs to avoid nonstatic ace code)
+                cdc        => { default => 'cdc',          }, ## New tag for cdc files; approved in CDC WG
+ 
+                quickcov   => { default => 'nonquickcov',  }, ## New tag for Quickcov input files; implicitly approved (used in multiple soc projects) 
+
+                vcogin     => { default => 'vcogin',       }, ## New tag for Visa Insertion input files; implicitly approved (used in multiple soc projects) 
+
+                design     => { default => 'design',       }, ## New tag for design collateral; not officially approved; enables (by tagging as nondesign) saying that content is not real design content (and presumably would get another tag saying what actually it is, such as validation, bfm, etc).
+                validation => { default => 'nonvalidation',}, ## New tag for all (ovm/uvm-based ENV/TI/TB) validation collateral; not officially approved; needed to avoid tagging validation content with a tag specific to every single flow that doesn't want to see validation content
+                
+                hip        => { default => 'nonhip',       }, ## New tag for HIPs; not officially approved; needed so that we can retain data about HIP collateral that is synthesizable (without a tag like this, all HIPs, synthesizable or not, tend to incorrectly get tagged as nonsynth)
+                bfm        => { default => 'nonbfm',       }, ## New tag for BFMs; not officially approved; needed to avoid tagging BFM content with a tag specific to every single flow that doesn't want to see BFMs
+                testenv    => { default => 'nontestenv',   }, ## New tag for test environment collateral; not officially approved; needed to enable partial testisland/env integration and to further qualify the type of validation content
+                testbench  => { default => 'nontestbench', }, ## New tag for test bench collateral; not officially approved; further qualify the type of validation content
+                testifc    => { default => 'nontestifc',   }, ## New tag for test interface collateral; not officially approved; needed to enable partial testisland/env integration and to further qualify the type of validation content
+                testisland => { default => 'nontestisland',}, ## New tag for test island collateral; not officially approved; needed to enable partial testisland/env integration and to further qualify the type of validation content
+                testlib    => { default => 'nontestlib',   }, ## New tag for test collateral; not officially approved; further qualify the type of validation content
+
+            },
+            Synthesis => {
+                ## Ace Built-In Filter for Synthesis; altered with added tags
+                -dump_format => 'pl',
+                -expression  => "synth and design and ! hip and ! validation",
+                #-macros      => undef,
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["synth","design","nonhip","nonvalidation"],
+            },
+            Emulation => {
+                ## Ace Built-In Filter for Emulation; altered with added tags and macros
+                -dump_format => 'pl',
+                -expression  => "emu and design and ! validation", 
+                #-macros      => ['INTEL_EMULATION'], ## Added official global macro(s) relevant to flow
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["emu", "design", 'nonvalidation'],
+            },
+            EmulationSim => {
+                ## Ace Built-In Filter for Emulation; altered with added macros
+                -dump_format => 'pl',
+                -expression  => "emu", 
+                #-macros      => ['INTEL_EMULATION'], ## Added official global macro(s) relevant to flow
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["emu" ],
+            },
+            FPGA => {
+                ## Ace Built-In Filter for FPGA
+                -dump_format => 'pl',
+                -expression  => "fpga and design and ! validation", 
+                #-macros      => ['INTEL_FPGA'], ## Added official global macro(s) relevant to flow
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["fpga", "design", "nonvalidation"],
+            },
+            FPGASim => {
+                ## Ace Built-In Filter for FPGA
+                -dump_format => 'pl',
+                -expression  => "fpga", 
+                #-macros      => ['INTEL_FPGA'], ## Added official global macro(s) relevant to flow
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["fpga"],
+            },
+            FV => {
+                ## Ace Built-In Filter for Formal Verification
+                -dump_format => 'pl',
+                -expression  => "synth and fv", 
+                #-macros      => ['INTEL_JASPERGOLD_BUG'], ## Added official global macro(s) relevant to flow
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["synth", "fv"],
+            },
+            Lint => {
+                ## Ace Built-In Filter for Lint 
+                ## - ideally would be using only the tag "lint", but since ace default is synth
+                -dump_format => 'pl',
+                -expression  => "synth and lint and ! hip and ! validation", 
+                #-macros      => ['INTEL_LINT'], ## Added official global macro(s) relevant to flow
+                -macros      => ['INTC_LINT_ON'], ## Added official global macro(s) relevant to flow
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["synth", "lint","nonhip","nonvalidation"],
+            },
+            LintSVTB => {
+                ## New Filter for Lint for svtb
+                ## - Needs to see TB libs
+                -dump_format => 'pl',
+                -expression  => "lint", 
+                #-macros      => ['INTEL_LINT'], ## Added official global macro(s) relevant to flow
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["lint"],
+            },
+            CodeGenInput => {
+                ## Ace Built-In Filter CodeGenInput
+                -dump_format => 'pl',
+                #-macros      => undef,
+                -modules     => ["Ace::Filters::Tag"],
+                -tags        => ["cogin"],
+            },
+            
+            ## New Filters not in ACE (as of 2.01.00)
+            Cdc => {
+                ## Filter for ClockDomainCrossing Input files
+                -dump_format => 'pl',
+                -expression  => "cdc and ! validation and ! bfm",
+                #-macros      => ['INTEL_SVA_OFF', 'INTEL_CDC' ], ## Added official global macro(s) relevant to flow
+                -modules     => ['Ace::Filters::Tag'],
+                -tags        => ['cdc','nonvalidation','nonbfm'],
+            },
+            Jemsw => {
+                ## Filter for Jem Input files
+                -dump_format => 'pl',
+                #-macros      => undef,
+                -modules     => ['Ace::Filters::Tag'],
+                -tags        => ['jemsw'],
+            },
+            MppSimulation => {
+                ## Filter for MPP Simulation Flow (make these macros get added to an MPP-aware compilation)
+                -dump_format => 'pl',
+                #-macros      => ['INTEL_NO_PWR_PINS', 'INTEL_SIMONLY', 'INTEL_INST_ON', ## standard global macros 
+                #                 'ENABLE_UPF', 'NO_PWR_PINS', 'INST_ON', 'SIMULATION', 'VCSSIM',  ## nonstandard global macros 
+                #                ],
+                -modules     => ['Ace::Filters::Tag' ],
+                -tags        => ['simulation'],
+            },
+            Quickcov => {
+                ## Filter for Quickcov Inputs
+                -dump_format => 'pl',
+                #-macros      => undef,
+                -modules     => ['Ace::Filters::Tag'],
+                -tags        => ['quickcov'],
+            },
+            Simulation => {
+                ## Filter for Simulation Inputs
+                -dump_format => 'pl',
+                #-macros      => ['INTEL_SIMONLY', 'INTEL_INST_ON', ## standard global macros
+                #                 'INST_ON', 'SIMULATION', 'VCSSIM' ## nonstandard global macros 
+                #                ],
+                -modules     => ['Ace::Filters::Tag'],
+                -tags        => ['simulation' ],
+            },
+            VCodeGenInput => {
+                ## Filter for Visa Insertion Code Generation
+                -dump_format => 'pl',
+                #-macros      => [ ], #'NODE=logic','SVA_OFF' ],
+                -modules     => [ 'Ace::Filters::Tag' ],
+                -tags        => [ 'vcogin', 'synth'], 
+            },
+
+        }, ## end -filter
+    }, ## end HDLSpec
+);

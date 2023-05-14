@@ -1,0 +1,175 @@
+#######################
+# ELABORATION CONTROL #
+#######################
+    puts "pa_major_ver = $pa_major_ver"
+    log_info "PA Version is $pa_ver - setting default elaboration mode as legacy"
+    xparams_set_legacy_elab_mode 1
+    catch {pa_set elaborate_relax_syntax_check true}
+    xparams_set_vc_create_mode dc
+    pa_set suppress_messages {8449 5828 5829 5499 9993 8342 5431 8339 2 SLA-92}
+    xparams_set_generate_rollup true
+
+#------------------
+# setup ward
+#------------------
+    set ward .
+    if {[info exists ::env(MODEL_ROOT)]} {set ward "$::env(MODEL_ROOT)/target/default/results/DC/$cell"}
+    if {[info exists ::env(WARD)]} {set ward "$::env(WARD)"}
+    puts "WARD = $ward"
+    puts "cell = $cell"
+
+#------------------
+# setup clocks
+#------------------
+    xparams_set_freq 2.33
+    xparams_set_clock_search_path [list \
+        $::env(MODEL_ROOT)/tools/syn/inputs/any/<CELL>/inputs/<CELL>_clocks \
+        ]
+    xparams_set_clock_search_files_exts    [list .tcl]
+    xparams_set_clock_heuristics_mode 0
+    xparams_set_activity_analysis "disable"
+    xparams_set_clock_flags                "-mode infer -exclude_pad_power true -trace_domain false -gate_clock true -enhanced_cg true"
+
+
+
+# clocks
+xparams_set_force_primary_clock        0
+pacific::pacific_set use_fsdb2vcd true
+xparams_set_force_ignore_files {URI_TYPES_PKG_SV|URI_VERIF_PKG_SV|ip_release/global_ctech_ip/.*/source/.*v$|/v/}
+xparams_set_force_ignore_synlib_files {collateral/ebb/lib/.*(0\.55v|0\.65v|0\.85v|1\.1v.*max)}    
+if {[catch {
+    pacific::pacific_journal \# Started commands from project.cdk.pcfg
+    pacific::pacific_set elaborate_opt_unused_logic false
+    pacific::pacific_exec SetDontTouch -module * -instance * -propagate_constant true -delete_unloaded_path false
+    pacific::pacific_set black_box_modules         {ip74*}
+    pacific::pacific_set elaborate_skip_modules {ip74*}
+} err]} {
+    puts "-I- catched issue while executing power artist code : $err"
+}
+
+#clock flags
+set cgmode false 
+pacific::pacific_set skip_reduction_list "odc sodc"
+set ::mbw 4
+
+xparams_set_lib_ctech_names            [list e05]
+xparams_set_lib_ctech_variants         [list nn]
+xparams_set_lib_types                  [list p1274d0_tttt_v065_t100_max]
+
+#######################
+# PROCESS AND DESIGN  #
+#######################
+xparams_set_pace_file                     $PACIFIC_TECH_PATH/cdk.par_mc.ww46.tech
+
+#######################
+# HIERARCHIES         #
+#######################
+
+xparams_set_black_boxes_map             [list {ccf "*halftyp* ip74* c74* llcdata*"} ]
+xparams_set_elab_skip_modules_map       [list {ccf "*halftyp* ip74* c74* llcdata*"}]
+
+
+xparams_set_vc_create_mode "dc"
+
+xparams_set_rtl_search_files_exts      [list     rtl_list.tcl ?hip_list.tcl ]
+xparams_set_rtl_search_path [list $ward/collateral/rtl]
+    
+   
+#xparams_set_vc_extra_files   "/p/cdk/rtl/ip_release/global_ctech_ip/v14ww48a/10nm_0.5.0/source/p1274/e05/nn/lib.v /p/hdk/db_root/chdk74/e05collateral_chdk74/std/_e05_g.0_cnlgt_cnl_15ww50.4/v/nn/e05_nn_core.v"
+
+
+
+uplevel #0 {
+    pacific::pacific_journal \# started sourcing project pcfg file
+    set G_USE_UNIQUIFIED_DDC_FOR_FC_OVERRIDE_UNITS 1
+    set env(EMULATION_TLM_ON) 1
+    pacific::pacific_set power_tech_file [xparams_get_pace_file]
+        
+    ##############################################################################
+    # Elaborate Options (pthdl)
+    ##############################################################################
+    pacific::pacific_set blast_regfile all
+
+    #needed to avoid crash at sboidp , anyway we are disabling features that we do NOT use.
+
+    pacific::pacific_set disable_legacy_sis true
+    pacific::pacific_set reduction_report_clock_gating_enable_efficiency false
+
+
+    ###  for Verilog 2001 & SystemVerilog  ###
+    pacific::pacific_set verilog_2001 true 
+    pacific::pacific_set system_verilog true
+    pacific::pacific_set system_verilog_2005 true
+
+    #pacific::pacific_set black_box_instances mlmc_tm_sequencer_pld_codec
+
+    ##############################################################################
+    # CalculatePower Options (-analysis_type average / reduction )
+    # (wwgaf)
+    ##############################################################################
+    pacific::pacific_set compress_gaf true
+
+
+    pacific::pacific_set use_scan_flops true
+    pacific::pacific_set mux_select_activity_based_clock_tracing true
+    pacific::pacific_set frequency_dependent_clock_tracing true
+    pacific::pacific_exec SetClockGatingStyle -clock_cell_attribute latch_posedge_precontrol -min_bit_width $::mbw -min_bit_width_ecg $::mbw
+#    pacific::pacific_exec SetSkipReduction -instance cmi_top -reduction all
+    pacific::pacific_set suppress_messages {TSL-2 ENG-22 ADP-163 ADP-164 ADP-165 HDP-1720 HDP-1295 HDP-1875 HDP-2117 HDP-1489 HDP-1721 HDP-2013 HDP-9000 UTL-226 HDP-1995 HDP-1899 SLA-44 HDP-1927 ADP-98 ADP-157 ADP-158 WBT-42 ENG-97 ENG-187 ADP-97 ADP-98 ADP-83 SIM-14 VCD-36 VCD-162 SIM-10  RED-233}
+
+    proc set_libs {} {
+        pacific::pacific_exec ReadLibrary -name /nfs/site/disks/hdk_stdroot_15/stdcells/e05/15ww48.5_e05_g.0_cnlgt_cnls_16ww28.5/parent/e05_g.0_cnl_16ww12.5/lib_withpowerpincap/ln/e05_ln_p1274d0_tttt_v065_t100_max.lib
+        pacific::pacific_exec ReadLibrary -name /nfs/site/disks/hdk_stdroot_15/stdcells/e05/15ww48.5_e05_g.0_cnlgt_cnls_16ww28.5/parent/e05_g.0_cnl_16ww12.5/lib_withpowerpincap/nn/e05_nn_p1274d0_tttt_v065_t100_max.lib
+        set library e05_ln_p1274d0_tttt_v065_t100_max
+      
+        pacific::pacific_exec SetWireLoadModel -name unit_wl -library $library -instance *
+            
+        pacific::pacific_exec DefineCell -type flop  -name {e05f*}
+        pacific::pacific_exec DefineCell -type latch -name {e05l*}
+        pacific::pacific_exec DefineCell -type icgc  -name {e05clb*} -pin {{clock clk}{clock clkout}{enable en}}
+        pacific::pacific_exec DefineCell -type icgc  -name {e05clb0o2*} -pin {{clock clk}{clock clkout}{enable enb}}
+
+        pacific::pacific_exec DefineCell -type icgc -name e05clb* -pin {{clock clk}{clock clkout}{enable en}}
+        pacific::pacific_exec DefineCell -type icgc -name e05clb0o2* -pin {{clock clk} {clock clkout} {enable enb} }
+        pacific::pacific_exec DefineCell -type icgc -name e05cilb* -pin {{clock clk} {enable en} {clock clkout} }
+
+        ##############################################################################
+        # Elaborate Options (pthdl)
+        ##############################################################################
+        pacific::pacific_set blast_regfile all
+
+        pacific::pacific_set disable_legacy_sis true
+        pacific::pacific_set reduction_report_clock_gating_enable_efficiency false
+        
+        pacific::pacific_set verilog_2001 true 
+        pacific::pacific_set system_verilog true
+        pacific::pacific_set system_verilog_2005 true
+
+        pacific::pacific_set compress_gaf true
+
+
+        ##############################################################################
+        ###  RTL default cell selection  ###
+        pacific::pacific_set use_scan_flops true
+
+
+        pacific::pacific_exec SetClockGatingStyle -clock_cell_attribute latch_posedge_precontrol -min_bit_width $::mbw -min_bit_width_ecg $::mbw
+        SetClockTreeExceptions -dont_buffer_leaf_cells true 
+
+#        pacific::pacific_exec SetSkipReduction -instance cmi_top -reduction all
+        
+        #more generic commands show go after more specific. I.e. e05c* after e05cnan
+        pacific::pacific_exec TraceThruCell -name iclk_gate_scan -input_pins {clkin} -output_pins {clkout}
+        pacific::pacific_exec TraceThruCell -name e05c* -input_pins {clk1 clk2 clk clkin} -output_pins {clkout}
+        pacific::pacific_exec TraceThruCell -name ec0c* -input_pins {clk1 clk2 clk clkin} -output_pins {clkout}
+        pacific::pacific_exec TraceThruCell -name ctech_lib_clk_* -input_pins {clk1 clk2 clk clkin} -output_pins {clkout}
+        pacific::pacific_exec TraceThruCell -name *visa_clk_mux* -input_pins {src_clk*} -output_pins {clk_flop clk_out}
+
+        pacific::pacific_exec SetVT -mode percentage -instance [xparams_get_cell] -vt_group {nn:65 ln:35}
+
+        pacific::pacific_set suppress_messages {TSL-2 ENG-22 ADP-163 ADP-164 ADP-165 HDP-1720 HDP-1295 HDP-1875 HDP-2117 HDP-1489 HDP-1721 HDP-2013 HDP-9000 UTL-226 HDP-1995 HDP-1899 SLA-44 HDP-1927 ADP-98 ADP-157 ADP-158 WBT-42 ENG-97 ENG-187 ADP-97 ADP-98 ADP-83 SIM-14 VCD-36 VCD-162 SIM-10  RED-233}
+
+
+    }
+}
+

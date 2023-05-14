@@ -1,0 +1,169 @@
+
+
+%audf = (
+    InterfaceVars => {
+        ## DVT FLAGS:
+
+        ####################################################
+        # The list of models that DVT has to compile 
+        #   Here you enter models you want Ace to process
+        ####################################################
+        -dvt_models => {
+            default => [ 'mss_top',
+                ],
+        },
+        
+        ####################################################
+        # DVT eclipsespace dir 
+        #   Uncomment only if you want to locate the eclipsespace cache to another location (you probably never will)
+        ####################################################
+        #-dvt_eclipsespace => {
+        #    default => "$ENV{ACE_ENG}/$ENV{ACE_PWA_DIR}/results/dvt/eclipsespace" , 
+        #},
+        
+        ####################################################
+        # DVT workspace dir 
+        #   Uncomment only if you want to locate the workspace to another location (this you might want to someday) otherwise the workspace will be stored on /tmp
+        ####################################################
+        #-dvt_workspace => {
+        #    default => "$ENV{ACE_ENG}/$ENV{ACE_PWA_DIR}/results/dvt/workspace",
+        #},
+
+        ####################################################
+        # DVT project variable 
+        ####################################################
+        -dvt_createProject => {
+            default => "$ENV{MODEL_ROOT}", ## should point to the directory that you cloned (aka IP_ROOT)
+        },
+        
+        ####################################################
+        # Extra Options to be passed onto DVT compile 
+        #   These are some options that are appended to the DVT command line
+        ####################################################
+        #-dvt_cmdopts => {
+        #    default => [ #"-lang vlog",
+        #                 # "-lang vhdl", # uncommment ONLY if you have to have VHDL support
+        #                 #"-perspective VLOG", # Startup with this perspective  
+        #        ],
+        #},
+
+        ####################################################
+        # Specify a heap size appropriate for your project 
+        #   Uncomment only if you need to increase or decrease the Eclipse heap size (you most like will)
+        ####################################################
+        #-dvt_heapsize => {
+        #    default => '8G', # syntax is <N>[g|G|m|M|k|K]
+        #},
+
+        ####################################################
+        # Specify a stack size appropriate for your project
+        #   Uncomment only if you need to change the Eclipse stack size (you probably never will)
+        ####################################################
+        #-dvt_stacksize => {
+        #    default => '4M',  # syntax is <N>[g|G|m|M|k|K]
+        #},
+        
+        ####################################################
+        # List of options/commands etc to be added at the top of the build file
+        ####################################################
+        #-dvt_pre_buildinclude => {
+        #    default => [ # "+dvt_build_log_to_file+false",
+        #                 # "+dvt_disable_checks+UNDECLARED_IDENTIFIER",
+        #                 # "+dvt_full_compile_checks+OFF",
+        #                 # "+dvt_incremental_compile_checks+FILE",
+        #                 # "+dvt_incremental_compile_checks+LIB", # restricts the incremental to current library
+        #                 # "+dvt_incremental_compile_checks+PKG", # restricts the incremental to current package
+        #                 
+        #                 # "+dvt_incremental_compile_max_lines+0",
+        #                 # "+dvt_file_compile_timeout+90", # 90sec timeout
+        #        ],
+        #},
+        
+        ####################################################
+        # List of options/commands etc to be added at the bottom of the build file 
+        ####################################################
+        #-dvt_post_buildinclude => {
+        #    default => [
+        #        #        "+dvt_init+vcs.vlogan",
+        #        #        "-sverilog",
+        #        #        "+define+OVM",
+        #        #        "+define+SAOLA_V20110805_OR_LATER",
+        #        #        "+incdir+$ENV{OVM_HOME}/src",
+        #        #        "+incdir+$ENV{SAOLA_HOME}/verilog",
+        #        #        "$ENV{DVT_PWA_DIR}/verif/tests/**/*.sv",  # only needed for test-out models
+        #        ],
+        #},
+
+        ####################################################
+        # List of scripts to be executed before launching DVT 
+        ####################################################
+        #-dvt_pre_launchrecipe => {
+        #    default => [
+        #        ],
+        #},
+
+        ####################################################
+        # List of scripts to be executed after launching DVT
+        ####################################################
+        #-dvt_post_launchrecipe => {
+        #    default => [
+        #        ],
+        #},
+
+        ####################################################
+        # List of dir names to be excluded while bringing up DVT 
+        # Exclude directories to improve DVT bring up and build performance
+        # Here you can exclude dirs by name and anywhere there is a match it will be excluded
+        ####################################################
+        -dvt_exclude_names	 => {
+            default => [ ".git",
+                         ".git_hooks",
+                         ".natural_docs_proj",
+                         "MockTurnin*",
+                         "GATEKEEPER",
+                         "results",
+                         "target",
+                         "log",
+                         "report",
+                         "aceroot",
+                         "regression",  
+                ],
+        },
+    
+        ####################################################
+        # List of relative paths wrt <-dvt_createProject> to be excluded while bringing up DVT 
+        # Exclude directories to improve DVT bring up and build performance
+        # Here you can exclude specific dirs relative to the project path
+        ####################################################
+        -dvt_exclude_prjrelpaths => {
+            default => [ "debussyLog",
+                         "subIP/*/tools/dvt", # This is required so that other launch buttons aren't pulled in
+                         "subIP/*/scripts", # Don't bring in other scripts dirs. They often lead to links that go on forever
+                         "subBlock/*/tools/dvt", # This is required so that other launch buttons aren't pulled in
+                         "subBlock/*/scripts", # Don't bring in other scripts dirs. They often lead to links that go on forever
+                         "regression",  
+                         "results",
+                         "scripts",
+                         #"subIP",  ### Uncomment this if you want to exclude ALL subIPs for faster build performance
+                         "target",  
+                ],
+        },
+
+        ####################################################
+        # Create links to locations outside of the project
+        #   Map links allow you to put a link to a location outside of your project into your project's directory tree
+        #   The format is: "<link name>   </put/path/here>", 
+        ####################################################
+        #-dvt_maplinks => {
+        #    default => [
+        #        ],
+        #},
+        
+        ####################################################
+        # Filter to used while compiling models for DVT 
+        ####################################################
+        -dvt_filter => {
+            default => 'Simulation',
+        },
+    },
+);

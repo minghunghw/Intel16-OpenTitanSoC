@@ -1,0 +1,42 @@
+# Options passed to the CDC static verification
+ {
+   %opts = (
+     -model                 => 'ringpll_tb', 
+     -static_check_top      => 'ringpll_rtl_lib.ringpll', #Refer to the top level module in the test
+     -static_check_tools    => [ "spyglass", ],
+     -enable_spyglass_group_run => 0,
+     -enable_cdc_lint       => 1,
+     -spyglass_goals        => [
+                                "cdc/cdc_verify_struct",
+                                "cdc/cdc_setup_check",
+                                "cdc/rdc_verify_struct",
+                               ],
+     -spyglass_cdc_goals_regex    => "cdc_setup_check|cdc_verify|cdc_verify_struct|cdc_verify_funct|rdc_verify_struct", 
+     -spyglass_ctrl_files => [
+                              "$ENV{SPYGLASS_METHODOLOGY_CDC}/cdc/cdc_commonConstraints.sgdc",
+                              "$ENV{MODEL_ROOT}/tools/spyglasscdc/ringpll/ringpll.sgdc",
+     ],
+     -post_process_pattern_file   => "$ENV{ACE_HOME}/udf/ace_base_postsim.pp",
+     -spyglass_post_process_modes => "AceSpyglassCDC_default,AceCDCLint_default",
+     -spyglass_exe_opts  => [
+                              'set ::env(TOP) ringpll',
+                            ],
+     -spyglass_exe_scrag_recipe   => [],
+     -cdc_lint_args	 => [
+   			      "-no_waiver_translate",		
+                            ],
+     -spyglass_awl_waiver_files =>["$ENV{MODEL_ROOT}/tools/spyglasscdc/ringpll/ringpll_waiver_file.awl"],
+
+   ); 
+
+   %runModes = (
+       SetupChk => {
+          -ASSIGN => [ -spyglass_goals => ["cdc/cdc_setup_check",], ],
+       },
+       RDC => {      
+          -ASSIGN => [ -spyglass_goals => ["cdc/rdc_verify_struct",], ],       
+       },
+  );
+  
+ }
+

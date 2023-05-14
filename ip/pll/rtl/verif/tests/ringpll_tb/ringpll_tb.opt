@@ -1,0 +1,20 @@
+#-*-cperl-*-
+
+
+{
+    %opts = (
+             -model => "ringpll_tb",
+             -seed => '0000000A',
+             -sim_args => ["+timeout=23432100", "+cpu_done_addr=4096"],
+             -simv_args => ["+timeout=23432100", "+cpu_done_addr=4096"],
+             -sim_args_first => ["+DEFINE+FIRST_ARG"],
+             -simv_args_first => ["+DEFINE+FIRST_ARG"],
+             #-create_postmortem_file      => 0,
+             -postsim_log_max_num_warn    => 10,
+             ## static_check section
+             ## this section has been moved out and
+             ## there are separate opt files for the basic
+             ## static checks under verif/tests/static_checks/
+            );
+}
+

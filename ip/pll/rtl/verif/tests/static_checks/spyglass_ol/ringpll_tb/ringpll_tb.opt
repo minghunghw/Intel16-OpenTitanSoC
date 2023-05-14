@@ -1,0 +1,21 @@
+#-*-cperl-*-
+
+{
+   %opts = (
+       -model => "ringpll_tb",
+       -static_check_top => "ringpll_tb_lib.ringpll_tb",
+       -static_check_tools => ["spyglass",],
+       -spyglass_goals => ["lint/SpyglassConvergedLintSOC",],
+       # -spyglass_ctrl_files => [""],
+       # -spyglass_waiver_files =>[""],
+       # -spyglass_exe_opts => [],
+
+       -enable_spyglass_log2tcl => 0,
+       #-spyglass_awl_waiver_files => ["$ENV{MODEL_ROOT}/tools/spyglass_lint/opio_waiver.awl"],
+       #-post_process_pattern_file =>"$ENV{ACE_HOME}/udf/ace_base_postsim.pp",
+       -post_process_pattern_file =>"$ENV{SPYGLASS_METHODOLOGY_RTL_LINT}/ace_sg_lint_postsim.pp",
+       -spyglass_post_process_modes => "AceSpyglassLint_default",
+
+       -postsim_log_max_num_warn => 10,
+  );
+}

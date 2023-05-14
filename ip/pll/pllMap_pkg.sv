@@ -7,8 +7,9 @@ package pllMap_pkg;
     logic treg_en      ;          
     logic trst_n       ;          
     logic tshiftdr     ;          
-    logic tupdatedr    ;          
-
+    logic tupdatedr    ;
+    logic				mash_order_plus_one;           
+    
     logic [4:0]fz_cp1trim               ;
     logic [4:0]fz_cp2trim               ;
     logic [1:0]fz_cpnbias               ;
@@ -18,7 +19,7 @@ package pllMap_pkg;
     logic fz_ldo_bypass                 ;
     logic fz_ldo_extrefsel              ;
     logic fz_ldo_faststart              ;
-    logic fz_ldo_fbtrim                 ;
+    logic [3:0]fz_ldo_fbtrim                 ;
     logic [3:0]fz_ldo_reftrim           ;
     logic [1:0]fz_ldo_vinvoltsel        ;
     logic [2:0]fz_lockcnt               ;
@@ -50,13 +51,16 @@ package pllMap_pkg;
     logic idvtctrli                     ;
     logic idvtdi                        ;
     logic idvtresi                      ;
+    logic ldo_enable                    ;
 
     logic [23:0]ssc_frac_step           ;
     logic ssc_en                        ;
     logic [8:0]ssc_cyc_to_peak_m1       ;
 
-    logic pllfwen_b                     ;
+    logic clkpostdist                   ;
 
+    logic pllfwen_b                     ;
+    logic bypass                        ;
 
     
     logic [9:0]zdiv0_ratio              ;
@@ -68,7 +72,8 @@ package pllMap_pkg;
 
     logic [1:0]vcodiv_ratio             ;
     logic [23:0]fraction                ;
-    logic [9:0]ratio                    ;  
+    logic [9:0]ratio                    ;
+
     logic pllen                         ;
 
     logic en_write                         ;

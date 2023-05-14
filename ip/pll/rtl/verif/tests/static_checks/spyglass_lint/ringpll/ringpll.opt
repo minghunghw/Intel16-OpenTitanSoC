@@ -1,0 +1,27 @@
+#-*-cperl-*-
+
+{
+   %opts = (
+       -model => "ringpll_tb",
+       -static_check_top => "ringpll_rtl_lib.ringpll",
+       -static_check_tools => ["spyglass",],
+       -enable_spyglass_group_run => 0,
+       -spyglass_goals => ["lint/SpyglassConvergedLintSOC",],
+       -spyglass_bbox_modules_files => [ "$ENV{MODEL_ROOT}/tools/spyglass_lint/input/ringpll_bmod.bb",], 
+       # -spyglass_ctrl_files => [""],
+        -spyglass_awl_waiver_files =>["$ENV{MODEL_ROOT}/tools/spyglass_lint/input/ringpll_waiver_file.awl"],
+       # -spyglass_exe_opts => [],
+
+       #-enable_spyglass_log2tcl => 0,
+       #-spyglass_awl_waiver_files => ["$ENV{MODEL_ROOT}/tools/spyglass_lint/opio_waiver.awl"],
+       #-post_process_pattern_file =>"$ENV{ACE_HOME}/udf/ace_base_postsim.pp",
+       #-post_process_pattern_file =>"$ENV{ACE_HOME}/udf/ace_base_postsim.pp",
+       #-spyglass_post_process_modes => "AceSpyglassLint_default",
+       -spyglass_exe_opts => [
+			      'set_parameter exclude_path "/p/hdk/cad/ctech/.*|/nfs/site/disks/crt_tools.*|/nfs/site/disks/.crt_tools.*|/nfs/site/disks/hdk.cad.*|/p/hdk/cad/stdcells/.*|/nfs/site/disks/crt_stdcells.*"',
+                             ],
+       #-postsim_log_max_num_warn => 10,
+       -post_process_pattern_file =>"$ENV{SPYGLASS_METHODOLOGY_RTL_LINT}/ace_sg_lint_postsim.pp",
+       -spyglass_post_process_modes => "AceSpyglassLint_default",
+  );
+}

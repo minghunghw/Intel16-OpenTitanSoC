@@ -1,0 +1,5 @@
+$hdl_spec = {
+    -vlog_files => [ 'tools/cdc/inputs/dummy_stub.sv', ## placeholder to keep library alive 
+                   ],
+    -vlog_opts  => [ ],
+};

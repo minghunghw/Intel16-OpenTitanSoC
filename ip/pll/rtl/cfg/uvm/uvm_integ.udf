@@ -1,0 +1,6 @@
+#!/usr/intel/bin/perl
+%audf = (
+    Includes => [ 'UVM:cfg/uvm/uvm_hdl.udf',
+    ],
+);
+

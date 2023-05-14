@@ -1,0 +1,103 @@
+# 
+#NFS Issues
+#
+1 No\s+space\s+left\s+on\s+device 11@
+1 Error:\s+Cannot\s+open\s+File\s+to\s+write 12@
+1 CAN\s+NOT\s+OPEN\/WRITE\s+.*\s+Permission\s+denied 13@
+1 error:\s+Unable\s+to\s+(?:read|write|open) 14@
+1 Input\/output\s+error 15@
+1 Unable\s+to\s+open\s+configuration file 16@
+1 \s*\S+\s+diskspace\s+is\s+too\s+low\s+\(\s+local\s+disk\s+\)\s+-\s+Got\s+\d+KB\swhich\s+is\s+less\s+than\s+the\s+required\s+\d+KB\s* 17@
+1 Cannot\s+flush\s+message\s+action\s+file:.*\s+to\s+disk 17@
+1 Error:\s+Cannot\s+write\s+to\s+File\s+to\s+write: 18@
+1 Cannot\s+create\s+sym-link\s+between 18@
+1 Error\s+creating\s+iFeed\s+directories 18@
+1 Error\s+reading\s+from 18@
+1 Error:\s+cannot\+open\+db\+lookup\+file 18@
+## Overcoming NFS slowness issues
+1 Error:\s+No\s+match\s+for\s+file 19@
+#
+#Specman failures
+#
+##1 [Ee]rror:\s+CCI\s+server\s+terminated
+1 [Ee]rror:\s+Client\s+\w+\s+did\s+not\s+initialize\s+within\s+\d+\s+seconds.* 20@
+1 Error:\s+Client\s+SPECMAN\s+did\s+not\s+initialize\s+properly 21@
+## Temp hack for specman decryption failure bug
+1 SIMIX\s+FAILURE 22@
+1 Fatal\s+error\s+-\s+leaving\s+Specman 23@
+1 VCS\s+runtime\s+internal\s+error 24@
+1 Fatal\s+error:\s+Client\s+\w+\s+did\s+not\s+initialize\s+properly. 25@
+1 SpecmanOpts:\s+Could\s+not\s+find 26@
+1 Checker\s+\(microsim\)\s+Internal\sError 27@
+1 Invalid\s+client\s+name:\s+SPECMAN 28@
+1 Failed\s+to\s+create\s+Specman's\s+temporary\s+directory
+#
+#Model Cache failures
+#
+## overcomming Cache model failures
+1 Error:\s+Could\s+not\s+load\s+\/netbatch\/MoDeL\/%PROJECT%_CACHE 31@
+1 Fatal\s+error:\s+Could\s+not\s+load\s+module\s+\/netbatch\/MoDeL\/%PROJECT%_CACHE 32@
+1 File\s+\'_VCS.*.db\'\s+could\s+not\s+be\s+opened\s+for\s+reading\s+due\s+to\s+\(No\+such 33@
+#
+#
+#
+1 \bCaught\sSIGTERM\b 41@
+#
+#License failure
+#
+1 Error:\s+Cannot\s+get\s+License 51@
+## From wmterrs.pl from resubmit section
+1 LICENSE\s+ERROR\s+during\s+\'request\s+queueing\' 52@
+1 Error\s*:\s+License\s+installation\s+error 53@
+1 \*Denali\*\s+Fatal\s+error:\s+License\s+check\s+failed 54@
+
+
+#
+#OS failure
+#
+1 Error:\s+OS\s+signal\s+11\s+\(segmentation\s+violation\)\s+received 61@
+1 OS\s+signal\s+11\s+\(segmentation\s+violation\)\s+during\s+garbage\s+collection 62@
+1 write\s+error:\s+Broken\s+pipe 63@
+1 Error:\s+Can\'t\s+fork\(\)\s+within\s+CCI\s+server' 65@
+1 Error:\s+OS\s+signal\s+11\s+.segmentation\s+violation.\s+received 66@
+1 ERROR\s+while\s+trying\s+to\s+read\s+from\s+cache\s+:\s+Can.t\s+install\s+signal 67@
+1 fatal\s+error:\s+Can.t\s+execute\s+\S+ 68@
+#
+#General
+#
+1 ERROR:\s+Build\s+tool:.*is\s+either\s+Does\s+not\s+exist.\s+or\s+unreadable 71@
+1 ERROR:\s+Build\s+process\s+failed.\s+.No\s+such\s+file\s+or\s+directory. 72@
+1 ERROR:\s+Test\s+Path\s+Is\s+Either\s+Incorrect\s+or\s+Unreadable 73@
+1 ERROR:\s+Src\s+or\s+target\s+isn.t\s+a\s+dir 74@
+1 ERROR:\s+Unable\s+to\s+open\s+src\s+dir 75@
+1 ERROR:\s+Cannot\s+get\s+output\s+stream\s+from\s+model_tool 76@
+1 Can't\s+locate\s+default\.cmd\s+in\s+\$DO_PATH 77@
+1 Internal\s+error\s+in\s+tool's\s+source\s+file 78@
+1 inflating.*error: 79@
+1 Test\sPath\sIs\sEither\sIncorrect\sor\sUnreadable 81@
+1 error\s+in\s+loading\s+shared\s+libraries 82@
+1 cannot\s+open\s+shared\s+object\s+file 83@
+1 No\s+such\s+file\s+or\s+directory 84@
+1 ERROR:\s+Source\s+\.asm\s+does\s+NOT\s+exist 85@
+1 Error:\s+Unable\s+to\s+open\s+\S+.asd 86@
+1 \w+\s+ERROR\s+-\s+test\s+build\s+failed\s+-\s+no\s+.\.32\.obj\s+found 87@
+1 gmake:\s+...\s+.\S+.32.obj.\s+Error\s+\S+ 88@
+1 Can.t\s+locate\s+\S+\s+in\s+search\s+path 89@
+1 Call\s+to\s+\S+\s+failed 91@
+1 BEGIN\s+failed..compilation\s+aborted\s+at 92@
+1 Assembler\s+error\s+.\s+cannot\s+find\s+instruction\s+table 93@
+1 Unrecognized\s+signal\s+type 94@
+1 END\s+failed..cleanup\s+aborted 95@
+1 error:\s+Unable\s+to\s+open\s+write\s+connection\s+to\s+application:\s+No\s+such\s+process 96@
+1 Command.*wmtbuild.*returned\s+exit\s+status\s+[2|3]\s+ 97@
+1 \bJob\saborted\b 98@
+#1 NO\s+TEST\s+RESULTS\s+REPORTED\s+FROM\s+MODEL\s+TOOL 99@
+1 syntax\s+error:\s+unexpected\s+end\s+of\s+file 100@
+1 ERROR:\s+lugen\s+returned\s+with\s+status 101@
+1 options_co\s+.*failed 102@
+1 Can't\s+locate\s+\s+\.cmd\s+in\s+\$DO_PATH 103@
+
+1 Error..VFS_CORRUPT_CHECK.\s+Corrupted\s+VCS\s+virtual\s+file\s+system 104@
+1 VCS Link Error.*\s+make\[1\]:\s+\*\*\*\s+\[_csrc\d+.so\]\s+Error\s+\d+ 105@
+1 No\s+space\s+left\s+on\s+device 106@
+

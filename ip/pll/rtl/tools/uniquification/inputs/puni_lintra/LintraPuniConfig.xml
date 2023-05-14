@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<LINTRA_CONFIGURATION>
+  <severity name="Error" level="2" cause_failure="yes"/>
+  <rule id="puni" active="yes" severity="Error"/> 
+</LINTRA_CONFIGURATION>
+

@@ -1,0 +1,48 @@
+#-*-perl-*-
+
+# Non reusable test bench library
+# NOTE : All paths should be relative to search paths in .acerc
+# or use standard env vars which are guaranteed to be set when Ace is run
+# For e.g. $ENV{CTECH_LIBARY}, $ENV{UVM_HOME}, etc
+
+$hdl_spec = {
+    # List of VERILOG source files ( paths relative to search paths in .acerc)
+     -vlog_files => [ 
+        'verif/tb/ringpll_emu_tb.sv',
+     ], #-vlog_files
+
+    # List of verilog library source dirs (corresponds with the VLOG '-y' parameter)
+    -vlog_lib_dirs => [
+        'verif/tb',
+    ], #-vlog_lib_dirs
+
+    # List of verilog library source files (corresponds with the VLOG '-v' parameter)
+    -vlog_lib_files => [
+    ], #-vlog_lib_files
+
+    # List of include directories (corresponds with the VLOG '+incdir+' parameter)
+    -vlog_incdirs => [
+    'verif/tb/',
+    ], #-vlog_incdirs
+
+    # VLOG options needed to compile/analyze this library
+    -vlog_opts => [
+       '+librescan +libext+.v +define+zerounitdelay +define+VCSSIM +define+INTEL_SIMONLY +define+ip2211ringpll_SVA_OFF +define+IP2211RINGPLL1P8_ENV +define+PLL_BEH +define+INTC_SVA_LIB_OLD_FORMAT +define+ip2211ringpll_SVA_LIB_SVA2005 +define+ip2211ringpll_INTC_NO_PWR_PINS +lint=TFIPC-L',
+       '-sverilog',
+       '\<vcs\>-assert \<vcs\>svaext',
+    ], #-vlog_opts
+
+    # List of specific VHDL source files
+    -vhdl_files => [
+    ], #-vhdl_files
+
+    # VCOM options needed to compile/analyze this library
+    -vcom_opts => [
+    ], #-vcom_opts
+
+    # Other hdl spec files to include first
+    -hdl_spec => [
+       # paths to  other .hdl files
+    ], #-hdl_spec
+
+}; #$hdl_spec

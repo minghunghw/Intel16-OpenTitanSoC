@@ -1,0 +1,21 @@
+#-*-cperl-*-
+# Options passed to the CDC static verification
+ {
+   %opts = (
+     -model                 => 'ip2211ringpll_tb', 
+     -static_check_top      => 'ip2211ringpll_tb_lib.ip2211ringpll_tb', #Refer to the top level module in the test
+     -static_check_tools    => [ "spyglass", ],
+     -enable_spyglass_group_run => 0,
+     -enable_cdc_lint       => 1,
+     -spyglass_goals        => [
+                                "cdc/cdc_verify_struct",
+                               ],
+#     -spyglass_ctrl_files => [
+#                              "$ENV{MODEL_ROOT}/tools/spyglasscdc/soc/soc.sgdc",
+#     ],
+     -post_process_pattern_file   => "$ENV{ACE_HOME}/udf/ace_base_postsim.pp",
+     -spyglass_post_process_modes => "AceSpyglassCDC_default,AceCDCLint_default",
+     -spyglass_exe_opts           => [],
+     -spyglass_exe_scrag_recipe   => [],
+   );
+ }

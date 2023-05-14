@@ -1,0 +1,5 @@
+
+|-acegen|       -s all +s gen_ace_files
+|-rundft|       -s all +s sg_dft_compile
+|-ufeonly|      -s all +s ufe_compile
+|-runeffm|      -s all +s effm_veloce +s effm_fpga

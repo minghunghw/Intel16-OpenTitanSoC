@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<LINTRA_CONFIGURATION>
+<!-- UDR errors -->
+  <severity name="Error" level="1" cause_failure="yes"/>
+</LINTRA_CONFIGURATION>

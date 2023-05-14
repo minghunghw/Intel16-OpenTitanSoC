@@ -1,0 +1,33 @@
+# -*-perl-*-
+
+my $PROJECT = $ENV{ACE_PROJECT};
+
+%audf = (
+    InterfaceVars => {
+        # configure flags reported by 'ace -sh GENERATE'
+        -add_flag_dump             => { default => 1 },
+
+        -dump_rtl_include_prereqs  => { default => 1 },
+        -enable_generate_rtl       => { default => 1 },
+        -enable_hip_visa_insertion => { 
+            type => 'BOOLEAN',
+            default => 1,
+            help => {
+                level => 1,
+                desc => "global enable of visa insertion on all configured libraries",
+                group => "GENERATE",
+            }, },
+        -enable_visa_insertion     => {
+            type => 'BOOLEAN',
+            default => 1,
+            help => {
+                level => 1,
+                desc => "global enable of visa insertion on all configured libraries",
+                group => "GENERATE",
+            },
+        },
+        -gen_results_ipdir         => { 
+            default => "<-eng>/<-pwa>/tools/visa/outputs/GenRTL", 
+        }, 
+    }, # InterfaceVars
+);

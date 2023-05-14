@@ -1,0 +1,28 @@
+//SOCFuseGen
+
+`include "mss_top_fuse_map.rdl";
+
+
+  addrmap mss_top_fuse_top {
+    field default_field {
+      //**** DO NOT MODIFY CODE BELOW ****
+      <% foreach $prop (keys %FieldProps) { %>
+        <%=$prop%> = <%=$FieldProps{$prop}%>;
+      <% } %>
+      //**** DO NOT MODIFY CODE ABOVE ****
+  
+      // Description of this register field.
+      desc = "This is the default field any register that instantiates this field will inherit all of the properties that are assigned in this field.";
+    };
+
+    TableType = "Fuse SOC Template 2.1.12";
+    MaxHDArrays = 8;
+    MaxHSArrays = 4;
+    FusePullersSAI = 55;
+    FuseControllerSAI = 57;
+
+    mss_top_Fuse_Map mss_top_Fuse_Map;
+    
+  };
+
+

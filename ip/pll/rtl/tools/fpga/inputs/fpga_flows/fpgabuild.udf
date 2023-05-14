@@ -1,0 +1,9 @@
+%audf = ( 
+   InterfaceVars => {
+      -emul_cfg => { default => "$ENV{EMUL_CFG_DIR}/fpgabuild.cfg"},
+      -emul_enable_filter => { default => 1},
+      -emul_filter => { default => 'Emulation'},
+      -emul_top => { default => 'top_library_name.top_module_name', },
+      -emul_model => { default => 'ace_model_name' },
+   }, 
+);

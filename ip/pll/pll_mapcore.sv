@@ -12,6 +12,9 @@ module pll_mapcore (
 
 localparam                       P_NOP          = 1;
 localparam                       P_IDLE         = 2;
+localparam                       P_STABLE       = 3;
+localparam                       P_SET          = 0;
+localparam                       P_WRITE        = 4;
 
 
 logic [3:0]                      state;
@@ -20,10 +23,24 @@ logic                            write_enable;
 logic                            read_enable;
 logic                            pll_enable;
 
+// logic                            delay_idfx_fscan_rstbypen;
+// logic                            early_idfx_fscan_rstbypen;
+
 assign write_enable = pllmap_i.en_write&valid;
 assign read_enable  = pllmap_i.en_read&valid;
 assign pll_enable   = pllmap_i.pllen;
 
+// always_ff @(negedge clk) begin
+//     if(early_idfx_fscan_rstbypen) begin
+//         delay_idfx_fscan_rstbypen <= 1'b1;
+//     end
+//     else
+//         delay_idfx_fscan_rstbypen <= 1'b0;
+
+// end
+
+
+//assign pllcontrol.idfx_fscan_rstbypen = delay_idfx_fscan_rstbypen;
 
 
 always_ff @(posedge clk or negedge rst_n)
@@ -37,19 +54,46 @@ end
 always_comb begin : writestatechange
     case (state)
         P_NOP: begin
-            if(write_enable&&pll_enable) begin
-                    next_state = P_IDLE;
+            if((!pll_enable)&valid) begin
+                next_state = P_NOP;
             end
             else begin
-                next_state = P_NOP;
+                next_state = P_IDLE;
             end
         end
         P_IDLE: begin
-            if(write_enable&&(!pll_enable)) begin
+            if((!pll_enable)&valid) begin
                 next_state = P_NOP;
             end   
             else begin
-                next_state = P_IDLE;
+                next_state = P_SET;
+            end
+        end
+        P_SET: begin
+            if((!pll_enable)&valid) begin
+                next_state = P_NOP;
+            end   
+            else begin
+                next_state = P_STABLE;
+            end
+        end
+        P_STABLE: begin
+            if((!pll_enable)&valid) begin
+                next_state = P_NOP;
+            end   
+            else if(write_enable)begin
+                next_state = P_WRITE;
+            end
+            else begin
+                next_state = P_STABLE;
+            end
+        end
+        P_WRITE: begin
+            if((!pll_enable)&valid) begin
+                next_state = P_NOP;
+            end   
+            else begin
+                next_state = P_WRITE;
             end
         end
         default: next_state = P_IDLE;
@@ -59,16 +103,21 @@ end
 always_ff @(posedge clk or negedge rst_n)
 begin
 	if(rst_n == 1'b0) begin
-	    pllcontrol.pllen               <= 1'b1;
-        pllcontrol.ratio               <= 10'd20;
+        pllcontrol.clkpostdist         <= 1'b0 ;
+        pllcontrol.pllfwen_b           <= 1'b0 ;
+        pllcontrol.bypass              <= 1'b0 ;
+        pllcontrol.ldo_enable          <= 1'b0 ;
+	    pllcontrol.pllen               <= 1'b1 ;
+        pllcontrol.ratio               <= 10'hBC;
         pllcontrol.fraction            <= 0;
         pllcontrol.vcodiv_ratio        <= 0;
-        pllcontrol.zdiv0_ratio         <= 0;
+        pllcontrol.zdiv0_ratio         <= 10'hC7;
         pllcontrol.zdiv0_ratio_p5      <= 0;
-        pllcontrol.zdiv1_ratio         <= 0;
+        pllcontrol.zdiv1_ratio         <= 10'h19;
         pllcontrol.zdiv1_ratio_p5      <= 0;
         pllcontrol.powergood_vnn       <= 1'b1;
-        pllcontrol.mdiv_ratio          <= 0;  
+        pllcontrol.mdiv_ratio          <= 0;
+        pllcontrol.mash_order_plus_one <= 'd0;   
         
         pllcontrol.tcapturedr          <= 1'b0                ;
         pllcontrol.tck                 <= 1'b0                ;
@@ -78,38 +127,37 @@ begin
         pllcontrol.tshiftdr            <= 1'b0                ;
         pllcontrol.tupdatedr           <= 1'b0                ;
 
-        pllcontrol.fz_cp1trim          <= 0   ;
-        pllcontrol.fz_cp2trim          <= 0   ;
-        pllcontrol.fz_cpnbias          <= 0   ;
+        pllcontrol.fz_cp1trim          <= 5'h6   ;
+        pllcontrol.fz_cp2trim          <= 5'h14  ;
+        pllcontrol.fz_cpnbias          <= 2'd1   ;
         pllcontrol.fz_dca_cb           <= 0   ;
-        pllcontrol.fz_dca_ctrl         <= 0   ;
-        pllcontrol.fz_irefgen          <= 0   ;
-        pllcontrol.fz_irefgen          <= 0   ;
-        pllcontrol.fz_ldo_bypass       <= 0   ;
-        pllcontrol.fz_ldo_extrefsel    <= 0   ;
+        pllcontrol.fz_dca_ctrl         <= 6'h25   ;
+        pllcontrol.fz_irefgen          <= 5'h1A   ;
+        pllcontrol.fz_ldo_bypass       <= 1'b1   ;
+        pllcontrol.fz_ldo_extrefsel    <= 1'b1   ;
         pllcontrol.fz_ldo_faststart    <= 0   ;
-        pllcontrol.fz_ldo_fbtrim       <= 0   ;
-        pllcontrol.fz_ldo_reftrim      <= 0   ;
+        pllcontrol.fz_ldo_fbtrim       <= 4'd2   ;
+        pllcontrol.fz_ldo_reftrim      <= 4'hA   ;
         pllcontrol.fz_ldo_vinvoltsel   <= 0   ;
-        pllcontrol.fz_lockcnt          <= 0   ;
-        pllcontrol.fz_lockforce        <= 0   ;
+        pllcontrol.fz_lockcnt          <= 3'h4  ;
+        pllcontrol.fz_lockforce        <= 1'b1   ;
         pllcontrol.fz_lockstickyb      <= 0   ;
-        pllcontrol.fz_lockthresh       <= 0   ;
+        pllcontrol.fz_lockthresh       <= 4'hC   ;
         pllcontrol.fz_lpfclksel        <= 0   ;
-        pllcontrol.fz_nopfdpwrgate     <= 0   ;
+        pllcontrol.fz_nopfdpwrgate     <= 1'b1   ;
         pllcontrol.fz_pfd_pw           <= 0   ;
-        pllcontrol.fz_pfddly           <= 0   ;
-        pllcontrol.fz_skadj            <= 0   ;
+        pllcontrol.fz_pfddly           <= 'd3   ;
+        pllcontrol.fz_skadj            <= 5'h1C   ;
         pllcontrol.fz_spare            <= 0   ;
-        pllcontrol.fz_startup          <= 0   ;
+        pllcontrol.fz_startup          <= 6'h9   ;
         pllcontrol.fz_tight_loopb      <= 0   ;
-        pllcontrol.fz_vcosel           <= 0   ;
-        pllcontrol.fz_vcotrim          <= 0   ;
+        pllcontrol.fz_vcosel           <= 1'b1   ;
+        pllcontrol.fz_vcotrim          <= 11'h3C9   ;
 
         pllcontrol.idfx_fscan_byprstb           <=  0;
         pllcontrol.idfx_fscan_clkungate         <=  0;
         pllcontrol.idfx_fscan_mode              <=  0;
-        pllcontrol.idfx_fscan_rstbypen          <=  0;
+
         pllcontrol.idfx_fscan_sdi               <=  0;
         pllcontrol.idfx_fscan_shiften           <=  0;
         pllcontrol.idvdisable_bi                <=  0;
@@ -121,37 +169,47 @@ begin
         pllcontrol.idvtdi                       <=  0;
         pllcontrol.idvtresi                     <=  0;
 
-        pllcontrol.ssc_frac_step                <=  0;
+        pllcontrol.ssc_frac_step                <=  24'hE6829A;
         pllcontrol.ssc_en                       <=  0;
-        pllcontrol.ssc_cyc_to_peak_m1           <=  0;
+        pllcontrol.ssc_cyc_to_peak_m1           <=  9'h1D8;
+
+        pllcontrol.idfx_fscan_rstbypen         <=  0;//
 
     end
 
     else begin
     case (next_state)
     P_NOP: begin
-        if(write_enable&&!pll_enable) begin
-        pllcontrol.pllen               <= 1'b0;
-        end  
+        pllcontrol.pllen                        <= 1'b0;
     end
     P_IDLE:begin
-        if(write_enable&&pll_enable) begin
-        pllcontrol.pllen               <= 1'b1;
-        
-        pllcontrol.ratio               <= pllmap_i.ratio;
-        pllcontrol.fraction            <= pllmap_i.fraction;
-        pllcontrol.vcodiv_ratio        <= pllmap_i.vcodiv_ratio;
-        pllcontrol.zdiv0_ratio         <= pllmap_i.zdiv0_ratio;
-        pllcontrol.zdiv0_ratio_p5      <= pllmap_i.zdiv0_ratio_p5;
-        pllcontrol.zdiv1_ratio         <= pllmap_i.zdiv1_ratio;
-        pllcontrol.zdiv1_ratio_p5      <= pllmap_i.zdiv1_ratio_p5;
-        pllcontrol.powergood_vnn       <= 1'b1;
-        pllcontrol.mdiv_ratio          <= pllmap_i.mdiv_ratio;                
-        end
+        pllcontrol.idfx_fscan_rstbypen          <= 1'b0;
+        pllcontrol.pllen                        <= 1'b1;          
     end
-    endcase
-    
-    if(write_enable&&pll_enable) begin
+    P_SET:begin
+        pllcontrol.idfx_fscan_rstbypen          <= 1'b1;
+        pllcontrol.pllen                        <= 1'b1;          
+    end
+    P_STABLE:begin
+        pllcontrol.idfx_fscan_rstbypen          <= 1'b0;
+        pllcontrol.pllen                        <= 1'b1;          
+    end
+
+    P_WRITE:begin
+            pllcontrol.clkpostdist                  <= pllmap_i.clkpostdist                    ;
+            pllcontrol.ratio                        <= pllmap_i.ratio;
+            pllcontrol.fraction                     <= pllmap_i.fraction;
+            pllcontrol.vcodiv_ratio                 <= pllmap_i.vcodiv_ratio;
+            pllcontrol.zdiv0_ratio                  <= pllmap_i.zdiv0_ratio;
+            pllcontrol.zdiv0_ratio_p5               <= pllmap_i.zdiv0_ratio_p5;
+            pllcontrol.zdiv1_ratio                  <= pllmap_i.zdiv1_ratio;
+            pllcontrol.zdiv1_ratio_p5               <= pllmap_i.zdiv1_ratio_p5;
+            pllcontrol.powergood_vnn                <= 1'b1;
+            pllcontrol.mdiv_ratio                   <= pllmap_i.mdiv_ratio;
+            pllcontrol.mash_order_plus_one          <= pllmap_i.mash_order_plus_one;
+
+            pllcontrol.ldo_enable                   <=  pllmap_i.ldo_enable ;
+            pllcontrol.pllfwen_b                    <=  pllmap_i.pllfwen_b                     ;
             pllcontrol.tcapturedr                   <=  pllmap_i.tcapturedr                    ;
             pllcontrol.tck                          <=  pllmap_i.tck                           ;
             pllcontrol.tdi                          <=  pllmap_i.tdi                           ;
@@ -159,13 +217,13 @@ begin
             pllcontrol.trst_n                       <=  pllmap_i.trst_n                        ;
             pllcontrol.tshiftdr                     <=  pllmap_i.tshiftdr                      ;
             pllcontrol.tupdatedr                    <=  pllmap_i.tupdatedr                     ;
+            pllcontrol.bypass                       <=  pllmap_i.bypass                        ;
 
             pllcontrol.fz_cp1trim                   <=  pllmap_i.fz_cp1trim           ;
             pllcontrol.fz_cp2trim                   <=  pllmap_i.fz_cp2trim           ;
             pllcontrol.fz_cpnbias                   <=  pllmap_i.fz_cpnbias           ;
             pllcontrol.fz_dca_cb                    <=  pllmap_i.fz_dca_cb            ;
             pllcontrol.fz_dca_ctrl                  <=  pllmap_i.fz_dca_ctrl          ;
-            pllcontrol.fz_irefgen                   <=  pllmap_i.fz_irefgen           ;
             pllcontrol.fz_irefgen                   <=  pllmap_i.fz_irefgen           ;
             pllcontrol.fz_ldo_bypass                <=  pllmap_i.fz_ldo_bypass        ;
             pllcontrol.fz_ldo_extrefsel             <=  pllmap_i.fz_ldo_extrefsel     ;
@@ -191,7 +249,7 @@ begin
             pllcontrol.idfx_fscan_byprstb           <=  pllmap_i.idfx_fscan_byprstb            ;
             pllcontrol.idfx_fscan_clkungate         <=  pllmap_i.idfx_fscan_clkungate          ;
             pllcontrol.idfx_fscan_mode              <=  pllmap_i.idfx_fscan_mode               ;
-            pllcontrol.idfx_fscan_rstbypen          <=  pllmap_i.idfx_fscan_rstbypen           ;
+            pllcontrol.idfx_fscan_rstbypen               <=  pllmap_i.idfx_fscan_rstbypen           ;
             pllcontrol.idfx_fscan_sdi               <=  pllmap_i.idfx_fscan_sdi                ;
             pllcontrol.idfx_fscan_shiften           <=  pllmap_i.idfx_fscan_shiften            ;
             pllcontrol.idvdisable_bi                <=  pllmap_i.idvdisable_bi                 ;
@@ -207,7 +265,9 @@ begin
             pllcontrol.ssc_en                       <=  pllmap_i.ssc_en                        ;
             pllcontrol.ssc_cyc_to_peak_m1           <=  pllmap_i.ssc_cyc_to_peak_m1            ;
         end
+    endcase
     end
+    
 end
 
 endmodule

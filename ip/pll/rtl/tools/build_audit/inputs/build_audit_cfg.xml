@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<LINTRA_CONFIGURATION>   
+
+<!--
+This following defines the severity levels.
+name         : Name of severity level. Must match severity defined in rules.
+               Rules with "Fatal" severity CANNOT be waived. All others can be.
+level        : The level is used to allow the user to control rules to run based on 
+               severity (+r/-r switches)
+cause_failure: yes: Lint status is "FAILED" if a rule with this severity is violated.
+               no : Lint status is "PASSED" regardless of violation.
+-->
+
+<severity name="Fatal" level="1" cause_failure="yes"/>
+<severity name="Error" level="2" cause_failure="yes"/>
+<severity name="Warning" level="3" cause_failure="no"/>
+<severity name="Information" level="4" cause_failure="no"/>
+
+<!--
+Used to enable or disable rules or rule groups, and override parameters and severity levels.
+
+The ordering of the items is important. Later items can enable/disable items
+from above. A rule that was disabled higher up can be reenabled with a group
+enable further down.
+
+BKM: Enable/disable groups before rules.
+
+E.g.:
+<rule_group id="General" active="yes">
+    <param type="string" name="modulesRegexp" value="*_.*_muc"/>
+</rule_group>
+<rule id="50000" active="yes" severity="Error">
+<rule id="50001" active="no">
+-->
+
+<rule id="10001" active="yes" severity="Error">
+    <param type="alphanumeric" name="ace_check_violations_xml" value="tools/build_audit/outputs/ace_check_violations.xml"/>
+</rule>
+<rule id="10002" active="yes" severity="Error"/>
+<rule id="10003" active="yes" severity="Error"/>
+
+</LINTRA_CONFIGURATION>
+

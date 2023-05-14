@@ -1,0 +1,13 @@
+%audf = ( 
+   InterfaceVars => {
+      -emul_cfg => { default => 'ace/emulation/fpgabuild.cfg'},
+#      -emul_top => { default => 'tahoe2_gtx_EMULATION_FPGA_model' },
+#      "project_2" => {
+#         -emul_project_config_dir     => { default => '$ENV{TAHOE2_ROOT}/ace/emulation/'},
+#      }
+   },
+#   Includes => [
+#      "ace/emulation/emulation_ZSE.udf",
+#      "ace/emulation/emulation_FPGA.udf",
+#   ], 
+);

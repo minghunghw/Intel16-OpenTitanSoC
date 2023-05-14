@@ -1,0 +1,15 @@
+$SRC_LIB = /p/hdk/rtl/proj_tools/dft_build_src/xhdk74/v20ww30a
+PACKAGE VIEWPINS
+{
+        ##------ Input XMLS locations
+        
+        dir:"$SRC_LIB/object/viewpins/,
+             $SRC_LIB/object/tap/,
+             $PACKAGE_PATH/spec/"
+
+        ##----- Generation Mode
+
+        gen_mode: verilog 
+        hot_fix_dir: $PACKAGE_PATH/hot_fix_dir
+       
+}

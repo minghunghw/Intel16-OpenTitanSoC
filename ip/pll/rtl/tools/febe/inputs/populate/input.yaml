@@ -1,0 +1,214 @@
+# Filename: febe_filelist.yaml
+# The YAML parser is *very aware* of _whitespaces_. Please pay attention to this! Use the same indentation on all entries. **Never use TABs**.
+# The populate YAML file contains a section for each stage in which febe will populate. Check out the stage documentation to find the correspoinding stage keyword to use for this stage.
+# For each of the stage_keywords there needs to be a source and destination sub-sections.
+# Both source and destination should have a matching (the same) tag. 
+# The same files can be copied to multiple destinations (if there is more than one destination in the list). Only one source location is supported.
+# 
+# In the source section:
+# - Place file under 'optional' or 'required' to indicate if the file is required or not
+# - Use glob patterns. Make sure you match files (directories matched will not be picked up)
+# In the destination:
+# - All entries must be in brackets ([]), multiple destinations are supported.
+# - Directory names must end with /. febe_populate will mkdir if needed.
+#
+# Special keywords:
+# - <container> which will be replaced with the block's name.
+# - <container_type> which will be replaced with the block's type.
+#    - valid block types are:  'unit', 'partition', 'fc'.
+# - Any <Facet> defined for the IP (e.g., <CUST>). To find what are the valid Facets defined in the repository, please run under FE setup:
+
+dc:
+    source:
+        required:
+             - blocksetup:               tools/syn/inputs/<CUST>/<container>/scripts/block_setup.tcl
+        optional:
+             - additionalupfsetup:       tools/syn/inputs/<CUST>/<container>/inputs/*_additional_upf_setup.tcl
+             - clockcommon:              tools/syn/inputs/<CUST>/<container>/inputs/proj_clock_common.stcl
+             - clockparams:              tools/syn/inputs/<CUST>/<container>/inputs/*_clock_params.tcl
+             - clocks:                   tools/syn/inputs/<CUST>/<container>/inputs/<container>_clocks.tcl
+             - clockuncertainty:         tools/syn/inputs/<CUST>/<container>/inputs/clock_uncertainty.tcl
+             - donttouchcells:           tools/syn/inputs/<CUST>/<container>/inputs/<container>_dc_dontouch_cells.tcl
+             - fp:                       tools/syn/inputs/<CUST>/<container>/inputs/<container>_fp.tcl
+             - globalconstraints:        tools/syn/inputs/<CUST>/<container>/inputs/global_constraints.tcl
+             - globalcrossclkexceptions: tools/syn/inputs/<CUST>/<container>/inputs/global_cross_clk_exceptions.tcl
+             - globalcrossclkgroups:     tools/syn/inputs/<CUST>/<container>/inputs/global_cross_clk_groups.tcl
+             - hiplist:                  tools/syn/inputs/<CUST>/<container>/inputs/hip_list.tcl
+             - internalexceptions:       tools/syn/inputs/<CUST>/<container>/inputs/<container>_internal_exceptions.tcl
+             - ioconstraints:            tools/syn/inputs/<CUST>/<container>/inputs/<container>_io_constraints.tcl
+             - ioplacement:              tools/syn/inputs/<CUST>/<container>/inputs/*_io_placement.tcl
+             - macroplacement:           tools/syn/inputs/<CUST>/<container>/inputs/*_macro_placement.tcl
+             - mbistcaseanalysis:        tools/syn/inputs/<CUST>/<container>/inputs/*_mbist_caseanalysis.tcl
+             - mbistexceptions:          tools/syn/inputs/<CUST>/<container>/inputs/*_mbist_exceptions.tcl
+             - overridesetup:            tools/syn/inputs/<CUST>/<container>/inputs/*_override_setup.tcl
+             - posthook:                 tools/syn/inputs/<CUST>/<container>/scripts/POST.*.tcl
+             - prehook:                  tools/syn/inputs/<CUST>/<container>/scripts/PRE.*.tcl
+             - scanwaivers:              tools/syn/inputs/<CUST>/<container>/inputs/*_scan_waivers.tcl
+             - setvoltage:               tools/syn/inputs/<CUST>/<container>/inputs/*_set_voltage.tcl
+             - srsn:                     tools/syn/inputs/<CUST>/<container>/inputs/*_srsn.tcl
+             - synsetup:                 tools/syn/inputs/<CUST>/<container>/inputs/syn_setup.tcl
+             - tdmacroplacement:         tools/syn/inputs/<CUST>/<container>/inputs/*_td.macro_placement.tcl
+             - unitconstraints:          tools/syn/inputs/<CUST>/<container>/inputs/*_constraints.tcl
+             - upf:                      tools/syn/inputs/<CUST>/<container>/inputs/<container>.upf
+             - visaexceptions:           tools/syn/inputs/<CUST>/<container>/inputs/*_visa_exceptions.tcl
+             - voltagearea:              tools/syn/inputs/<CUST>/<container>/inputs/*.va.tcl
+             - wildcard:                 tools/syn/inputs/<CUST>/<container>/scripts/*.tcl
+
+    destination:
+             - additionalupfsetup:       [collateral/upf/]
+             - blocksetup:               [syn/scripts/block_setup.tcl]
+             - clockcommon:              [syn/scripts/]
+             - clockparams:              [collateral/timing_nominal/]
+             - clockprocs:               [collateral/timing_common/clock_procs.tcl]
+             - clocks:                   [collateral/timing_nominal/]
+             - clockuncertainty:         [collateral/timing_nominal/clock_uncertainty.tcl]
+             - collateral:               [collateral/floorplan/]
+             - donttouchcells:           [collateral/rtl/]
+             - fp:                       [collateral/floorplan/]
+             - globalconstraints:        [collateral/timing_nominal/]
+             - globalcrossclkexceptions: [collateral/timing_common/global_cross_clk_exceptions.tcl]
+             - globalcrossclkgroups:     [collateral/timing_common/global_cross_clk_groups.tcl]
+             - globalvoltages:           [collateral/upf/global_voltages.tcl]
+             - hiplist:                  [collateral/rtl/hip_list.tcl, syn/scripts/hip_list.tcl]
+             - internalexceptions:       [collateral/timing_common/]
+             - ioconstraints:            [collateral/timing_common/global_constraints.tcl]
+             - ioplacement:              [collateral/floorplan/]
+             - macroplacement:           [collateral/floorplan/]
+             - mbistcaseanalysis:        [collateral/dft/]
+             - mbistexceptions:          [collateral/dft/]
+             - overridesetup:            [collateral/dft/]
+             - posthook:                 [syn/scripts/]
+             - prehook:                  [syn/scripts/]
+             - scanwaivers:              [collateral/dft/]
+             - setvoltage:               [collateral/upf/]
+             - srsn:                     [collateral/upf/]
+             - synsetup:                 [syn/scripts/syn_setup.tcl]
+             - tdmacroplacement:         [collateral/floorplan/]
+             - unitconstraints:          [collateral/timing_common/]
+             - upf:                      [collateral/rtl/]
+             - visaexceptions:           [collateral/dft/]
+             - voltagearea:              [collateral/floorplan/]
+             - wildcard:                 [syn/scripts/]
+
+fev:
+    source:
+        required:
+             - blocksetup:     tools/fev/inputs/<CUST>/<container>/scripts/block_setup.tcl
+        optional:
+             - advrep:         tools/fev/inputs/<CUST>/<container>/scripts/advrep.0.js
+             - changenameslog: tools/fev/inputs/<CUST>/<container>/scripts/change_names.log
+             - fev:            tools/fev/inputs/<CUST>/<container>/scripts/fev_setup.tcl
+             - fsmencoding:    tools/fev/inputs/<CUST>/<container>/scripts/fsm.encoding
+             - hiercfg:        tools/fev/inputs/<CUST>/<container>/scripts/hier.cfg
+             - hierfevappend:  tools/fev/inputs/<CUST>/<container>/scripts/hier_fev_append.do
+             - hierfevprepend: tools/fev/inputs/<CUST>/<container>/scripts/hier_fev_prepend.do
+             - hiplist:        tools/fev/inputs/<CUST>/<container>/scripts/hip_list.tcl
+             - lecjs:          tools/fev/inputs/<CUST>/<container>/scripts/lec.js
+             - mapsetup:       tools/fev/inputs/<CUST>/<container>/scripts/map_setup.tcl
+             - pinconstraints: tools/fev/inputs/<CUST>/<container>/scripts/pin_constraints.tcl
+             - posthook:       tools/fev/inputs/<CUST>/<container>/scripts/POST.*.tcl
+             - prehook:        tools/fev/inputs/<CUST>/<container>/scripts/PRE.*.tcl
+             - readgolden:     tools/fev/inputs/<CUST>/<container>/scripts/read_golden.tcl
+             - readlib:        tools/fev/inputs/<CUST>/<container>/scripts/read_lib.tcl
+             - readrevised:    tools/fev/inputs/<CUST>/<container>/scripts/read_revised.tcl
+             - renamingrules:  tools/fev/inputs/<CUST>/<container>/scripts/renaming_rules.tcl
+             - report:         tools/fev/inputs/<CUST>/<container>/scripts/report.tcl
+             - rtlpointers:    tools/fev/inputs/<CUST>/<container>/scripts/rtl_pointers.tcl
+             - upf:            tools/syn/inputs/<CUST>/<container>/inputs/<container>.upf
+             - verify:         tools/fev/inputs/<CUST>/<container>/scripts/verify.tcl
+             - waivers:        tools/fev/inputs/<CUST>/<container>/waivers/_Waivers.*
+
+    destination:
+             - advrep:         [fev/uvi/advrep.0.js]
+             - blocksetup:     [fev/scripts/block_setup.tcl]
+             - changenameslog: [fev/scripts/change_names.log]
+             - fev:            [fev/scripts/fev_setup.tcl]
+             - fsmencoding:    [fev/scripts/fsm.encoding]
+             - hiercfg:        [fev/scripts/hier.cfg]
+             - hierfevappend:  [fev/scripts/hier_fev_append.do]
+             - hierfevprepend: [fev/scripts/hier_fev_prepend.do]
+             - hiplist:        [collateral/rtl/hip_list.tcl]
+             - lecjs:          [fev/uvi/lec.js]
+             - mapsetup:       [fev/scripts/map_setup.tcl]
+             - pinconstraints: [fev/scripts/pin_constraints.tcl]
+             - posthook:       [fev/scripts/]
+             - prehook:        [fev/scripts/]
+             - readgolden:     [fev/scripts/read_golden.tcl]
+             - readlib:        [fev/scripts/read_lib.tcl]
+             - readrevised:    [fev/scripts/read_revised.tcl]
+             - renamingrules:  [fev/scripts/renaming_rules.tcl]
+             - report:         [fev/scripts/report.tcl]
+             - rtlpointers:    [collateral/rtl/rtl_pointers.tcl]
+             - upf:            [collateral/upf/]
+             - verify:         [fev/scripts/verify.tcl]
+             - waivers:        [fev/duet/control/<container>_waiver_db/]
+
+fishtail:
+    source:
+        required:
+             - blocksetup:            tools/syn/inputs/<CUST>/<container>/scripts/block_setup.tcl
+        optional:
+             - clockcommon:           tools/syn/inputs/<CUST>/<container>/inputs/proj_clock_common.stcl
+             - clockparams:           tools/syn/inputs/<CUST>/<container>/inputs/<container>_clock_params.tcl
+             - clockprocs:            tools/fishtail/inputs/<CUST>/<container>/scripts/clock_procs.tcl
+             - clocks:                tools/syn/inputs/<CUST>/<container>/inputs/<container>_clocks.tcl
+             - clockuncertainty:      tools/fishtail/inputs/<CUST>/<container>/scripts/clock_uncertainty.tcl
+             - gblconstraints:        tools/syn/inputs/<CUST>/<container>/inputs/<container>_io_constraints.tcl
+             - gblcrossclkexceptions: tools/fishtail/inputs/<CUST>/<container>/scripts/global_cross_clk_exceptions.tcl
+             - gblcrossclkgroups:     tools/syn/inputs/<CUST>/<container>/inputs/global_cross_clk_groups.tcl
+             - hiplist:               tools/syn/inputs/<CUST>/<container>/inputs/hip_list.tcl
+             - internalexceptions:    tools/syn/inputs/<CUST>/<container>/inputs/<container>_internal_exceptions.tcl
+             - visaexceptions:        tools/fishtail/inputs/<CUST>/<container>/scripts/<container>_visa_exceptions.tcl
+             - visautils:             tools/fishtail/inputs/<CUST>/<container>/scripts/global_visa_utils.tcl
+
+    destination:
+             - blocksetup:            [collateral/fishtail/block_setup.tcl]
+             - clockcommon:           [collateral/fishtail/scripts/proj_clock_common.stcl]
+             - clockparams:           [collateral/timing_nominal/]
+             - clockprocs:            [collateral/timing_common/clock_procs.tcl]
+             - clocks:                [collateral/timing_nominal/]
+             - clockuncertainty:      [collateral/timing_nominal/clock_uncertainty.tcl]
+             - gblconstraints:        [collateral/fishtail/]
+             - gblcrossclkexceptions: [collateral/timing_common/global_cross_clk_exceptions.tcl]
+             - gblcrossclkgroups:     [collateral/fishtail/global_cross_clk_groups.tcl]
+             - hiplist:               [collateral/rtl/hip_list.tcl]
+             - internalexceptions:    [collateral/fishtail/]
+             - visaexceptions:        [collateral/dft/]
+             - visautils:             [collateral/timing/global_visa_utils.tcl]
+
+syn_caliber:
+    source:
+        required:
+             - blocksetup:            tools/caliber/inputs/<CUST>/<container>/scripts/block_setup.tcl
+        optional:
+             - clockcommon:           tools/syn/inputs/<CUST>/<container>/inputs/proj_clock_common.stcl
+             - clockparams:           tools/syn/inputs/<CUST>/<container>/inputs/<container>_clock_params.tcl
+             - clockprocs:            tools/syn/inputs/<CUST>/<container>/inputs/clock_procs.tcl
+             - clocks:                tools/syn/inputs/<CUST>/<container>/inputs/<container>_clocks.tcl
+             - clockuncertainty:      tools/syn/inputs/<CUST>/<container>/inputs/clock_uncertainty.tcl
+             - gblcrossclkexceptions: tools/syn/inputs/<CUST>/<container>/inputs/global_cross_clk_exceptions.tcl
+             - gblcrossclkgroups:     tools/syn/inputs/<CUST>/<container>/inputs/global_cross_clk_groups.tcl
+             - hiplist:               tools/syn/inputs/<CUST>/<container>/inputs/hip_list.tcl
+             - internalexceptions:    tools/syn/inputs/<CUST>/<container>/inputs/<container>_internal_exceptions.tcl
+             - ptsetup:               tools/caliber/inputs/<CUST>/<container>/scripts/.synopsys_pt.setup
+             - visaexceptions:        tools/syn/inputs/<CUST>/<container>/inputs/<container>_visa_exceptions.tcl
+             - waivers:               tools/caliber/inputs/<CUST>/<container>/waivers/_Waivers.*
+             - wildcard:              tools/caliber/inputs/<CUST>/<container>/scripts/*
+
+    destination:
+             - blocksetup:            [syn_caliber/scripts/block_setup.tcl]
+             - clockcommon:           [syn_caliber/scripts/proj_clock_common.stcl]
+             - clockparams:           [collateral/timing_nominal/]
+             - clockprocs:            [collateral/timing_common/clock_procs.tcl]
+             - clocks:                [collateral/timing_nominal/]
+             - clockuncertainty:      [collateral/timing_nominal/clock_uncertainty.tcl]
+             - gblcrossclkexceptions: [collateral/timing_common/global_cross_clk_exceptions.tcl]
+             - gblcrossclkgroups:     [collateral/timing_common/global_cross_clk_groups.tcl]
+             - hiplist:               [collateral/rtl/hip_list.tcl]
+             - internalexceptions:    [collateral/timing_common/]
+             - ptsetup:               [syn_caliber/.synopsys_pt.setup]
+             - visaexceptions:        [collateral/dft/]
+             - waivers:               [duet/control/<container>_waiver_db/]
+             - wildcard:              [syn_caliber/inputs]
+
+

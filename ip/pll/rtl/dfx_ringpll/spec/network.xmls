@@ -1,0 +1,231 @@
+CREATE_NETWORK RINGPLL
+{
+        RINGPLL: type=TOP
+}
+
+
+TOP RINGPLL
+{
+        port_rename(DIG_VMTOP0_V0.digital_out.SIG):view_dig_out_0
+        port_rename(DIG_VMTOP0_V1.digital_out.SIG):view_dig_out_1
+        VIEWPINS_DIG(IN1)->@VIEWPINS_DIG.DIG_VMTOP0_V0: 
+        VIEWPINS_DIG(IN2)->@VIEWPINS_DIG.DIG_VMTOP0_V1: 
+        
+        port_rename(ANA_VMTOP0_V0.analog_out.SIG):viewanabus_0
+        port_rename(ANA_VMTOP0_V1.analog_out.SIG):viewanabus_1
+        VIEWPINS_ANA(IN1)->@VIEWPINS_ANA.ANA_VMTOP0_V0: 
+        VIEWPINS_ANA(IN2)->@VIEWPINS_ANA.ANA_VMTOP0_V1: 
+
+        TAP->@TAP_REG.RINGPLLCFG: 
+
+}
+
+TAP_REG RINGPLLCFG 
+{
+        hier:ip2211ringpll_tcu_tpsb_stap_data_reg
+        hier_path:ringpll.iip2211ringpll_sip.ljpll_rtdr
+        local_parameter(REG_STRUCT):RINGPLLCFG_REG
+ 
+        #tap interface rename
+        define(tdo):tdo
+        define(tck):tck
+        define(capture):tcapturedr
+        define(tdi):tdi
+        define(irsel):treg_en
+#       define():trst_n
+        define(shift):tshiftdr
+        define(update):tupdatedr
+
+        #TAP connection to VIEWPINS muxes
+        @VIEWPINS_DIG.DIG_VMTOP0_V0: 
+        @VIEWPINS_DIG.DIG_VMTOP0_V1:
+        @VIEWPINS_ANA.ANA_VMTOP0_V0: 
+        @VIEWPINS_ANA.ANA_VMTOP0_V1:
+        @VIEWPINS_ANA.ANA_VMTOP0_LDO_V0: 
+}
+
+for ($i=0; $i<2; $i++)
+{
+        VIEWPINS_DIG DIG_VMTOP0_V$i
+        {
+             hier_path:ringpll.iip2211ringpll_hip.ip2211ringpll_view_mux.dig_vmtop0_v$i
+             local_parameter(TAP_EN): "VIEW_EN_$i & ~VIEW_ANA_EN_$i"
+             local_parameter(TAP_SEL):VIEW_SEL_$i            
+
+             default: source = ringpll.iip2211ringpll_hip.ip2211ringpll_view_mux(local)
+             `PIN: sig=0
+             `PIN: sig=1 
+             `PIN: sig=ClkRefXXH,             desc="Reference clock" 
+             `PIN: sig=RawLockXXL,            desc="Raw clock"
+             `PIN: sig=ClkFbMXH,              desc="Feedback clock"
+             `PIN: sig=LockXXL,               desc="Lock" 
+             `PIN: sig=pll_fbgen__tight_loop, desc="Pll_fbgen_tight_loop"
+             `PIN: sig=Reset_b_XXL,           desc="Reset_b"
+             `PIN: sig=pfdennh,               desc="Pfden"
+             `PIN: sig=ssc_reload,            desc="Ssc_reload"
+             `PIN: sig=powergood,             desc="Powergood"
+             `PIN: sig=EarlyLockXXH,          desc="Earlylock"
+             `PIN: sig=VctlRdacEnNL,          desc="Vctlrdacen"
+             `PIN: sig=0
+             `PIN: sig=mod_clk_to_view,       desc="Mod_clk_to_view"
+             `PIN: sig=0
+             `PIN: sig=ClkPostGatedMH,        desc="Post-dist clock"
+             `PIN: sig=0
+             `PIN: sig=ClkPreGatedMH,         desc="VCO output"
+             `PIN: sig=0
+             `PIN: sig=ClkPreDivMH[1],        desc="Vco / 4"
+             `PIN: sig=0
+             `PIN: sig=ClkPreDivMH[0],        desc="Vco / 2"
+             `PIN: sig=0
+             `PIN: sig=ClkPostDivMH[0],       desc="Post-dist clk/2"
+             `PIN: sig=0
+             `PIN: sig=ClkPostDivMH[1],       desc="Post-dist clk/4"
+             `PIN: sig=0
+             `PIN: sig=0
+             `PIN: sig=0
+             `PIN: sig=0
+             `PIN: sig=clkref_prediv,         desc="Reference clock before mdivider"
+        }
+}
+
+VIEWPINS_ANA ANA_VMTOP0_V0
+{
+     hier_path:ringpll.iip2211ringpll_hip.pll_core.ana_vmtop0_v0
+     local_parameter(TAP_EN): "VIEW_EN_0 & VIEW_ANA_EN_0"
+     local_parameter(TAP_SEL): ADC_SEL_IN 
+     implement:yes
+     
+     default: source = ringpll.iip2211ringpll_hip.pll_core(local)
+     `PIN: sig=0,      
+     `PIN: sig=z,              desc="Tri state"
+     `PIN: sig=z,              desc="Tri state"
+     `PIN: sig=z,              desc="Tri state"
+     `PIN: sig=anadft_ldo,     desc="LDO Output signal"
+     `PIN: sig=0
+     `PIN: sig=anadft_ldovfb,  desc="Internal LDO signal"
+     `PIN: sig=anadft_ldovref, desc="LDO reference"
+}
+VIEWPINS_ANA ANA_VMTOP0_V1
+{
+
+        hier_path:ringpll.ipll_ldo.viewana.ana_vmtop0_v1
+        local_parameter(SIZE):    2
+        local_parameter(TAP_EN):  "VIEW_EN_1 & VIEW_ANA_EN_1"
+        local_parameter(TAP_SEL): TA_LDO_HIZ_DEBUG
+        implement:yes
+
+        `PIN: sig=z, desc="RINGPLL_IP first Signal  which is gnd "
+  
+ 
+        VIEWPINS_ANA ANA_VMTOP0_LDO_V0
+        {
+             local_parameter(TAP_EN): "VIEW_EN_1 & VIEW_ANA_EN_1"
+             local_parameter(TAP_SEL): TA_LDO_IDQ_DEBUG
+	
+             hier_path:ringpll.ipll_ldo.viewana
+             local_parameter(SIZE):2 
+
+             implement:yes
+             default: source = ringpll.ipll_ldo.viewana(local)
+        
+             `PIN: sig=anadft_ldovfb,                   desc="LDO output"
+             `PIN: sig="ldo_enabled_and_powergood_vnn", desc="LDO debug current ldo_enabled & powergood_vnn"
+             
+        }
+}
+
+
+
+STRUCT RINGPLLCFG_REG
+{
+	#order first field is bit 0
+       	TA_VCTLRDAC:              length=4,  desc="D2A control setting to use in openloop2"
+        TA_OPENLOOP2:             length=1,  desc="VCO openloop enable" 
+        TA_SPARE:                 length=5,  desc = "not used, reserved for future use"
+        TA_LDO_IDQ_DEBUG:         length=1,  desc="ta_ldo_idq_debug"
+        TA_LDO_HIZ_DEBUG:         length=1,  desc="ta_ldo_hiz_debug"
+        START_MEASUREMENT:        length=1,  desc="Start frequency BIST measurement on view_dig_out[0]"
+        OVRD_ZDIV1_RATIO_P5:      length=1,  desc="ovrd_zdiv1_ratio_p5"
+        OVRD_ZDIV1_RATIO:         length=10,  desc="ovrd_zdiv1_ratio"
+        OVRD_ZDIV0_RATIO_P5:      length=1,  desc="ovrd_zdiv0_ratio_p5"
+        OVRD_ZDIV0_RATIO:         length=10, desc="ovrd_zdiv0_ratio"
+        OVRD_VCODIV_RATIO:        length=2,  desc="ovrd_vcodiv_ratio"
+        OVRD_MDIV_RATIO:          length=6,  desc="ovrd_mdiv_ratio"
+        OVRD_FZ_LDO_REFTRIM:      length=4,  desc="ovrd_fz_ldo_reftrim"
+        OVRD_FZ_LDO_FBTRIM:       length=4,  desc="ovrd_fz_ldo_fbtrim"
+        OVRD_FZ_LDO_FASTSTART:    length=1,  desc="ovrd_fz_ldo_faststart"
+        OVRD_FZ_LDO_EXTREFSEL:    length=1,  desc="ovrd_fz_ldo_extrefsel"
+        OVRD_FZ_LDO_BYPASS:       length=1,  desc="ovrd_fz_ldo_bypass"
+        OVRD_FZ_LDO_VINVOLTSEL:   length=2,  desc="ovrd_fz_ldo_vinvoltsel"
+        OVRD_LDO_ENABLE:          length=1,  desc="ovrd_ldo_enable"
+        OVRD_FZ_VCOTRIM:          length=11,  desc="ovrd_fz_vcotrim"
+        OVRD_FZ_VCOSEL:           length=1,  desc="ovrd_fz_vcosel"
+        OVRD_FZ_STARTUP:          length=6,  desc="ovrd_fz_startup"
+        OVRD_FZ_SPARE:            length=5,  desc="ovrd_fz_spare"
+        OVRD_FZ_PFDDLY:           length=2,  desc="ovrd_fz_pfddly"
+        OVRD_FZ_LPFCLKSEL:        length=1,  desc="ovrd_fz_lpfclksel not used""
+        OVRD_FZ_PFD_PW:           length=3,  desc="ovrd_fz_pfd_pw"
+        OVRD_FZ_NOPFDPWRGATE:     length=1,  desc="ovrd_fz_nopfdpwrgate"
+        OVRD_FZ_IREFGEN:          length=5,  desc="ovrd_fz_irefgen"
+        OVRD_FZ_CPNBIAS:          length=2,  desc="ovrd_fz_cpnbias"
+        OVRD_DCA_CTRL:            length=6,  desc="ovrd_dca_ctrl"
+        OVRD_TLLM_EN:             length=1,  desc="ovrd_tllm_en"
+        OVRD_DCA_CB:              length=2,  desc="ovrd_dca_cb"
+        OVRD_MASH_ORDER_PLUS_ONE: length=1,  desc="ovrd_mash_order_plus_one"
+        OVRD_LOCKSTICKYB:         length=1,  desc="not used"
+        OVRD_LOCKTHRESH:          length=4,  desc="ovrd_lockthresh"
+        OVRD_FZ_LOCKCNT:          length=3,  desc="ovrd_fz_lockcnt"
+        OVRD_SKADJ_CTRL:          length=5,  desc="ovrd_skadj_ctrl"
+        OVRD_CP2_TRIM:            length=5,  desc="ovrd_cp2_trim"
+        OVRD_CP1_TRIM:            length=5,  desc="ovrd_cp1_trim"
+        OVRD_PFD_RESIDUAL_PW:     length=3,  desc="not used"
+        OVRD_FZ_LOCKFORCE:        length=1,  desc="ovrd_fz_lockforce"
+        OVRD_TIGHT_LOOP:          length=1,  desc="ovrd_tight_loop"
+        TAP_FUSEOVERRIDE:         length=1,  desc="tap_fuseoverride"
+        SSC_MOD_DFX_CLKDIV:       length=2,  desc="ssc_mod_dfx_clkdiv"
+        SSC_MOD_DFX_STEPS:        length=2,  desc="ssc_mod_dfx_steps"
+        SSC_MOD_DFX_TRIGGER:      length=1,  desc="ssc_mod_dfx_trigger"
+        SSC_MOD_DFX_EN:           length=1,  desc="ssc_mod_dfx_en"
+        VIEW_SEL_0:               length=5,  desc="Mux select for view_dig_out[0]"
+        VIEW_SEL_1:               length=5,  desc="Mux select for view_dig_out[1]"
+        VIEW_ANA_EN_0:            length=1,  desc="Enable viewanabus[0] debug output"
+        VIEW_ANA_EN_1:            length=1,  desc="Enable viewanabus[1] debug output"
+        VIEW_EN_0:                length=1,  desc="Enable view_dig_out[1] debug output"
+        VIEW_EN_1:                length=1,  desc="Enable view_dig_out[0] debug output"
+        ADC_SEL_IN:               length=3,  desc="ADC input select"
+        ADC_USE_VREF:             length=1,  desc="not used"
+        ADC_CHOP_EN:              length=1,  desc="ADC chop enable"
+        ADC_FREEZE:               length=1,  desc="ADC stop measurement"
+        ADC_CLKDIV:               length=2,  desc="ADC clock divider (2, 4, 8, 16)"
+        ADC_START_CNT:            length=2,  desc="adc_start_cnt"
+        ADC_START_MEASURE:        length=1,  desc="ADC start measurement"
+        OPENLOOP:                 length=1,  desc="Enable VCO open loop mode for IDV CHAIN"
+        OVRD_FRAC_VAL:            length=24, desc="Fractional feedback ratio value"
+        OVRD_FRAC_SEL:            length=1,  desc="Fractional feedback ratio override"
+        OVRD_RATIO_VAL:           length=10,  desc="Feedback divide ratio value"
+        OVRD_RATIO_SEL:           length=1,  desc="Feedback divide ratio override"
+        OVRD_BYPASS_VAL:          length=1,  desc="PLL bypass override value"
+        OVRD_BYPASS_SEL:          length=1,  desc="PLL bypass override"
+        OVRD_POWERGOOD_VAL:       length=1,  desc="not used"
+        OVRD_POWERGOOD_SEL:       length=1,  desc="not used"
+        OVRD_ENABLE_VAL:          length=1,  desc="PLL enable override value"
+        OVRD_ENABLE_SEL:          length=1,  desc="PLL enable override"
+        VIEW_FREQ_COUNT:          length=15, desc="Frequency BIST counter output", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.view_freq_count[14:0]
+        TCTRLFSMSTATE:            length=2,  desc="tctrlfsmstate", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.tlctrl_sip__StateXXnnnH[1:0]
+        SSC_MOD_DFX_TRIG:         length=1,  desc="ssc_mod_dfx_trig", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.ssc_mod_dfx__TriggerRegXDH
+        SSC_MOD_DFX_RUN:          length=1,  desc="ssc_mod_dfx_run", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.ssc_mod_dfx__ModulatorEnNH
+        ADC_DONE:                 length=1,  desc="Debug ADC done status register", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.view_adc__done
+        ADC_START:                length=1,  desc="adc_start", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.adc_ctl__StartXXH
+        ADC_DIG_OUT:              length=10, desc="Debug ADC output", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.view_adc__dig_out[9:0]
+        RAW_LOCK:                 length=1,  desc="PLL raw lock (not sticky) status register", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.lock_detector__RawLockXXnnnL
+        LOCK:                     length=1,  desc="PLL lock indicator status register", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.LockXXnnnL
+        PLL_HALF_INT:             length=1,  desc="PLL half ratio status register", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.mash__HalfIntMXH
+        PLL_RATIO:                length=10, desc="PLL ratio status register", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.mash__RatioMXH[9:0]
+        LOCK_TIME:                length=12, desc="Lock time measurement", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.lock_timer__LockTimeCntXXnnnH[11:0]
+        UNLOCK_COUNT:             length=2,  desc="Count of pll unlock events", access_type = "RO_V", rtl_node= ringpll.iip2211ringpll_sip.sip.dfx.unlock_counter__UnlockCountXXnnnH[1:0]
+        PFD_EN:                   length=1,  desc="PFD enabled status register", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.startup_gen__PfdEnXXH
+        IREF_DONE:                length=1,  desc="Not used", access_type ="RO_V",rtl_node = ringpll.iip2211ringpll_sip.sip.dfx.iref_ctrl__IrefDoneXXH
+        DIST_PWR_GOOD:            length=1,  desc="Power Good", access_type = "RO_V", rtl_node =ringpll.iip2211ringpll_sip.sip.dfx.dfx__powergood
+        PLL_ENABLE:               length=1,  desc="PLL enabled status register", access_type = "RO_V", rtl_node=ringpll.iip2211ringpll_sip.sip.dfx.reset_sync__Reset_b_XXnnnL
+}
+

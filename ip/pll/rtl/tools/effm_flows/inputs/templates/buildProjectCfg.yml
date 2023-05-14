@@ -1,0 +1,75 @@
+GLOBAL:
+   NLP: YES
+   UPF:
+      USE_RTL_TOP: YES
+   SETUP:
+      - GCC_HOME = /usr/intel/pkgs/gcc/4.9.2
+   ACE_METAFILES:
+      EMULATION:
+         FILE: ACE_METAFILE 
+############################
+# EFFM Configurations Starts
+############################
+CONFIGURATIONS:
+   ZSE:
+      ABSTRACT: NO
+      PLATFORM: ZSE3
+      BOARDS: 1
+      UNIFIED_COMPILE: 1
+      CHECKS:
+          SLES11_REQUIREMENT: NO
+      USE_HBL: NO
+      SETUP:
+         - ZSE_PATH=/p/vt/tools/sim/vendor/zse/release/V18.09
+#         - SYNOPSYS=/p/hdk/rtl/cad/x86-64_linux26/synopsys/designcompiler/M-2016.12-SP3
+      USER:
+         VCS_ELAB_APPEND:
+            - -Xzebu_opt=enable_hwtop_ports
+            - -error=UC-NSDF
+      CFG_FILES:
+         - $ENV{EMUL_CFG_DIR}/zebu/zse.utf
+   VELOCE:
+      ABSTRACT: NO
+      BOARDS: 1
+      PLATFORM: D2 
+      CFG_FILES:
+         - $ENV{EMUL_CFG_DIR}/veloce/tbx.config
+      SETUP:
+         - VELOCE_HOME=/nfs/site/eda/group/SYSNAME/emu/mentor/veloce/v18.0.4 
+   PALLADIUM:
+      ABSTRACT: NO
+      PLATFORM: PZ1
+      COMPILE_OPTIONS_FILE: $ENV{EMUL_CFG_DIR}/palladium/compile_options.yml
+#      CFG_FILES: sw/palladium/mock_seq_compile/compile.config
+      SETUP:
+          - VXE_HOME=/nfs/site/disks/pds_sc_psscoe_eval_02/cadence/VXE_18.6.0.51
+          - AXIS_HOME=$VXE_HOME/tools.lnx86
+          - XLM_HOME=/nfs/site/disks/pds_sc_psscoe_eval_02/cadence/XLM_18.09.002
+          - LD_LIBRARY_PATH=/usr/lib64:/lib64:${VXE_HOME}/lib/64bit:${XLM_HOME}/lib/64bit:${XLM_HOME}/systemc/gcc/install/lib64:${XLM_HOME}/tools.lnx86/cdsgcc/gcc/6.3/install/lib64
+          - LM_LICENSE_FILE=5280@cadence04e.elic.intel.com:5280@fmylic7010.fm.intel.com
+          - LM_PROJECT=EVAL-3073
+   FPGA:
+      ABSTRACT: NO
+      BOARDS: 1
+      PLATFORM: FPGA_PROTOCOMPILER
+      UNIFIED_COMPILE: 0
+      CFG_FILES:
+         - $ENV{EMUL_CFG_DIR}/fpga/protocompiler_opts.tcl
+      FPGA_OPTIONS:
+         HARDWARE: HAPS-80
+         DISABLE_PARTITIONING_STAGES: YES
+         TARGET_FPGAS:
+            fpga:
+               SYNTHESIS_SCRIPTS:
+                  - default
+         DIRECTIVES:
+            COMPILE:
+               - -hdl_define {__USELIBGROUPORDER__ __SYN_COMPATIBLE_INCLUDEPATH__}
+      SETUP:
+         - SNPSLMD_LICENSE_FILE=26586@synopsys03p.elic.intel.com:26586@synopsys10p.elic.intel.com=prepend
+         - PROTOCOMPILER_PATH=/p/hdk/rtl/cad/x86-64_linux26/synopsys/protocompiler/O-2018.09-2
+         - LD_LIBRARY_PATH=/p/hdk/rtl/cad/x86-64_linux26/synopsys/vggnu/2016.06/gcc-4.8.3_64-shared/lib64:/usr/lib64
+         - VIVADO_PATH=/p/hdk/rtl/cad/x86-64_linux26/xilinx/vivado/2016.4
+##########################
+# EFFM Configurations Ends
+##########################

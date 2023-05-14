@@ -1,0 +1,79 @@
+#!/usr/intel/bin/tcsh -f
+
+set current_path  = $cwd
+set uniquify_path = $cwd
+set checker_mode  = ""
+set prefix        = "mss_top"
+
+if ($#argv >= 4 ) then
+   echo "-E- got $#argv arguments"
+   echo "-E- uniquifyme should be passed ONLY the appropriate IP_ROOT path"
+   exit 1;
+endif
+
+if ($#argv == 2 ) then
+   set uniquify_path = $argv[1]
+   set prefix        = $argv[2]
+else if($#argv == 3) then
+   set uniquify_path = $argv[1]
+   set prefix        = $argv[2]
+   set checker_mode  = "-checker_mode"
+else
+   echo "-W- got $#argv arguments"
+   echo "-W- uniquifyme should be passed the appropriate IP_ROOT path followed by the expected prefix"
+   echo "-W- Using default values of \"$uniquify_path\" and prefix \"$prefix\" "
+endif
+
+if ( -d "$current_path/$argv[1]" ) then
+  set uniquify_path = "$current_path/$argv[1]"
+else if ( ! -d "$argv[1]" ) then
+  echo "-E- Specified path to uniquify '$argv[1]' not found"
+  exit 1
+endif
+
+echo "-I- Uniquifying $uniquify_path with prefix $prefix"
+cd $uniquify_path
+set hit_error = 0
+
+## First run uniquification of subIPs
+if ( -e subIP ) then
+  echo "-I- Found $uniquify_path/subIP, recursing"
+  foreach subip (subIP/common/*/)
+    set ip = `echo $subip | sed 's:subIP/common/::' | sed 's:subIP/common/::'`
+    ## Example of how to skip specific subIPs
+    #if ( `grep -c "^c73" $ip` == 1 ) then
+    #   continue
+    #endif 
+    #if ( `grep -c "^ip73" $ip` == 1 ) then
+    #   continue
+    #endif 
+    if ( -f $subip/tools/uniquification/uniquifyme ) then
+      $subip/tools/uniquification/uniquifyme $subip ${prefix} $checker_mode
+      if ( $status ) then
+        echo "-E- mss_top uniquification of $subip failed!"
+        set hit_error = 1
+      endif
+    else if ( -f tools/uniquification/inputs/scripts/uniquify_${ip}.pl ) then
+      tools/uniquification/inputs/scripts/uniquify_${ip}.pl -prefix $prefix -ip_root $uniquify_path/$subip -autosearch $checker_mode
+      if ( $status ) then
+        echo "-E- Command failed tools/uniquification/inputs/scripts/uniquify_${ip}.pl -prefix $prefix -ip_root $uniquify_path/$subip -autosearch $checker_mode"
+        echo "-E- mss_top uniquification of $subip failed!"
+        set hit_error = 1
+      endif
+    else 
+      echo "-E- Did not find $uniquify_path/$subip/tools/uniquification/uniquifyme"
+      set hit_error = 1
+    endif
+  end
+endif
+
+## Now run uniquification from the IP root
+echo "-I- Running $uniquify_path/tools/uniquification/inputs/scripts/uniquify_self.pl -prefix $prefix -ip_root $uniquify_path -autosearch $checker_mode"
+tools/uniquification/inputs/scripts/uniquify_self.pl -prefix $prefix -ip_root $uniquify_path -autosearch $checker_mode
+if ( $status != 0 ) then
+    echo "-E- Command failed: tools/uniquification/inputs/scripts/uniquify_self.pl -prefix $prefix -ip_root $uniquify_path -autosearch $checker_mode"
+    echo "-E- mss_top self-uniquification failed!"
+    set hit_error = 1
+endif
+exit $hit_error
+

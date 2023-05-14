@@ -1,0 +1,113 @@
+// Temporary UDP file to mimick properties that we need and is already
+// defined by Nebulon.
+
+<% if ($LIB_UDP) { 
+   } else {
+   $LIB_UDP = 1;
+%>
+
+property FUSE_WIDTH	    {component = field; type = number; default = 0; };
+property FuseDefaultValue   {component = field; type = number; default = 0; };
+property ValDestRTLSignal   {component = field; type = string; default = ""; };
+
+// IP and SOC properties
+property TableType	    {component = addrmap; type = string; default = "";};
+
+// IP fuse properties
+property PrivatePort	    {component = addrmap; type = boolean; default = false;};
+property CmplFmt	    {component = addrmap; type = number; default = 0;};
+
+// property name - builtin to SystemRDL
+property RAMAddress	    {component = field;  type = number; default = 0; };
+property RcvrAddr	    {component = field;  type = number; default = 0; };
+property StartBit	    {component = field;  type = number; default = 0; };
+property Category	    {component = field;  type = string; default = ""; };
+property ArrayType	    {component = field;  type = string; default = ""; };
+property LLDD  		    {component = field;  type = boolean; default = false; };
+property Group		    {component = field;  type = string; default = ""; };
+property RequestType	    {component = field;  type = string; default = ""; };
+property Shared		    {component = field;  type = boolean; default = false; };
+property SharedTag	    {component = field;  type = string; default = ""; };
+property PullOnce	    {component = field;  type = boolean; default = false; };
+
+property BlkOnDbg	    {component = field;  type = boolean; default = false; };
+property VFOvrdDisable	    {component = field;  type = boolean; default = false; };
+property JTagRD		    {component = field;  type = boolean; default = false; };
+property JTagWR	    	    {component = field;  type = boolean; default = false; };
+property CSRRD	    	    {component = field;  type = boolean; default = false; };
+property CSRWR	    	    {component = field;  type = boolean; default = false; };
+property RD4Err	    	    {component = field;  type = boolean; default = false; };
+property LockoutValidIDTag  {component = field;  type = string; default = ""; };
+
+property Owner		    {component = field;  type = string; default = ""; };
+property PerformanceFuse    {component = field;  type = boolean; default = false; };
+property PowerFuse	    {component = field;  type = boolean; default = false; };
+property EncodingLabels	    {component = field;  type = string; default = ""; };
+// property desc - builtin to SystemRDL
+
+
+// SOC fuse properties
+property MaxHSArrays	    {component = addrmap;  type = number; default =  0; };
+property MaxHDArrays	    {component = addrmap;  type = number; default =  0; };
+property IntelKAR	    {component = addrmap;  type = number; default =  0; };
+property OEMKAR		    {component = addrmap;  type = number; default =  0; };
+property FusePullersSAI	    {component = addrmap;  type = number; default =  0; };
+property FuseControllerSAI  {component = addrmap;  type = number; default =  0; };
+property HSProgramCount	    {component = addrmap;  type = number; default =  0; };
+property HDProgramCount	    {component = addrmap;  type = number; default =  0; };
+property HSSenseCount	    {component = addrmap;  type = number; default =  0; };
+property HDSenseCount	    {component = addrmap;  type = number; default =  0; };
+
+property IntelHVMExtraHDArrays	{component = addrmap;  type = number; default = 0; };
+property IntelHVMExtraHSArrays	{component = addrmap;  type = number; default = 0; };
+property IntelIFPExtraHDArrays	{component = addrmap;  type = number; default = 0; };
+property IntelIFPExtraHSArrays	{component = addrmap;  type = number; default = 0; };
+property OEMIFPExtraHDArrays	{component = addrmap;  type = number; default = 0; };
+property OEMIFPExtraHSArrays	{component = addrmap;  type = number; default = 0; };
+
+property BAR0SAIControlPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR3SAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR3SAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR4SAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR4SAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR5SAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR5SAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR6SAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR6SAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR7SAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property BAR7SAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+
+property IntelHVMLockoutSAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelHVMLockoutSAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelHVMHeapSAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelHVMHeapSAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelHVMVFSAIWRPolicy		{component = addrmap;  type = number; default = 0; };
+property IntelHVMVFSAIRDPolicy		{component = addrmap;  type = number; default = 0; };
+property IntelHVMDFSAIWRPolicy		{component = addrmap;  type = number; default = 0; };
+property IntelHVMDFSAIRDPolicy		{component = addrmap;  type = number; default = 0; };
+
+property IntelIFPLockoutSAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelIFPLockoutSAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelIFPHeapSAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelIFPHeapSAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property IntelIFPDFSAIWRPolicy		{component = addrmap;  type = number; default = 0; };
+property IntelIFPDFSAIRDPolicy		{component = addrmap;  type = number; default = 0; };
+
+property OEMIFPLockoutSAIWRPolicy	{component = addrmap;  type = number; default = 0; };
+property OEMIFPLockoutSAIRDPolicy	{component = addrmap;  type = number; default = 0; };
+property OEMIFPHeapSAIWRPolicy		{component = addrmap;  type = number; default = 0; };
+property OEMIFPHeapSAIRDPolicy		{component = addrmap;  type = number; default = 0; };
+property OEMIFPDFSAIWRPolicy		{component = addrmap;  type = number; default = 0; };
+property OEMIFPDFSAIRDPolicy		{component = addrmap;  type = number; default = 0; };
+
+// these are per-IP properties but are really defined at the SOC level
+
+// this is explicitly set to true if the IP RDL file is converted by the LegacyConverter.pl script
+property LegacyConverted    {component = addrmap;  type = string; default = ""; };
+
+// these are set by the SOC-level RDL file
+property IOSFSBPortID	    {component = addrmap;  type = number; default = 0; };
+property PrivatePortIndex   {component = addrmap;  type = number; default = 0; };
+
+<% }; %>
+
