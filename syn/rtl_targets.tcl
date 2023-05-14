@@ -11,7 +11,7 @@ set rtl_includes [ concat \
 ]
 
 set rtl_packages [ concat \
-    $HW/top_pkg.sv \
+    $HW/archive/top_pkg.sv \
     $OPENTITAN/prim/rtl/prim_alert_pkg.sv \
     $OPENTITAN/prim/rtl/prim_cipher_pkg.sv \
     $OPENTITAN/prim/rtl/prim_util_pkg.sv \
@@ -234,14 +234,14 @@ set rtl_ml_top [ concat \
 ]
 
 set rtl_peri_device [ concat \
-    $HW/peri_device.sv \
+    $HW/cluster/peri_device.sv \
     $rtl_xbar \
     $rtl_gpio \
 ]
 set rtl_peri_device [lsort -unique $rtl_peri_device]
 
 set rtl_cpu_cluster [ concat \
-    $HW/cpu_cluster.sv \
+    $HW/cluster/cpu_cluster.sv \
     $rtl_xbar \
     $rtl_ibex \
     $rtl_mem \
@@ -257,16 +257,15 @@ set rtl_trng [ concat \
 
 set rtl_toy_design [ concat \
     $HW/toy/toy_design.sv \
-    $HW/toy/ring_terminator_n1.sv \
-    $HW/toy/sup1v8_n1.sv \
+    $HW/toy/dummy.sv \
     $HW/mem/mem_tlul.sv \
     $rtl_prim \
     $rtl_tlul \
 ]
 
 set rtl_top_core [ concat \
-    $HW/top_core.sv \
-    $HW/rst_gen.sv \
+    $HW/archive/top_core.sv \
+    $HW/cluster/rst_gen.sv \
     $rtl_xbar \
     $rtl_spi_device \
     $rtl_peri_device \
@@ -275,8 +274,8 @@ set rtl_top_core [ concat \
 set rtl_top_core [lsort -unique $rtl_top_core]
 
 set rtl_top_chip [ concat \
-    $HW/top_chip.sv \
-    $HW/padring.sv \
+    $HW/archive/top_chip.sv \
+    $HW/archive/padring.sv \
     $rtl_top_core \
 ]
 set rtl_top_chip [lsort -unique $rtl_top_chip]

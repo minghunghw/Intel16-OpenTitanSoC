@@ -428,8 +428,8 @@ set_clock_groups -name group1 -async                                  \
 set_false_path -through [get_pins top_earlgrey/u_uart*/cio_rx_i] -through [get_pins top_earlgrey/u_uart*/cio_tx_o]
 
 # break all timing paths through bidirectional IO buffers (i.e., from output and oe to input buffer output)
-set_false_path -through [get_pins *padring/*pad/*/oe_i] -through [get_pins *padring/*pad/*/in_o]
-set_false_path -through [get_pins *padring/*pad/*/out_i] -through [get_pins *padring/*pad/*/in_o]
+set_false_path -through [get_pins *padring/*pad/oe_i*] -through [get_pins *padring/*pad/in_o*]
+set_false_path -through [get_pins *padring/*pad/out_i*] -through [get_pins *padring/*pad/in_o*]
 
 # break path through jtag mux
 set_false_path -from [get_ports IOC7] -to [get_ports IOR*]
@@ -467,4 +467,4 @@ puts "Done applying constraints for top level"
 ##########################################
 
 # assume a value of 0 for the open drain pad attribute
-set_case_analysis 0 [get_pins u_padring/*_pad/attr_i\[od_en\]]
+set_case_analysis 0 [get_pins u_padring/*_pad/attr_i*\[od_en\]]

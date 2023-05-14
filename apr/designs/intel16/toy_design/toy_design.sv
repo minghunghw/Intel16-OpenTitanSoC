@@ -87,8 +87,7 @@ module toy_design (  );
         SYNOPSYS_UNCONNECTED_1}), .pd({1'b0, 1'b0, 1'b0, 1'b0}), .ppen({1'b0, 
         1'b0, 1'b0, 1'b0}), .prg_slew({1'b0, 1'b0, 1'b0, 1'b0}), .puq({1'b1, 
         1'b1, 1'b1, 1'b1}), .pwrup_pull_en({1'b0, 1'b0, 1'b0, 1'b0}), 
-        .pwrupzhl({1'b0, 1'b0, 1'b0, 1'b0}), .vdd(1'b0), .vss(1'b0), .vddh(
-        1'b0) );
+        .pwrupzhl({1'b0, 1'b0, 1'b0, 1'b0}) );
   hl_8slice_south_io u_south ( .dq({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
         1'b0}), .drv0({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), 
         .drv1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .drv2({1'b0, 
@@ -107,8 +106,7 @@ module toy_design (  );
         .prg_slew({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .puq({
         1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1}), .pwrup_pull_en({1'b0, 
         1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .pwrupzhl({1'b0, 1'b0, 
-        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .vdd(1'b0), .vss(1'b0), .vddh(
-        1'b0) );
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}) );
   hl_corner_io u_corner ( .dq({1'b0, n264, 1'b0, 1'b0, 1'b0, 1'b0, n266, n265, 
         n267, n263}), .drv0({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
         1'b0, 1'b0}), .drv1({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
@@ -129,7 +127,7 @@ module toy_design (  );
         1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1}), 
         .pwrup_pull_en({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
         1'b0}), .pwrupzhl({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
-        1'b0, 1'b0}), .vdd(1'b0), .vss(1'b0), .vddh(1'b0) );
+        1'b0, 1'b0}) );
   ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h u_mem_tlul_u_sram ( .adr({
         1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, u_mem_tlul_addr}), .din({
         1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 

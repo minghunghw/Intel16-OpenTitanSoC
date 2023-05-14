@@ -3,7 +3,7 @@
 # ==============================================================================
 
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
-DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
+# DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/cpu_cluster/config.mk
 # DESIGN_CONFIG=./designs/intel16/gpio/config.mk
 # DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
@@ -13,6 +13,7 @@ DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
+DESIGN_CONFIG=./designs/intel16/toy_design/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design
@@ -53,6 +54,7 @@ SHELL          := /usr/bin/env bash
 #   location
 # - default is current install / clone directory
 export FLOW_HOME ?= ../ip/OpenROAD-flow-scripts/flow
+export GDS_DIR = /afs/eecs.umich.edu/vlsida/projects/restricted/intel/minghung/gds
 
 #-------------------------------------------------------------------------------
 # Setup variables to point to other location for the following sub directory

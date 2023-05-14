@@ -1,14 +1,14 @@
 module toy_design (
-    input  clk_i_PAD,
-    input  rst_ni_PAD,
-    input  en_ifetch_PAD,
-    input  tl_valid_PAD,
-    input  read_PAD,
-    input  [3:0] waddr_PAD,
-    input  [3:0] wdata_PAD,
-    input  [3:0] raddr_PAD,
-    output [3:0] rdata_PAD,
-    output rvalid_PAD     
+    // input  clk_i_PAD,
+    // input  rst_ni_PAD,
+    // input  en_ifetch_PAD,
+    // input  tl_valid_PAD,
+    // input  read_PAD,
+    // input  [3:0] waddr_PAD,
+    // input  [3:0] wdata_PAD,
+    // input  [3:0] raddr_PAD,
+    // output [3:0] rdata_PAD,
+    // output rvalid_PAD     
 );
 
     logic clk_i;
@@ -55,7 +55,7 @@ module toy_design (
     );
 
     hl_4slice_west_io u_west (
-        .pad           ({clk_i_PAD, rst_ni_PAD, en_ifetch_PAD, tl_valid_PAD}    ), // in from_ext, out to_ext
+        // .pad           ({clk_i_PAD, rst_ni_PAD, en_ifetch_PAD, tl_valid_PAD}    ), // in from_ext, out to_ext
         .outi          ({clk_i, rst_ni, en_ifetch, tl_valid}                    ), // in to_chip
         .dq            (4'h0    ), // in 0, out from_chip
         .drv0          (4'h0    ),   
@@ -72,7 +72,7 @@ module toy_design (
     );
 
     hl_8slice_south_io u_south (
-        .pad           ({waddr_PAD, wdata_PAD}  ), // in from_ext, out to_ext
+        // .pad           ({waddr_PAD, wdata_PAD}  ), // in from_ext, out to_ext
         .outi          ({waddr, wdata}          ), // in to_chip
         .dq            (8'h0    ), // in 0, out from_chip
         .drv0          (8'h0    ),   
@@ -89,7 +89,7 @@ module toy_design (
     );
 
     hl_corner_io u_corner (
-        .pad           ({read_PAD, rvalid_PAD, raddr_PAD, rdata_PAD}    ), // in from_ext, out to_ext
+        // .pad           ({read_PAD, rvalid_PAD, raddr_PAD, rdata_PAD}    ), // in from_ext, out to_ext
         .outi          ({read, unused_1bit, raddr, unused_4bit}         ), // in to_chip
         .dq            ({1'h0, ~rvalid, 4'h0, ~rdata}                   ), // in 0, out from_chip
         .drv0          (10'h0    ),   
