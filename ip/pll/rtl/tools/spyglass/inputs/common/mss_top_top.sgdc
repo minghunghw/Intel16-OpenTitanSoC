@@ -1,2 +1,0 @@
-current_design mss_top_top
-power_data -format UPF -file $MODEL_ROOT/tools/upf/inputs/mss_top/mss_top.upf

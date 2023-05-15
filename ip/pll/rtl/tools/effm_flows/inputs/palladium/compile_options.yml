@@ -1,4 +1,0 @@
-PAL:
-    FE:
-        - -timescale 1ps/1ps
-        - +iscdisp

@@ -1,8 +1,0 @@
-
-$hdl_spec = {
-    -hdl_spec      => [ ],
-    -vlog_files    => [ ],
-    -vlog_incdirs  => [ ],
-    -vlog_lib_dirs => [ ],
-    -vlog_opts     => [ ],
-};

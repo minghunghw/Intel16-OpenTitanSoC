@@ -1,8 +1,0 @@
-This dir contains env or tool configuration files to support emulation and fpga flows as integrated into ACE simulation env. Checkout this "emulation" dir into $MODEL_ROOT/ace dir. 
-
-These files support tools in  $MODEL_ROOT/tools/fpgadir directory. 
-
- For more details, pls visit: goto/emulation
--> Tools -> emul_build_soc flows
-
-
