@@ -61,6 +61,7 @@ package pllMap_pkg;
 
     logic pllfwen_b                     ;
     logic bypass                        ;
+    logic ldo_vref                      ;
 
     
     logic [9:0]zdiv0_ratio              ;

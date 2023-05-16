@@ -31,7 +31,7 @@ module tb_pllmaptop();
     logic idvtdo                            ;   
     logic idvtreso                          ;   
     logic tdo                               ;
-    
+    logic tx_finish                         ;
     pllMap_pkg::pllmap2pll pllcontrol;
 
 SPI_MASTER#(
@@ -77,12 +77,16 @@ pllmap_top u_pllmap_top(
     .tdo                  ( tdo            )
 );
 
- 
-
-
-
-
-
+initial begin
+    forever begin
+        #5
+        if($time>1600000000000)  $finish;
+    end
+end
+//around time 1065000000000 the ratio of clkpll clkpll0 clkpll1 will be changed 
+//the signal valid of module u_pll_mapcore will be pull up and the lock of pllring
+//will be pull down for 1 cycle.then as the same time of reset`s default clk out,the 
+//inital will be finished.
     initial begin
          clk = 1'b0;
          rst_n = 1'b1;

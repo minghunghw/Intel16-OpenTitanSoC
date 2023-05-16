@@ -13,6 +13,7 @@ module tb_master_slave();
     wire                        ss_n        ;
     wire    [511:0]   data_o                ;
     wire                        r_finish    ;
+    wire                        tx_finish   ;
 
 SPI_MASTER#(
     .DATA_WIDTH ( 512 ),
@@ -65,7 +66,8 @@ SPI_SLAVE#(
          start = 1'b1;
          @(posedge clk);
          start = 1'b0;
-         #1000000 $finish;
+         @(negedge finish);
+         #100 $finish; // after the second data has been transfered the tb will be finished.
     end
 
     always #(10) clk = ~clk;

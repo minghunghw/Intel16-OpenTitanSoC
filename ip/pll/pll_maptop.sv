@@ -56,7 +56,7 @@ pll_mapcore u_pll_mapcore(
 ringpll u_ringpll(
 
     .powergood_vnn                                      ( pllcontrol.powergood_vnn                                      ),
-    //.ldo_vref                                           ( ldo_vref                                           ),//*
+    .ldo_vref                                           ( pllcontrol.ldo_vref                                           ),//*
     .ldo_enable                                         ( pllcontrol.ldo_enable                                         ),
     .fz_ldo_vinvoltsel                                  ( pllcontrol.fz_ldo_vinvoltsel                                  ),
     .fz_ldo_faststart                                   ( pllcontrol.fz_ldo_faststart                                   ),

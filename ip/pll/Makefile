@@ -1,7 +1,9 @@
 
 export IP = /afs/eecs.umich.edu/vlsida/projects/restricted/intel/hengyu
 
-VCFILE	= top.vc
+VCFILE_TOP	= top.vc
+VCFILE_SPI	= spi.vc
+VCFILE_PLL	= pll.vc
 
 VCS = vcs -sverilog \
 	+vc +v2k -Mupdate -line -full64 -assert svaext -debug_access+r \
@@ -9,23 +11,20 @@ VCS = vcs -sverilog \
 	+define+INTC_NO_PWR_PINS +define+INTCNOPWR +define+ip2211ringpll_INTC_NO_PWR_PINS +define+EMULATION +define+EMULATION_SIM 
 	 
 
+all:    simv_top
+	./simv_top | tee vcs.log
 
+sim:	simv_top
+	./simv_top | tee vcs.log
 
-all:    simv
-	./simv | tee vcs.log
-
-sim:	simv
-	./simv | tee vcs.log
-
-simv_spi: spi_master.v spi_slave.v tb_spi.v
-	$(VCS) tb_spi.v spi_master.v spi_slave.v -o simv_spi
-
-simv: spi_master.v spi_slave.v tb_pllmaptop.sv pll_mapcore.sv pll_maptop.sv pllMap_pkg.sv
-	$(VCS) pllMap_pkg.sv tb_pllmaptop.sv spi_master.v spi_slave.v pll_mapcore.sv pll_maptop.sv -o simv
+simv_spi:
+	$(VCS) -f $(VCFILE_SPI) -o simv_spi
 
 simv_top:
-	$(VCS) -f $(VCFILE) -o simv_top
+	$(VCS) -f $(VCFILE_TOP) -o simv_top
 
+simv_pll:
+	$(VCS) -f $(VCFILE_PLL) -o simv_pll
 
 dve_spi:	simv_spi
 	./simv_spi -gui &
@@ -33,8 +32,8 @@ dve_spi:	simv_spi
 dve_top:	simv_top
 	./simv_top -gui &
 
-dve:	simv
-	./simv -gui &
+dve_pll:	simv_pll
+	./simv_pll -gui &
 
 clean:
 	@rm -rf *simv *simv.daidir csrc vcs.key *.key
