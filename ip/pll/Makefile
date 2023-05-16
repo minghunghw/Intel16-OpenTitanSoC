@@ -1,5 +1,5 @@
 
-export IP = /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/ip224_ringpll
+export IP = /afs/eecs.umich.edu/vlsida/projects/restricted/intel/hengyu
 
 VCFILE	= top.vc
 

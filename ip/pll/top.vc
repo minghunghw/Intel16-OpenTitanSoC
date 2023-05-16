@@ -9,7 +9,7 @@ pllMap_pkg.sv
 ////////////////////////////////////////////////////////////////////////////////
 //src/rtl/common/soc_ctech_tech_map_file.sv
 -y $IP/rtl/tools/effm_flows/inputs/zebu/clocks
-$IP/rtl/src/rtl/ringpll.sv
+$IP/ringpll.sv
 
 spi_master.v
 spi_slave.v 

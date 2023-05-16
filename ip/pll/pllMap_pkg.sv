@@ -19,7 +19,7 @@ package pllMap_pkg;
     logic fz_ldo_bypass                 ;
     logic fz_ldo_extrefsel              ;
     logic fz_ldo_faststart              ;
-    logic [3:0]fz_ldo_fbtrim                 ;
+    logic [3:0]fz_ldo_fbtrim            ;
     logic [3:0]fz_ldo_reftrim           ;
     logic [1:0]fz_ldo_vinvoltsel        ;
     logic [2:0]fz_lockcnt               ;
