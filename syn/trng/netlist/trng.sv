@@ -1,15 +1,16 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Ultra(TM) in topographical mode
-// Version   : S-2021.06-SP1
-// Date      : Wed Apr 26 17:49:59 2023
+// Version   : S-2021.06-SP4
+// Date      : Mon May 15 22:57:32 2023
 /////////////////////////////////////////////////////////////
 
 
-module trng ( clk, sel, dout );
+module trng ( clk, sel, clk_ro, dout );
   input [95:0] sel;
   output [23:0] dout;
   input clk;
-  wire   clk_ro, u_counter_N24, u_counter_N23, u_counter_N22, u_counter_N21,
+  output clk_ro;
+  wire   u_counter_N24, u_counter_N23, u_counter_N22, u_counter_N21,
          u_counter_N20, u_counter_N19, u_counter_N18, u_counter_N17,
          u_counter_N16, u_counter_N15, u_counter_N14, u_counter_N13,
          u_counter_N12, u_counter_N11, u_counter_N10, u_counter_N9,
@@ -31,44 +32,30 @@ module trng ( clk, sel, dout );
   b0mnorp02ar1n02x5 U107 ( .a(n99), .b(n100), .o1(n101) );
   b0maoi012ar1n02x5 U108 ( .b(n100), .c(n99), .a(n101), .o1(u_counter_N5) );
   b0mnandp2ar1n03x5 U109 ( .a(n101), .b(u_counter_count[5]), .o1(n103) );
-  b0moa0012ar1n02x5 U110 ( .b(n101), .c(u_counter_count[5]), .a(n103), .o(
-        u_counter_N6) );
   b0minv000ar1n03x5 U111 ( .a(u_counter_count[6]), .o1(n102) );
   b0mnorp02ar1n02x5 U112 ( .a(n102), .b(n103), .o1(n104) );
   b0maoi012ar1n02x5 U113 ( .b(n103), .c(n102), .a(n104), .o1(u_counter_N7) );
   b0mnandp2ar1n03x5 U114 ( .a(n104), .b(u_counter_count[7]), .o1(n106) );
-  b0moa0012ar1n02x5 U115 ( .b(n104), .c(u_counter_count[7]), .a(n106), .o(
-        u_counter_N8) );
   b0minv000ar1n03x5 U116 ( .a(u_counter_count[8]), .o1(n105) );
   b0mnorp02ar1n02x5 U117 ( .a(n105), .b(n106), .o1(n107) );
   b0maoi012ar1n02x5 U118 ( .b(n106), .c(n105), .a(n107), .o1(u_counter_N9) );
   b0mnandp2ar1n03x5 U119 ( .a(n107), .b(u_counter_count[9]), .o1(n109) );
-  b0moa0012ar1n02x5 U120 ( .b(n107), .c(u_counter_count[9]), .a(n109), .o(
-        u_counter_N10) );
   b0minv000ar1n03x5 U121 ( .a(u_counter_count[10]), .o1(n108) );
   b0mnorp02ar1n02x5 U122 ( .a(n108), .b(n109), .o1(n110) );
   b0maoi012ar1n02x5 U123 ( .b(n109), .c(n108), .a(n110), .o1(u_counter_N11) );
   b0mnandp2ar1n03x5 U124 ( .a(n110), .b(u_counter_count[11]), .o1(n112) );
-  b0moa0012ar1n02x5 U125 ( .b(n110), .c(u_counter_count[11]), .a(n112), .o(
-        u_counter_N12) );
   b0minv000ar1n03x5 U126 ( .a(u_counter_count[12]), .o1(n111) );
   b0mnorp02ar1n02x5 U127 ( .a(n111), .b(n112), .o1(n113) );
   b0maoi012ar1n02x5 U128 ( .b(n112), .c(n111), .a(n113), .o1(u_counter_N13) );
   b0mnandp2ar1n03x5 U129 ( .a(n113), .b(u_counter_count[13]), .o1(n115) );
-  b0moa0012ar1n02x5 U130 ( .b(n113), .c(u_counter_count[13]), .a(n115), .o(
-        u_counter_N14) );
   b0minv000ar1n03x5 U131 ( .a(u_counter_count[14]), .o1(n114) );
   b0mnorp02ar1n02x5 U132 ( .a(n114), .b(n115), .o1(n116) );
   b0maoi012ar1n02x5 U133 ( .b(n115), .c(n114), .a(n116), .o1(u_counter_N15) );
   b0mnandp2ar1n03x5 U134 ( .a(n116), .b(u_counter_count[15]), .o1(n118) );
-  b0moa0012ar1n02x5 U135 ( .b(n116), .c(u_counter_count[15]), .a(n118), .o(
-        u_counter_N16) );
   b0minv000ar1n03x5 U136 ( .a(u_counter_count[16]), .o1(n117) );
   b0mnorp02ar1n02x5 U137 ( .a(n117), .b(n118), .o1(n119) );
   b0maoi012ar1n02x5 U138 ( .b(n118), .c(n117), .a(n119), .o1(u_counter_N17) );
   b0mnandp2ar1n03x5 U139 ( .a(n119), .b(u_counter_count[17]), .o1(n122) );
-  b0moa0012ar1n02x5 U140 ( .b(n119), .c(u_counter_count[17]), .a(n122), .o(
-        u_counter_N18) );
   b0minv000ar1n03x5 U144 ( .a(u_counter_count[18]), .o1(n121) );
   b0mnorp02ar1n02x5 U145 ( .a(n121), .b(n122), .o1(n123) );
   b0maoi012ar1n02x5 U146 ( .b(n122), .c(n121), .a(n123), .o1(u_counter_N19) );
@@ -172,6 +159,20 @@ module trng ( clk, sel, dout );
   b0mfpy200ar1n02x5 u_counter_dout_reg_22__u_counter_dout_reg_23_ ( .si1(1'b0), 
         .d1(u_counter_count[22]), .ssb(1'b1), .clk(clk), .o1(dout[22]), .si2(
         1'b0), .d2(u_counter_count[23]), .o2(dout[23]) );
+  b0moa0012ar1n02x5 U130 ( .b(n113), .c(u_counter_count[13]), .a(n115), .o(
+        u_counter_N14) );
+  b0moa0012ar1n02x5 U135 ( .b(n116), .c(u_counter_count[15]), .a(n118), .o(
+        u_counter_N16) );
+  b0moa0012ar1n02x5 U140 ( .b(n119), .c(u_counter_count[17]), .a(n122), .o(
+        u_counter_N18) );
+  b0moa0012ar1n02x5 U115 ( .b(n104), .c(u_counter_count[7]), .a(n106), .o(
+        u_counter_N8) );
+  b0moa0012ar1n02x5 U125 ( .b(n110), .c(u_counter_count[11]), .a(n112), .o(
+        u_counter_N12) );
+  b0moa0012ar1n02x5 U120 ( .b(n107), .c(u_counter_count[9]), .a(n109), .o(
+        u_counter_N10) );
+  b0moa0012ar1n02x5 U110 ( .b(n101), .c(u_counter_count[5]), .a(n103), .o(
+        u_counter_N6) );
   b0moa0012ar1n02x5 U105 ( .b(n130), .c(u_counter_count[3]), .a(n100), .o(
         u_counter_N4) );
   b0mnano22ar1n02x5 U103 ( .a(u_counter_count[0]), .b(u_counter_count[2]), .c(

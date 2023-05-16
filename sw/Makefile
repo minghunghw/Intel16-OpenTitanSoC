@@ -3,6 +3,7 @@ ASM = src_asm
 C = src_c
 HEX = hex
 TESTDATA = test_data
+PIN = pin
 SRC_C =
 SRC_S = gpio
 
@@ -60,5 +61,8 @@ assembly: assemble disassemble hex
 
 clean:
 	rm -rvf program.hex program.dump program.debug.dump program.elf program.debug.elf debug_bin	\
+
+pin:
+	cd $(PIN) && python pin.py
 
 nuke:	clean
