@@ -46,8 +46,9 @@ set lib_cell_usage_dont_use {
         exclude {all}
         cells {
             */????????????d*
+            */???fdw003a*1n24x5
         }
-        comments {"Double height cells"}
+        comments {"Dont use cells"}
     }
     hold_dont_use {
         flow {all}

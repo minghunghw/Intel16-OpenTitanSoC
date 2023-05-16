@@ -766,7 +766,9 @@ set rtl_chip_earlgrey_asic [ concat \
 set rtl_chip_earlgrey [ concat \
     $EARLGREY/ip/ast/rtl/ast_pkg.sv \
     $EARLGREY/rtl/autogen/top_earlgrey_pkg.sv \
-    $HW/padring.sv \
-    $HW/slice8_wrapper.sv \
-    $EARLGREY/rtl/autogen/chip_earlgrey_asic.sv \
+    $EARLGREY/rtl/padring.sv \
+    $EARLGREY/rtl/physical_pads.sv \
+    $HW/chip_earlgrey_asic.sv \
+    $HW/chip_earlgrey.sv \
+    $HW/xbar.sv \
 ]

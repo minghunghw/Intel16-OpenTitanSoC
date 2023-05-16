@@ -1,21 +1,20 @@
-export DESIGN_NAME 		= chip_earlgrey_asic
-export DESIGN_NICKNAME 	= chip_earlgrey
+export DESIGN_NAME 		= chip_earlgrey
 export PLATFORM    		= intel16
 
-export CACHED_NETLIST 	= ../syn/$(DESIGN_NICKNAME)/netlist/$(DESIGN_NAME).sv
-export SDC_FILE      	= ../syn/$(DESIGN_NICKNAME)/netlist/$(DESIGN_NAME).sdc
+export CACHED_NETLIST 	= ../syn/$(DESIGN_NAME)/netlist/$(DESIGN_NAME).sv
+export SDC_FILE      	= ./designs/$(PLATFORM)/$(DESIGN_NAME)/constraint.sdc
 
-export ADDITIONAL_LIBS  +=  ../ip/memory/rf_512x32_be/lib/rf_512x32_be_tttt_0.85v_25c.lib \
-							../ip/memory/rf_1024x36_be/lib/rf_1024x36_be_tttt_0.85v_25c.lib \
-							../ip/memory/sram_512x28_be/lib/sram_512x28_be_tttt_0.85v_25c.lib \
-							../ip/memory/sram_512x78_be/lib/sram_512x78_be_tttt_0.85v_25c.lib \
-							../ip/memory/sram_512x80_be/lib/sram_512x80_be_tttt_0.85v_25c.lib \
-							../ip/memory/sram_1024x22_be/lib/sram_1024x22_be_tttt_0.85v_25c.lib \
-							../ip/memory/sram_1024x39_be/lib/sram_1024x39_be_tttt_0.85v_25c.lib \
-							../ip/memory/sram_4096x76_be/lib/sram_4096x76_be_tttt_0.85v_25c.lib \
-							../ip/memory/sram_8192x39_be/lib/sram_8192x39_be_tttt_0.85v_25c.lib \
-							$(PLATFORM_DIR)/gpio/hl_8slice_south_io/lib/hl_8slice_south_io.min.etm.lib.lib \
-							$(PLATFORM_DIR)/gpio/gpio_1v2/lib/gpio_1v2_n1_tttt_0p850_1p200_min.TT_25.tttt.lib
+# export ADDITIONAL_LIBS  +=  ../ip/memory/rf_512x32_be/lib/rf_512x32_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/rf_1024x36_be/lib/rf_1024x36_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/sram_512x28_be/lib/sram_512x28_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/sram_512x78_be/lib/sram_512x78_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/sram_512x80_be/lib/sram_512x80_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/sram_1024x22_be/lib/sram_1024x22_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/sram_1024x39_be/lib/sram_1024x39_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/sram_4096x76_be/lib/sram_4096x76_be_tttt_0.85v_25c.lib \
+# 							../ip/memory/sram_8192x39_be/lib/sram_8192x39_be_tttt_0.85v_25c.lib \
+# 							$(PLATFORM_DIR)/gpio/hl_8slice_south_io/lib/hl_8slice_south_io.min.etm.lib.lib \
+# 							$(PLATFORM_DIR)/gpio/gpio_1v2/lib/gpio_1v2_n1_tttt_0p850_1p200_min.TT_25.tttt.lib
 
 
 export ADDITIONAL_LEFS 	+= 	../ip/memory/rf_512x32_be/lef/rf_512x32_be.lef \

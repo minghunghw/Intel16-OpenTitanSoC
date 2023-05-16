@@ -63,21 +63,18 @@ export ADDITIONAL_CDL	+=  ../ip/memory/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0
 							$(PLATFORM_DIR)/gpio/hl_corner_io/spice_netlist/hl_corner_io.sp \
 							$(PLATFORM_DIR)/gpio/gpio_1v2/spice/gpio_1v2_n1.sp
 
-export CORE_UTILIZATION    = 20
-export CORE_ASPECT_RATIO   = 1
-export CORE_MARGIN         = 1
+export DIE_AREA    = 0 0 250 250
+export CORE_AREA   = 1.26 1.89 248 248
 
-export MACRO_PLACE_CHANNEL = 40 40 
-export MACRO_PLACE_HALO    = 20 20
+export MACRO_PLACE_CHANNEL = 80 80 
+export MACRO_PLACE_HALO    = 40 40
 
 export PLACE_DENSITY = uniform
 
-export IS_CHIP = 1
+# export IS_CHIP = 1
 
-export GLOBAL_ROUTE_ARGS = -allow_congestion
+# export GLOBAL_ROUTE_ARGS = -allow_congestion
 
-export MAX_ROUTING_LAYER = gmb
-# export IO_PLACER_H = gm0
-# export IO_PLACER_V = gmb
+# export MAX_ROUTING_LAYER = gmb
 
 # export CORNERS = BC WC TC

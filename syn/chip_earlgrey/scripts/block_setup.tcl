@@ -1,4 +1,4 @@
-set INTEL_DESIGN_NAME   "chip_earlgrey_asic"
+set INTEL_DESIGN_NAME   "chip_earlgrey"
 set INTEL_NUM_CPUS      16
 
 dict set INTEL_SCENARIOS FUNC_WORST syn_constraints [list ./inputs/constraints/\$INTEL_DESIGN_NAME.syn.sdc]
