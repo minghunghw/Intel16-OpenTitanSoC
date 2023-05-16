@@ -31,7 +31,6 @@ module tb_pllmaptop();
     logic idvtdo                            ;   
     logic idvtreso                          ;   
     logic tdo                               ;
-    logic tx_finish                         ;
     pllMap_pkg::pllmap2pll pllcontrol;
 
 SPI_MASTER#(
@@ -56,7 +55,7 @@ pllmap_top u_pllmap_top(
     .rst_n                ( rst_n                ),
     .mosi                 ( mosi                 ),
     .sclk                 ( sclk                 ),
-    .tx_finish            ( tx_finish            ),
+    .tx_finish            ( finish               ),
     .start                ( start                ),
     .ss_n                 ( ss_n                 ),
     .lock                 ( lock           ),
@@ -103,14 +102,14 @@ end
          start <= 1'b0;
          @(negedge finish);
          ratio = 10'd11;
-         datachange(0,1,0,ratio,data_i);
+         datachange(0,1,1,ratio,data_i);
          repeat(2) @(posedge clk);
          start = 1'b1;
          @(posedge clk);
          start = 1'b0;
     end
 
-    always #(26041) clk = ~clk;
+    always #(10) clk = ~clk;
     task automatic datachange;
     input read;
     input write;

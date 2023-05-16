@@ -93,7 +93,7 @@ always_comb begin : writestatechange
                 next_state = P_NOP;
             end   
             else begin
-                next_state = P_WRITE;
+                next_state = P_STABLE;
             end
         end
         default: next_state = P_IDLE;

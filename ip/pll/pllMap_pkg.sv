@@ -64,16 +64,22 @@ package pllMap_pkg;
     logic ldo_vref                      ;
 
     
-    logic [9:0]zdiv0_ratio              ;
-    logic zdiv0_ratio_p5                ;
-    logic [9:0]zdiv1_ratio              ;
-    logic zdiv1_ratio_p5                ;
+
     logic powergood_vnn                 ;
     logic [5:0]mdiv_ratio               ;
+	
+
 
     logic [1:0]vcodiv_ratio             ;
     logic [23:0]fraction                ;
     logic [9:0]ratio                    ;
+
+    logic zdiv0_ratio_p5                ;
+    logic [9:0]zdiv0_ratio              ;
+
+    logic zdiv1_ratio_p5                ;
+    logic [9:0]zdiv1_ratio              ;
+
 
     logic pllen                         ;
 

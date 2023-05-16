@@ -41,7 +41,7 @@ pllmap_top u_pllmap_top(
     .rst_n     ( rst_n     ),
     .mosi      ( mosi      ),
     .sclk      ( sclk      ),
-    .tx_finish ( tx_finish ),
+    .tx_finish ( finish ),
     .start     ( start     ),
     .ss_n      ( ss_n      ),
     .pllcontrol  ( pllcontrol  )
@@ -67,7 +67,7 @@ pllmap_top u_pllmap_top(
          @(posedge clk);
          start <= 1'b0;
          @(negedge finish);
-         ratio = 10'd11;
+         ratio = 10'hC7;
          datachange(0,1,0,ratio,data_i);
          repeat(2) @(posedge clk);
          start = 1'b1;
