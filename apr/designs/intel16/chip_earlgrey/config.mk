@@ -4,6 +4,8 @@ export PLATFORM    		= intel16
 export CACHED_NETLIST 	= ../syn/$(DESIGN_NAME)/netlist/$(DESIGN_NAME).sv
 export SDC_FILE      	= ./designs/$(PLATFORM)/$(DESIGN_NAME)/constraint.sdc
 
+# export IO_CONSTRAINTS 	= ./designs/$(PLATFORM)/$(DESIGN_NAME)/io_placement.tcl
+
 # export ADDITIONAL_LIBS  +=  ../ip/memory/rf_512x32_be/lib/rf_512x32_be_tttt_0.85v_25c.lib \
 # 							../ip/memory/rf_1024x36_be/lib/rf_1024x36_be_tttt_0.85v_25c.lib \
 # 							../ip/memory/sram_512x28_be/lib/sram_512x28_be_tttt_0.85v_25c.lib \
