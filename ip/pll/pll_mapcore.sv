@@ -6,8 +6,6 @@ module pll_mapcore (
     output pllMap_pkg::pllmap2pll pllcontrol
 
     //output pllMap_pkg::pllmap2spi pllmap_o,
-
-
 );
 
 localparam                       P_NOP          = 1;

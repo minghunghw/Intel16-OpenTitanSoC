@@ -7,7 +7,7 @@ module SPI_SLAVE#(parameter DATA_WIDTH =512 )(
     input   wire                        start       ,
     input   wire                        ss_n        ,
 
-    output  wire    [DATA_WIDTH-1:0]   data_o      ,
+    output  wire    [DATA_WIDTH-1:0]    data_o      ,
     //output  wire                        miso        ,
     output  wire                        r_finish
 );
@@ -21,8 +21,8 @@ module SPI_SLAVE#(parameter DATA_WIDTH =512 )(
 
 
     reg                         sclk_dly            ;
-    reg     [DATA_WIDTH-1:0]   data_shift_pos      ;
-    reg     [DATA_WIDTH-1:0]   data_shift_neg      ;
+    reg     [DATA_WIDTH-1:0]    data_shift_pos      ;
+    reg     [DATA_WIDTH-1:0]    data_shift_neg      ;
     reg     [3:0]               state               ;
     reg     [3:0]               nx_state            ;
     reg     [9:0]               cnt_sclk_pos        ;
@@ -130,8 +130,8 @@ module SPI_SLAVE#(parameter DATA_WIDTH =512 )(
 
     //assign data_o = dec_pos_or_neg_sample ? data_shift_pos : data_shift_neg;
 
-    assign  data_o = (state == FINISH) ? (dec_pos_or_neg_sample ? data_shift_pos : data_shift_neg): {DATA_WIDTH{1'b0}};
-    assign  r_finish = (state == FINISH); 
+    assign  data_o      = (state == FINISH) ? (dec_pos_or_neg_sample ? data_shift_pos : data_shift_neg): {DATA_WIDTH{1'b0}};
+    assign  r_finish    = (state == FINISH); 
 
 
 

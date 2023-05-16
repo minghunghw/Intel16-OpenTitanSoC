@@ -1,4 +1,3 @@
-
 export IP = /afs/eecs.umich.edu/vlsida/projects/restricted/intel/hengyu
 
 VCFILE_TOP	= top.vc
@@ -8,32 +7,29 @@ VCFILE_PLL	= pll.vc
 VCS = vcs -sverilog \
 	+vc +v2k -Mupdate -line -full64 -assert svaext -debug_access+r \
 	-override_timescale=1ns/1ps +nospecify +notimingcheck \
-	+define+INTC_NO_PWR_PINS +define+INTCNOPWR +define+ip2211ringpll_INTC_NO_PWR_PINS +define+EMULATION +define+EMULATION_SIM 
-	 
+	+define+INTC_NO_PWR_PINS +define+INTCNOPWR +define+ip2211ringpll_INTC_NO_PWR_PINS \
+	+define+EMULATION +define+EMULATION_SIM 
 
 all:    simv_top
-	./simv_top | tee vcs.log
-
-sim:	simv_top
 	./simv_top | tee vcs.log
 
 simv_spi:
 	$(VCS) -f $(VCFILE_SPI) -o simv_spi
 
-simv_top:
-	$(VCS) -f $(VCFILE_TOP) -o simv_top
-
 simv_pll:
 	$(VCS) -f $(VCFILE_PLL) -o simv_pll
 
+simv_top:
+	$(VCS) -f $(VCFILE_TOP) -o simv_top
+
 dve_spi:	simv_spi
 	./simv_spi -gui &
-	
-dve_top:	simv_top
-	./simv_top -gui &
 
 dve_pll:	simv_pll
 	./simv_pll -gui &
+	
+dve_top:	simv_top
+	./simv_top -gui &
 
 clean:
 	@rm -rf *simv *simv.daidir csrc vcs.key *.key

@@ -13,7 +13,7 @@ simv.daidir
 dve
 DVEfiles
 ucli.key
-simv
+simv_*
 
 # VCS
 *rebuild.tcl

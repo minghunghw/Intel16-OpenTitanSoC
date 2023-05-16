@@ -22,8 +22,8 @@ module pllmap_top(
     output logic idvtdo             ,   
     output logic idvtreso           ,   
     output logic tdo                
-
 );
+
 pllMap_pkg::pllmap2pll pllcontrol;
 wire r_finish;
 wire [511:0]data_o;
@@ -31,9 +31,9 @@ pllMap_pkg::pllmap2pll pllmap_i;
 assign pllmap_i = data_o;
 
 
-SPI_SLAVE#(
+SPI_SLAVE #(
     .DATA_WIDTH ( 512 )
-)u_SPI_SLAVE(
+) u_SPI_SLAVE(
     .clk        ( clk        ),
     .rst_n      ( rst_n      ),
     .mosi       ( mosi       ),
