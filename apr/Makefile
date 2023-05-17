@@ -3,7 +3,7 @@
 # ==============================================================================
 
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
-DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
+# DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/cpu_cluster/config.mk
 # DESIGN_CONFIG=./designs/intel16/gpio/config.mk
 # DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
@@ -576,7 +576,7 @@ finish: $(LOG_DIR)/6_report.log \
         $(RESULTS_DIR)/6_final.sdc \
 		$(RESULTS_DIR)/6_final_concat.cdl \
         $(GDS_FINAL_FILE) \
-		$(RESULTS_DIR)/7_fill.gds \
+		$(RESULTS_DIR)/7_fill.oas \
 		$(RESULTS_DIR)/7_fill.def \
 		$(RESULTS_DIR)/7_fill.spef
 # ==============================================================================
@@ -600,12 +600,14 @@ $(LOG_DIR)/6_report.log: $(RESULTS_DIR)/6_1_fill.odb $(RESULTS_DIR)/6_1_fill.sdc
 
 $(RESULTS_DIR)/6_final.def: $(LOG_DIR)/6_report.log
 
-$(RESULTS_DIR)/7_fill.gds: $(GDS_FINAL_FILE)
+$(RESULTS_DIR)/7_fill.oas: $(GDS_FINAL_FILE)
 	rm -rf fill && mkdir fill && cd fill && \
-	calibre -drc -hier -turbo -hyper $(Fill_RUNSET)/p1222_fill.svrf | tee fill.log
-	cp fill/$(DESIGN_NAME)_fill.gds $(RESULTS_DIR)/7_fill.gds
+	icv -host_init 16 -host_disk /tmp/host_cache -D MERGE_INPUT_LAYOUT \
+	-i $(FILL_CONFIG_INPUT_FILE_PATH) -c $(DR_DESIGN_NAME) -f $(FILL_CONFIG_INPUT_FILE_TYPE) \
+	-I $(FILL_RUNSET) -norscache $(FILL_RUNSET)/p1222_fill.rs
+	cp fill/$(DESIGN_NAME)_merged.oas $(RESULTS_DIR)/7_fill.oas
 
-$(RESULTS_DIR)/7_fill.def: $(RESULTS_DIR)/7_fill.gds
+$(RESULTS_DIR)/7_fill.def: $(RESULTS_DIR)/7_fill.oas
 	cp $(RESULTS_DIR)/6_final.def $(RESULTS_DIR)/7_fill.def
 
 $(RESULTS_DIR)/7_fill.spef: $(RESULTS_DIR)/7_fill.def
@@ -670,7 +672,7 @@ clean_finish:
 	rm -f  $(LOG_DIR)/6_*
 
 clean_fill:
-	rm -rf $(RESULTS_DIR)/7_*.gds $(RESULTS_DIR)/7_*.def $(RESULTS_DIR)/7_*.spef
+	rm -rf $(RESULTS_DIR)/7_*.oas $(RESULTS_DIR)/7_*.def $(RESULTS_DIR)/7_*.spef
 	rm -f  $(LOG_DIR)/7_*
 
 clean_lef:
