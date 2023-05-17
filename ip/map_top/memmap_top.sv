@@ -22,7 +22,7 @@ logic next_reg_pllen;
 logic [2:0] next_reg_trngsel [31:0];
 
 
-always_ff (posedge clk or negedge rst_n) begin
+always_ff @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
         reg_pllen <= 1'b0;
         reg_idfx_fscan_rstbypen <= 1'b0;
@@ -36,8 +36,7 @@ always_ff (posedge clk or negedge rst_n) begin
         reg_noisesel[2] <= 4'd0;
         reg_noisesel[3] <= 4'd0;
 
-        integer i;
-        for (i=0;i<=31;i=i+1) begin
+        for (int i=0;i<=31;i=i+1) begin
             reg_trngsel[i] <= 3'd0; 
         end
     end
@@ -53,17 +52,15 @@ always_ff (posedge clk or negedge rst_n) begin
         reg_noisesel[1] <= next_reg_noisesel[1];
         reg_noisesel[2] <= next_reg_noisesel[2];
         reg_noisesel[3] <= next_reg_noisesel[3];
-        integer j;
-        for (j=0;j<=31;j=j+1) begin
+
+        for (int j=0;j<=31;j=j+1) begin
             reg_trngsel[j] <= next_reg_trngsel[j]; 
         end
     end
 
 end
 
-
-
-alway_comb begin
+always_comb begin
         next_reg_pllen               = reg_pllen;
         next_reg_idfx_fscan_rstbypen = reg_idfx_fscan_rstbypen;
         next_reg_ratio[0]            = reg_ratio[0];
@@ -76,8 +73,7 @@ alway_comb begin
         next_reg_noisesel[2]         = reg_noisesel[2];
         next_reg_noisesel[3]         = reg_noisesel[3];
 
-        integer k;
-        for (k=0;k<=31;k=k+1) begin
+        for (int k=0;k<=31;k=k+1) begin
             next_reg_trngsel[k] = reg_trngsel[k]; 
         end
         

@@ -30,12 +30,12 @@ module tb_mapwithpll();
 
 
 
-    logic [9:0] reg_ratio [2:0],
-    logic reg_pllen,
-    logic [1:0]reg_vcodiv,
-    logic [2:0] reg_trngsel [31:0],
-    logic [3:0] reg_noisesel [3:0],
-    logic reg_idfx_fscan_rstbypen
+    logic [9:0] reg_ratio [2:0];
+    logic reg_pllen;
+    logic [1:0]reg_vcodiv;
+    logic [2:0] reg_trngsel [31:0];
+    logic [3:0] reg_noisesel [3:0];
+    logic reg_idfx_fscan_rstbypen;
 
 memmap_top u_memmap_top(
     .valid                          ( valid            ),
@@ -179,7 +179,7 @@ ringpll u_ringpll(
         valid = 1'b0;
         #5000000
         @(negedge clk);
-        valid = 1'b1
+        valid = 1'b1;
         address = 6'd4;
         data[9:0] = 10'd26;
         @(negedge clk);
