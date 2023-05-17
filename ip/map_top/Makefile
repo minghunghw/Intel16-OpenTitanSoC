@@ -1,8 +1,6 @@
 export IP = /afs/eecs.umich.edu/vlsida/projects/restricted/intel/hengyu
 
-VCFILE_MAP	= mapwithpll.vc
-VCFILE_TOP	= top.vc
-VCFILE_PLL	= pll.vc
+VCFILE_MAP	= map_top.vc
 
 VCS = vcs -sverilog \
 	+vc +v2k -Mupdate -line -full64 -assert svaext -debug_access+r \
@@ -10,26 +8,14 @@ VCS = vcs -sverilog \
 	+define+INTC_NO_PWR_PINS +define+INTCNOPWR +define+ip2211ringpll_INTC_NO_PWR_PINS \
 	+define+EMULATION +define+EMULATION_SIM 
 
-all:    simv_top
-	./simv_top | tee vcs.log
+all:    simv_map
+	./simv_map | tee vcs.log
 
 simv_map:
 	$(VCS) -f $(VCFILE_MAP) -o simv_map
 
-simv_pll:
-	$(VCS) -f $(VCFILE_PLL) -o simv_pll
-
-simv_top:
-	$(VCS) -f $(VCFILE_TOP) -o simv_top
-
 dve_map:	simv_map
 	./simv_map -gui &
-
-dve_pll:	simv_pll
-	./simv_pll -gui &
-	
-dve_top:	simv_top
-	./simv_top -gui &
 
 clean:
 	@rm -rf *simv *simv.daidir csrc vcs.key *.key
