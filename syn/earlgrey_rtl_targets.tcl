@@ -770,5 +770,5 @@ set rtl_chip_earlgrey [ concat \
     $EARLGREY/rtl/physical_pads.sv \
     $HW/chip_earlgrey_asic.sv \
     $HW/chip_earlgrey.sv \
-    $HW/xbar.sv \
+    $HW/xbar_south.sv \
 ]

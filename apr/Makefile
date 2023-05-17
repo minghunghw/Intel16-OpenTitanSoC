@@ -14,6 +14,7 @@ DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/toy_design/config.mk
+# DESIGN_CONFIG=./designs/intel16/trng/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design
@@ -232,7 +233,7 @@ export DONT_USE_LIBS   = $(patsubst %.lib.gz, %.lib, $(addprefix $(OBJECTS_DIR)/
 export DONT_USE_SC_LIB ?= $(firstword $(DONT_USE_LIBS))
 
 # Stream system used for final result (GDS is default): GDS, GSDII, GDS2, OASIS, or OAS
-STREAM_SYSTEM ?= GDS
+STREAM_SYSTEM ?= OAS
 ifneq ($(findstring GDS,$(shell echo $(STREAM_SYSTEM) | tr '[:lower:]' '[:upper:]')),)
 	export STREAM_SYSTEM_EXT := gds
 	GDSOAS_FILES = $(GDS_FILES)

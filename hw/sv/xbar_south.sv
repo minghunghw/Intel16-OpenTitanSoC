@@ -1,4 +1,4 @@
-module xbar (
+module xbar_south (
   inout  [70:0] chip_io,
   input  [70:0] oe,
 

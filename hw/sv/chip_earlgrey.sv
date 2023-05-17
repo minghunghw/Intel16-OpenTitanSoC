@@ -21,7 +21,7 @@ module chip_earlgrey (
         .*
     );
 
-    xbar u_xbar (
+    xbar_south u_xbar_south (
         .*
     );
 
