@@ -3,7 +3,7 @@
 # ==============================================================================
 
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
-# DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
+DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/cpu_cluster/config.mk
 # DESIGN_CONFIG=./designs/intel16/gpio/config.mk
 # DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk

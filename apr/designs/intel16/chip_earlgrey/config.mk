@@ -54,5 +54,6 @@ export MACRO_PLACE_CHANNEL = 40 40
 export MACRO_PLACE_HALO    = 20 20
 
 export PLACE_DENSITY = uniform
+export REPAIR_PDN_VIA_LAYER = v1
 
 export CORNERS = BC WC TC
