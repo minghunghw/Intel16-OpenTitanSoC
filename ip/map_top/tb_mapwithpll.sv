@@ -162,7 +162,58 @@ ringpll u_ringpll(
         valid = 1'b0;
     end
 
-    // always #(26041) clk = ~clk;
+    always #(26041) clk = ~clk;
+
+    assign temp_pll_enable            = data[0]       ;
+    assign temp_pll_ratiosel     = data[2:1]     ;
+    assign temp_pll_ratio        = data[12:3]    ;
+    assign temp_pll_vcodiv_ratio = data[14:13]   ;
+    assign temp_trng_sel1             = data[2:0]     ;
+    assign temp_trng_sel2             = data[9:7]     ;
+    assign temp_trng_sel1adress       = data[6:3]     ;
+    assign temp_trng_sel2adress       = data[13:10]   ;
+    assign temp_noise_data      = data          ; 
+
+    assign hit_pllwrite    = (address == 2'd1)                             ;
+    assign hit_trngwrite   = (address == 2'd2)                             ;
+    assign hit_noisewrite  = (address == 2'd3)                             ;
+    assign hit_enable      = (address==0)? 1'b0 : 1'b1                     ;
+
+    task automatic pllchange;
+    input [1:0]sel;
+    input [9:0]ratio;
+    input pllen;
+    input [1:0]vcodiv;
+    output [15:0]data;
+    output [1:0]address;
+    data[0]  = 1'b1;
+    data[2:1] = sel;
+    data[12:3] = ratio;
+    data[14:13] = vcodiv;
+    address = 2'd1;
+    endtask
+
+        assign temp_trng_sel1             = data[2:0]     ;
+    assign temp_trng_sel2             = data[9:7]     ;
+    assign temp_trng_sel1adress       = data[6:3]     ;
+    assign temp_trng_sel2adress       = data[13:10]   ;
+
+    task automatic trngchange;
+    input [2:0]sel1;
+    input [2:0]sel2;
+    input [3:0]sel1addr;
+    input [3:0]sel2addr;
+    output [15:0]data;
+    data[2:0] = sel1;
+    data[9:7] = sel2;
+    data[6:3] = sel1addr;
+    data[13:10] = sel2addr;
+    address = 2'd2;
+    endtask
+
+
+        
+    // endtask //automatic
     // task automatic datachange;
     // input read;
     // input write;

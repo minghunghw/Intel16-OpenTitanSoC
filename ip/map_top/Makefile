@@ -1,7 +1,7 @@
 export IP = /afs/eecs.umich.edu/vlsida/projects/restricted/intel/hengyu
 
+VCFILE_MAP	= mapwithpll.vc
 VCFILE_TOP	= top.vc
-VCFILE_SPI	= spi.vc
 VCFILE_PLL	= pll.vc
 
 VCS = vcs -sverilog \
@@ -13,8 +13,8 @@ VCS = vcs -sverilog \
 all:    simv_top
 	./simv_top | tee vcs.log
 
-simv_spi:
-	$(VCS) -f $(VCFILE_SPI) -o simv_spi
+simv_map:
+	$(VCS) -f $(VCFILE_MAP) -o simv_map
 
 simv_pll:
 	$(VCS) -f $(VCFILE_PLL) -o simv_pll
@@ -22,8 +22,8 @@ simv_pll:
 simv_top:
 	$(VCS) -f $(VCFILE_TOP) -o simv_top
 
-dve_spi:	simv_spi
-	./simv_spi -gui &
+dve_map:	simv_map
+	./simv_map -gui &
 
 dve_pll:	simv_pll
 	./simv_pll -gui &
