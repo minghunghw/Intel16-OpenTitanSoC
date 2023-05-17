@@ -24,13 +24,13 @@ logic [3:0]                      state;
 logic [3:0]                      next_state;
 logic                            write_enable;
 logic                            read_enable;
-logic                            pll_enable;
+logic                            pll_en;
 
 // logic                            delay_idfx_fscan_rstbypen;
 // logic                            early_idfx_fscan_rstbypen;
 
 assign write_enable = valid;
-assign pll_enable   = pll_enable;
+assign pll_en   = pll_enable;
 
 always_ff @(posedge clk or negedge rst_n)
 begin
@@ -43,7 +43,7 @@ end
 always_comb begin : writestatechange
     case (state)
         P_NOP: begin
-            if((!pll_enable)&valid) begin
+            if((!pll_en)&valid) begin
                 next_state = P_NOP;
             end
             else begin
@@ -51,7 +51,7 @@ always_comb begin : writestatechange
             end
         end
         P_IDLE: begin
-            if((!pll_enable)&valid) begin
+            if((!pll_en)&valid) begin
                 next_state = P_NOP;
             end   
             else begin
@@ -59,7 +59,7 @@ always_comb begin : writestatechange
             end
         end
         P_SET: begin
-            if((!pll_enable)&valid) begin
+            if((!pll_en)&valid) begin
                 next_state = P_NOP;
             end   
             else begin
@@ -67,7 +67,7 @@ always_comb begin : writestatechange
             end
         end
         P_STABLE: begin
-            if((!pll_enable)&valid) begin
+            if((!pll_en)&valid) begin
                 next_state = P_NOP;
             end   
             else if(write_enable)begin
@@ -78,7 +78,7 @@ always_comb begin : writestatechange
             end
         end
         P_WRITE: begin
-            if((!pll_enable)&valid) begin
+            if((!pll_en)&valid) begin
                 next_state = P_NOP;
             end   
             else if(write_enable)begin
@@ -186,10 +186,6 @@ begin
         pllcontrol.idfx_fscan_rstbypen          <= 1'b0;
         pllcontrol.pllen                        <= 1'b1;          
     end
-        input       pll_enable,
-    input  [1:0]pll_ratiosel,
-    input  [9:0]pll_ratio,
-    input  [1:0]pll_vcodiv_ratio,
 
     P_WRITE:begin
         pllcontrol.vcodiv_ratio                 <= pll_vcodiv_ratio         ;

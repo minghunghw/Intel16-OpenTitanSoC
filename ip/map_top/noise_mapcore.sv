@@ -3,7 +3,7 @@ module noise_mapcore (
     input       clk,
     input       rst_n,
     input [15:0]noise_data,   
-    output [15:0]noise_sel
+    output logic[15:0]noise_sel
 );
 
 logic [3:0] state;

@@ -9,18 +9,18 @@ module map_top (
     output pllMap_pkg::pllmap2pll pllcontrol
 );
 
-    logic pll_valid            ,
-    logic pll_enable           ,
-    logic [1:0]pll_ratiosel    ,
-    logic [9:0]pll_ratio       ,
-    logic [1:0]pll_vcodiv_ratio,
-    logic trng_valid           ,
-    logic [2:0]trng_sel1       ,
-    logic [2:0]trng_sel2       ,
-    logic [3:0]trng_sel1adress ,
-    logic [3:0]trng_sel2adress ,
-    logic noise_valid          ,
-    logic [15:0]noise_data   
+    logic pll_valid            ;
+    logic pll_enable           ;
+    logic [1:0]pll_ratiosel    ;
+    logic [9:0]pll_ratio       ;
+    logic [1:0]pll_vcodiv_ratio;
+    logic trng_valid           ;
+    logic [2:0]trng_sel1       ;
+    logic [2:0]trng_sel2       ;
+    logic [3:0]trng_sel1adress ;
+    logic [3:0]trng_sel2adress ;
+    logic noise_valid          ;
+    logic [15:0]noise_data     ;
 
 hit_core u_hit_core(
     .clk                    ( clk              ),

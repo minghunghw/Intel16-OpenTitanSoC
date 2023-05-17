@@ -47,8 +47,11 @@ always_comb begin
 end
 
 always_ff @(posedge clk or negedge rst_n) begin
+    integer i;
     if(rst_n == 1'b0) begin
-    sel <= 'd0;
+    for(i=0;i<=31;i=i+1) begin
+        sel[i] <= 0;
+    end 
     end
     else begin
         if(next_state == T_SET) begin

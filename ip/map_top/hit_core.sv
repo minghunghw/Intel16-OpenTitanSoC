@@ -43,14 +43,14 @@ module hit_core (
     logic [15:0]temp_noise_data          ; 
 
     assign temp_pll_enable            = data[0]       ;
-    assign [1:0]temp_pll_ratiosel     = data[2:1]     ;
-    assign [9:0]temp_pll_ratio        = data[12:3]    ;
-    assign [1:0]temp_pll_vcodiv_ratio = data[14:13]   ;
+    assign temp_pll_ratiosel     = data[2:1]     ;
+    assign temp_pll_ratio        = data[12:3]    ;
+    assign temp_pll_vcodiv_ratio = data[14:13]   ;
     assign temp_trng_sel1             = data[2:0]     ;
     assign temp_trng_sel2             = data[9:7]     ;
     assign temp_trng_sel1adress       = data[6:3]     ;
     assign temp_trng_sel2adress       = data[13:10]   ;
-    assign [15:0]temp_noise_data      = data          ; 
+    assign temp_noise_data      = data          ; 
 
 
 always_ff @(posedge clk or negedge rst_n)
@@ -131,13 +131,13 @@ always_ff @(posedge clk or negedge rst_n) begin
                 else begin
                     noise_valid     <=      1'b1                      ;
                     noise_data      <=      temp_noise_data           ;
-                end       
-            default : begin
+                end  
+            end     
+            default: begin
                     pll_valid       <=      'd0                       ;
                     noise_valid     <=      'd0                       ;
                     trng_valid      <=      'd0                       ;    
                 end
-            end
         endcase
     end
 end
