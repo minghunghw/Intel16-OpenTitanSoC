@@ -18,8 +18,8 @@ module tb_mapwithpll();
     logic                       idvtreso           ;   
     logic                       tdo                ;
 
-    logic                       [1:0]  address     ;
-    logic                       [15:0] data        ;
+    logic                       [5:0]  address     ;
+    logic                       [11:0] data        ;
     logic                       rst_n              ;
     logic                       valid              ;
     logic                       clk                ;
@@ -30,12 +30,16 @@ module tb_mapwithpll();
 
 
 
-    logic [9:0] reg_ratio [2:0],
-    logic reg_pllen,
-    logic [1:0]reg_vcodiv,
-    logic [2:0] reg_trngsel [31:0],
-    logic [3:0] reg_noisesel [3:0],
-    logic reg_idfx_fscan_rstbypen
+    logic [9:0] reg_ratio [2:0];
+    logic reg_pllen;
+    logic [1:0]reg_vcodiv;
+    logic [2:0] reg_trngsel [31:0];
+    logic [3:0] reg_noisesel [3:0];
+    logic reg_idfx_fscan_rstbypen;
+    logic reg_bypass;
+
+    logic [23:0] dout_in;
+    logic  dout_out;
 
 memmap_top u_memmap_top(
     .valid                          ( valid            ),
@@ -48,14 +52,17 @@ memmap_top u_memmap_top(
     .reg_vcodiv                     (reg_vcodiv                 ),
     .reg_trngsel                    ( reg_trngsel            ),
     .reg_noisesel                   ( reg_noisesel            ),
-    .reg_idfx_fscan_rstbypen        ( reg_idfx_fscan_rstbypen  )
+    .reg_idfx_fscan_rstbypen        ( reg_idfx_fscan_rstbypen  ),
+    .reg_bypass                     ( reg_bypass),
+    .dout_in                        (dout_in),
+    .dout_out                       (dout_out)
 );
 
-      
+      logic ldo_vref;
 ringpll u_ringpll(
 
     .powergood_vnn             ( 1'b1                                       ),
-    .ldo_vref                  ( 1'b0                                           ),//*
+    .ldo_vref                  ( ldo_vref                                          ),//*
     .ldo_enable                ( 1'b0                                         ),
     .fz_ldo_vinvoltsel         ( 0                                  ),
     .fz_ldo_faststart          ( 0                                   ),
@@ -64,7 +71,7 @@ ringpll u_ringpll(
     .fz_ldo_fbtrim             ( 4'd2                                      ),
     .fz_ldo_reftrim            ( 4'hA                                      ),
     .clkref                    ( clk                                                           ),///////////
-    .bypass                    ( 1'b1                                             ),
+    .bypass                    ( reg_bypass                                             ),
     .pllen                     ( reg_pllen                                                     ),
     .pllfwen_b                 ( 1'b0                                          ),
     .ratio                     ( reg_ratio[0]                                                  ),
@@ -139,12 +146,6 @@ ringpll u_ringpll(
     .view_dig_out              ( view_dig_out                                                  )//
 );
 
-    initial begin
-        forever begin
-            #5
-            if($time>1600000000000)  $finish;
-        end
-    end
     
     //around time 1065000000000 the ratio of clkpll clkpll0 clkpll1 will be changed 
     //the signal valid of module u_pll_mapcore will be pull up and the lock of pllring
@@ -157,37 +158,64 @@ ringpll u_ringpll(
         clk = 1'b0;
         rst_n = 1'b1;
         data  = 0;
-        @(negedge clk) 
+        address = 0;
+        valid =1'b0;
+        @(negedge clk)
         rst_n = 1'b0;
-        @(negedge clk) 
+        @(negedge clk)
         rst_n = 1'b1;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        valid = 1'b1;
-        address = 6'd0;
-        data[0] = 1'b1;
-        @(negedge clk);
-        valid = 1'b1;
-        address = 6'd2;
-        data[0] = 1'b1;
-        @(negedge clk);
-        valid = 1'b1;
-        address = 6'd2;
-        data[0] = 1'b0;
-        @(negedge clk);
-        valid = 1'b0;
-        #5000000
-        @(negedge clk);
-        valid = 1'b1
-        address = 6'd4;
-        data[9:0] = 10'd26;
-        @(negedge clk);
-        valid = 1'b0;
+        @(negedge clk)
+        address= 6'd0;
+        data = 10'd1;
+        valid =1'b1;
+        @(negedge clk)
+        address= 6'd2;
+        data = 10'd0;
+        valid =1'b1;
+        @(negedge clk)
+        address= 6'd2;
+        data = 10'd1;
+        valid =1'b1;
+        @(negedge clk)
+        address= 6'd2;
+        data = 10'd0;
+        valid =1'b1;
+        @(negedge clk)
+        valid =1'b0;
+
+        #200000000
+
+        @(negedge clk)
+        address= 6'd4;
+        data = 10'h19;
+        valid =1'b1;
+        @(negedge clk)
+        address= 6'd4;
+        data = 10'h6;
+        valid =1'b0;
+        #10000000
+        @(negedge clk)
+        address= 6'd30;
+        data = 0;
+        valid =1'b1;
+        dout_in = 24'hafafba;
+        @(negedge clk)
+        address= 6'd31;
+        data = 0;
+        valid =1'b1;
+        dout_in = 0;
+        #10000000
+
+        $finish;
+
+
+
+
+
     end
 
     always #(26041) clk = ~clk;
-
+endmodule
 
         // 6'd0: next_reg_pllen = data[0];
         //     6'd1: next_reg_vcodiv = data[1:0];
@@ -211,7 +239,7 @@ ringpll u_ringpll(
         
     // endtask //automatic
 
-endmodule
+
 
 //   pllcontrol.clkpostdist         <= 1'b0 ;
 //         pllcontrol.pllfwen_b           <= 1'b0 ;
