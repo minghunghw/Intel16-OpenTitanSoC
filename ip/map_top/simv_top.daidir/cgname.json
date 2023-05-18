@@ -1,0 +1,320 @@
+{
+    "_vcs_unit__1287595254": [
+        "_vcs_unit__1287595254",
+        "BPE7S",
+        "module",
+        1
+    ],
+    "std": [
+        "std",
+        "reYIK",
+        "module",
+        2
+    ],
+    "pllMap_pkg": [
+        "pllMap_pkg",
+        "dz6w0",
+        "module",
+        3
+    ],
+    "ip2211ringpll_clockdivffreset": [
+        "ip2211ringpll_clockdivffreset",
+        "uZ3jI",
+        "module",
+        4
+    ],
+    "ip2211ringpll_clockdivffresetb": [
+        "ip2211ringpll_clockdivffresetb",
+        "UkSTB",
+        "module",
+        5
+    ],
+    "ip2211ringpll_CLK_NAND_3TO1_MUX": [
+        "ip2211ringpll_CLK_NAND_3TO1_MUX",
+        "Ypf8S",
+        "module",
+        6
+    ],
+    "ip2211ringpll_clklocgclatchen": [
+        "ip2211ringpll_clklocgclatchen",
+        "eW9x1",
+        "module",
+        7
+    ],
+    "ip2211ringpll_clkgateen": [
+        "ip2211ringpll_clkgateen",
+        "nhCIh",
+        "module",
+        8
+    ],
+    "ip2211ringpll_clkinv": [
+        "ip2211ringpll_clkinv",
+        "Nw00N",
+        "module",
+        9
+    ],
+    "ip2211ringpll_clknor": [
+        "ip2211ringpll_clknor",
+        "tUSdJ",
+        "module",
+        10
+    ],
+    "ip2211ringpll_clk_and": [
+        "ip2211ringpll_clk_and",
+        "gbMpg",
+        "module",
+        11
+    ],
+    "ip2211ringpll_data2to1mux": [
+        "ip2211ringpll_data2to1mux",
+        "I3xCS",
+        "module",
+        12
+    ],
+    "ip2211ringpll_clkoren": [
+        "ip2211ringpll_clkoren",
+        "MKC5S",
+        "module",
+        13
+    ],
+    "ip2211ringpll_clkor": [
+        "ip2211ringpll_clkor",
+        "CEyK1",
+        "module",
+        14
+    ],
+    "ip2211ringpll_soc_rbe_clk": [
+        "ip2211ringpll_soc_rbe_clk",
+        "QRP7G",
+        "module",
+        15
+    ],
+    "ip2211ringpll_tcu_tpsb_stap_data_reg_0000": [
+        "ip2211ringpll_tcu_tpsb_stap_data_reg_0000",
+        "N5ixj",
+        "module",
+        16
+    ],
+    "ip2211ringpll_cpaclkphdelana": [
+        "ip2211ringpll_cpaclkphdelana",
+        "EzqPS",
+        "module",
+        17
+    ],
+    "ip2211ringpll_ip2211ringpll_cpafdivcore": [
+        "ip2211ringpll_ip2211ringpll_cpafdivcore",
+        "qNqzw",
+        "module",
+        18
+    ],
+    "ip2211ringpll_ip2211cpafdivtop": [
+        "ip2211ringpll_ip2211cpafdivtop",
+        "Nrwgu",
+        "module",
+        19
+    ],
+    "ip2211ringpll_pllljtopana": [
+        "ip2211ringpll_pllljtopana",
+        "t0hy8",
+        "module",
+        20
+    ],
+    "ip2211ringpll_PLL_AIP": [
+        "ip2211ringpll_PLL_AIP",
+        "b6fUb",
+        "module",
+        21
+    ],
+    "ip2211ringpll_SecondOrderLoopFilter": [
+        "ip2211ringpll_SecondOrderLoopFilter",
+        "PALur",
+        "module",
+        22
+    ],
+    "ip2211ringpll_cpafdivcore": [
+        "ip2211ringpll_cpafdivcore",
+        "yveja",
+        "module",
+        23
+    ],
+    "ip2211ringpll_plllsvccpll2vccdist": [
+        "ip2211ringpll_plllsvccpll2vccdist",
+        "DkLTd",
+        "module",
+        24
+    ],
+    "ip2211ringpll_gate_trunk_sync": [
+        "ip2211ringpll_gate_trunk_sync",
+        "ezHuv",
+        "module",
+        25
+    ],
+    "ip2211ringpll_cpadcaana": [
+        "ip2211ringpll_cpadcaana",
+        "tSHG0",
+        "module",
+        26
+    ],
+    "ip2211ringpll_tsadcsdmod10top": [
+        "ip2211ringpll_tsadcsdmod10top",
+        "zHL5Y",
+        "module",
+        27
+    ],
+    "pll_clk_ls": [
+        "pll_clk_ls",
+        "M6qUx",
+        "module",
+        28
+    ],
+    "ip2211ringpll_hip": [
+        "ip2211ringpll_hip",
+        "Nc0Qm",
+        "module",
+        29
+    ],
+    "ip2211ringpll_post_dist_mux": [
+        "ip2211ringpll_post_dist_mux",
+        "q08Lr",
+        "module",
+        30
+    ],
+    "ip2211ringpll_ldopgd": [
+        "ip2211ringpll_ldopgd",
+        "Y3ZJv",
+        "module",
+        31
+    ],
+    "ip2211ringpll_lock_detector": [
+        "ip2211ringpll_lock_detector",
+        "CBecS",
+        "module",
+        32
+    ],
+    "ip2211ringpll_lock_timer": [
+        "ip2211ringpll_lock_timer",
+        "WSAMJ",
+        "module",
+        33
+    ],
+    "ip2211ringpll_unlock_counter": [
+        "ip2211ringpll_unlock_counter",
+        "WaVgb",
+        "module",
+        34
+    ],
+    "ip2211ringpll_ljpll_reset_sync": [
+        "ip2211ringpll_ljpll_reset_sync",
+        "Kjk5E",
+        "module",
+        35
+    ],
+    "ip2211ringpll_startup_gen": [
+        "ip2211ringpll_startup_gen",
+        "qch2n",
+        "module",
+        36
+    ],
+    "ip2211ringpll_idv_fublet_0000": [
+        "ip2211ringpll_idv_fublet_0000",
+        "JMkCQ",
+        "module",
+        37
+    ],
+    "ip2211ringpll_ljpll_idv": [
+        "ip2211ringpll_ljpll_idv",
+        "mfxuZ",
+        "module",
+        38
+    ],
+    "ip2211ringpll_vctl_trim_fsm": [
+        "ip2211ringpll_vctl_trim_fsm",
+        "bPCEA",
+        "module",
+        39
+    ],
+    "ip2211ringpll_adc_ctl": [
+        "ip2211ringpll_adc_ctl",
+        "DUQ9Y",
+        "module",
+        40
+    ],
+    "ip2211ringpll_reg_req_ack": [
+        "ip2211ringpll_reg_req_ack",
+        "mz6yd",
+        "module",
+        41
+    ],
+    "ip2211ringpll_sync_reset_clkgen": [
+        "ip2211ringpll_sync_reset_clkgen",
+        "arAQ0",
+        "module",
+        42
+    ],
+    "ip2211ringpll_ratio_async_mux": [
+        "ip2211ringpll_ratio_async_mux",
+        "A9J42",
+        "module",
+        43
+    ],
+    "ip2211ringpll_ssc_mod_dfx": [
+        "ip2211ringpll_ssc_mod_dfx",
+        "CAAAV",
+        "module",
+        44
+    ],
+    "ip2211ringpll_sigma_delta": [
+        "ip2211ringpll_sigma_delta",
+        "L3ywC",
+        "module",
+        45
+    ],
+    "ip2211ringpll_mash_mod_0000": [
+        "ip2211ringpll_mash_mod_0000",
+        "tbyFZ",
+        "module",
+        46
+    ],
+    "ip2211ringpll_global_align": [
+        "ip2211ringpll_global_align",
+        "TDuA4",
+        "module",
+        47
+    ],
+    "ip22_ringpll_sip": [
+        "ip22_ringpll_sip",
+        "yva6y",
+        "module",
+        48
+    ],
+    "ringpll": [
+        "ringpll",
+        "bzbIv",
+        "module",
+        49
+    ],
+    "trng_mapcore": [
+        "trng_mapcore",
+        "v28du",
+        "module",
+        50
+    ],
+    "map_top": [
+        "map_top",
+        "zNRQv",
+        "module",
+        51
+    ],
+    "tb_mapwithpll": [
+        "tb_mapwithpll",
+        "Ju9aj",
+        "module",
+        52
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module",
+        53
+    ]
+}

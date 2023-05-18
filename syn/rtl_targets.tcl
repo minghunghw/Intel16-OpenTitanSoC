@@ -279,3 +279,12 @@ set rtl_top_chip [ concat \
     $rtl_top_core \
 ]
 set rtl_top_chip [lsort -unique $rtl_top_chip]
+
+set rtl_sandbox [ concat \
+    $rtl_trng \
+    $HW/sandbox/decoder.sv \
+    $HW/sandbox/Noise_injection_block_Stuck.sv \
+    $HW/sandbox/ringpll.sv \
+    $HW/sandbox/sandbox.sv \
+    $HW/sandbox/xbar_west.sv \
+]

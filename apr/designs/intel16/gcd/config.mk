@@ -13,4 +13,3 @@ export CORE_ASPECT_RATIO   = 1
 export CORE_MARGIN         = 1
 
 export PLACE_DENSITY = uniform
-export REPAIR_PDN_VIA_LAYER = v1

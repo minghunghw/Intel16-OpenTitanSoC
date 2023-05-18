@@ -1,0 +1,2 @@
+set_dont_touch u_ringpll
+set_dont_touch u_noise

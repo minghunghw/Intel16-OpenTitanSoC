@@ -2,19 +2,10 @@
 # Uncomment or add the design to run
 # ==============================================================================
 
-# DESIGN_CONFIG=./designs/intel16/aes/config.mk
-DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
-# DESIGN_CONFIG=./designs/intel16/cpu_cluster/config.mk
-# DESIGN_CONFIG=./designs/intel16/gpio/config.mk
-# DESIGN_CONFIG=./designs/intel16/ibex_tlul/config.mk
+DESIGN_CONFIG=./designs/intel16/aes/config.mk
+# DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
-# DESIGN_CONFIG=./designs/intel16/peri_device/config.mk
-# DESIGN_CONFIG=./designs/intel16/spi_device_tlul/config.mk
-# DESIGN_CONFIG=./designs/intel16/top_chip/config.mk
-# DESIGN_CONFIG=./designs/intel16/top_core/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
-# DESIGN_CONFIG=./designs/intel16/toy_design/config.mk
-# DESIGN_CONFIG=./designs/intel16/trng/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
 # Default design
@@ -712,10 +703,10 @@ clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_f
 	rm -rf $(OBJECTS_DIR)
 
 nuke: clean_test clean_issues
-	rm -rf ./results ./logs ./reports ./objects ./submit ./netlist
+	rm -rf ./results ./logs ./reports ./objects ./netlist
 	rm -rf ./calibre/drc ./calibre/lvs ./calibre/antenna ./calibre/density ./calibre/hveos 
 	rm -rf ./icv/drc ./icv/lvs ./icv/antenna ./icv/density ./icv/layer ./icv/iopad ./icv/template
-	rm -rf ./starrc/extraction ./fill ./virtuoso
+	rm -rf ./starrc/extraction ./fill
 	rm -rf layer_*.mps macrocell.list *best.plt *_pdn.def dummy.guide
 	rm -rf *.rpt *.rpt.old *.def.v pin_dumper.log
 	rm -rf versions.txt *.tar.gz

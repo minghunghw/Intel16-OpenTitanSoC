@@ -5,7 +5,8 @@ export MEM		  	= $(IP)/memory/ip224uhdlp1p11rf_2048x32m8b2c1s0_t0r0p0d0a1m1h/rtl
 export OPENTITAN    = $(IP)/opentitan/hw/ip
 export IBEX 	   	= $(IP)/opentitan/hw/vendor/lowrisc_ibex
 export JTAG 	   	= $(IP)/opentitan/hw/vendor/pulp_riscv_dbg
-export GPIO           = ../../apr/platforms/intel16/gpio
+export GPIO         = ../../apr/platforms/intel16/gpio
+export LIB          = /afs/eecs.umich.edu/kits/Intel/P1222.4/2022.08/lib224_b0m_6t_108pp_pdk090_r1v0p0_fv
 
 TEST 	= 
 VCFILE	= vc/$(TEST).vc
