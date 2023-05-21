@@ -13,7 +13,7 @@ module xbar_west (
     input         clkpll1,
     output        clknoise,
     output [3:0]  VB,
-    input         IOUT,  
+    input         Iout,  
 
     output [31:0] dq,
     output [31:0] drv0,
@@ -92,7 +92,7 @@ module xbar_west (
     `PAD_IN(VB[1], 27)
     `PAD_IN(VB[2], 28)
     `PAD_IN(VB[3], 29)
-    `PAD_OUT(IOUT, 30)
+    `PAD_OUT(Iout, 30)
     `PAD_IN(unused_pad, 31)
 
 endmodule

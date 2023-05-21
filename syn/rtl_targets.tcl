@@ -250,6 +250,7 @@ set rtl_cpu_cluster [lsort -unique $rtl_cpu_cluster]
 
 set rtl_trng [ concat \
     $HW/trng/counter.sv \
+    $HW/trng/mux.sv \
     $HW/trng/ro.sv \
     $HW/trng/stage.sv \
     $HW/trng/trng.sv \

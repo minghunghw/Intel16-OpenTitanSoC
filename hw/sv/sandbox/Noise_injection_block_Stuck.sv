@@ -1,13 +1,13 @@
 module Noise_injection_block_Stuck (
-    RANDOM,
+    Random,
     S,
     VB,
-    IOUT
+    Iout
 );
 
-input RANDOM;
+input Random;
 input [15:0] S;
 input [3:0] VB;
-output IOUT;
+output Iout;
 
 endmodule

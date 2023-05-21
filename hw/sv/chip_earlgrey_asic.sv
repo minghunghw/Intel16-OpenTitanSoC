@@ -1301,9 +1301,9 @@ module chip_earlgrey_asic #(
     // ast connections
     .por_n_i                      ( por_n                      ),
     .clk_main_i                   ( ast_base_clks.clk_sys      ),
-    .clk_io_i                     ( ast_base_clks.clk_io       ),
-    .clk_usb_i                    ( ast_base_clks.clk_usb      ),
-    .clk_aon_i                    ( ast_base_clks.clk_aon      ),
+    .clk_io_i                     ( ast_base_clks.clk_sys      ),
+    .clk_usb_i                    ( ast_base_clks.clk_sys      ),
+    .clk_aon_i                    ( ast_base_clks.clk_sys      ),
     .clks_ast_o                   ( clkmgr_aon_clocks          ),
     .clk_main_jitter_en_o         ( jen                        ),
     .rsts_ast_o                   ( rstmgr_aon_resets          ),

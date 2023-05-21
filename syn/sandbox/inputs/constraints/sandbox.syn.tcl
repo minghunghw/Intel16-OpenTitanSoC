@@ -1,2 +1,3 @@
+set_dont_touch u_trng/u_ro
 set_dont_touch u_ringpll
 set_dont_touch u_noise

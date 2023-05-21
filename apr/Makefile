@@ -2,9 +2,10 @@
 # Uncomment or add the design to run
 # ==============================================================================
 
-DESIGN_CONFIG=./designs/intel16/aes/config.mk
+# DESIGN_CONFIG=./designs/intel16/aes/config.mk
 # DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
+DESIGN_CONFIG=./designs/intel16/sandbox/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
@@ -699,7 +700,7 @@ clean:
 	@echo "  clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill"
 	@echo
 
-clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill clean_lef clean_metadata
+clean_all: clean_synth clean_floorplan clean_place clean_cts clean_route clean_finish clean_fill clean_lef
 	rm -rf $(OBJECTS_DIR)
 
 nuke: clean_test clean_issues

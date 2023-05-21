@@ -6,6 +6,8 @@ TESTDATA = test_data
 PIN = pin
 SRC_C =
 SRC_S = gpio
+WEST_IO = ../../apr/platforms/intel16/gpio/hl_4slice_west_io/lef/hl_4slice_west_io.fill.lef
+SOUTH_IO = ../../apr/platforms/intel16/gpio/hl_8slice_south_io/lef/hl_8slice_south_io.fill.lef
 
 ifdef SRC_C
 TEST = $(SRC_C)
@@ -62,7 +64,12 @@ assembly: assemble disassemble hex
 clean:
 	rm -rvf program.hex program.dump program.debug.dump program.elf program.debug.elf debug_bin	\
 
-pin:
-	cd $(PIN) && python pin.py
+csv:
+	cd $(PIN) && \
+	python parse.py $(SOUTH_IO) horizontal pin_south.csv && \
+	python parse.py $(WEST_IO) vertical pin_west.csv
+
+pin: csv
+	cd $(PIN) && python pin_south.py && python pin_west.py
 
 nuke:	clean

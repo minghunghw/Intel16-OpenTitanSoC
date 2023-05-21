@@ -42,7 +42,7 @@ logic               clkpll1;
 // noise signals
 logic               clknoise;
 logic [3:0]         VB; 
-logic               IOUT;
+logic               Iout;
 
 // pad mapping
 // 0:       clk         , in
@@ -147,10 +147,10 @@ ringpll u_ringpll (
 );
 
 Noise_injection_block_Stuck u_noise (
-    .RANDOM     (clknoise       ),
+    .Random     (clknoise       ),
     .S          (reg_noisesel   ),
     .VB         (VB             ),
-    .IOUT       (IOUT           )
+    .Iout       (Iout           )
 );
 
 xbar_west u_xbar_west (
