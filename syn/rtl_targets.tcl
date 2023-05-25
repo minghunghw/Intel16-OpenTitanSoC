@@ -11,7 +11,7 @@ set rtl_includes [ concat \
 ]
 
 set rtl_packages [ concat \
-    $HW/archive/top_pkg.sv \
+    $HW/archive/8SZP22W/top_pkg.sv \
     $OPENTITAN/prim/rtl/prim_alert_pkg.sv \
     $OPENTITAN/prim/rtl/prim_cipher_pkg.sv \
     $OPENTITAN/prim/rtl/prim_util_pkg.sv \
@@ -265,7 +265,8 @@ set rtl_toy_design [ concat \
 ]
 
 set rtl_top_core [ concat \
-    $HW/archive/top_core.sv \
+    $HW/archive/8SZP22W/top_core.sv \
+    $HW/archive/8SZP22W/xbar.sv \
     $HW/cluster/rst_gen.sv \
     $rtl_xbar \
     $rtl_spi_device \
@@ -275,8 +276,8 @@ set rtl_top_core [ concat \
 set rtl_top_core [lsort -unique $rtl_top_core]
 
 set rtl_top_chip [ concat \
-    $HW/archive/top_chip.sv \
-    $HW/archive/padring.sv \
+    $HW/archive/8SZP22W/backup/top_chip.sv \
+    $HW/archive/8SZP22W/backup/padring.sv \
     $rtl_top_core \
 ]
 set rtl_top_chip [lsort -unique $rtl_top_chip]

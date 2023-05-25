@@ -1,20 +1,21 @@
 export DESIGN_NAME 		= chip_earlgrey
 export PLATFORM    		= intel16
 
+export CHIP_DIR 		= ./designs/$(PLATFORM)/$(DESIGN_NAME)
 export CACHED_NETLIST 	= ../syn/$(DESIGN_NAME)/netlist/$(DESIGN_NAME).sv
-export SDC_FILE      	= ./designs/$(PLATFORM)/$(DESIGN_NAME)/constraint.sdc
+export SDC_FILE      	= $(CHIP_DIR)/constraint.sdc
 
-# export IO_CONSTRAINTS 	= ./designs/$(PLATFORM)/$(DESIGN_NAME)/io_placement.tcl
+export PDN_TCL 			= $(CHIP_DIR)/pdn.tcl
+export IO_CONSTRAINTS 	= $(CHIP_DIR)/io_placement.tcl
 
 export MEMORY_DIR 		= ../ip/memory
 
 export ADDITIONAL_LEFS 	= $(wildcard $(MEMORY_DIR)/*_be/lef/*.lef)
-export ADDITIONAL_OAS  	= $(wildcard $(MEMORY_DIR)/*_be/oas/*.oas)
-export ADDITIONAL_CDL 	= $(wildcard $(MEMORY_DIR)/*_be/cdl/*.cdl)
+export ADDITIONAL_OAS  	= $(wildcard $(MEMORY_DIR)/*_be/oasis/*.oas)
+export ADDITIONAL_CDL 	= $(wildcard $(MEMORY_DIR)/*_be/spice/*.sp)
 
-export CORE_UTILIZATION    = 20
-export CORE_ASPECT_RATIO   = 1
-export CORE_MARGIN         = 1
+export DIE_AREA    = 0 0 1400 1250
+export CORE_AREA   = 2 2 1398 1248
 
 export MACRO_PLACE_CHANNEL = 40 40 
 export MACRO_PLACE_HALO    = 20 20

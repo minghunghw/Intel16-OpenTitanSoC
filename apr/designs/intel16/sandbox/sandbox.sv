@@ -3926,7 +3926,7 @@ module sandbox ( dq, drv0, drv1, drv2, enabq, enq, outi, pd, ppen, prg_slew,
         1'b0), .vcodiv_ratio(reg_vcodiv), .vnnaon_nom(1'b0), .vss(1'b0), 
         .zdiv0_ratio(reg_ratio[19:10]), .zdiv0_ratio_p5(1'b0), .zdiv1_ratio(
         reg_ratio[29:20]), .zdiv1_ratio_p5(1'b0) );
-  Noise_injection_block_modified_v13 u_noise ( .Random(outi[25]), .S(reg_noisesel), 
+  Noise_injection_block_final_v11 u_noise ( .Random(outi[25]), .S(reg_noisesel), 
         .VB(outi[29:26]), .Iout(Iout) );
   ro u_trng_u_ro ( .sel(reg_trngsel), .start(n1810), .clk_ro(clkro) );
   b0mfuy000ar1n12x5 u_trng_u_counter_dout_reg_0_ ( .si(1'b0), .d(

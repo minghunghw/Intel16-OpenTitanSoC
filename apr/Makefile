@@ -3,9 +3,9 @@
 # ==============================================================================
 
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
-# DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
+DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
-DESIGN_CONFIG=./designs/intel16/sandbox/config.mk
+# DESIGN_CONFIG=./designs/intel16/sandbox/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
 #
@@ -673,12 +673,6 @@ clean_lef:
 
 view_layout:
 	calibredrv -m $(DR_INPUT_FILE) -l $(LAYER_PROPERTY)
-
-submit: finish
-	rm -rf ./submit && mkdir -p ./submit
-	calibredrv -64 $(CALIBRE_MERGE) convert $(RESULTS_DIR)/6_final.gds submit/$(TOP_LEVEL) oas
-	calibredrv -64 $(CALIBRE_MERGE) fill_merge $(PLATFORM_DIR)/die_frame/$(DIE_FRAME) submit/$(DIE_FRAME) oas $(RESULTS_DIR)/6_final.gds
-	tar -zvcf $(SUBMISSION) submit
 
 # ==============================================================================
 #  __  __ ___ ____   ____

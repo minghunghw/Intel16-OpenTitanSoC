@@ -2,7 +2,7 @@ module cpu_cluster (
     input  clk_i,
     input  rst_ni,
 
-    input  fetch_enable_i,
+    input  ibex_pkg::ibex_mubi_t    fetch_enable_i,
     input  prim_mubi_pkg::mubi4_t   en_ifetch_i,
 
     // Host interface
@@ -42,42 +42,31 @@ module cpu_cluster (
     tlul_pkg::tl_d2h_t  xbar_2to1_2_xbar_1to2;
     tlul_pkg::tl_h2d_t  xbar_1to2_2_xbar_2to1;
 
-
-    // ibex_tlul u_ibex_tlul (
-    //     .clk_i                  (clk_i                               ),
-    //     .rst_ni                 (rst_ni                              ),
-    //     .test_en_i              (1'b1                                ),
-    //     .ram_cfg_i              (prim_ram_1p_pkg::RAM_1P_CFG_DEFAULT ),
-    //     .hart_id_i              (32'b0                               ),
-    //     .boot_addr_i            (32'b0                               ),
-    //     .tl_i_i                 (ibex_i_i                            ),
-    //     .tl_i_o                 (ibex_i_o                            ),
-    //     .tl_d_i                 (ibex_d_i                            ),
-    //     .tl_d_o                 (ibex_d_o                            ),
-    //     .irq_software_i         (1'b0                                ),
-    //     .irq_timer_i            (1'b0                                ),
-    //     .irq_external_i         (1'b0                                ),
-    //     .irq_nm_i               (1'b0                                ),
-    //     .debug_req_i            (1'b0                                ),
-    //     .crash_dump_o           (crash_dump                          ),
-    //     .debug_fault_seen_o     (debug_fault_seen                    ),
-    //     .fetch_enable_i         (fetch_enable_i                      ),
-    //     .alert_minor_o          (alert_minor                         ),
-    //     .alert_major_internal_o (alert_major_internal                ),
-    //     .alert_major_bus_o      (alert_major_bus                     ), 
-    //     .core_sleep_o           (core_sleep                          ),
-    //     .scan_rst_ni            (1'b1                                ),
-    //     .scanmode_i             (prim_mubi_pkg::MuBi4False           )
-    // );
-
-    ibex_cluster u_ibex_cluster(
-    .clk_i          (clk_i),
-    .rst_ni         (rst_ni),
-    .fetch_enable_i (fetch_enable_i),
-    .ibex_i_i       (ibex_i_i),
-    .ibex_d_i       (ibex_d_i),
-    .ibex_i_o       (ibex_i_o),
-    .ibex_d_o       (ibex_d_o)
+    ibex_tlul u_ibex_tlul (
+        .clk_i                  (clk_i                               ),
+        .rst_ni                 (rst_ni                              ),
+        .test_en_i              (1'b1                                ),
+        .ram_cfg_i              (prim_ram_1p_pkg::RAM_1P_CFG_DEFAULT ),
+        .hart_id_i              (32'b0                               ),
+        .boot_addr_i            (32'b0                               ),
+        .tl_i_i                 (ibex_i_i                            ),
+        .tl_i_o                 (ibex_i_o                            ),
+        .tl_d_i                 (ibex_d_i                            ),
+        .tl_d_o                 (ibex_d_o                            ),
+        .irq_software_i         (1'b0                                ),
+        .irq_timer_i            (1'b0                                ),
+        .irq_external_i         (1'b0                                ),
+        .irq_nm_i               (1'b0                                ),
+        .debug_req_i            (1'b0                                ),
+        .crash_dump_o           (crash_dump                          ),
+        .debug_fault_seen_o     (debug_fault_seen                    ),
+        .fetch_enable_i         (fetch_enable_i                      ),
+        .alert_minor_o          (alert_minor                         ),
+        .alert_major_internal_o (alert_major_internal                ),
+        .alert_major_bus_o      (alert_major_bus                     ), 
+        .core_sleep_o           (core_sleep                          ),
+        .scan_rst_ni            (1'b1                                ),
+        .scanmode_i             (prim_mubi_pkg::MuBi4False           )
     );
 
     mem_tlul u_imem_tlul (

@@ -7,6 +7,7 @@ export SDC_FILE      	= $(SANDBOX_DIR)/constraint.sdc
 
 export PDN_TCL 			= $(SANDBOX_DIR)/pdn.tcl
 export IO_CONSTRAINTS 	= $(SANDBOX_DIR)/io_placement.tcl
+export MACRO_PLACEMENT  = $(SANDBOX_DIR)/macro_placement.tcl
 
 export ADDITIONAL_LEFS 	= $(wildcard $(SANDBOX_DIR)/lef/*.lef)
 export ADDITIONAL_OAS  	= $(wildcard $(SANDBOX_DIR)/oas/*.oas)

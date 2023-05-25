@@ -1,26 +1,39 @@
 module top_core (
-    input  logic        clk_i,
-    input  logic        rst_ni,
+    output [47:0] dq,
+    output [47:0] drv0,
+    output [47:0] drv1,
+    output [47:0] drv2,
+    output [47:0] enabq,
+    output [47:0] enq,
+    input  [47:0] outi,
+    output [47:0] pd,
+    output [47:0] ppen,
+    output [47:0] prg_slew,
+    output [47:0] puq,
+    output [47:0] pwrup_pull_en,
+    output [47:0] pwrupzhl
+);
 
-    input  logic        fetch_enable_i,
-    input  logic        en_ifetch_i,
+    logic        clk_i;
+    logic        rst_ni;
+    logic        fetch_enable_i;
+    logic        en_ifetch_i;
 
     // SPI device interface
-    input  logic        spi_sclk,
-    input  logic        spi_cs,
-    output logic [1:0]  spi_mode,
-    input  logic        spi_sdi0,
-    input  logic        spi_sdi1,
-    input  logic        spi_sdi2,
-    input  logic        spi_sdi3,
-    output logic        spi_sdo0,
-    output logic        spi_sdo1,
-    output logic        spi_sdo2,
-    output logic        spi_sdo3,
+    logic        spi_sclk;
+    logic        spi_cs;
+    logic [1:0]  spi_mode;
+    logic        spi_sdi0;
+    logic        spi_sdi1;
+    logic        spi_sdi2;
+    logic        spi_sdi3;
+    logic        spi_sdo0;
+    logic        spi_sdo1;
+    logic        spi_sdo2;
+    logic        spi_sdo3;
 
     // GPIO interface
-    output logic [31:0] gpio_o
-);
+    logic [31:0] gpio_o;
 
     logic rst_no;
 
@@ -38,14 +51,13 @@ module top_core (
     tlul_pkg::tl_h2d_t xbar_main_2_peri_device;
     tlul_pkg::tl_d2h_t peri_device_2_xbar_main;
 
-
     // remove assignment when connecting new module
     assign jtag_2_xbar_main = tlul_pkg::TL_H2D_DEFAULT;
 
-    // ibex_pkg::ibex_mubi_t   fetch_enable;
+    ibex_pkg::ibex_mubi_t   fetch_enable;
     prim_mubi_pkg::mubi4_t  en_ifetch;
 
-    // assign fetch_enable = (fetch_enable_i) ? ibex_pkg::IbexMuBiOn : ibex_pkg::IbexMuBiOff;
+    assign fetch_enable = (fetch_enable_i) ? ibex_pkg::IbexMuBiOn : ibex_pkg::IbexMuBiOff;
     assign en_ifetch    = (en_ifetch_i)    ? prim_mubi_pkg::MuBi4True : prim_mubi_pkg::MuBi4False;
 
     // reset synchronizer
@@ -104,7 +116,7 @@ module top_core (
         .clk_i              (clk_i             ),
         .rst_ni             (rst_no            ),
 
-        .fetch_enable_i     (fetch_enable_i      ),
+        .fetch_enable_i     (fetch_enable      ),
         .en_ifetch_i        (en_ifetch         ),
 
         .tl_core_i          (xbar_main_2_core  ),
@@ -125,6 +137,10 @@ module top_core (
         .tl_peri_device_o   (peri_device_2_xbar_main  ),
 
         .gpio_o             (gpio_o                   )
+    );
+
+    xbar u_xbar (
+        .*
     );
 
 endmodule

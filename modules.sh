@@ -34,6 +34,7 @@ module load calibre/2022.2_15.10_aoi
 module load synopsys-icv/2022.03-SP2
 module load synopsys-icvwb/2021.06
 module load synopsys-synth/2021.06-SP4
+module load synopsys-icc2/2022.03-SP3
 module load starrc/2022.03-SP3
 module load primetime/2021.06-SP4
 module load synopsys-lib-compiler/2022.03-SP3
