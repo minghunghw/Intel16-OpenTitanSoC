@@ -1,6 +1,6 @@
 set INTEL_DESIGN_NAME dhm
 #set INTEL_SDC_FILE 	1
-set INTEL_NUM_CPUS     12
+set INTEL_NUM_CPUS     16
 set INTEL_SDC_FILE      1
 set INTEL_TOPO_DEF      0
 #set INTEL_SPG 	1
