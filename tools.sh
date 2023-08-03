@@ -3,7 +3,7 @@
 function usage() {
 cat << EOF
 
-Usage: $0 [-h|--help] [-i|--init] [-u|--update] [-c|--commit] [-o|--orfs]
+Usage: $0 [-h|--help] [-i|--init] [-u|--update] [-r|--recursive] [-o|--orfs]
 
 Options:
     -h, --help              Print this help message.
@@ -12,7 +12,7 @@ Options:
 
     -u, --update            Update all submodules.
 
-    -c, --commit            Commit all changes to submodules.
+    -r, --recursive         Update all submodules recursively.
 
     -o, --orfs              Update Yosys and OpenROAD.
 EOF
@@ -30,8 +30,8 @@ while (( "$#" )); do
         -u|--update)
             UPDATE=1
             ;;
-        -c|--commit)
-            COMMIT=1
+        -r|--recursive)
+            RECURSIVE=1
             ;;
         -o|--orfs)
             ORFS=1
@@ -52,18 +52,18 @@ fi
 
 if [ ! -z "${UPDATE+x}" ]; then
     # update all submodules
-    git submodule update --remote --merge --recursive
+    git submodule update --remote --merge
 fi
 
-if [ ! -z "${COMMIT+x}" ]; then
-    git add --all :/
-    git commit -m "update submodule"
-    git push
+if [ ! -z "${RECURSIVE+x}" ]; then
+    # update all submodules recursively
+    git submodule update --remote --merge --recursive
 fi
 
 if [ ! -z "${ORFS+x}" ]; then
     source modules.sh
     # update Yosys and OpenROAD
     cd ip/OpenROAD-flow-scripts
+    rm -rf tools/yosys/abc
     ./build_openroad.sh --clean-force --no_init --local --latest --nice --yosys-args TCL_VERSION=tcl8.5
 fi

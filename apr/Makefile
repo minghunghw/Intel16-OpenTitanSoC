@@ -3,8 +3,9 @@
 # ==============================================================================
 
 # DESIGN_CONFIG=./designs/intel16/aes/config.mk
-DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
+# DESIGN_CONFIG=./designs/intel16/chip_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/mem_tlul/config.mk
+DESIGN_CONFIG=./designs/intel16/pmu/dc_config/config.mk
 # DESIGN_CONFIG=./designs/intel16/sandbox/config.mk
 # DESIGN_CONFIG=./designs/intel16/top_earlgrey/config.mk
 # DESIGN_CONFIG=./designs/intel16/xbar/config.mk
